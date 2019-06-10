@@ -4,10 +4,12 @@
     "pages/logs/logs"
   ],
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "backgroundTextStyle": "dark",
+    "backgroundColor":"#460EBA",
+    "navigationBarBackgroundColor": "#460EBA",
+    "navigationBarTitleText": "保保大师挑战赛",
+    "navigationBarTextStyle": "white",
+    "disableScroll": true
   },
   "sitemapLocation": "sitemap.json"
 }

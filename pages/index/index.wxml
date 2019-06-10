@@ -1,13 +1,100 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
+<view class="homepage">
+  <!-- <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <image bindtap="bindVieswTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
-  </view>
+  </view> -->
+      <view class='home-user'>
+        <view class='home-user-header'>
+          <image src="../../asset/homepage/default_header.png" class='header-image'></image>
+        </view>
+        <view class='home-user-info'>
+          <text class='user-name' style="color:#fff;font-size:14px">名字起得特别长</text>
+          <view class='user-info'>
+            <image src="../../asset/homepage/lv.4zongshi@2x.png" class='user-level'></image>
+            <image src="../../asset/homepage/zongshiStar@2x.png" style="width:14px;height:20px;margin:0 4px"></image>
+            <text style="color:#fff;font-size:12px">X12</text>
+          </view>
+        </view>
+      </view>
+      <view class='home-section'>
+        <view>
+          <image src="../../asset/homepage/logo@2x.png" class='home-logo'></image>
+        </view>
+        <text class='home-time'>—— 拒绝销售误导季 7.1-7.8 ——</text>
+        <text class='home-theme'>保险你做主 权益我知道</text>
+        <view style='position:relative'>
+          <image src="../../asset/homepage/cloud_lfet.svg" class='season1-cloud-left cloud-left'></image>
+          <image src="../../asset/homepage/cloud_right.svg" class='season1-cloud-right cloud-right'></image>
+          <image src="../../asset/homepage/home_season1.png" class='home-main-pic'></image>
+        </view>
+        <!-- <view style='position:relative'>
+          <image src="../../asset/homepage/season2_cloud.png" class='season2-cloud cloud-right'></image>
+          <image src="../../asset/homepage/insurance_policy.png" class='insurance-policy'></image>
+          <image src="../../asset/homepage/home_season2.png" class='home-main-pic season-pic'></image>
+        </view> -->
+        <!-- <view style='position:relative'>
+          <image src="../../asset/homepage/season3_cloud_left.png" class='season3-cloud-left cloud-left'></image>
+          <image src="../../asset/homepage/season3_cloud_right.png" class='season3-cloud-right cloud-right'></image>
+          <image src="../../asset/homepage/home_season3.png" class='home-main-pic'></image>
+        </view> -->
+        <!-- <view style='position:relative'>
+          <image src="../../asset/homepage/season4_cloud_left.png" class='season4-cloud-left cloud-left'></image>
+          <image src="../../asset/homepage/season4_cloud_right.png" class='season4-cloud-right cloud-right'></image>
+          <image src="../../asset/homepage/home_season4.png" class='home-main-pic'></image>
+        </view> -->
+          <image src="../../asset/homepage/begainAnswer.png" class='begin-answer'></image>
+          <image src='../../asset/homepage/home_arrow.png' class='home-arrow' bindtap="openRules"></image>
+          <image src='../../asset/homepage/season_tips.png' class='season-stragety' bindtap="openRules"></image>
+      </view>
+      <image src="../../asset/homepage/home_bg.png" class='home-btm-bg'></image>
+      <view class='loop-content'>
+        <view style='position:relative'>
+          <image src="../../asset/homepage/baobao.png" class='bao-bao'></image>
+        </view>
+      </view>
+      <view class='loop-box'>
+        <view class='loop-inner'>
+          <text class='loop-text loop-before'>学习保险知识</text>
+          <text class='loop-text loop-after'>保保大师挑战赛</text>
+        </view>
+      </view>
+      <view class='menu-content'>
+        <view class='menu-icon'>
+          <view class="icon-content">
+            <image src="../../asset/homepage/rank_icon.svg" class='menu-img'></image>
+          </view>
+          <text class='icon-font'>排行榜</text>
+        </view>
+        <view class='menu-icon'>
+          <view class="icon-content">
+            <image src="../../asset/homepage/task_icon.svg" class='menu-img'></image>
+            <view class='task-num'>1/7</view>
+          </view>
+          <text class='icon-font'>任务宝箱</text>
+        </view>
+        <view class='menu-icon'>
+          <view  class="icon-content">
+            <image src="../../asset/homepage/bag_icon.svg" class='menu-img'></image>
+            <view class='task-num'>NEW</view>
+          </view>
+          <text class='icon-font'>背包</text>
+        </view>
+        <view class='menu-icon'>
+          <view class='icon-content'>
+            <image src="../../asset/homepage/money_icon.svg" class='menu-img'></image>
+            <view class='task-num'>NEW</view>
+          </view>
+          <text class='icon-font'>红包碎片</text>
+        </view>
+      </view>
+      <view class='home-model' wx:if="{{showRules}}" catchtap='closeRules'>
+        <image src="../../asset/homepage/home_rules.png" catchtap='closeRules' class='home-rules' data-model='inner'></image>
+      </view>
 </view>

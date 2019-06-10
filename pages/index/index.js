@@ -6,6 +6,7 @@ Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
+    showRules:false,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
@@ -15,7 +16,22 @@ Page({
       url: '../logs/logs'
     })
   },
+  openRules:function(){
+    this.setData({
+      showRules:true
+    })
+  },
+  closeRules: function (event){
+    if (event.currentTarget.dataset.model==='inner'){
+      return
+    }
+    this.setData({
+      showRules:false
+    })
+  },
   onLoad: function () {
+
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
