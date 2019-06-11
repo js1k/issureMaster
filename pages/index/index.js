@@ -29,6 +29,11 @@ Page({
       showRules:false
     })
   },
+  goTreasure:function(){
+    wx.navigateTo({
+      url: '../treasureBox/treasureBox'
+    })
+  },
   onLoad: function () {
 
 

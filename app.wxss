@@ -48,3 +48,26 @@ view{
   justify-content: center;
   flex-direction: column;
 }
+.flx-ce-end{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.tab-content{
+  display: flex;
+  align-items: center;
+  border-radius:32rpx;
+  border:2rpx solid rgba(255,255,255,0.5);
+}
+.nav-tab{
+  font-size:28rpx;
+  color:rgba(255,255,255,0.5);
+  font-weight:500;
+  width:200rpx;
+  height:60rpx;
+}
+.tab-actived{
+  background:linear-gradient(270deg,rgba(255,210,92,1) 0%,rgba(255,137,33,1) 100%);
+  border-radius: 30rpx;
+  color:rgba(255,255,255,1);
+}

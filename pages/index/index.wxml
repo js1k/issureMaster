@@ -72,7 +72,7 @@
           </view>
           <text class='icon-font'>排行榜</text>
         </view>
-        <view class='menu-icon'>
+        <view class='menu-icon' bindtap='goTreasure'>
           <view class="icon-content">
             <image src="../../asset/homepage/task_icon.svg" class='menu-img'></image>
             <view class='task-num'>1/7</view>

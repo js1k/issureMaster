@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/treasureBox/treasureBox"
+    "pages/treasureBox/treasureBox",
+    "pages/rankList/rankList"
   ],
   "window": {
     "backgroundTextStyle": "dark",

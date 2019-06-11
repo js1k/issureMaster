@@ -1,50 +1,21 @@
-// pages/treasureBox/treasureBox.js
+// pages/rankList/rankList.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    showTask:true,
-    showMask:false,
-    noTeacher:false,
-    maskInner:'',
+    showTask:true
   },
-  toggleTreasure:function(){
+
+  toggleTreasure: function () {
     this.setData({
-      showTask:true
+      showTask: true
     })
   },
   toggleRecords: function () {
     this.setData({
       showTask: false
-    })
-  },
-  takeTeacher:function(){
-    this.setData({
-      showMask:true,
-      maskInner:'teacher'
-    })
-  },
-  closeMask:function(event){
-    if (event.currentTarget.dataset.model === 'inner') {
-      return
-    }
-    this.setData({
-      showMask: false
-    })
-  },
-  takeWx: function () {
-    this.setData({
-      showMask: true,
-      maskInner:'wx'
-    })
-  },
-  previewImage:function(e){
-    var current=e.target.dataset.src;
-    wx.previewImage({
-      current:current,
-      urls:[current]
     })
   },
   /**

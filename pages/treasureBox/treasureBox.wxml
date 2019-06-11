@@ -54,7 +54,7 @@
             <text class='card-box-txt'>0/1</text>
           </view>
         </view>
-        <view class='card-strategy flx-ce-ce'>查看攻略</view>
+        <view class='card-strategy flx-ce-ce' bindtap='takeWx'>查看攻略</view>
       </view>
       <view class='task-more'>—— 更多任务正在筹备中 ——</view>
     </view>
@@ -79,7 +79,7 @@
     </view>
   </view>
   <view class='com-mask' wx:if="{{showMask}}" bindtap='closeMask'>
-    <view class='take-teacher' catchtap='closeMask' data-model='inner' wx:if="{{noTeacher}}">
+    <view class='take-teacher' catchtap='closeMask' data-model='inner' wx:if="{{noTeacher&&maskInner==='teacher'}}">
       <view class='teacher-container flx-ce-clm'>
         <image class='teacher-box' src='../../asset/treasureBox/find_teacher_box.png'></image>
         <image src='../../asset/mask_close.png' class='close-mask' bindtap='closeMask'></image>
@@ -97,15 +97,21 @@
         <text class='teacher-tips'>保存该二维码通过微信添加代理人为好友即可索要定制宝箱，宝箱每日限领一次</text>
       </view>
     </view>
-    <view class='take-teacher' catchtap='closeMask' data-model='inner' wx:if="{{!noTeacher}}">
-    <view class='none-teacher-content flx-ce-clm'>
-        <image class='none-teacher' src='../../asset/treasureBox/none_teacher.png'></image>
-        <image src='../../asset/mask_close.png' class='close-mask' bindtap='closeMask'></image>
-        <view class='none-teacher-txt flx-ce-clm'>
-          <text>尚未绑定导师</text>
-          <text>暂时无法获得定制宝箱</text>
-        </view>
-    </view>
+    <view class='take-teacher' catchtap='closeMask' data-model='inner' wx:if="{{!noTeacher&&maskInner==='teacher'}}">
+      <view class='none-teacher-content flx-ce-clm'>
+          <image class='none-teacher' src='../../asset/treasureBox/none_teacher.png'></image>
+          <image src='../../asset/mask_close.png' class='close-mask' bindtap='closeMask'></image>
+          <view class='none-teacher-txt flx-ce-clm'>
+            <text>尚未绑定导师</text>
+            <text>暂时无法获得定制宝箱</text>
+          </view>
+      </view>
+    </view> 
+    <view class='take-teacher' catchtap='closeMask' data-model='inner' wx:if="{{maskInner==='wx'}}">
+      <view class='none-teacher-content flx-ce-clm'>
+          <image class='none-teacher' src='../../asset/treasureBox/wx_follow.png'></image>
+          <image src='../../asset/mask_close.png' class='close-mask' bindtap='closeMask'></image>
+      </view>
     </view>
   </view>
 </scroll-view>
