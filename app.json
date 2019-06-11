@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/treasureBox/treasureBox"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -13,3 +14,4 @@
   },
   "sitemapLocation": "sitemap.json"
 }
+

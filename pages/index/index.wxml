@@ -94,7 +94,7 @@
           <text class='icon-font'>红包碎片</text>
         </view>
       </view>
-      <view class='home-model' wx:if="{{showRules}}" catchtap='closeRules'>
+      <view class='com-mask' wx:if="{{showRules}}" catchtap='closeRules'>
         <image src="../../asset/homepage/home_rules.png" catchtap='closeRules' class='home-rules' data-model='inner'></image>
       </view>
 </view>

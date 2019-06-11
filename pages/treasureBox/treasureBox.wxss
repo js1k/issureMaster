@@ -1,0 +1,215 @@
+.treasure-box{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding:40rpx 0 0;
+  width:100%;
+  height:100%;
+  box-sizing: border-box;
+}
+.navigation{
+  margin-bottom:68rpx;
+  /* height:64rpx; */
+}
+.tab-content{
+  display: flex;
+  align-items: center;
+  border-radius:32rpx;
+  border:2rpx solid rgba(255,255,255,0.5);
+}
+.nav-tab{
+  font-size:28rpx;
+  color:rgba(255,255,255,0.5);
+  font-weight:500;
+  width:200rpx;
+  height:60rpx;
+}
+.tab-actived{
+  background:linear-gradient(270deg,rgba(255,210,92,1) 0%,rgba(255,137,33,1) 100%);
+  border-radius: 30rpx;
+  color:rgba(255,255,255,1);
+}
+.section{
+  width:100%;
+  padding:0 32rpx;
+  flex-grow: 1;
+}
+.section-content{
+  width:100%;
+  background:rgba(255,255,255,1);
+  box-shadow:0rpx 4rpx 14rpx 0rpx rgba(49,60,213,0.5);
+  border-radius:20rpx;
+}
+.task-list{
+  padding:24rpx 16rpx;
+}
+.task-title{
+  width:456rpx;
+  height:36rpx;
+  margin-bottom:28rpx;
+}
+.task-column{
+  width:100%;
+  position: relative;
+  padding:20rpx 0 16rpx 42rpx;
+  margin-bottom:24rpx;
+}
+.task-bg{
+  width:100%;
+  height:232rpx;
+}
+.card-title{
+  font-size:17px;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  margin-bottom:16rpx;
+}
+.card-des{
+  font-size:13px;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
+.card-box-content{
+  height:102rpx;
+  margin-top:18rpx;
+}
+.card-box{
+  width:116rpx;
+  height:102rpx;
+}
+.card-box-txt{
+  margin:0 16rpx 0 6rpx;
+  font-size:26rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
+.card-strategy{
+  position: absolute;
+  right:32rpx;
+  bottom:22rpx;
+  width:160rpx;
+  height:48rpx;
+  border-radius: 24rpx;
+  background:rgba(255,255,255,1);
+  font-size:24rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:rgba(31,32,88,1);
+  z-index: 99
+}
+.task-more{
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,61,68,1);
+}
+.card-bg{
+  width:100%;
+  height:100%;
+  position: absolute;
+  left:0;
+  top:0;
+  z-index: 1;
+}
+.card-content{
+  position: relative;
+  z-index: 99
+}
+.records-colm{
+  font-size:30rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(58,61,79,1);
+  margin-bottom:32rpx;
+}
+.take-teacher{
+  width: 100%;
+  padding:0 70rpx;
+}
+.teacher-container{
+  width:100%;
+  position: relative;
+  padding:130rpx 50rpx 64rpx;
+}
+.teacher-box{
+  width:100%;
+  height:100%;
+  position: absolute;
+  left:0;
+  top:0;
+  z-index: -1;
+}
+.close-mask{
+  position: absolute;
+  top:-60rpx;
+  right:0;
+  width:48rpx;
+  height:48rpx;
+}
+.default-header-conten{
+  width:140rpx;
+  height:140rpx;
+  margin-right:16rpx;
+}
+.default-header{
+  width:140rpx;
+  height:140rpx;
+  
+}
+.find-teacher-info{
+  flex-grow: 1;
+}
+.teacher-name{
+  font-size:44rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  line-height:44rpx;
+  margin-bottom:16rpx;
+}
+.main-info-txt{
+  font-size:26rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:26rpx;
+  margin-bottom:12rpx;
+}
+.qr-pic{
+  width:240rpx;
+  height:240rpx;
+  margin:80rpx 0 26rpx;
+}
+.teacher-tips{
+  font-size:28rpx;
+  width:100%;
+  padding:0 70rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  text-align: center;
+}
+.none-teacher{
+  width:100%;
+  height:760rpx;
+}
+.none-teacher-content{
+  width:100%;
+  position: relative;
+}
+.none-teacher-txt{
+  position: absolute;
+  width:100%;
+  bottom:54rpx;
+  font-size:28rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+}
+.none-txt{
+  display: block;
+}

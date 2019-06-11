@@ -1,0 +1,112 @@
+<scroll-view class="treasure-box" scroll-y="true">
+  <view class='navigation flx-ce-ce'>
+    <view class='tab-content'>
+      <view class="nav-tab flx-ce-ce {{showTask===true?'tab-actived':''}}" bindtap='toggleTreasure'>任务宝箱</view>
+      <view class="nav-tab flx-ce-ce {{showTask===false?'tab-actived':''}}" bindtap='toggleRecords'>宝箱记录</view>
+    </view>
+  </view>
+  <view class='section'>
+    <view class='task-list section-content flx-ce-clm' wx:if="{{showTask}}">
+      <image src='../../asset/treasureBox/treasureTask.png' class='task-title'></image>
+      <view class='task-column'>
+        <image src="../../asset/treasureBox/teacher_bg.png" class='card-bg'></image>
+        <view class='flx-start-clm card-content'>
+          <view class='card-title'>拜师学艺</view>
+          <view class='card-des'>学艺宝箱，三种特权任君挑选两张</view>
+          <view class='card-box-content'>
+            <image src='../../asset/treasureBox/teacher_box.png' class='card-box'></image>
+            <text class='card-box-txt'>0/1</text>
+          </view>
+        </view>
+        <view class='card-strategy flx-ce-ce' bindtap='takeTeacher'>查看攻略</view>
+      </view>
+      <view class='task-column'>
+        <image src="../../asset/treasureBox/share_bg.png" class='card-bg'></image>
+        <view class='flx-start-clm card-content'>
+          <view class='card-title'>分享活动</view>
+          <view class='card-des'>来一次给力分享，双方得随机宝箱</view>
+          <view class='card-box-content'>
+            <image src='../../asset/treasureBox/share_box.png' class='card-box'></image>
+            <text class='card-box-txt'>0/5</text>
+          </view>
+        </view>
+        <view class='card-strategy flx-ce-ce'>分享好礼</view>
+      </view>
+      <view class='task-column'>
+        <image src="../../asset/treasureBox/new_play_bg.png" class='card-bg'></image>
+        <view class='flx-start-clm card-content'>
+          <view class='card-title'>新手福利</view>
+          <view class='card-des'>新手专享，全套宝箱打开有惊喜</view>
+          <view class='card-box-content'>
+            <image src='../../asset/treasureBox/new_play_box.png' class='card-box'></image>
+            <text class='card-box-txt'>0/1</text>
+          </view>
+        </view>
+        <view class='card-strategy flx-ce-ce'>立即领取</view>
+      </view>
+      <view class='task-column'>
+        <image src="../../asset/treasureBox/wx_bg.png" class='card-bg'></image>
+        <view class='flx-start-clm card-content'>
+          <view class='card-title'>公众号赠礼</view>
+          <view class='card-des'>关注公众号，主题宝箱限时领取</view>
+          <view class='card-box-content'>
+            <image src='../../asset/treasureBox/wx_box.png' class='card-box'></image>
+            <text class='card-box-txt'>0/1</text>
+          </view>
+        </view>
+        <view class='card-strategy flx-ce-ce'>查看攻略</view>
+      </view>
+      <view class='task-more'>—— 更多任务正在筹备中 ——</view>
+    </view>
+    <view wx:if="{{!showTask}}" class='task-list section-content flx-ce-clm'>
+      <image src='../../asset/treasureBox/treasure_records.png' class='task-title'></image>
+      <view class='records-colm'>
+        <text>在2019-01-10 17:30:20 </text>
+        <text>你领取了民生保险微管家送你的"主题宝箱"。</text>
+      </view>
+      <view class='records-colm'>
+        <text>在2019-01-10 17:30:20 </text>
+        <text>你领取了民生保险微管家送你的"主题宝箱"。</text>
+      </view>
+      <view class='records-colm'>
+        <text>在2019-01-10 17:30:20 </text>
+        <text>你领取了民生保险微管家送你的"主题宝箱"。</text>
+      </view>
+      <view class='records-colm'>
+        <text>在2019-01-10 17:30:20 </text>
+        <text>你领取了民生保险微管家送你的"主题宝箱"。</text>
+      </view>
+    </view>
+  </view>
+  <view class='com-mask' wx:if="{{showMask}}" bindtap='closeMask'>
+    <view class='take-teacher' catchtap='closeMask' data-model='inner' wx:if="{{noTeacher}}">
+      <view class='teacher-container flx-ce-clm'>
+        <image class='teacher-box' src='../../asset/treasureBox/find_teacher_box.png'></image>
+        <image src='../../asset/mask_close.png' class='close-mask' bindtap='closeMask'></image>
+        <view class='find-teacher-info flx-ce'>
+          <view class='default-header-conten'>
+            <image src='../../asset/homepage/default_header.png' class='default-header'></image>
+          </view>
+          <view class='teacher-main-info'>
+            <view class='teacher-name'>WWE</view>
+            <view class='main-info-txt'>编号:867124681</view>
+            <view class='main-info-txt'>背景分公司 朝阳营服服务部</view>
+          </view>
+        </view>
+        <image src='http://dt.minshenglife.com/uploadTest/img/20190611/1560246335855.jpg' data-src="http://dt.minshenglife.com/uploadTest/img/20190611/1560246335855.jpg" class='qr-pic' bindtap="previewImage"></image>
+        <text class='teacher-tips'>保存该二维码通过微信添加代理人为好友即可索要定制宝箱，宝箱每日限领一次</text>
+      </view>
+    </view>
+    <view class='take-teacher' catchtap='closeMask' data-model='inner' wx:if="{{!noTeacher}}">
+    <view class='none-teacher-content flx-ce-clm'>
+        <image class='none-teacher' src='../../asset/treasureBox/none_teacher.png'></image>
+        <image src='../../asset/mask_close.png' class='close-mask' bindtap='closeMask'></image>
+        <view class='none-teacher-txt flx-ce-clm'>
+          <text>尚未绑定导师</text>
+          <text>暂时无法获得定制宝箱</text>
+        </view>
+    </view>
+    </view>
+  </view>
+</scroll-view>
+
