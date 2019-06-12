@@ -7,6 +7,9 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     showRules:false,
+    showCardImg:'../../asset/homepage/xinren.png',
+    showCardName:'帮帮卡',
+    knapsackMask:false,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
@@ -32,6 +35,30 @@ Page({
   goTreasure:function(){
     wx.navigateTo({
       url: '../treasureBox/treasureBox'
+    })
+  },
+  goRank: function () {
+    wx.navigateTo({
+      url: '../rankList/rankList'
+    })
+  },
+  showCard: function (event){
+    this.setData({
+      showCardImg: event.currentTarget.dataset.src,
+      showCardName: event.currentTarget.dataset.name
+    })
+  },
+  showKnapsack: function () {
+    this.setData({
+      knapsackMask: true
+    })
+  },
+  closeMask: function (event) {
+    if (event.currentTarget.dataset.model === 'inner') {
+      return
+    }
+    this.setData({
+      knapsackMask:false
     })
   },
   onLoad: function () {

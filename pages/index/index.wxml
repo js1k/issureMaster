@@ -66,7 +66,7 @@
         </view>
       </view>
       <view class='menu-content'>
-        <view class='menu-icon'>
+        <view class='menu-icon' bindtap='goRank'>
           <view class="icon-content">
             <image src="../../asset/homepage/rank_icon.svg" class='menu-img'></image>
           </view>
@@ -79,7 +79,7 @@
           </view>
           <text class='icon-font'>任务宝箱</text>
         </view>
-        <view class='menu-icon'>
+        <view class='menu-icon' bindtap='showKnapsack'>
           <view  class="icon-content">
             <image src="../../asset/homepage/bag_icon.svg" class='menu-img'></image>
             <view class='task-num'>NEW</view>
@@ -96,5 +96,86 @@
       </view>
       <view class='com-mask' wx:if="{{showRules}}" catchtap='closeRules'>
         <image src="../../asset/homepage/home_rules.png" catchtap='closeRules' class='home-rules' data-model='inner'></image>
+      </view>
+      <view class='com-mask index-mask' bindtap='closeMask' wx:if="{{knapsackMask}}">
+        <view class='knapsack-box'>
+          <view class='knapsack-close-box'>
+            <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
+          </view>
+          <view class='knapsack-section' catchtap='closeMask' data-model='inner'>
+            <view class='section-card'>
+              <view class='section-header flx-ce-ce'>背包</view>
+              <view class='section-card-list'>
+                <view class='card-box'>
+                  <view class='card-pic flx-ce-ce'>
+                    <image src='../../asset/homepage/bangbang.png' mode='aspectFit' data-name='帮帮卡' data-src='../../asset/homepage/bangbang.png' bindtap='showCard' class='card-bg'></image>
+                  </view>
+                  <view class='card-name flx-ce-ce'>帮帮卡</view>
+                </view>
+                <view class='card-box'>
+                  <view class='card-pic flx-ce-ce'>
+                    <image src='../../asset/homepage/paichu.png' mode='widthFix' data-name='排除卡' data-src='../../asset/homepage/paichu.png' bindtap='showCard' class='card-bg'></image>
+                  </view>
+                  <view class='card-name flx-ce-ce'>排除卡</view>
+                </view>
+                <view class='card-box'>
+                  <view class='card-pic flx-ce-ce'>
+                    <image src='../../asset/homepage/nengliang.png' mode='widthFix' data-name='能量卡' data-src='../../asset/homepage/nengliang.png' bindtap='showCard' class='card-bg'></image>
+                  </view>
+                  <view class='card-name flx-ce-ce'>能量卡</view>
+                </view>
+                <view class='card-box'>
+                  <view class='card-pic flx-ce-ce'>
+                    <image src='../../asset/homepage/xinren.png' mode='widthFix' data-name='新人宝箱' data-src='../../asset/homepage/xinren.png' bindtap='showCard' class='card-bg'></image>
+                  </view>
+                  <view class='card-name flx-ce-ce'>新人宝箱</view>
+                </view>
+                <view class='card-box'>
+                  <view class='card-pic flx-ce-ce'>
+                    <image src='../../asset/homepage/xueyi.png' mode='widthFix' data-name='学艺宝箱' data-src='../../asset/homepage/xueyi.png' bindtap='showCard' class='card-bg'></image>
+                  </view>
+                  <view class='card-name flx-ce-ce'>学艺宝箱</view>
+                </view>
+                <view class='card-box'>
+                  <view class='card-pic flx-ce-ce'>
+                    <image src='../../asset/homepage/fenxiang.png' mode='widthFix' data-name='分享宝箱' data-src='../../asset/homepage/fenxiang.png' bindtap='showCard' class='card-bg'></image>
+                  </view>
+                  <view class='card-name flx-ce-ce'>分享宝箱</view>
+                </view>
+                <view class='card-box'>
+                  <view class='card-pic flx-ce-ce'>
+                    <image src='../../asset/homepage/zhuti.png' mode='widthFix' data-name='主题宝箱' data-src='../../asset/homepage/zhuti.png' bindtap='showCard' class='card-bg'></image>
+                  </view>
+                  <view class='card-name flx-ce-ce'>主题宝箱</view>
+                </view>
+                <view class='card-box'>
+                  <view class='card-pic flx-ce-ce'>
+                    <!-- <image src='../../asset/homepage/bangbang.png' class='card-bg'></image> -->
+                  </view>
+                  <view class='card-name flx-ce-ce'> </view>
+                </view>
+                <view class='card-box'>
+                  <view class='card-pic flx-ce-ce'>
+                    <!-- <image src='../../asset/homepage/bangbang.png' class='card-bg'></image> -->
+                  </view>
+                  <view class='card-name flx-ce-ce'> </view>
+                </view>
+              </view>
+            </view>
+            <view class='knapsack-pillar'>
+              <view class='pillar'></view>
+              <view class='pillar'></view>
+            </view>
+            <view class='show-box flx-ce-str'>
+              <view class='card-pic card-pic-chosed flx-ce-ce'>
+                <image mode='widthFix' src='{{showCardImg}}' class='card-bg'></image>
+              </view>
+              <view class='show-txt'>
+                <view class='show-name'>{{showCardName}}</view>
+                <view class='show-desc'>特权卡三选二</view>
+              </view>
+            </view>
+          </view>
+        </view>
       </view>
 </view>

@@ -248,6 +248,107 @@
   top:-6rpx;
   right:-20rpx;
 }
+.index-mask{
+  padding:0 44rpx;
+}
+.knapsack-box{
+  width:100%;
+}
+.knapsack-close-box{
+  width:100%;
+  text-align: right;
+}
+.knapsack-close{
+  width:48rpx;
+  height:48rpx;
+  margin-bottom:16rpx;
+}
+.section-header{
+  height:88rpx;
+  background:rgba(124,196,233,1);
+  box-shadow:0px 0px 4px 0px rgba(255,255,255,0.5);
+  border-radius:10px 10px 0px 0px;
+  font-size:42rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+}
+.section-card{
+  background:linear-gradient(180deg,rgba(194,239,255,1) 0%,rgba(116,189,246,1) 100%);
+  box-shadow:0px 0px 8px 0px rgba(255,255,255,0.5);
+  border-radius:10px;
+  
+}
+.section-card-list{
+  padding:56rpx 54rpx 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.card-box{
+  margin-right:88rpx;
+}
+.card-bg{
+  /* width:126rpx;
+  height:126rpx; */
+  /* width:auto; */
+  height:90rpx;
+}
+.card-pic{
+  width:126rpx;
+  height:126rpx;
+  background:linear-gradient(180deg,rgba(136,213,245,0.3) 0%,rgba(80,171,231,0.1) 100%);
+  border-radius:12rpx;
+  border:2rpx solid;
+  border-image:linear-gradient(180deg, rgba(88,173,224,1), rgba(97,181,235,1), rgba(177,224,255,1)) 1 1;
+}
+.card-pic-chosed{
+  margin-right:32rpx;
+  background:linear-gradient(180deg,rgba(49,146,185,0.3) 0%,rgba(12,55,84,0.1) 100%);
+  border-image:linear-gradient(180deg, rgba(66,161,218,1), rgba(70,153,206,1), rgba(132,207,255,1)) 1 1;
+}
+.card-box:nth-child(3n+3){
+  margin-right:0;
+}
+.card-name{
+  width:126rpx;
+  font-size:24rpx;
+  margin:16rpx 0 24rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+}
+.knapsack-pillar{
+  width:100%;
+  padding:0 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.pillar{
+  width:18rpx;
+  height:60rpx;
+  background:rgba(76,120,219,1);
+  box-shadow:0px 0px 8px 0px rgba(255,255,255,0.5);
+}
+.show-box{
+  background:linear-gradient(180deg,rgba(120,191,246,1) 0%,rgba(116,189,246,1) 100%);
+  box-shadow:0px 0px 8px 0px rgba(255,255,255,0.5);
+  border-radius:12rpx;
+  padding:24rpx 0 26rpx 54rpx;
+}
+.show-name{
+  font-size:32rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  margin-bottom:16rpx;
+}
+.show-desc{
+  font-size:22rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
 @keyframes cloudLeft{
   0%{
     left:0px 

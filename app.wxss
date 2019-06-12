@@ -38,6 +38,11 @@ view{
   align-items: center;
   justify-content: center;
 }
+.flx-ce-str{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
 .flx-start-clm{
   display: flex;
   flex-direction: column;
