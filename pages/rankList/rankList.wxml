@@ -1,139 +1,78 @@
-<scroll-view scroll-y="true" class='rank-list'>
+<view class='rank-list flx-ce-no-clm'>
   <view class='navigation flx-ce-ce'>
     <view class='tab-content'>
-      <view class="nav-tab flx-ce-ce {{showTask===true?'tab-actived':''}}" bindtap='toggleTreasure'>当前赛季排行</view>
-      <view class="nav-tab flx-ce-ce {{showTask===false?'tab-actived':''}}" bindtap='toggleRecords'>总积分排行</view>
+      <view class="nav-tab flx-ce-ce {{showSeasonList===true?'tab-actived':''}}" bindtap='toggleTreasure'>当前赛季排行</view>
+      <view class="nav-tab flx-ce-ce {{showSeasonList===false?'tab-actived':''}}" bindtap='toggleRecords'>总积分排行</view>
     </view>
   </view>
-  <view class='rank-section'>
-    <view class='flx-ce-end rank-rules'>活动规则</view>
-    <view class='rank-content'>
-      <view class='rank-colum flx-ce'>
-        <view class='rank-medal-box'>
-          <image src='../../asset/rankList/rank_top1.png' class='rank-medal'></image>
-        </view>
-        <view class='colum-right flx-ce'>
-          <view class='rank-header-box flx-ce-ce'>
-            <image src='../../asset/homepage/default_header.png' class='rank-header'></image>
+  <scroll-view scroll-y="true" class='rank-section'>
+    <view class='flx-ce-no-clm section-content'>
+      <view class='flx-ce-end rank-rules' bindtap='rankRules'>活动规则</view>
+      <view class='rank-content' wx:if="{{showSeasonList}}">
+        <view class='rank-colum flx-ce'>
+          <view class='rank-medal-box'>
+            <image src='../../asset/rankList/rank_top1.png' class='rank-medal'></image>
           </view>
-          <view class='main-info'>
-            <view class='main-name'>名字起得特别长</view>
-            <view class='rank-star flx-ce'>
-              <image src='../../asset/rankList/icon_zongshi.png' mode="widthFix" class='rank-star-icon'></image>
-              <image src='../../asset/rankList/zongshi_star.png' mode="widthFix" class='common-star'></image>
-              <text class='rank-star-txt'>X12</text>
+          <view class='colum-right flx-ce none-border'>
+            <view class='rank-header-box flx-ce-ce'>
+              <image src='../../asset/homepage/default_header.png' class='rank-header'></image>
+            </view>
+            <view class='main-info'>
+              <view class='main-name'>名字起得特别长</view>
+              <view class='rank-star flx-ce'>
+                <image src='../../asset/rankList/icon_zongshi.png' class='rank-star-icon'></image>
+                <image src='../../asset/rankList/zongshi_star.png' class='common-star'></image>
+                <text class='rank-star-txt'>X12</text>
+              </view>
             </view>
           </view>
         </view>
       </view>
-      <view class='rank-colum flx-ce'>
-        <view class='rank-medal-box'>
-          <image src='../../asset/rankList/rank_top1.png' class='rank-medal'></image>
-        </view>
-        <view class='colum-right flx-ce'>
-          <view class='rank-header-box flx-ce-ce'>
-            <image src='../../asset/homepage/default_header.png' class='rank-header'></image>
+      <view class='rank-content' wx:if="{{!showSeasonList}}">
+        <view class='rank-colum flx-ce'>
+          <view class='rank-medal-box'>
+            <image src='../../asset/rankList/rank_top1.png' class='rank-medal'></image>
           </view>
-          <view class='main-info'>
-            <view class='main-name'>名字起得特别长</view>
-            <view class='rank-star flx-ce'>
-              <image src='../../asset/rankList/icon_zongshi.png' mode="widthFix" class='rank-star-icon'></image>
-              <image src='../../asset/rankList/zongshi_star.png' mode="widthFix" class='common-star'></image>
-              <text class='rank-star-txt'>X12</text>
+          <view class='colum-right flx-ce none-border'>
+            <view class='rank-header-box flx-ce-ce'>
+              <image src='../../asset/homepage/default_header.png' class='rank-header'></image>
+            </view>
+            <view class='main-info'>
+              <view class='main-name'>名字起得特别长</view>
+              <view class='integral-rank'>积分：80000</view>
             </view>
           </view>
         </view>
       </view>
-      <view class='rank-colum flx-ce'>
-        <view class='rank-medal-box'>
-          <image src='../../asset/rankList/rank_top1.png' class='rank-medal'></image>
-        </view>
-        <view class='colum-right flx-ce'>
-          <view class='rank-header-box flx-ce-ce'>
-            <image src='../../asset/homepage/default_header.png' class='rank-header'></image>
-          </view>
-          <view class='main-info'>
-            <view class='main-name'>名字起得特别长</view>
-            <view class='rank-star flx-ce'>
-              <image src='../../asset/rankList/icon_zongshi.png' mode="widthFix" class='rank-star-icon'></image>
-              <image src='../../asset/rankList/zongshi_star.png' mode="widthFix" class='common-star'></image>
-              <text class='rank-star-txt'>X12</text>
+      <view class='fixed-colm'>
+        <view class='fixed-inner'>
+          <view class='rank-colum flx-ce'>
+            <view class='rank-medal-box'>
+              <image src='../../asset/rankList/rank_top1.png' class='rank-medal'></image>
             </view>
-          </view>
-        </view>
-      </view>
-      <view class='rank-colum flx-ce'>
-        <view class='rank-medal-box'>
-          <image src='../../asset/rankList/rank_top1.png' class='rank-medal'></image>
-        </view>
-        <view class='colum-right flx-ce'>
-          <view class='rank-header-box flx-ce-ce'>
-            <image src='../../asset/homepage/default_header.png' class='rank-header'></image>
-          </view>
-          <view class='main-info'>
-            <view class='main-name'>名字起得特别长</view>
-            <view class='rank-star flx-ce'>
-              <image src='../../asset/rankList/icon_zongshi.png' mode="widthFix" class='rank-star-icon'></image>
-              <image src='../../asset/rankList/zongshi_star.png' mode="widthFix" class='common-star'></image>
-              <text class='rank-star-txt'>X12</text>
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class='rank-colum flx-ce'>
-        <view class='rank-medal-box'>
-          <image src='../../asset/rankList/rank_top1.png' class='rank-medal'></image>
-        </view>
-        <view class='colum-right flx-ce'>
-          <view class='rank-header-box flx-ce-ce'>
-            <image src='../../asset/homepage/default_header.png' class='rank-header'></image>
-          </view>
-          <view class='main-info'>
-            <view class='main-name'>名字起得特别长</view>
-            <view class='rank-star flx-ce'>
-              <image src='../../asset/rankList/icon_zongshi.png' mode="widthFix" class='rank-star-icon'></image>
-              <image src='../../asset/rankList/zongshi_star.png' mode="widthFix" class='common-star'></image>
-              <text class='rank-star-txt'>X12</text>
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class='rank-colum flx-ce'>
-        <view class='rank-medal-box'>
-          <image src='../../asset/rankList/rank_top1.png' class='rank-medal'></image>
-        </view>
-        <view class='colum-right flx-ce'>
-          <view class='rank-header-box flx-ce-ce'>
-            <image src='../../asset/homepage/default_header.png' class='rank-header'></image>
-          </view>
-          <view class='main-info'>
-            <view class='main-name'>名字起得特别长</view>
-            <view class='rank-star flx-ce'>
-              <image src='../../asset/rankList/icon_zongshi.png' mode="widthFix" class='rank-star-icon'></image>
-              <image src='../../asset/rankList/zongshi_star.png' mode="widthFix" class='common-star'></image>
-              <text class='rank-star-txt'>X12</text>
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class='rank-colum flx-ce'>
-        <view class='rank-medal-box'>
-          <image src='../../asset/rankList/rank_top1.png' class='rank-medal'></image>
-        </view>
-        <view class='colum-right flx-ce'>
-          <view class='rank-header-box flx-ce-ce'>
-            <image src='../../asset/homepage/default_header.png' class='rank-header'></image>
-          </view>
-          <view class='main-info'>
-            <view class='main-name'>名字起得特别长</view>
-            <view class='rank-star flx-ce'>
-              <image src='../../asset/rankList/icon_zongshi.png' mode="widthFix" class='rank-star-icon'></image>
-              <image src='../../asset/rankList/zongshi_star.png' mode="widthFix" class='common-star'></image>
-              <text class='rank-star-txt'>X12</text>
+            <view class='colum-right flx-ce none-border'>
+              <view class='rank-header-box flx-ce-ce'>
+                <image src='../../asset/homepage/default_header.png' class='rank-header'></image>
+              </view>
+              <view class='main-info'>
+                <view class='main-name'>名字起得特别长</view>
+                <view class='rank-star flx-ce' wx:if="{{showSeasonList}}">
+                  <image src='../../asset/rankList/icon_zongshi.png' mode="widthFix" class='rank-star-icon'></image>
+                  <image src='../../asset/rankList/zongshi_star.png' mode="widthFix" class='common-star'></image>
+                  <text class='rank-star-txt'>X12</text>
+                </view>
+                <view class='integral-rank' wx:if="{{!showSeasonList}}">积分: 6400</view>
+              </view>
             </view>
           </view>
         </view>
       </view>
     </view>
+  </scroll-view>
+  <view class='com-mask flx-ce-ce' wx:if="{{showMask}}">
+    <scroll-view scroll-y="true" class='rank-mask flx-ce-ce' bindtap='closeMask'>
+      <image src='../../asset/mask_close.png' class='mask-close' bindtap='closeMask'></image>
+      <image src='../../asset/rankList/rank_rules.png' mode='widthFix' class='rank-pic' catchtap='closeMask' data-model='inner'></image>
+    </scroll-view>
   </view>
-</scroll-view>
+</view>

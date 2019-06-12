@@ -1,9 +1,13 @@
 .rank-list{
   width:100%;
+  height:100%;
+  padding:0 32rpx;
 }
 .rank-section{
   width:100%;
-  padding:0 32rpx;
+  flex-grow: 1;
+  box-sizing: border-box;
+  flex-basis: 0;
 }
 .rank-rules{
   font-size:22rpx;
@@ -11,11 +15,18 @@
   font-family:PingFangSC-Regular;
   font-weight:400;
   color:rgba(255,255,255,1);
+  width:100%;
+  text-align: right;
+}
+.section-content{
+  height:100%;
 }
 .rank-content{
   background:linear-gradient(180deg,rgba(109,161,255,1) 0%,rgba(101,89,255,1) 100%);
   border-radius:10px 10px 0px 0px;
   width:100%;
+  flex-grow: 1;
+  flex-basis:0;
   padding:0 78rpx 0 38rpx;
 }
 .rank-medal{
@@ -58,15 +69,50 @@
 }
 .rank-star-icon{
   width:88rpx;
+  height:40rpx;
   margin-right:10rpx;
 }
 .common-star{
   width:28rpx;
-  /* height:40rpx; */
+  height:40rpx;
   margin-right:4rpx;
 }
 .rank-medal-box{
   width:64rpx;
   height:64rpx;
   margin-right:26rpx;
+}
+.fixed-colm{
+  width:100%;
+  position: fixed;
+  bottom:0;
+  padding:0 32rpx;
+}
+.fixed-inner{
+  padding:0 78rpx 0 38rpx;
+  background:linear-gradient(180deg,rgba(109,161,255,1) 0%,rgba(101,89,255,1) 100%);
+}
+.integral-rank{
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
+.none-border{
+  border-bottom: none;
+}
+.rank-mask{
+  width:100%;
+  height:100%;
+  padding:40rpx 60rpx;
+  text-align: center
+}
+.rank-pic{
+  width:100%;
+  height: auto;
+}
+.mask-close{
+  width: 60rpx;
+  height:60rpx;
+  margin:50rpx 0 30rpx;
 }

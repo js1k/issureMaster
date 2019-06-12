@@ -5,17 +5,31 @@ Page({
    * 页面的初始数据
    */
   data: {
-    showTask:true
+    showSeasonList:true,
+    showMask:false
   },
 
   toggleTreasure: function () {
     this.setData({
-      showTask: true
+      showSeasonList: true
     })
   },
   toggleRecords: function () {
     this.setData({
-      showTask: false
+      showSeasonList: false
+    })
+  },
+  rankRules:function(){
+    this.setData({
+      showMask:true
+    })
+  },
+  closeMask:function(event){
+    if (event.currentTarget.dataset.model === 'inner') {
+      return
+    }
+    this.setData({
+      showMask:false
     })
   },
   /**
