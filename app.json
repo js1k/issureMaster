@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/treasureBox/treasureBox",
-    "pages/rankList/rankList"
+    "pages/rankList/rankList",
+    "pages/homepage/homepage"
   ],
   "window": {
     "backgroundTextStyle": "dark",

@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="homepage">
+<view class="index-page">
   <!-- <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
@@ -12,51 +12,51 @@
   </view> -->
       <view class='home-user'>
         <view class='home-user-header'>
-          <image src="../../asset/homepage/default_header.png" class='header-image'></image>
+          <image src="../../asset/index/default_header.png" class='header-image' bindtap='goHomepage'></image>
         </view>
         <view class='home-user-info'>
           <text class='user-name' style="color:#fff;font-size:14px">名字起得特别长</text>
           <view class='user-info'>
-            <image src="../../asset/homepage/lv.4zongshi@2x.png" class='user-level'></image>
-            <image src="../../asset/homepage/zongshiStar@2x.png" style="width:14px;height:20px;margin:0 4px"></image>
+            <image src="../../asset/index/lv.4zongshi@2x.png" class='user-level'></image>
+            <image src="../../asset/index/zongshiStar@2x.png" style="width:14px;height:20px;margin:0 4px"></image>
             <text style="color:#fff;font-size:12px">X12</text>
           </view>
         </view>
       </view>
       <view class='home-section'>
         <view>
-          <image src="../../asset/homepage/logo@2x.png" class='home-logo'></image>
+          <image src="../../asset/index/logo@2x.png" class='home-logo'></image>
         </view>
         <text class='home-time'>—— 拒绝销售误导季 7.1-7.8 ——</text>
         <text class='home-theme'>保险你做主 权益我知道</text>
         <view style='position:relative'>
-          <image src="../../asset/homepage/cloud_lfet.svg" class='season1-cloud-left cloud-left'></image>
-          <image src="../../asset/homepage/cloud_right.svg" class='season1-cloud-right cloud-right'></image>
-          <image src="../../asset/homepage/home_season1.png" class='home-main-pic'></image>
+          <image src="../../asset/index/cloud_lfet.svg" class='season1-cloud-left cloud-left'></image>
+          <image src="../../asset/index/cloud_right.svg" class='season1-cloud-right cloud-right'></image>
+          <image src="../../asset/index/home_season1.png" class='home-main-pic'></image>
         </view>
         <!-- <view style='position:relative'>
-          <image src="../../asset/homepage/season2_cloud.png" class='season2-cloud cloud-right'></image>
-          <image src="../../asset/homepage/insurance_policy.png" class='insurance-policy'></image>
-          <image src="../../asset/homepage/home_season2.png" class='home-main-pic season-pic'></image>
+          <image src="../../asset/index/season2_cloud.png" class='season2-cloud cloud-right'></image>
+          <image src="../../asset/index/insurance_policy.png" class='insurance-policy'></image>
+          <image src="../../asset/index/home_season2.png" class='home-main-pic season-pic'></image>
         </view> -->
         <!-- <view style='position:relative'>
-          <image src="../../asset/homepage/season3_cloud_left.png" class='season3-cloud-left cloud-left'></image>
-          <image src="../../asset/homepage/season3_cloud_right.png" class='season3-cloud-right cloud-right'></image>
-          <image src="../../asset/homepage/home_season3.png" class='home-main-pic'></image>
+          <image src="../../asset/index/season3_cloud_left.png" class='season3-cloud-left cloud-left'></image>
+          <image src="../../asset/index/season3_cloud_right.png" class='season3-cloud-right cloud-right'></image>
+          <image src="../../asset/index/home_season3.png" class='home-main-pic'></image>
         </view> -->
         <!-- <view style='position:relative'>
-          <image src="../../asset/homepage/season4_cloud_left.png" class='season4-cloud-left cloud-left'></image>
-          <image src="../../asset/homepage/season4_cloud_right.png" class='season4-cloud-right cloud-right'></image>
-          <image src="../../asset/homepage/home_season4.png" class='home-main-pic'></image>
+          <image src="../../asset/index/season4_cloud_left.png" class='season4-cloud-left cloud-left'></image>
+          <image src="../../asset/index/season4_cloud_right.png" class='season4-cloud-right cloud-right'></image>
+          <image src="../../asset/index/home_season4.png" class='home-main-pic'></image>
         </view> -->
-          <image src="../../asset/homepage/begainAnswer.png" class='begin-answer'></image>
-          <image src='../../asset/homepage/home_arrow.png' class='home-arrow' bindtap="openRules"></image>
-          <image src='../../asset/homepage/season_tips.png' class='season-stragety' bindtap="openRules"></image>
+          <image src="../../asset/index/begainAnswer.png" class='begin-answer'></image>
+          <image src='../../asset/index/home_arrow.png' class='home-arrow' bindtap="openRules"></image>
+          <image src='../../asset/index/season_tips.png' class='season-stragety' bindtap="openRules"></image>
       </view>
-      <image src="../../asset/homepage/home_bg.png" class='home-btm-bg'></image>
+      <image src="../../asset/index/home_bg.png" class='home-btm-bg'></image>
       <view class='loop-content'>
         <view style='position:relative'>
-          <image src="../../asset/homepage/baobao.png" class='bao-bao'></image>
+          <image src="../../asset/index/baobao.png" class='bao-bao'></image>
         </view>
       </view>
       <view class='loop-box'>
@@ -68,34 +68,34 @@
       <view class='menu-content'>
         <view class='menu-icon' bindtap='goRank'>
           <view class="icon-content">
-            <image src="../../asset/homepage/rank_icon.svg" class='menu-img'></image>
+            <image src="../../asset/index/rank_icon.svg" class='menu-img'></image>
           </view>
           <text class='icon-font'>排行榜</text>
         </view>
         <view class='menu-icon' bindtap='goTreasure'>
           <view class="icon-content">
-            <image src="../../asset/homepage/task_icon.svg" class='menu-img'></image>
+            <image src="../../asset/index/task_icon.svg" class='menu-img'></image>
             <view class='task-num'>1/7</view>
           </view>
           <text class='icon-font'>任务宝箱</text>
         </view>
         <view class='menu-icon' bindtap='showKnapsack'>
           <view  class="icon-content">
-            <image src="../../asset/homepage/bag_icon.svg" class='menu-img'></image>
+            <image src="../../asset/index/bag_icon.svg" class='menu-img'></image>
             <view class='task-num'>NEW</view>
           </view>
           <text class='icon-font'>背包</text>
         </view>
         <view class='menu-icon'>
           <view class='icon-content'>
-            <image src="../../asset/homepage/money_icon.svg" class='menu-img'></image>
+            <image src="../../asset/index/money_icon.svg" class='menu-img'></image>
             <view class='task-num'>NEW</view>
           </view>
           <text class='icon-font'>红包碎片</text>
         </view>
       </view>
       <view class='com-mask' wx:if="{{showRules}}" catchtap='closeRules'>
-        <image src="../../asset/homepage/home_rules.png" catchtap='closeRules' class='home-rules' data-model='inner'></image>
+        <image src="../../asset/index/home_rules.png" catchtap='closeRules' class='home-rules' data-model='inner'></image>
       </view>
       <view class='com-mask index-mask' bindtap='closeMask' wx:if="{{knapsackMask}}">
         <view class='knapsack-box'>
@@ -108,55 +108,55 @@
               <view class='section-card-list'>
                 <view class='card-box'>
                   <view class='card-pic flx-ce-ce'>
-                    <image src='../../asset/homepage/bangbang.png' mode='aspectFit' data-name='帮帮卡' data-src='../../asset/homepage/bangbang.png' bindtap='showCard' class='card-bg'></image>
+                    <image src='../../asset/index/bangbang.png' mode='aspectFit' data-name='帮帮卡' data-src='../../asset/index/bangbang.png' bindtap='showCard' class='card-bg'></image>
                   </view>
                   <view class='card-name flx-ce-ce'>帮帮卡</view>
                 </view>
                 <view class='card-box'>
                   <view class='card-pic flx-ce-ce'>
-                    <image src='../../asset/homepage/paichu.png' mode='widthFix' data-name='排除卡' data-src='../../asset/homepage/paichu.png' bindtap='showCard' class='card-bg'></image>
+                    <image src='../../asset/index/paichu.png' mode='widthFix' data-name='排除卡' data-src='../../asset/index/paichu.png' bindtap='showCard' class='card-bg'></image>
                   </view>
                   <view class='card-name flx-ce-ce'>排除卡</view>
                 </view>
                 <view class='card-box'>
                   <view class='card-pic flx-ce-ce'>
-                    <image src='../../asset/homepage/nengliang.png' mode='widthFix' data-name='能量卡' data-src='../../asset/homepage/nengliang.png' bindtap='showCard' class='card-bg'></image>
+                    <image src='../../asset/index/nengliang.png' mode='widthFix' data-name='能量卡' data-src='../../asset/index/nengliang.png' bindtap='showCard' class='card-bg'></image>
                   </view>
                   <view class='card-name flx-ce-ce'>能量卡</view>
                 </view>
                 <view class='card-box'>
                   <view class='card-pic flx-ce-ce'>
-                    <image src='../../asset/homepage/xinren.png' mode='widthFix' data-name='新人宝箱' data-src='../../asset/homepage/xinren.png' bindtap='showCard' class='card-bg'></image>
+                    <image src='../../asset/index/xinren.png' mode='widthFix' data-name='新人宝箱' data-src='../../asset/index/xinren.png' bindtap='showCard' class='card-bg'></image>
                   </view>
                   <view class='card-name flx-ce-ce'>新人宝箱</view>
                 </view>
                 <view class='card-box'>
                   <view class='card-pic flx-ce-ce'>
-                    <image src='../../asset/homepage/xueyi.png' mode='widthFix' data-name='学艺宝箱' data-src='../../asset/homepage/xueyi.png' bindtap='showCard' class='card-bg'></image>
+                    <image src='../../asset/index/xueyi.png' mode='widthFix' data-name='学艺宝箱' data-src='../../asset/index/xueyi.png' bindtap='showCard' class='card-bg'></image>
                   </view>
                   <view class='card-name flx-ce-ce'>学艺宝箱</view>
                 </view>
                 <view class='card-box'>
                   <view class='card-pic flx-ce-ce'>
-                    <image src='../../asset/homepage/fenxiang.png' mode='widthFix' data-name='分享宝箱' data-src='../../asset/homepage/fenxiang.png' bindtap='showCard' class='card-bg'></image>
+                    <image src='../../asset/index/fenxiang.png' mode='widthFix' data-name='分享宝箱' data-src='../../asset/index/fenxiang.png' bindtap='showCard' class='card-bg'></image>
                   </view>
                   <view class='card-name flx-ce-ce'>分享宝箱</view>
                 </view>
                 <view class='card-box'>
                   <view class='card-pic flx-ce-ce'>
-                    <image src='../../asset/homepage/zhuti.png' mode='widthFix' data-name='主题宝箱' data-src='../../asset/homepage/zhuti.png' bindtap='showCard' class='card-bg'></image>
+                    <image src='../../asset/index/zhuti.png' mode='widthFix' data-name='主题宝箱' data-src='../../asset/index/zhuti.png' bindtap='showCard' class='card-bg'></image>
                   </view>
                   <view class='card-name flx-ce-ce'>主题宝箱</view>
                 </view>
                 <view class='card-box'>
                   <view class='card-pic flx-ce-ce'>
-                    <!-- <image src='../../asset/homepage/bangbang.png' class='card-bg'></image> -->
+                    <!-- <image src='../../asset/index/bangbang.png' class='card-bg'></image> -->
                   </view>
                   <view class='card-name flx-ce-ce'> </view>
                 </view>
                 <view class='card-box'>
                   <view class='card-pic flx-ce-ce'>
-                    <!-- <image src='../../asset/homepage/bangbang.png' class='card-bg'></image> -->
+                    <!-- <image src='../../asset/index/bangbang.png' class='card-bg'></image> -->
                   </view>
                   <view class='card-name flx-ce-ce'> </view>
                 </view>

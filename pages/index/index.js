@@ -7,7 +7,7 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     showRules:false,
-    showCardImg:'../../asset/homepage/xinren.png',
+    showCardImg:'../../asset/index/xinren.png',
     showCardName:'帮帮卡',
     knapsackMask:false,
     hasUserInfo: false,
@@ -59,6 +59,11 @@ Page({
     }
     this.setData({
       knapsackMask:false
+    })
+  },
+  goHomepage: function () {
+    wx.navigateTo({
+      url: '../homepage/homepage'
     })
   },
   onLoad: function () {

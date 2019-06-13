@@ -1,0 +1,175 @@
+.home-page{
+  width:100%;
+  height:100%;
+  padding:30rpx 40rpx 0;
+  box-sizing: border-box;
+}
+.header-box{
+  width:136rpx;
+  height:136rpx;
+  border-radius: 50%;
+  background:linear-gradient(360deg,rgba(236,53,52,1) 0%,rgba(246,141,90,1) 46%,rgba(250,199,111,1) 100%);
+}
+.header-pic{
+  width:128rpx;
+  height:128rpx;
+  border-radius: 50%;
+}
+.user-name{
+  font-size:34rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  margin:32rpx 0 18rpx;
+}
+.user-level{
+  font-size:24rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
+.home-star{
+  width:24rpx;
+  height:auto;
+  margin:0 6rpx 0 10rpx;
+}
+.home-icon{
+  width:88rpx;
+  height:auto;
+}
+.total-num{
+  margin-right:58rpx;
+}
+.victory-num{
+  margin:0 58rpx;
+}
+.victory-rate{
+  margin-left:58rpx;
+}
+.activities-num{
+  font-size:32rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  margin-bottom:16rpx;
+}
+.activities-txt{
+  font-size:22rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+}
+.activities-info{
+  margin:46rpx 0 32rpx;
+}
+.activities-line{
+  width:4rpx;
+  height:28rpx;
+  background:#fff;
+}
+.homepage-section{
+  width:100%;
+  padding: 28rpx 24rpx;
+  background:linear-gradient(180deg,rgba(109,161,255,1) 0%,rgba(101,89,255,1) 100%);
+  border-radius:10px;
+  margin-bottom:56rpx;
+}
+.section-card{
+  width:100%;
+  background:rgba(38,40,165,0.15);
+  border-radius:8rpx;
+  padding-bottom:22rpx;
+}
+.card-title{
+  padding: 14rpx 0 18rpx 16rpx;
+  font-size:26rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+}
+.card-title-icon{
+  width:8rpx;
+  height:28rpx;
+  background:rgba(255,219,23,1);
+  border-radius:6rpx;
+  margin-right:14rpx;
+}
+.card-pic{
+  width:108rpx;
+  height:auto;
+
+}
+.card-star{
+  width:28rpx;
+  height:auto;
+  margin:4rpx 0 8rpx;
+}
+.card-level-pic{
+  width:88rpx;
+  height:auto;
+}
+.card-pic-box{
+  margin:0 60rpx 0 52rpx;
+}
+.card-num{
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
+.card-txt{
+  font-size:22rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
+.game-rate{
+  width:100%;
+}
+.card-main-info{
+  width:100%;
+  padding-right:28rpx;
+}
+.card-txt-box{
+  flex-grow: 1;
+  padding:32rpx 6rpx 0 0;
+
+}
+.card-btn-box{
+  width:100%;
+  height:54rpx;
+  margin-top:26rpx;
+  background:rgba(78,55,203,0.4);
+  border-radius:28rpx;
+}
+.card-btn-txt{
+  font-size:26rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
+.gold-icon{
+  width:32rpx;
+  height:auto;
+  margin-right:8rpx;
+}
+.hongbao-icon{
+  width:24rpx;
+  height:auto;
+  margin:0 8rpx 0 34rpx;
+}
+.gold-hongbao{
+  font-size:20rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
+.season-lock-box{
+  width:144rpx;
+  height:144rpx;
+  margin:0 40rpx 0 32rpx;
+}
+.season-lock{
+  width:144rpx;
+  height:auto;
+}

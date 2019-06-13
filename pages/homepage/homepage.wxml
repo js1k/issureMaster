@@ -1,0 +1,201 @@
+<scroll-view scroll-y="true" class='home-page'>
+  <view class='homepage-header flx-ce-no-clm'>
+    <view class='person-info flx-ce-clm'>
+      <view class='header-box flx-ce-ce'>
+        <image class='header-pic' src='../../asset/index/default_header.png' mode='widthFix'></image>
+      </view>
+      <view class='user-name'>名字起得特别长</view>
+      <view class='level-info flx-ce-ce'>
+        <image src='../../asset/rankList/icon_zongshi.png' mode='widthFix' class='home-icon'></image>
+        <image src='../../asset/rankList/zongshi_star.png'  mode='widthFix' class='home-star'></image>
+        <view class='user-level'>X12</view>
+      </view>
+    </view>
+    <view class='activities-info flx-ce-ce'>
+      <view class='flx-ce-no-clm total-num'>
+        <view class='activities-num'>360</view>
+        <view class='activities-txt'>总场次</view>
+      </view>
+      <view class='activities-line'></view>
+      <view class='flx-ce-no-clm victory-num'>
+        <view class='activities-num'>269</view>
+        <view class='activities-txt'>胜场</view>
+      </view>
+      <view class='activities-line'></view>
+      <view class='flx-ce-no-clm victory-rate'>
+        <view class='activities-num'>60%</view>
+        <view class='activities-txt'>胜率</view>
+      </view>
+    </view>
+  </view>
+  <view class='homepage-section'>
+    <view class='section-card'>
+      <view class='card-title flx-ce-str'>
+        <view class='card-title-icon'></view>
+        <view>第一赛季：拒绝销售误导季</view>
+      </view>
+      <view class='flx-ce-str card-main-info'>
+        <view class='flx-ce-clm card-pic-box'>
+            <image src='../../asset/rankList/daren_pic.png' mode='widthFix' class='card-pic'></image>
+            <image src='../../asset/rankList/star.png' mode='widthFix' class='card-star'></image>
+            <image src='../../asset/rankList/icon_daren.png' mode='widthFix' class='card-level-pic'></image>
+        </view>
+        <!-- <view class='season-lock-box flx-ce-ce'>
+          <image src='../../asset/rankList/season_lock.png' class='season-lock' mode='widthFix'></image>
+        </view> -->
+        <view class='card-txt-box'>
+          <view class='flx-ce-bet game-rate'>
+            <view class='card-num-info flx-ce-no-clm'>
+              <view class='card-num'>0</view>
+              <view class='card-txt'>总场次</view>
+            </view>
+            <view class='card-num-info flx-ce-no-clm'>
+              <view class='card-num'>0</view>
+              <view class='card-txt'>总场次</view>
+            </view>
+            <view class='card-num-info flx-ce-no-clm'>
+              <view class='card-num'>0</view>
+              <view class='card-txt'>总场次</view>
+            </view>
+          </view>
+          <view class='card-btn-box flx-ce-ce'>
+            <text class='card-btn-txt'>未参加赛季答题</text>
+            <!-- <text class='card-btn-txt'>尚未开启</text> -->
+            <!-- <view class='flx-ce-ce gold-hongbao'>
+              <image src='../../asset/rankList/homepage_gold.png' mode='widthFix' class='gold-icon'></image>
+              <view>积分:1246</view>
+              <image src='../../asset/rankList/homepage_hongbao.png' mode='widthFix' class='hongbao-icon'></image>
+              <view>红包:999元</view>
+            </view> -->
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='section-card'>
+      <view class='card-title flx-ce-str'>
+        <view class='card-title-icon'></view>
+        <view>第二赛季：知晓核保理赔季</view>
+      </view>
+      <view class='flx-ce-str card-main-info'>
+        <view class='flx-ce-clm card-pic-box'>
+            <image src='../../asset/rankList/daren_pic.png' mode='widthFix' class='card-pic'></image>
+            <image src='../../asset/rankList/star.png' mode='widthFix' class='card-star'></image>
+            <image src='../../asset/rankList/icon_daren.png' mode='widthFix' class='card-level-pic'></image>
+        </view>
+        <!-- <view class='season-lock-box flx-ce-ce'>
+          <image src='../../asset/rankList/season_lock.png' class='season-lock' mode='widthFix'></image>
+        </view> -->
+        <view class='card-txt-box'>
+          <view class='flx-ce-bet game-rate'>
+            <view class='card-num-info flx-ce-no-clm'>
+              <view class='card-num'>0</view>
+              <view class='card-txt'>总场次</view>
+            </view>
+            <view class='card-num-info flx-ce-no-clm'>
+              <view class='card-num'>0</view>
+              <view class='card-txt'>总场次</view>
+            </view>
+            <view class='card-num-info flx-ce-no-clm'>
+              <view class='card-num'>0</view>
+              <view class='card-txt'>总场次</view>
+            </view>
+          </view>
+          <view class='card-btn-box flx-ce-ce'>
+            <!-- <text class='card-btn-txt'>未参加赛季答题</text> -->
+            <!-- <text class='card-btn-txt'>尚未开启</text> -->
+            <view class='flx-ce-ce gold-hongbao'>
+              <image src='../../asset/rankList/homepage_gold.png' mode='widthFix' class='gold-icon'></image>
+              <view>积分:1246</view>
+              <image src='../../asset/rankList/homepage_hongbao.png' mode='widthFix' class='hongbao-icon'></image>
+              <view>红包:999元</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='section-card'>
+      <view class='card-title flx-ce-str'>
+        <view class='card-title-icon'></view>
+        <view>第三赛季：保险服务权益季</view>
+      </view>
+      <view class='flx-ce-str card-main-info'>
+        <view class='flx-ce-clm card-pic-box'>
+            <image src='../../asset/rankList/daren_pic.png' mode='widthFix' class='card-pic'></image>
+            <image src='../../asset/rankList/star.png' mode='widthFix' class='card-star'></image>
+            <image src='../../asset/rankList/icon_daren.png' mode='widthFix' class='card-level-pic'></image>
+        </view>
+        <!-- <view class='season-lock-box flx-ce-ce'>
+          <image src='../../asset/rankList/season_lock.png' class='season-lock' mode='widthFix'></image>
+        </view> -->
+        <view class='card-txt-box'>
+          <view class='flx-ce-bet game-rate'>
+            <view class='card-num-info flx-ce-no-clm'>
+              <view class='card-num'>0</view>
+              <view class='card-txt'>总场次</view>
+            </view>
+            <view class='card-num-info flx-ce-no-clm'>
+              <view class='card-num'>0</view>
+              <view class='card-txt'>总场次</view>
+            </view>
+            <view class='card-num-info flx-ce-no-clm'>
+              <view class='card-num'>0</view>
+              <view class='card-txt'>总场次</view>
+            </view>
+          </view>
+          <view class='card-btn-box flx-ce-ce'>
+            <!-- <text class='card-btn-txt'>未参加赛季答题</text> -->
+            <!-- <text class='card-btn-txt'>尚未开启</text> -->
+            <view class='flx-ce-ce gold-hongbao'>
+              <image src='../../asset/rankList/homepage_gold.png' mode='widthFix' class='gold-icon'></image>
+              <view>积分:1246</view>
+              <image src='../../asset/rankList/homepage_hongbao.png' mode='widthFix' class='hongbao-icon'></image>
+              <view>红包:999元</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='section-card'>
+      <view class='card-title flx-ce-str'>
+        <view class='card-title-icon'></view>
+        <view>第四赛季：保险诚信责任季</view>
+      </view>
+      <view class='flx-ce-str card-main-info'>
+        <!-- <view class='flx-ce-clm card-pic-box'>
+            <image src='../../asset/rankList/daren_pic.png' mode='widthFix' class='card-pic'></image>
+            <image src='../../asset/rankList/star.png' mode='widthFix' class='card-star'></image>
+            <image src='../../asset/rankList/icon_daren.png' mode='widthFix' class='card-level-pic'></image>
+        </view> -->
+        <view class='season-lock-box flx-ce-ce'>
+          <image src='../../asset/rankList/season_lock.png' class='season-lock' mode='widthFix'></image>
+        </view>
+        <view class='card-txt-box'>
+          <view class='flx-ce-bet game-rate'>
+            <view class='card-num-info flx-ce-no-clm'>
+              <view class='card-num'>0</view>
+              <view class='card-txt'>总场次</view>
+            </view>
+            <view class='card-num-info flx-ce-no-clm'>
+              <view class='card-num'>0</view>
+              <view class='card-txt'>总场次</view>
+            </view>
+            <view class='card-num-info flx-ce-no-clm'>
+              <view class='card-num'>0</view>
+              <view class='card-txt'>总场次</view>
+            </view>
+          </view>
+          <view class='card-btn-box flx-ce-ce'>
+            <!-- <text class='card-btn-txt'>未参加赛季答题</text> -->
+            <text class='card-btn-txt'>尚未开启</text>
+            <!-- <view class='flx-ce-ce gold-hongbao'>
+              <image src='../../asset/rankList/homepage_gold.png' mode='widthFix' class='gold-icon'></image>
+              <view>积分:1246</view>
+              <image src='../../asset/rankList/homepage_hongbao.png' mode='widthFix' class='hongbao-icon'></image>
+              <view>红包:999元</view>
+            </view> -->
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
