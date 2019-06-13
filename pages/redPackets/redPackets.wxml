@@ -1,0 +1,24 @@
+<scroll-view scroll-y="true" class='red-packets'>
+  <image src='../../asset/hongbao/red_packets_back.png' class='go-back'></image>
+  <view class='compound-box'>
+    <image src='../../asset/hongbao/compound_bg.png' mode="widthFix" class='compound-bg'></image>
+    <view class='compound-rotate'>
+      <view class='flx-ce-ce compound-content'>
+        <view class='rotate-inner'>
+          <view class='rotate-box pocket-top-left'>
+            <image class='red-packets-pic' src='../../asset/hongbao/hongbao_A.png' mode="scaleToFill" class='rotate-pic'></image>
+          </view>
+          <view class='rotate-box pocket-top-right'>
+            <image class='red-packets-pic' src='../../asset/hongbao/hongbao_B.png' mode="scaleToFill" class='rotate-pic'></image>
+          </view>
+          <view class='rotate-box pocket-btm-right'>
+            <image class='red-packets-pic' src='../../asset/hongbao/hongbao_C.png' mode="scaleToFill" class='rotate-pic'></image>
+          </view>
+          <view class='rotate-box pocket-btm-left'>
+            <image class='red-packets-pic' src='../../asset/hongbao/hongbao_D.png' mode="scaleToFill" class='rotate-pic'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

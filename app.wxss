@@ -86,3 +86,11 @@ view{
   border-radius: 30rpx;
   color:rgba(255,255,255,1);
 }
+.go-back{
+  position: fixed;
+  top:62rpx;
+  left:32rpx;
+  z-index: 99;
+  width:44rpx;
+  height:44rpx;
+}

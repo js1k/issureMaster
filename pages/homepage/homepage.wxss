@@ -79,6 +79,7 @@
   background:rgba(38,40,165,0.15);
   border-radius:8rpx;
   padding-bottom:22rpx;
+  margin-bottom:24rpx;
 }
 .card-title{
   padding: 14rpx 0 18rpx 16rpx;
