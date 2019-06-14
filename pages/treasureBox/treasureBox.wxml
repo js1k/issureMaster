@@ -115,4 +115,5 @@
     </view>
   </view>
 </scroll-view>
+  <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack'></image>
 

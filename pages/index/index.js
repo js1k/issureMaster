@@ -42,6 +42,11 @@ Page({
       url: '../rankList/rankList'
     })
   },
+  goRedPackets: function () {
+    wx.navigateTo({
+      url: '../redPackets/redPackets'
+    })
+  },
   showCard: function (event){
     this.setData({
       showCardImg: event.currentTarget.dataset.src,

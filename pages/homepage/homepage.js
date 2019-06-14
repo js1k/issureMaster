@@ -1,4 +1,5 @@
 // pages/homepage/homepage.js
+const app = getApp()
 Page({
 
   /**
@@ -8,6 +9,9 @@ Page({
 
   },
 
+  goBack: function () {
+    app.goBack()
+  },
   /**
    * 生命周期函数--监听页面加载
    */

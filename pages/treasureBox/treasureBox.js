@@ -1,4 +1,5 @@
 // pages/treasureBox/treasureBox.js
+const app = getApp()
 Page({
 
   /**
@@ -9,6 +10,9 @@ Page({
     showMask:false,
     noTeacher:false,
     maskInner:'',
+  },
+  goBack: function () {
+    app.goBack()
   },
   toggleTreasure:function(){
     this.setData({

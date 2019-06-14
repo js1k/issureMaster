@@ -1,5 +1,5 @@
-<view scroll-y="true" class='red-packets'>
-  <image src='../../asset/hongbao/red_packets_back.png' class='go-back'></image>
+<view class='red-packets'>
+  <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack'></image>
   <view class='compound-box'>
     <image src='../../asset/hongbao/compound_bg.png' mode="widthFix" class='compound-bg'></image>
     <view class='red-packets-container'>

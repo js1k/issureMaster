@@ -10,6 +10,7 @@
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view> -->
+      <view class='nav-bar flx-ce-ce'>保保大师挑战赛</view>
       <view class='home-user'>
         <view class='home-user-header'>
           <image src="../../asset/index/default_header.png" class='header-image' bindtap='goHomepage'></image>
@@ -86,7 +87,7 @@
           </view>
           <text class='icon-font'>背包</text>
         </view>
-        <view class='menu-icon'>
+        <view class='menu-icon' bindtap='goRedPackets'>
           <view class='icon-content'>
             <image src="../../asset/index/money_icon.svg" class='menu-img'></image>
             <view class='task-num'>NEW</view>

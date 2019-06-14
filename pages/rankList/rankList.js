@@ -1,4 +1,5 @@
 // pages/rankList/rankList.js
+const app=getApp()
 Page({
 
   /**
@@ -8,7 +9,9 @@ Page({
     showSeasonList:true,
     showMask:false
   },
-
+  goBack:function(){
+    app.goBack()
+  },
   toggleTreasure: function () {
     this.setData({
       showSeasonList: true

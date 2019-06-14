@@ -1,4 +1,5 @@
 <view class='rank-list flx-ce-no-clm'>
+  <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack'></image>
   <view class='navigation flx-ce-ce'>
     <view class='tab-content'>
       <view class="nav-tab flx-ce-ce {{showSeasonList===true?'tab-actived':''}}" bindtap='toggleTreasure'>当前赛季排行</view>
@@ -15,7 +16,7 @@
           </view>
           <view class='colum-right flx-ce none-border'>
             <view class='rank-header-box flx-ce-ce'>
-              <image src='../../asset/homepage/default_header.png' class='rank-header'></image>
+              <image src='../../asset/index/default_header.png' class='rank-header'></image>
             </view>
             <view class='main-info'>
               <view class='main-name'>名字起得特别长</view>
@@ -35,7 +36,7 @@
           </view>
           <view class='colum-right flx-ce none-border'>
             <view class='rank-header-box flx-ce-ce'>
-              <image src='../../asset/homepage/default_header.png' class='rank-header'></image>
+              <image src='../../asset/index/default_header.png' class='rank-header'></image>
             </view>
             <view class='main-info'>
               <view class='main-name'>名字起得特别长</view>
@@ -52,7 +53,7 @@
             </view>
             <view class='colum-right flx-ce none-border'>
               <view class='rank-header-box flx-ce-ce'>
-                <image src='../../asset/homepage/default_header.png' class='rank-header'></image>
+                <image src='../../asset/index/default_header.png' class='rank-header'></image>
               </view>
               <view class='main-info'>
                 <view class='main-name'>名字起得特别长</view>
