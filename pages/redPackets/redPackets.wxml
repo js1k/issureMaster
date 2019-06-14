@@ -1,24 +1,38 @@
-<scroll-view scroll-y="true" class='red-packets'>
+<view scroll-y="true" class='red-packets'>
   <image src='../../asset/hongbao/red_packets_back.png' class='go-back'></image>
   <view class='compound-box'>
     <image src='../../asset/hongbao/compound_bg.png' mode="widthFix" class='compound-bg'></image>
-    <view class='compound-rotate'>
-      <view class='flx-ce-ce compound-content'>
-        <view class='rotate-inner'>
-          <view class='rotate-box pocket-top-left'>
-            <image class='red-packets-pic' src='../../asset/hongbao/hongbao_A.png' mode="scaleToFill" class='rotate-pic'></image>
-          </view>
-          <view class='rotate-box pocket-top-right'>
-            <image class='red-packets-pic' src='../../asset/hongbao/hongbao_B.png' mode="scaleToFill" class='rotate-pic'></image>
-          </view>
-          <view class='rotate-box pocket-btm-right'>
-            <image class='red-packets-pic' src='../../asset/hongbao/hongbao_C.png' mode="scaleToFill" class='rotate-pic'></image>
-          </view>
-          <view class='rotate-box pocket-btm-left'>
-            <image class='red-packets-pic' src='../../asset/hongbao/hongbao_D.png' mode="scaleToFill" class='rotate-pic'></image>
-          </view>
+    <view class='red-packets-container'>
+      <view class='packets-group'>
+        <view class='cards-box card-top'>
+          <image src='../../asset/hongbao/hongbao_A_disabled.png' mode="scaleToFill" class='red-packets-pic'></image>
+          <view class='packets-A packets-txt'>红包碎片A*3</view>
+        </view>
+        <view class='cards-box card-left'>
+          <image src='../../asset/hongbao/hongbao_B.png' mode="scaleToFill" class='red-packets-pic'></image>
+          <view class='packets-B packets-txt'>红包碎片B*3</view>
+        </view>
+        <view class='cards-box card-bottom'>
+          <image src='../../asset/hongbao/hongbao_C.png' mode="scaleToFill" class='red-packets-pic'></image>
+          <view class='packets-B packets-txt'>红包碎片C*3</view>
+        </view>
+        <view class='cards-box card-right'>
+          <image src='../../asset/hongbao/hongbao_D.png' mode="scaleToFill" class='red-packets-pic'></image>
+          <view class='packets-B packets-txt'>红包碎片D*3</view>
         </view>
       </view>
     </view>
+    <view class='red-point move-left'></view>
+    <view class='red-point move-top'></view>
+    <view class='red-point move-right'></view>
+    <view class='red-point move-bottom'></view>
+    <image src='../../asset/hongbao/compound_btn.png' class='compound-btn'></image>
+    <image src='../../asset/hongbao/red_packets_pic.png' class='packets-pic'></image>
   </view>
-</scroll-view>
+  <view class='red-packets-rules'>
+    <view class='rules-title'>红包碎片规则</view>
+    <view class='rules-txt'>1.在宗师段位每答对一关既有一定几率掉落红包碎片。</view>
+    <view class='rules-txt'>2.集满红包碎片可在公众号、民生保险微管家，兑换现金红包。</view>
+    <view class='rules-txt'>3.兑换时间为每个赛季的第七天，当前赛季结束后该赛季的红包碎片清零。</view>
+  </view>
+</view>
