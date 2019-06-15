@@ -1,0 +1,50 @@
+<view class='challenge-pages flx-ce-no-clm'>
+    <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack'></image>
+    <view class='challenge-header'>
+        <image src='../../asset/challengeHome/challenge_title_bg.png' class='header-bg'></image>
+        <view class='challenge-title flx-ce-ce'>保险避免坑指南季</view>
+    </view>
+    <view class='season-time-info'>距离本赛季结束还有7天</view>
+    <view class='user-level-info flx-ce-ce'>
+        <view class='level-icon-box'>
+            <image class='level-icon' src='../../asset/challengeHome/lev_1_icon.png'></image>
+        </view>
+        <image class='level-line' src='../../asset/challengeHome/level_line.png'></image>
+        <view class='level-icon-box'>
+            <image class='level-icon' src='../../asset/challengeHome/lev_2_icon_disabled.png'></image>
+        </view>
+        <image class='level-line' src='../../asset/challengeHome/level_line.png'></image>
+        <view class='level-icon-box'>
+            <image class='level-icon' src='../../asset/challengeHome/lev_3_icon_disabled.png'></image>
+        </view>
+        <image class='level-line' src='../../asset/challengeHome/level_line.png'></image>
+        <view class='level-icon-box'>
+            <image class='level-icon' src='../../asset/challengeHome/lev_4_icon_disabled.png'></image>
+        </view>
+        <image class='level-line' src='../../asset/challengeHome/level_line.png'></image>
+        <view class='level-icon-box red-packets-icon'>
+            <image class='level-icon' src='../../asset/challengeHome/red_packets_icon.png'></image>
+        </view>
+    </view>
+    <view class='swiper-contain flx-ce-ce'>
+        <swiper class='swiper flx-ce-ce' previous-margin="135rpx" next-margin="135rpx" bindchange='bindchange'>
+            <swiper-item wx:for="{{swiperItem}}" wx:key="{{key}}" wx:for-index="i" class='swiper-item flx-ce {{i===itemIndex?"":"item-noactived"}}'>
+                <image src='{{i===itemIndex?swiperItem[i]:swiperDisabeItem[i]}}' class='swiper-pic'></image>
+            </swiper-item>
+        </swiper>
+    </view>
+    <view class='user-status flx-ce-ce'>
+        <image class='star-light' src='../../asset/challengeHome/star_light.png'></image>
+        <image class='star-light' src='../../asset/challengeHome/star_black.png'></image>
+    </view>
+    <view class='flx-ce challenge-desc'>
+        <view>每局消耗</view>
+        <image src='../../asset/challengeHome/power_icon.png' class='power-icon'></image>
+        <view>5(剩余20)</view>
+    </view>
+    <image src='../../asset/challengeHome/begain_btn.png' class='begain-btn'></image>
+    <view class='flx-ce-ce theme-rules'>
+        <view>保险避免坑指南季 7.1-7.8</view>
+        <view class='challenge-rule'>规则</view>
+    </view>
+</view>

@@ -5,7 +5,8 @@
     "pages/treasureBox/treasureBox",
     "pages/rankList/rankList",
     "pages/homepage/homepage",
-    "pages/redPackets/redPackets"
+    "pages/redPackets/redPackets",
+    "pages/challengeHome/challengeHome"
   ],
   "window": {
     "backgroundTextStyle": "dark",

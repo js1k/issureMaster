@@ -1,0 +1,136 @@
+.challenge-pages{
+    width:100%;
+    height:100%;
+    padding-top:152rpx;
+    background:linear-gradient(136deg,rgba(70,14,186,1) 0%,rgba(100,75,212,1) 49%,rgba(95,138,238,1) 100%);
+}
+.challenge-header{
+    width:606rpx;
+    height:112rpx;
+    position: relative;
+    padding:0 82rpx 40rpx 84rpx;
+    z-index: 0;
+}
+.header-bg{
+    width:100%;
+    height:100%;
+    position: absolute;
+    left:0;
+    top:0;
+    z-index: -1;
+}
+.challenge-title{
+    width:100%;
+    height:100%;
+    font-size:34rpx;
+    font-family:PingFangSC-Medium;
+    font-weight:500;
+    color:rgba(255,255,255,1);
+    z-index: 9;
+}
+.season-time-info{
+    font-size:24rpx;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    margin:8rpx 0 32rpx;
+}
+.user-level-info{
+    width:462rpx;
+    height:64rpx;
+    background:rgba(0,184,255,0.2);
+    border-radius:32rpx;
+    margin-bottom:44rpx;
+}
+.level-icon-box{
+    width:44rpx;
+    height:44rpx;
+}
+.level-icon{
+    width:100%;
+    height:100%;
+}
+.level-line{
+    width:22rpx;
+    height:6rpx;
+    margin:0 8rpx;
+}
+.red-packets-icon{
+    width:36rpx;
+    height:46rpx;
+}
+.swiper-contain{
+    width:100%;
+}
+.swiper{
+    width:100%;
+    height:480rpx;
+}
+.swiper-item{
+    width:100%;
+    height:480rpx;
+}
+.item-noactived{
+    /* width:320rpx !important; */
+    height:320rpx !important;
+    top:80rpx;
+}
+.pic-noactived{
+    width:320rpx !important;
+    height:320rpx !important;
+    top:80rpx;
+}
+.swiper-pic{
+    width:100%;
+    height:100%;
+}
+
+.user-status{
+    margin:46rpx 0;
+}
+.star-light{
+    width:48rpx;
+    height:48rpx;
+    margin-right:8rpx;
+}
+.challenge-desc{
+    font-size:22rpx;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    margin-bottom:18rpx;
+}
+.power-icon{
+    width:20rpx;
+    height:36rpx;
+    margin:0 10rpx;
+}
+.begain-btn{
+    width:296rpx;
+    height:80rpx;
+    margin-bottom:90rpx;
+}
+.theme-rules{
+    font-size:22rpx;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color:rgba(243,230,230,1);
+}
+.challenge-rule{
+    text-decoration:underline;
+    margin-left:10rpx;
+    padding-left:10rpx;
+    border-left:2rpx solid #fff;
+    height:22rpx;
+    line-height: 22rpx;
+}
+@keyframes activeItem{
+    from{
+        width:320rpx;
+        height:320rpx;
+    }
+    to{
+        width:480rpx !important;
+        height:480rpx !important;
+    }
+}
