@@ -47,4 +47,30 @@
         <view>保险避免坑指南季 7.1-7.8</view>
         <view class='challenge-rule'>规则</view>
     </view>
+    <view class='side-box flx-ce-no-clm'>
+        <view class='side-container'>
+            <view class='icon-box flx-ce-no-clm'>
+                <view class='icon-pic-box'>
+                    <image src='../../asset/challengeHome/bangbang_icon.png' class='icon-pic'></image>
+                    <view class='icon-num flx-ce-ce'>10</view>
+                </view>
+                <view class='icon-name'>帮帮卡</view>
+            </view>
+            <view class='icon-box flx-ce-no-clm'>
+                <view class='icon-pic-box'>
+                    <image src='../../asset/challengeHome/paichu_icon.png' class='icon-pic'></image>
+                    <view class='icon-num flx-ce-ce'>10</view>
+                </view>
+                <view class='icon-name'>排除卡</view>
+            </view>
+            <view class='icon-box flx-ce-no-clm'>
+                <view class='icon-pic-box'>
+                    <image src='../../asset/challengeHome/nengliang_icon.png' class='icon-pic'></image>
+                    <view class='icon-num flx-ce-ce'>10</view>
+                </view>
+                <view class='icon-name'>能量卡</view>
+            </view>
+            <image src='../../asset/challengeHome/question_icon.png' class='question-icon'></image>
+        </view>
+    </view>
 </view>

@@ -124,13 +124,58 @@
     height:22rpx;
     line-height: 22rpx;
 }
-@keyframes activeItem{
-    from{
-        width:320rpx;
-        height:320rpx;
-    }
-    to{
-        width:480rpx !important;
-        height:480rpx !important;
-    }
+.side-box{
+    position: fixed;
+    right:32rpx;
+    bottom:76rpx;
+    margin-bottom:20rpx;
+    background:linear-gradient(136deg,rgba(67,209,255,1) 0%,rgba(70,14,186,1) 100%);
+    padding:2rpx;
+    border-radius:16rpx;
+}
+.side-container{
+    width:96rpx;
+    border-radius:16rpx;
+    padding:26rpx 18rpx 6rpx;
+    position: relative;
+    background:linear-gradient(180deg,rgba(111,178,255,1) 0%,rgba(70,133,255,1) 57%,rgba(136,140,241,1) 100%);
+}
+.icon-pic{
+    width:48rpx;
+    height:64rpx;
+}
+.icon-box{
+    margin-bottom:20rpx;
+}
+.icon-pic-box{
+    width:48rpx;
+    height:64rpx;
+    position: relative;
+    margin-bottom:8rpx;
+}
+.icon-name{
+    font-size:20rpx;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+}
+.icon-num{
+    width:28rpx;
+    height:28rpx;
+    border-radius: 50%;
+    position: absolute;
+    top:-14rpx;
+    right:-14rpx;
+    background:rgba(255,0,0,1);
+    font-size:18rpx;
+    font-family:PingFangSC-Regular;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+}
+.question-icon{
+    width:36rpx;
+    height:36rpx;
+    position: absolute;
+    bottom:-48rpx;
+    left:30rpx;
 }
