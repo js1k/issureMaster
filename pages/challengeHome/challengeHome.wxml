@@ -8,28 +8,34 @@
     <view class='user-level-info flx-ce-ce'>
         <view class='level-icon-box'>
             <image class='level-icon' src='../../asset/challengeHome/lev_1_icon.png'></image>
+            <image wx:if="{{itemIndex===0}}" class='arrow' src='../../asset/challengeHome/cur_arrow.png'></image>
         </view>
         <image class='level-line' src='../../asset/challengeHome/level_line.png'></image>
         <view class='level-icon-box'>
             <image class='level-icon' src='../../asset/challengeHome/lev_2_icon_disabled.png'></image>
+            <image wx:if="{{itemIndex===1}}" class='arrow' src='../../asset/challengeHome/cur_arrow.png'></image>
         </view>
         <image class='level-line' src='../../asset/challengeHome/level_line.png'></image>
         <view class='level-icon-box'>
             <image class='level-icon' src='../../asset/challengeHome/lev_3_icon_disabled.png'></image>
+            <image wx:if="{{itemIndex===2}}" class='arrow' src='../../asset/challengeHome/cur_arrow.png'></image>
         </view>
         <image class='level-line' src='../../asset/challengeHome/level_line.png'></image>
         <view class='level-icon-box'>
             <image class='level-icon' src='../../asset/challengeHome/lev_4_icon_disabled.png'></image>
+            <image wx:if="{{itemIndex===3}}" class='arrow' src='../../asset/challengeHome/cur_arrow.png'></image>
         </view>
         <image class='level-line' src='../../asset/challengeHome/level_line.png'></image>
         <view class='level-icon-box red-packets-icon'>
             <image class='level-icon' src='../../asset/challengeHome/red_packets_icon.png'></image>
+            <image wx:if="{{itemIndex===4}}" class='arrow' src='../../asset/challengeHome/cur_arrow.png'></image>
         </view>
     </view>
     <view class='swiper-contain flx-ce-ce'>
         <swiper class='swiper flx-ce-ce' previous-margin="135rpx" next-margin="135rpx" bindchange='bindchange' easing-function='easeInOutCubic'>
-            <swiper-item wx:for="{{swiperItem}}" wx:key="{{key}}" wx:for-index="i" class='swiper-item flx-ce {{i===itemIndex?"":"item-noactived"}}'>
-                <image src='{{i===itemIndex?swiperItem[i]:swiperDisabeItem[i]}}' class='swiper-pic'></image>
+            <swiper-item wx:for="{{swiperItem}}" wx:key="{{key}}" wx:for-index="i" class='swiper-item flx-ce-ce'>
+                <image wx:if="{{i===itemIndex}}" src='{{currentSrc}}' class='swiper-pic {{i===itemIndex?"pic-actived":""}}'></image>
+                <image wx:if="{{i!==itemIndex}}" src='{{i===itemIndex?swiperItem[i]:swiperDisabeItem[i]}}' class='swiper-pic {{i===itemIndex?"pic-actived":""}}'></image>
             </swiper-item>
         </swiper>
     </view>
@@ -45,7 +51,7 @@
     <image src='../../asset/challengeHome/begain_btn.png' class='begain-btn'></image>
     <view class='flx-ce-ce theme-rules'>
         <view>保险避免坑指南季 7.1-7.8</view>
-        <view class='challenge-rule'>规则</view>
+        <view class='challenge-rule' bindtap='showRule'>规则</view>
     </view>
     <view class='side-box flx-ce-no-clm'>
         <view class='side-container'>
@@ -72,5 +78,11 @@
             </view>
             <image src='../../asset/challengeHome/question_icon.png' class='question-icon'></image>
         </view>
+    </view>
+    <view class='com-mask' bindtap='closeMask' wx:if="{{showMask}}">
+        <scroll-view class='rules flx-ce-clm scaleBig' scroll-y="true">
+            <image class='close-rule' src='../../asset/mask_close.png' bindtap='closeMask'></image>
+            <image class='rule-pic ' src='../../asset/rankList/rank_rules.png' mode='widthFix' catchtap='closeMask' data-model='inner'></image>
+        </scroll-view>
     </view>
 </view>

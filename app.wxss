@@ -95,3 +95,16 @@ view{
   width:44rpx;
   height:44rpx;
 }
+.scaleBig{
+    animation: scaleBig 1s forwards;
+}
+@keyframes scaleBig{
+    from{
+        transform: scale(0.5);
+        opacity: 0.4
+    }
+    to{
+        transform: scale(1);
+        opacity: 1
+    }
+}

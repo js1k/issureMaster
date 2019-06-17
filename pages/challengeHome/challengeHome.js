@@ -8,6 +8,8 @@ Page({
     data: {
         itemIndex:0,
         key:0,
+        showMask:false,
+        currentSrc:'../../asset/challengeHome/daren_pic.png',
         swiperItem: ['../../asset/challengeHome/daren_pic.png', '../../asset/challengeHome/gaoshou_pic.png', '../../asset/challengeHome/dashi_pic.png', '../../asset/challengeHome/zongshi_pic.png'],
         swiperDisabeItem: ['../../asset/challengeHome/daren_pic_disable.png', '../../asset/challengeHome/gaoshou_pic_disable.png', '../../asset/challengeHome/dashi_pic_disable.png', '../../asset/challengeHome/zongshi_pic_disable.png'],
     },
@@ -16,11 +18,31 @@ Page({
         app.goBack()
     },
     bindchange:function(e){
+        var that=this
         if (e.detail.source==='touch'){
             this.setData({
+                currentSrc: this.data.swiperDisabeItem[e.detail.current],
                 itemIndex: e.detail.current
             })
+            setTimeout(function () {
+                that.setData({
+                    currentSrc: that.data.swiperItem[e.detail.current]
+                })
+            },400)
         }
+    },
+    closeMask: function (event) {
+        if (event.currentTarget.dataset.model === 'inner') {
+            return
+        }
+        this.setData({
+            showMask: false
+        })
+    },
+    showRule:function(){
+        this.setData({
+            showMask:true
+        })
     },
   /**
    * 生命周期函数--监听页面加载

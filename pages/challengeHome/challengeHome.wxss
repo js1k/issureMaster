@@ -45,6 +45,7 @@
 .level-icon-box{
     width:44rpx;
     height:44rpx;
+    position: relative;
 }
 .level-icon{
     width:100%;
@@ -64,16 +65,24 @@
 }
 .swiper{
     width:100%;
-    height:480rpx;
+    height:450rpx;
 }
 .swiper-item{
     width:100%;
-    height:480rpx;
+    /* height:450rpx; */
+}
+.item-actived{
+    /* width:450rpx;
+    height:450rpx; */
+    animation: itemActived 1s 0.3s forwards;
 }
 .item-noactived{
     /* width:320rpx !important; */
     height:320rpx !important;
     top:80rpx;
+}
+.pic-actived{
+    animation: picActived 1.8s 0.2s forwards;
 }
 .pic-noactived{
     width:320rpx !important;
@@ -81,8 +90,11 @@
     top:80rpx;
 }
 .swiper-pic{
-    width:100%;
-    height:100%;
+    /* width:100%;
+    height:100%; */
+    width:320rpx;
+    height:320rpx;
+    display: flex;
 }
 
 .user-status{
@@ -178,4 +190,39 @@
     position: absolute;
     bottom:-48rpx;
     left:30rpx;
+}
+.close-rule{
+    width:40rpx;
+    height:40rpx;
+    margin-bottom:20rpx;
+}
+.rule-pic{
+    width:100%;
+    height:auto;
+}
+.rules{
+    width:100%;
+    height:100%;
+    text-align: center;
+    padding:0 40rpx;
+    box-sizing: border-box;
+    opacity: 0.4;
+    transform: scale(0.5);
+}
+.arrow{
+    width:32rpx;
+    height:32rpx;
+    position: absolute;
+    bottom:-43rpx;
+    left:6rpx;
+}
+@keyframes picActived{
+    from{
+        width:320rpx;
+        height:320rpx;
+    }
+    to{
+        width:450rpx;
+        height:450rpx;
+    }
 }
