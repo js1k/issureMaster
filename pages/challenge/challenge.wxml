@@ -1,0 +1,39 @@
+<view class='challenge-page flx-ce-no-clm'>
+    <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack'></image>
+    <view class='section flx-ce-bet flx-start-clm'>
+        <view class='question'>
+            <view class='question-container'>
+            
+            </view>
+            <view class='clock-box flx-ce-ce'>
+                <view class='clock-contain flx-ce-ce'>
+                    <view class='circle-contain'>
+                        <view class='clock-circle'>
+                            <view class='circle'></view>
+                            <view class='circle-before'></view>
+                            <view class='top'></view>
+                            <view class='bottom'></view>
+                        </view>
+                    </view>
+                    <view class='flx-ce-ce clock-txt'>
+                        <view class='clock-num'>60</view>
+                        <!-- <image src='../../asset/challengeHome/clock_icon.png' class='clock-icon'></image> -->
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class='privilegev-card flx-ce-bet'>
+            <view class='privilege-title flx-ce-ce'>特权卡</view>
+            <view class='privilege-contain flx-ce-bet'>
+                <image src='../../asset/challengeHome/bangbang_icon.png' class='privilege-pic'></image>
+                <image src='../../asset/challengeHome/bangbang_icon.png' class='privilege-pic'></image>
+                <image src='../../asset/challengeHome/paichu_icon.png' class='privilege-pic'></image>
+                <image src='../../asset/challengeHome/paichu_icon.png' class='privilege-pic'></image>
+                <image src='../../asset/challengeHome/paichu_icon.png' class='privilege-pic'></image>
+            </view>
+        </view>
+        <view class='test-submit'>
+            <image class='submit' src='../../asset/challengeHome/submit.png'></image>
+        </view>
+    </view>
+</view>

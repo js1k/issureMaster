@@ -50,7 +50,7 @@
           <image src="../../asset/index/season4_cloud_right.png" class='season4-cloud-right cloud-right'></image>
           <image src="../../asset/index/home_season4.png" class='home-main-pic'></image>
         </view> -->
-          <image src="../../asset/index/begainAnswer.png" class='begin-answer'></image>
+          <image src="../../asset/index/begainAnswer.png" class='begin-answer' bindtap='goChallenge'></image>
           <image src='../../asset/index/home_arrow.png' class='home-arrow' bindtap="openRules"></image>
           <image src='../../asset/index/season_tips.png' class='season-stragety' bindtap="openRules"></image>
       </view>

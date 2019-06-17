@@ -6,7 +6,8 @@
     "pages/rankList/rankList",
     "pages/homepage/homepage",
     "pages/redPackets/redPackets",
-    "pages/challengeHome/challengeHome"
+    "pages/challengeHome/challengeHome",
+    "pages/challenge/challenge"
   ],
   "window": {
     "backgroundTextStyle": "dark",

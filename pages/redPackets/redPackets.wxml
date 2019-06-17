@@ -7,18 +7,22 @@
         <view class='cards-box card-top'>
           <image src='../../asset/hongbao/hongbao_A_disabled.png' mode="scaleToFill" class='red-packets-pic'></image>
           <view class='packets-A packets-txt'>红包碎片A*3</view>
+          <image class='chip-light' src='../../asset/hongbao/chip_light.png'></image>
         </view>
         <view class='cards-box card-left'>
           <image src='../../asset/hongbao/hongbao_B.png' mode="scaleToFill" class='red-packets-pic'></image>
           <view class='packets-B packets-txt'>红包碎片B*3</view>
+          <image class='chip-light' src='../../asset/hongbao/chip_light.png'></image>
         </view>
         <view class='cards-box card-bottom'>
           <image src='../../asset/hongbao/hongbao_C.png' mode="scaleToFill" class='red-packets-pic'></image>
           <view class='packets-B packets-txt'>红包碎片C*3</view>
+          <image class='chip-light' src='../../asset/hongbao/chip_light.png'></image>
         </view>
         <view class='cards-box card-right'>
           <image src='../../asset/hongbao/hongbao_D.png' mode="scaleToFill" class='red-packets-pic'></image>
           <view class='packets-B packets-txt'>红包碎片D*3</view>
+          <image class='chip-light' src='../../asset/hongbao/chip_light.png'></image>
         </view>
       </view>
     </view>
@@ -28,6 +32,7 @@
     <view class='red-point move-bottom'></view>
     <image src='../../asset/hongbao/compound_btn.png' class='compound-btn'></image>
     <image src='../../asset/hongbao/red_packets_pic.png' class='packets-pic'></image>
+    <image src='../../asset/hongbao/red_packets_light.png' class='packets-light'></image>
   </view>
   <view class='red-packets-rules'>
     <view class='rules-title'>红包碎片规则</view>

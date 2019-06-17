@@ -124,6 +124,24 @@
   z-index: 101;
   animation: packetsRotate 2s ease;
 }
+.packets-light{
+    width:220rpx;
+    height:220rpx;
+    position: absolute;
+    left:220rpx;
+    top:220rpx;
+    z-index: 102;
+    opacity: 0;
+    animation: packetsLight 2s 2s;
+}
+.chip-light{
+    width:176rpx;
+    height:176rpx;
+    position: absolute;
+    left: -20rpx;
+    top:-20rpx;
+    z-index: 102
+}
 @keyframes pointLeft{
   from {
     left:138rpx;
@@ -167,4 +185,22 @@
   to{
     transform: rotate(1440deg)
   }
+}
+
+@keyframes packetsLight{
+    0%{
+        opacity: 0
+    }
+    30%{
+        opacity: 1
+    }
+    60%{
+        opacity: 0.4
+    }
+    80%{
+        opacity: 0.6
+    }
+    100%{
+        opacity: 1
+    }
 }
