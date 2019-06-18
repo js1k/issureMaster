@@ -106,8 +106,7 @@
   animation: loopText 3s linear infinite;
 }
 .loop-after{
-  animation: loopText 3s linear infinite;
-  animation-delay:1.75s;
+  animation: loopTextAfter 6s linear infinite;
 }
 .home-arrow{
   width:44rpx;
@@ -401,6 +400,24 @@
   100%{
     transform: translateY(-85rpx);
     opacity: 0
+  }
+}
+@keyframes loopTextAfter{
+    0%{
+        transform: translateY(40rpx);
+        opacity: 0
+    }
+    24%{
+        transform: translateY(40rpx);
+        opacity: 0
+    }
+  25%{
+        transform: translateY(40rpx);
+        opacity: 1
+  }
+  75%{
+        transform: translateY(-85rpx);
+        opacity: 0
   }
 }
 @keyframes beginAnswer{

@@ -17,6 +17,11 @@ Page({
     goBack: function () {
         app.goBack()
     },
+    goQuestion: function () {
+        wx.navigateTo({
+            url: '../challenge/challenge'
+        })
+    },
     bindchange:function(e){
         var that=this
         if (e.detail.source==='touch'){

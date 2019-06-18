@@ -1,180 +1,296 @@
-.challenge-page{
-    width:100%;
-    height:100%;
-    background:linear-gradient(136deg,rgba(70,14,186,1) 0%,rgba(95,138,238,1) 100%);
-    padding:202rpx 40rpx 32rpx;
+.challenge-page {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(136deg, rgba(70, 14, 186, 1) 0%, rgba(95, 138, 238, 1) 100%);
+    padding: 202rpx 40rpx 32rpx;
 }
-.section{
-    width:100%;
-    height:100%;
+
+.section {
+    width: 100%;
+    height: 100%;
 }
-.privilegev-card{
-    width:100%;
-    border-radius:0px 12rpx 12rpx 0px;
+
+.privilegev-card {
+    width: 100%;
+    border-radius: 0px 12rpx 12rpx 0px;
     overflow: hidden;
-    padding:4rpx;
+    padding: 4rpx;
+    opacity: 1;
+    /* animation: showCardBar 1s 3.6s linear forwards; */
 }
-.privilege-title{
-    width:44rpx;
-    height:110rpx;
+
+.privilege-title {
+    width: 44rpx;
+    height: 110rpx;
     writing-mode: tb-rl;
-    background:rgba(91,155,255,1);
-    box-shadow:0px 0px 12rpx 6rpx rgba(255,241,253,0.6);
-    border-radius:12rpx 0px 0px 12rpx;
+    background: rgba(91, 155, 255, 1);
+    box-shadow: 0px 0px 12rpx 6rpx rgba(255, 241, 253, 0.6);
+    border-radius: 12rpx 0px 0px 12rpx;
+    font-size: 22rpx;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+}
+
+.privilege-contain {
+    width: 100%;
+    padding: 8rpx 50rpx;
+    border: 2rpx solid #78c7fe;
+    border-radius: 0px 12rpx 12rpx 0px;
+    background: linear-gradient(180deg, rgba(49, 146, 185, 0.3) 0%, rgba(12, 55, 84, 0.1) 100%);
+}
+
+.privilege-pic {
+    width: 72rpx;
+    height: 96rpx;
+    margin-right:32rpx;
+}
+.privilege-pic:last-child{
+    margin-right:0;
+}
+
+.test-submit {
+    width: 402rpx;
+    height: 88rpx;
+}
+
+.submit {
+    width: 100%;
+    height: 100%;
+}
+
+.question {
+    width: 100%;
+    height: 824rpx;
+    background: rgba(255, 248, 248, 1);
+    box-shadow: 0px 4rpx 14rpx 0px rgba(8, 11, 194, 0.5);
+    border-radius: 20rpx;
+    padding: 16rpx;
+    position: relative;
+}
+
+.question-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 20rpx;
+    border: 2rpx solid rgba(249, 192, 192, 1);
+}
+
+.clock-box {
+    width: 128rpx;
+    height: 128rpx;
+    position: absolute;
+    top: -64rpx;
+    left: 271rpx;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 0px 8px 0px rgba(146, 20, 20, 0.5);
+}
+
+.clock-contain {
+    width: 128rpx;
+    height: 128rpx;
+    position: relative;
+}
+
+.clock-num {
+    font-size: 44rpx;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    color: rgba(252, 128, 17, 1);
+}
+
+.clock-txt {
+    width: 104rpx;
+    height: 104rpx;
+    border-radius: 50%;
+    z-index: 99;
+    position: absolute;
+    left:12rpx;
+    top:12rpx;
+}
+.clock-icon {
+    width: 16rpx;
+    height: 52rpx;
+    margin-top: -26rpx;
+}
+.before-txt{
+    font-size:92rpx;
+    font-weight:500;
+    color:rgba(58,61,79,1);
+    opacity: 0;
+    width:100%;
+    height:100%;
+    position: absolute;
+    left:0;
+    top:0;
+}
+.ready-txt{
+    animation: txtIn 1.3s 1s linear forwards;
+    transition: all;
+}
+.start-txt{
+    animation: txtIn 1.3s 2.3s linear forwards;
+    transition: all;
+}
+
+.question-list{
+    opacity: 0;
+    background:rgba(255,248,248,1);
+    animation: questionIn 0.6s 3.6s ease-in forwards;
+    transition: all;
+}
+.question-tips{
     font-size:22rpx;
     font-family:PingFangSC-Medium;
     font-weight:500;
+    color:rgba(143,143,143,1);
+    margin-bottom: 32rpx;
+}
+.question-index{
+    width:44rpx;
+    height:44rpx;
+    margin-right:44rpx;
+    border-radius: 50%;
+    background:rgba(232,233,241,1);
+    font-size:28rpx;
+    font-weight:500;
     color:rgba(255,255,255,1);
 }
-.privilege-contain{
-    width:100%;
-    padding:8rpx 50rpx;
-    border:2rpx solid #78C7FE;
-    border-radius:0px 12rpx 12rpx 0px;
-    background:linear-gradient(180deg,rgba(49,146,185,0.3) 0%,rgba(12,55,84,0.1) 100%);
+.question-index:last-child{
+    margin-right:0;
 }
-.privilege-pic{
-    width:72rpx;
-    height:96rpx;
+.question-info{
+    margin-bottom:48rpx;
+}
+.queistion-name{
+    width:506rpx;
+    height:132rpx;
+    text-align: center;
+    font-size:32rpx;
+    font-weight:500;
+    color:rgba(58,61,79,1);
+    margin-bottom:44rpx;
 }
 
-.test-submit{
-    width:402rpx;
+.question-answer{
+    width:506rpx;
     height:88rpx;
+    background:rgba(232,233,241,1);
+    border-radius:44rpx;
+    margin-bottom:48rpx;
 }
-.submit{
-    width:100%;
-    height:100%;
+.question-answer:last-child{
+    margin-bottom:0;
 }
-.question{
-    width:100%;
-    height:824rpx;
-    background:rgba(255,248,248,1);
-    box-shadow:0px 4rpx 14rpx 0px rgba(8,11,194,0.5);
-    border-radius:20rpx;
-    padding:16rpx;
+.current-index{
+    border:1px solid rgba(27,214,118,1);
+    color:rgba(27,214,118,1);
+    background:white;
+}
+
+
+
+.progress-contain{
+    width:112rpx;
+    height:112rpx;
+    border-radius: 50%;
     position: relative;
 }
-.question-container{
-    width:100%;
-    height:100%;
-    border-radius:20rpx;
-    border:2rpx solid rgba(249,192,192,1);   
-}
-.clock-box{
-    width:128rpx;
-    height:128rpx;
+.clip{
+    width:112rpx;
+    height:112rpx;
     position: absolute;
-    top:-64rpx;
-    left:271rpx;
     border-radius: 50%;
-    background:rgba(255,255,255,1);
-    box-shadow:0px 0px 8px 0px rgba(146,20,20,0.5);
+    border:8rpx solid #F9E8E8;
+    clip: rect(0rpx 112rpx 112rpx 0rpx)
 }
-.clock-contain{
-    width:100%;
-    height:100%;
-    position: relative;
-}
-.clock-num{
-    font-size:44rpx;
-    font-family:PingFangSC-Medium;
-    font-weight:500;
-    color:rgba(252,128,17,1);
-}
-.clock-txt{
-    width:108rpx;
-    height:108rpx;
-    z-index: 99
-}
-.clock-icon{
-    width:16rpx;
-    height:52rpx;
-    margin-top:-26rpx;
-}
-.circle-contain{
-    width: 110rpx;
-    height: 110rpx;
+.left{
+    width:112rpx;
+    height:112rpx;
     position: absolute;
-    left:9rpx;
-    top:9rpx;
+    border:8rpx solid #FF4C2C;
+    clip: rect(0rpx 56rpx 112rpx 0rpx);
     border-radius: 50%;
-    box-sizing: content-box;
-    overflow: hidden;
+    left:-8rpx;
+    top:-8rpx;
+    animation: leftRotate 60s linear forwards;
+    z-index: 9;
 }
-.clock-circle{
-    position: relative;
-    width: 110rpx;
-    height: 110rpx;
-    overflow: hidden;
-    
-}
-.circle{
-    width:100%;
-    height: 100%;
-    box-sizing: border-box;
-    border: 4rpx solid red;
+.right{
+    width:112rpx;
+    height:112rpx;
+    position: absolute;
+    border:8rpx solid #FF4C2C;
+    clip: rect(0rpx 112rpx 112rpx 56rpx);
     border-radius: 50%;
+    right:-8rpx;
+    top:-8rpx;
+    animation: rightRotate 30s linear forwards;
+    z-index: 10;
 }
-.circle-before{
-    content: '';
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 50%;
-    box-sizing: border-box;
-    top: 50%;
-    left: 0;
-    border: 4rpx solid red;
-    border-top: transparent;
-    border-radius:  0 0 50% 50%/ 0 0 100% 100%;
-    z-index: 2;
-}
-.top, .bottom{
-    position: absolute;
-    left: 0px;
-    width: 100%;
-    height: 50%;
-    box-sizing: border-box;
-    background: white;
-}
-.top{
-    top: 0;
-    z-index: 1;
-    transform-origin: center bottom;
-    animation: 60s back-half linear 1s;
-    animation-fill-mode: forwards;
-}
-.bottom{
-    z-index: 3;
-    top: 50%;
-    transform-origin: center top;
-    animation: 60s front-half linear;
-    animation-fill-mode: forwards;
-}
-@keyframes front-half{
+@keyframes rightRotate{
     0%{
-        transform: rotate( 0 );
+        transform: rotate(0deg)
     }
     99%{
-        transform: rotate( 180deg );
+        transform: rotate(179deg);
         opacity: 1;
     }
     100%{
-        transform: rotate( 180deg );
+        transform: rotate(180deg);
         opacity: 0;
     }
 }
-@keyframes back-half{
-    0%{
-        transform: rotate( 0 );
+@keyframes leftRotate{
+    50%{
+        transform: rotate(0deg);
     }
     99%{
-        transform: rotate( 180deg );
+        transform: rotate(179deg);
         opacity: 1;
     }
     100%{
-        transform: rotate( 180deg );
+        transform: rotate(180deg);
         opacity: 0;
+    }
+}
+
+@keyframes questionIn{
+    0%{
+        transform: translateY(50rpx);
+        opacity: 0.5
+
+    }
+    100%{
+        transform: translateY(0rpx);
+        opacity: 1
+    }
+}
+@keyframes txtIn{
+    0%{
+        transform: scale(3);
+        opacity: 1
+    }
+    20%{
+        transform: scale(1);
+        opacity: 1
+    }
+    99%{
+        opacity: 1
+    }
+    100%{
+        opacity: 0
+    }
+}
+
+@keyframes showCardBar{
+    0% {
+        width:0%;
+        opacity: 0;
+    }
+    100%{
+        width:100%;
+        opacity: 1;
     }
 }

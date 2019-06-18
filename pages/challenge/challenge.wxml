@@ -2,19 +2,30 @@
     <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack'></image>
     <view class='section flx-ce-bet flx-start-clm'>
         <view class='question'>
-            <view class='question-container'>
-            
+            <view class='question-container flx-ce-ce'>
+                <view class='ready-txt before-txt flx-ce-ce'>预备</view>
+                <view class='start-txt before-txt flx-ce-ce'>开始</view>
+                <view class='question-list flx-ce-bet-clm'>
+                    <view class='question-info flx-ce-clm'>
+                        <view class='queistion-name flx-ce-ce'>中国保险监督官方组织及其维权投诉电话是？</view>
+                        <view class='question-answer flx-ce-ce'>银保监会，12378</view>
+                        <view class='question-answer flx-ce-ce'>证监会，12386</view>
+                        <view class='question-answer flx-ce-ce'>消费者协会，12315</view>
+                    </view>
+                    <view class='question-tips'>-   保险维权知  -</view>
+                    <view class='question-index-bar flx-ce-ce'>
+                        <view wx:for="{{5}}" wx:key="key" class='question-index flx-ce-ce {{index===currentIndex?"current-index":""}}'>{{index+1}}</view>
+                    </view>
+                </view>
             </view>
             <view class='clock-box flx-ce-ce'>
                 <view class='clock-contain flx-ce-ce'>
-                    <view class='circle-contain'>
-                        <view class='clock-circle'>
-                            <view class='circle'></view>
-                            <view class='circle-before'></view>
-                            <view class='top'></view>
-                            <view class='bottom'></view>
+                    <!-- <view class='progress-contain flx-ce-ce'>
+                        <view class='clip'>
+                            <view class='left'></view>
+                            <view class='right'></view>
                         </view>
-                    </view>
+                    </view> -->
                     <view class='flx-ce-ce clock-txt'>
                         <view class='clock-num'>60</view>
                         <!-- <image src='../../asset/challengeHome/clock_icon.png' class='clock-icon'></image> -->
@@ -24,7 +35,7 @@
         </view>
         <view class='privilegev-card flx-ce-bet'>
             <view class='privilege-title flx-ce-ce'>特权卡</view>
-            <view class='privilege-contain flx-ce-bet'>
+            <view class='privilege-contain flx-ce-ce'>
                 <image src='../../asset/challengeHome/bangbang_icon.png' class='privilege-pic'></image>
                 <image src='../../asset/challengeHome/bangbang_icon.png' class='privilege-pic'></image>
                 <image src='../../asset/challengeHome/paichu_icon.png' class='privilege-pic'></image>
