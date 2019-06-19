@@ -91,20 +91,26 @@
   background:rgba(255,87,87,1);
   border-radius: 50%;
   position:absolute;
-  left:323rpx;
-  top:328rpx;
   z-index: 99;
 }
 .move-left{
+  left:138rpx;
+  top:328rpx;
   animation: pointLeft 3s linear infinite ;
 }
 .move-top{
+  left:323rpx;
+  top:138rpx;
   animation: pointTop 3s linear infinite ;
 }
 .move-right{
+  left:514rpx;
+  top:328rpx;
   animation: pointRight 3s linear infinite ;
 }
 .move-bottom{
+  left:323rpx;
+  top:514rpx;
   animation: pointBottom 3s linear infinite;
 }
 .compound-btn{
@@ -122,7 +128,7 @@
   left:250rpx;
   top:250rpx;
   z-index: 101;
-  animation: packetsRotate 2s ease;
+  animation: packetsRotate 2s ease infinite;
 }
 .packets-light{
     width:220rpx;
@@ -132,7 +138,7 @@
     top:220rpx;
     z-index: 102;
     opacity: 0;
-    animation: packetsLight 2s 2s;
+    animation: packetsLight 6s ease infinite;
 }
 .chip-light{
     width:176rpx;
@@ -140,67 +146,95 @@
     position: absolute;
     left: -20rpx;
     top:-20rpx;
-    z-index: 102
+    z-index: 102;
+    transform: scale(0.5);
+    opacity: 0;
+    animation: circleLightIn 6s linear infinite;
 }
 @keyframes pointLeft{
   from {
-    left:138rpx;
+    transform: translateX(0rpx)
   }
   to{
-    /* left:250rpx; */
-    left:323rpx;
+    transform: translateX(185rpx)
   }
 }
 @keyframes pointTop{
   from {
-    top:138rpx;
+    transform: translateY(0)
   }
   to{
-    /* top:246rpx; */
-    top:328rpx;
+    transform: translateY(185rpx)
   }
 }
 @keyframes pointRight{
   from {
-    left:514rpx;
+    transform: translateX(0rpx)
   }
   to{
-    /* left:399rpx; */
-    left:323rpx;
+    transform: translateX(-185rpx)
   }
 }
 @keyframes pointBottom{
   from {
-    top:514rpx;
+    transform: translateY(0)
   }
   to{
-    /* top:398rpx; */
-    top:328rpx;
+    transform: translateY(-185rpx)
   }
 }
 @keyframes packetsRotate{
   from{
-    transform: rotate(0deg)
+    transform: rotate(0deg);
+    transition: all
   }
   to{
-    transform: rotate(1440deg)
+    transform: rotate(720deg);
+    transition: all
   }
 }
 
 @keyframes packetsLight{
-    0%{
+    50%{
         opacity: 0
     }
-    30%{
+    51%{
         opacity: 1
     }
-    60%{
-        opacity: 0.4
+    65%{
+        opacity: 1
     }
     80%{
+        opacity: 0.4
+    }
+    90%{
         opacity: 0.6
     }
     100%{
         opacity: 1
+    }
+}
+@keyframes circleLightIn{
+    0%{
+        /* transform: scale(0.5); */
+    }
+    59%{
+        transform: scale(0.5);
+        opacity: 0
+    }
+    60%{
+        transform: scale(0.5);
+        opacity: 0.5
+    }
+    75%{
+        transform: scale(1);
+        opacity: 1
+    }
+    90%{
+        opacity: 1
+    }
+    100%{
+        transform: scale(1);
+        opacity: 0
     }
 }

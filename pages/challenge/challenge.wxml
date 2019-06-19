@@ -8,26 +8,27 @@
                 <view class='question-list flx-ce-bet-clm'>
                     <view class='question-info flx-ce-clm'>
                         <view class='queistion-name flx-ce-ce'>中国保险监督官方组织及其维权投诉电话是？</view>
-                        <view class='question-answer flx-ce-ce'>银保监会，12378</view>
-                        <view class='question-answer flx-ce-ce'>证监会，12386</view>
-                        <view class='question-answer flx-ce-ce'>消费者协会，12315</view>
+                        <view class='question-answer flx-ce-ce item-chosed' wx:for="{{answerItem}}" wx:key="key">
+                            <view>{{item}}</view>
+                            <image src='../../asset/question_true.png' class='question-icon'></image>
+                            <!-- <image src='../../asset/question_false.png' class='question-icon'></image> -->
+                        </view>
+                        <!-- <view class='question-answer flx-ce-ce' wx:for="{{answerItem}}" wx:key="key">
+                            <view class='' >{{item}}</view>
+                            <image src='../../asset/question_true.png' class='question-icon'></image>
+                            <image src='../../asset/question_false.png' class='question-icon'></image>
+                        </view> -->
                     </view>
-                    <view class='question-tips'>-   保险维权知  -</view>
+                    <view class='question-tips'>--   保险维权知  --</view>
                     <view class='question-index-bar flx-ce-ce'>
-                        <view wx:for="{{5}}" wx:key="key" class='question-index flx-ce-ce {{index===currentIndex?"current-index":""}}'>{{index+1}}</view>
+                        <view wx:for="{{5}}" wx:key="key" class='question-index flx-ce-ce {{index===currentIndex?"wrong-index":""}}'>{{index+1}}</view>
                     </view>
                 </view>
             </view>
             <view class='clock-box flx-ce-ce'>
                 <view class='clock-contain flx-ce-ce'>
-                    <!-- <view class='progress-contain flx-ce-ce'>
-                        <view class='clip'>
-                            <view class='left'></view>
-                            <view class='right'></view>
-                        </view>
-                    </view> -->
                     <view class='flx-ce-ce clock-txt'>
-                        <view class='clock-num'>60</view>
+                        <view class='clock-num'>{{countDown}}</view>
                         <!-- <image src='../../asset/challengeHome/clock_icon.png' class='clock-icon'></image> -->
                     </view>
                 </view>
@@ -44,7 +45,8 @@
             </view>
         </view>
         <view class='test-submit'>
-            <image class='submit' src='../../asset/challengeHome/submit.png'></image>
+            <!-- <image class='submit' src='../../asset/challengeHome/submit.png'></image> -->
+            <image class='submit' src='../../asset/challengeHome/submit_disable.png'></image>
         </view>
     </view>
 </view>

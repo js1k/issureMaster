@@ -31,7 +31,7 @@
     <view class='red-point move-right'></view>
     <view class='red-point move-bottom'></view>
     <image src='../../asset/hongbao/compound_btn.png' class='compound-btn'></image>
-    <image src='../../asset/hongbao/red_packets_pic.png' class='packets-pic'></image>
+    <!-- <image src='../../asset/hongbao/red_packets_pic.png' class='packets-pic'></image> -->
     <image src='../../asset/hongbao/red_packets_light.png' class='packets-light'></image>
   </view>
   <view class='red-packets-rules'>

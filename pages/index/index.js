@@ -11,6 +11,7 @@ Page({
         showCardName: '帮帮卡',
         knapsackMask: false,
         hasUserInfo: false,
+        showAuth:true,
         canIUse: wx.canIUse('button.open-type.getUserInfo')
     },
     //事件处理函数
@@ -77,6 +78,7 @@ Page({
         })
     },
     onLoad: function() {
+        console.log(app.globalData.userInfo)
         if (app.globalData.userInfo) {
             this.setData({
                 userInfo: app.globalData.userInfo,
@@ -105,7 +107,9 @@ Page({
         }
     },
     getUserInfo: function(e) {
-        console.log(e)
+        if (!e.detail.userInfo){
+            return
+        }
         app.globalData.userInfo = e.detail.userInfo
         this.setData({
             userInfo: e.detail.userInfo,

@@ -1,39 +1,40 @@
 <!--index.wxml-->
 <view class="index-page">
-  <!-- <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
+<!-- <scroll-view scroll-y="true" class="index-page"> -->
+    <!-- <view class="userinfo"> -->
+    <!-- <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button> -->
+    <!-- <block wx:else>
       <image bindtap="bindVieswTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
+    </block> -->
+    <!-- </view> -->
+    <!-- <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view> -->
-      <view class='nav-bar flx-ce-ce'>保保大师挑战赛</view>
-      <view class='home-user'>
+    <view class='nav-bar flx-ce-ce'>保保大师挑战赛</view>
+    <view class='home-user'>
         <view class='home-user-header'>
-          <image src="../../asset/index/default_header.png" class='header-image' bindtap='goHomepage'></image>
+            <image src="../../asset/index/default_header.png" class='header-image' bindtap='goHomepage'></image>
         </view>
         <view class='home-user-info'>
-          <text class='user-name' style="color:#fff;font-size:14px">名字起得特别长</text>
-          <view class='user-info'>
-            <image src="../../asset/index/lv.4zongshi@2x.png" class='user-level'></image>
-            <image src="../../asset/index/zongshiStar@2x.png" style="width:14px;height:20px;margin:0 4px"></image>
-            <text style="color:#fff;font-size:12px">X12</text>
-          </view>
+            <text class='user-name' style="color:#fff;font-size:14px">名字起得特别长</text>
+            <view class='user-info'>
+                <image src="../../asset/index/lv.4zongshi@2x.png" class='user-level'></image>
+                <image src="../../asset/index/zongshiStar@2x.png" style="width:14px;height:20px;margin:0 4px"></image>
+                <text style="color:#fff;font-size:12px">X12</text>
+            </view>
         </view>
-      </view>
-      <view class='home-section'>
+    </view>
+    <view class='home-section'>
         <view>
-          <image src="../../asset/index/logo@2x.png" class='home-logo'></image>
+            <image src="../../asset/index/logo@2x.png" class='home-logo'></image>
         </view>
         <text class='home-time'>—— 拒绝销售误导季 7.1-7.8 ——</text>
         <text class='home-theme'>保险你做主 权益我知道</text>
         <view style='position:relative'>
-          <image src="../../asset/index/cloud_lfet.svg" class='season1-cloud-left cloud-left'></image>
-          <image src="../../asset/index/cloud_right.svg" class='season1-cloud-right cloud-right'></image>
-          <image src="../../asset/index/home_season1.png" class='home-main-pic'></image>
+            <image src="../../asset/index/cloud_lfet.svg" class='season1-cloud-left cloud-left'></image>
+            <image src="../../asset/index/cloud_right.svg" class='season1-cloud-right cloud-right'></image>
+            <image src="../../asset/index/home_season1.png" class='home-main-pic'></image>
         </view>
         <!-- <view style='position:relative'>
           <image src="../../asset/index/season2_cloud.png" class='season2-cloud cloud-right'></image>
@@ -50,133 +51,151 @@
           <image src="../../asset/index/season4_cloud_right.png" class='season4-cloud-right cloud-right'></image>
           <image src="../../asset/index/home_season4.png" class='home-main-pic'></image>
         </view> -->
-          <image src="../../asset/index/begainAnswer.png" class='begin-answer' bindtap='goChallenge'></image>
-          <image src='../../asset/index/home_arrow.png' class='home-arrow' bindtap="openRules"></image>
-          <image src='../../asset/index/season_tips.png' class='season-stragety' bindtap="openRules"></image>
-      </view>
-      <image src="../../asset/index/home_bg.png" class='home-btm-bg'></image>
-      <view class='loop-content'>
+        <view class='begin-answer'>
+            <image src="../../asset/index/begainAnswer.png" class='begin-btn' bindtap='goChallenge'></image>
+        </view>
+        <view class='arrow-box'>
+            <image src='../../asset/index/home_arrow.png' class='home-arrow' bindtap="openRules"></image>
+        </view>
+        <!-- <view class='rules-box'> -->
+            <image src='../../asset/index/season_tips.png' class='season-stragety' mode='widthFix' bindtap="openRules"></image>
+        <!-- </view> -->
+    </view>
+    <image src="../../asset/index/home_bg.png" class='home-btm-bg'></image>
+    <view class='loop-content'>
         <view style='position:relative'>
-          <image src="../../asset/index/baobao.png" class='bao-bao'></image>
+            <image src="../../asset/index/baobao.png" class='bao-bao'></image>
         </view>
-      </view>
-      <view class='loop-box'>
+    </view>
+    <view class='loop-box'>
         <view class='loop-inner'>
-          <text class='loop-text loop-before'>学习保险知识</text>
-          <text class='loop-text loop-after'>保保大师挑战赛</text>
+            <text class='loop-text loop-before'>学习保险知识</text>
+            <text class='loop-text loop-after'>保保大师挑战赛</text>
         </view>
-      </view>
-      <view class='menu-content'>
+    </view>
+    <view class='menu-content'>
         <view class='menu-icon' bindtap='goRank'>
-          <view class="icon-content">
-            <image src="../../asset/index/rank_icon.svg" class='menu-img'></image>
-          </view>
-          <text class='icon-font'>排行榜</text>
+            <view class="icon-content">
+                <image src="../../asset/index/rank_icon.svg" class='menu-img'></image>
+            </view>
+            <text class='icon-font'>排行榜</text>
         </view>
         <view class='menu-icon' bindtap='goTreasure'>
-          <view class="icon-content">
-            <image src="../../asset/index/task_icon.svg" class='menu-img'></image>
-            <view class='task-num'>1/7</view>
-          </view>
-          <text class='icon-font'>任务宝箱</text>
+            <view class="icon-content">
+                <image src="../../asset/index/task_icon.svg" class='menu-img'></image>
+                <view class='task-num'>1/7</view>
+            </view>
+            <text class='icon-font'>任务宝箱</text>
         </view>
         <view class='menu-icon' bindtap='showKnapsack'>
-          <view  class="icon-content">
-            <image src="../../asset/index/bag_icon.svg" class='menu-img'></image>
-            <view class='task-num'>NEW</view>
-          </view>
-          <text class='icon-font'>背包</text>
+            <view class="icon-content">
+                <image src="../../asset/index/bag_icon.svg" class='menu-img'></image>
+                <view class='task-num'>NEW</view>
+            </view>
+            <text class='icon-font'>背包</text>
         </view>
         <view class='menu-icon' bindtap='goRedPackets'>
-          <view class='icon-content'>
-            <image src="../../asset/index/money_icon.svg" class='menu-img'></image>
-            <view class='task-num'>NEW</view>
-          </view>
-          <text class='icon-font'>红包碎片</text>
+            <view class='icon-content'>
+                <image src="../../asset/index/money_icon.svg" class='menu-img'></image>
+                <view class='task-num'>NEW</view>
+            </view>
+            <text class='icon-font'>红包碎片</text>
         </view>
-      </view>
-      <view class='com-mask' wx:if="{{showRules}}" catchtap='closeRules'>
-        <image src="../../asset/index/home_rules.png" catchtap='closeRules' class='home-rules' data-model='inner'></image>
-      </view>
-      <view class='com-mask index-mask' bindtap='closeMask' wx:if="{{knapsackMask}}">
+    </view>
+    <view class='com-mask' wx:if="{{showRules||!hasUserInfo}}" catchtap='closeRules'>
+        <view class='rules-container' wx:if="{{showRules}}">
+            <image src='../../asset/index/home_arrow.png' class='close_arrow' catchtap='closeRules'></image>
+            <image src="../../asset/index/home_rules.png" catchtap='closeRules' class='home-rules' data-model='inner'></image>
+        </view>
+        <view class='authorization-box flx-ce-clm' wx:if="{{!hasUserInfo}}">
+            <view class='auth-title'>申请获取以下权限</view>
+            <view class='auth-desc'>使用您的昵称、头像等公开信息用于分享、排行使用</view>
+            <button open-type="getUserInfo" class='auth-btn' bindgetuserinfo="getUserInfo">授权</button>
+        </view>
+    </view>
+    <view class='com-mask index-mask' bindtap='closeMask' wx:if="{{knapsackMask}}">
         <view class='knapsack-box'>
-          <view class='knapsack-close-box'>
-            <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
-          </view>
-          <view class='knapsack-section' catchtap='closeMask' data-model='inner'>
-            <view class='section-card'>
-              <view class='section-header flx-ce-ce'>背包</view>
-              <view class='section-card-list'>
-                <view class='card-box'>
-                  <view class='card-pic flx-ce-ce'>
-                    <image src='../../asset/index/bangbang.png' mode='aspectFit' data-name='帮帮卡' data-src='../../asset/index/bangbang.png' bindtap='showCard' class='card-bg'></image>
-                  </view>
-                  <view class='card-name flx-ce-ce'>帮帮卡</view>
-                </view>
-                <view class='card-box'>
-                  <view class='card-pic flx-ce-ce'>
-                    <image src='../../asset/index/paichu.png' mode='widthFix' data-name='排除卡' data-src='../../asset/index/paichu.png' bindtap='showCard' class='card-bg'></image>
-                  </view>
-                  <view class='card-name flx-ce-ce'>排除卡</view>
-                </view>
-                <view class='card-box'>
-                  <view class='card-pic flx-ce-ce'>
-                    <image src='../../asset/index/nengliang.png' mode='widthFix' data-name='能量卡' data-src='../../asset/index/nengliang.png' bindtap='showCard' class='card-bg'></image>
-                  </view>
-                  <view class='card-name flx-ce-ce'>能量卡</view>
-                </view>
-                <view class='card-box'>
-                  <view class='card-pic flx-ce-ce'>
-                    <image src='../../asset/index/xinren.png' mode='widthFix' data-name='新人宝箱' data-src='../../asset/index/xinren.png' bindtap='showCard' class='card-bg'></image>
-                  </view>
-                  <view class='card-name flx-ce-ce'>新人宝箱</view>
-                </view>
-                <view class='card-box'>
-                  <view class='card-pic flx-ce-ce'>
-                    <image src='../../asset/index/xueyi.png' mode='widthFix' data-name='学艺宝箱' data-src='../../asset/index/xueyi.png' bindtap='showCard' class='card-bg'></image>
-                  </view>
-                  <view class='card-name flx-ce-ce'>学艺宝箱</view>
-                </view>
-                <view class='card-box'>
-                  <view class='card-pic flx-ce-ce'>
-                    <image src='../../asset/index/fenxiang.png' mode='widthFix' data-name='分享宝箱' data-src='../../asset/index/fenxiang.png' bindtap='showCard' class='card-bg'></image>
-                  </view>
-                  <view class='card-name flx-ce-ce'>分享宝箱</view>
-                </view>
-                <view class='card-box'>
-                  <view class='card-pic flx-ce-ce'>
-                    <image src='../../asset/index/zhuti.png' mode='widthFix' data-name='主题宝箱' data-src='../../asset/index/zhuti.png' bindtap='showCard' class='card-bg'></image>
-                  </view>
-                  <view class='card-name flx-ce-ce'>主题宝箱</view>
-                </view>
-                <view class='card-box'>
-                  <view class='card-pic flx-ce-ce'>
-                    <!-- <image src='../../asset/index/bangbang.png' class='card-bg'></image> -->
-                  </view>
-                  <view class='card-name flx-ce-ce'> </view>
-                </view>
-                <view class='card-box'>
-                  <view class='card-pic flx-ce-ce'>
-                    <!-- <image src='../../asset/index/bangbang.png' class='card-bg'></image> -->
-                  </view>
-                  <view class='card-name flx-ce-ce'> </view>
-                </view>
-              </view>
+            <view class='knapsack-close-box'>
+                <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
             </view>
-            <view class='knapsack-pillar'>
-              <view class='pillar'></view>
-              <view class='pillar'></view>
+            <view class='knapsack-section' catchtap='closeMask' data-model='inner'>
+                <view class='section-card'>
+                    <view class='section-header flx-ce-ce'>背包</view>
+                    <view class='section-card-list'>
+                        <view class='card-box'>
+                            <view class='card-pic flx-ce-ce'>
+                                <image src='../../asset/index/bangbang.png' mode='aspectFit' data-name='帮帮卡' data-src='../../asset/index/bangbang.png' bindtap='showCard' class='card-bg'></image>
+                            </view>
+                            <view class='card-name flx-ce-ce'>帮帮卡</view>
+                        </view>
+                        <view class='card-box'>
+                            <view class='card-pic flx-ce-ce'>
+                                <image src='../../asset/index/paichu.png' mode='widthFix' data-name='排除卡' data-src='../../asset/index/paichu.png' bindtap='showCard' class='card-bg'></image>
+                            </view>
+                            <view class='card-name flx-ce-ce'>排除卡</view>
+                        </view>
+                        <view class='card-box'>
+                            <view class='card-pic flx-ce-ce'>
+                                <image src='../../asset/index/nengliang.png' mode='widthFix' data-name='能量卡' data-src='../../asset/index/nengliang.png' bindtap='showCard' class='card-bg'></image>
+                            </view>
+                            <view class='card-name flx-ce-ce'>能量卡</view>
+                        </view>
+                        <view class='card-box'>
+                            <view class='card-pic flx-ce-ce'>
+                                <image src='../../asset/index/xinren.png' mode='widthFix' data-name='新人宝箱' data-src='../../asset/index/xinren.png' bindtap='showCard' class='card-bg'></image>
+                            </view>
+                            <view class='card-name flx-ce-ce'>新人宝箱</view>
+                        </view>
+                        <view class='card-box'>
+                            <view class='card-pic flx-ce-ce'>
+                                <image src='../../asset/index/xueyi.png' mode='widthFix' data-name='学艺宝箱' data-src='../../asset/index/xueyi.png' bindtap='showCard' class='card-bg'></image>
+                            </view>
+                            <view class='card-name flx-ce-ce'>学艺宝箱</view>
+                        </view>
+                        <view class='card-box'>
+                            <view class='card-pic flx-ce-ce'>
+                                <image src='../../asset/index/fenxiang.png' mode='widthFix' data-name='分享宝箱' data-src='../../asset/index/fenxiang.png' bindtap='showCard' class='card-bg'></image>
+                            </view>
+                            <view class='card-name flx-ce-ce'>分享宝箱</view>
+                        </view>
+                        <view class='card-box'>
+                            <view class='card-pic flx-ce-ce'>
+                                <image src='../../asset/index/zhuti.png' mode='widthFix' data-name='主题宝箱' data-src='../../asset/index/zhuti.png' bindtap='showCard' class='card-bg'></image>
+                            </view>
+                            <view class='card-name flx-ce-ce'>主题宝箱</view>
+                        </view>
+                        <view class='card-box'>
+                            <view class='card-pic flx-ce-ce'>
+                                <!-- <image src='../../asset/index/bangbang.png' class='card-bg'></image> -->
+                            </view>
+                            <view class='card-name flx-ce-ce'> </view>
+                        </view>
+                        <view class='card-box'>
+                            <view class='card-pic flx-ce-ce'>
+                                <!-- <image src='../../asset/index/bangbang.png' class='card-bg'></image> -->
+                            </view>
+                            <view class='card-name flx-ce-ce'> </view>
+                        </view>
+                    </view>
+                </view>
+                <view class='knapsack-pillar'>
+                    <view class='pillar'></view>
+                    <view class='pillar'></view>
+                </view>
+                <view class='show-box flx-ce-str'>
+                    <view class='card-pic card-pic-chosed flx-ce-ce'>
+                        <image mode='widthFix' src='{{showCardImg}}' class='card-bg'></image>
+                    </view>
+                    <view class='show-txt'>
+                        <view class='show-name'>{{showCardName}}</view>
+                        <view class='show-desc'>特权卡三选二特权卡三选二特权卡三选二特权卡三选二特权卡三选二二</view>
+                    </view>
+                    <!-- <view class='open-btn-box'>
+                        <image src='../../asset/index/open_treasureBox.png' class='open-btn'></image>
+                    </view> -->
+                </view>
             </view>
-            <view class='show-box flx-ce-str'>
-              <view class='card-pic card-pic-chosed flx-ce-ce'>
-                <image mode='widthFix' src='{{showCardImg}}' class='card-bg'></image>
-              </view>
-              <view class='show-txt'>
-                <view class='show-name'>{{showCardName}}</view>
-                <view class='show-desc'>特权卡三选二</view>
-              </view>
-            </view>
-          </view>
         </view>
-      </view>
+    </view>
 </view>
+

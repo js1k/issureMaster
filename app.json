@@ -7,12 +7,13 @@
     "pages/homepage/homepage",
     "pages/redPackets/redPackets",
     "pages/challengeHome/challengeHome",
-    "pages/challenge/challenge"
+    "pages/challenge/challenge",
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "dark",
-    "backgroundColor":"#460EBA",
-    "navigationBarBackgroundColor": "#460EBA",
+    "backgroundColor":"#5E77F2",
+    "navigationBarBackgroundColor": "#5E77F2",
     "navigationBarTitleText": "保保大师挑战赛",
     "navigationBarTextStyle": "white",
     "navigationStyle":"custom",
