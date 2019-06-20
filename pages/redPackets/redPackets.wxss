@@ -1,8 +1,9 @@
 .red-packets{
   width:100%;
   height:100%;
+  overflow: scroll;
   box-sizing: border-box;
-  padding:224rpx 40rpx 0;
+  padding:224rpx 40rpx 30rpx;
   background:linear-gradient(136deg,rgba(70,14,186,1) 0%,rgba(95,138,238,1) 100%);
 }
 .compound-bg{

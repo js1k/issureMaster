@@ -1,4 +1,5 @@
 // pages/login/login.js
+const app = getApp()
 Page({
 
     /**
@@ -8,18 +9,24 @@ Page({
 
     },
 
+    goBack: function () {
+        app.goBack()
+    },
+    getPhoneNumber:function(e){
+        console.log(e)
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-
+        
     },
 
     /**

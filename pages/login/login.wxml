@@ -1,3 +1,14 @@
-<view class='login-pages'>
-    
+<view class='login-pages flx-ce-clm'>
+    <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack'></image>
+    <view class='login-header flx-ce-ce'>保保大师</view>
+    <view class='section flx-ce-clm'>
+        <image src='../../asset/login_pic.png' class='login-pic' mode='widthFix'></image>
+        <button open-type="getPhoneNumber" class='wx-btn flx-ce-ce' bindgetphonenumber="getPhoneNumber">
+            <image src='../../asset/wx_icon.png' class='wx-icon'></image>
+            <view>微信用户一键登录</view>
+        </button>
+        <view class='login-tips'>温馨提示</view>
+        <view class='login-tips'>1.创建保保大师账户获取红包及积分使用</view>
+        <view class='login-tips'>2.民生保险客户请使用预留手机号惊喜多多</view>
+    </view>
 </view>

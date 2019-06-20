@@ -22,20 +22,10 @@
   color:rgba(255,255,255,1);
   margin:32rpx 0 18rpx;
 }
-.user-level{
-  font-size:24rpx;
-  font-family:PingFangSC-Regular;
-  font-weight:400;
-  color:rgba(255,255,255,1);
-}
-.home-star{
-  width:24rpx;
-  height:auto;
-  margin:0 6rpx 0 10rpx;
-}
-.home-icon{
-  width:88rpx;
-  height:auto;
+.uaer-account{
+    font-size:24rpx;
+    font-weight:500;
+    color:rgba(255,255,255,1);
 }
 .total-num{
   margin-right:58rpx;

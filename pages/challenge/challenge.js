@@ -8,11 +8,26 @@ Page({
     data: {
         currentIndex:0,
         countDown:60,
+        unfinshed:false,
         answerItem: ['银保监会，12378', '证监会，12386','消费者协会，12315']
     },
 
     goBack: function () {
+        if (this.data.countDown>0){
+            this.setData({
+                unfinshed:true
+            })
+            return
+        }
+        this.confirmBack()
+    },
+    confirmBack: function(){
         app.goBack()
+    },
+    cancleBack: function () {
+        this.setData({
+            unfinshed: false
+        })
     },
     /**
      * 生命周期函数--监听页面加载

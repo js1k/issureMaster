@@ -49,4 +49,17 @@
             <image class='submit' src='../../asset/challengeHome/submit_disable.png'></image>
         </view>
     </view>
+
+    <view class='com-mask' wx:if="{{unfinshed}}">
+        <view class='unfinshed-back-dialog' wx:if="{{unfinshed}}">
+            <view class='unfinshed-back'>
+                <view class='unfinshed-txt'>当前关卡未结束</view>
+                <view class='unfinshed-txt'>现在退出将以失败处理</view>
+                <view class='flx-ce-bet unfinshed-btn'>
+                    <view class='btn flx-ce-ce' bindtap='confirmBack'>仍要返回</view>
+                    <view class='btn go-on flx-ce-ce' bindtap='cancleBack'>继续答题</view>
+                </view>
+            </view>
+        </view>
+    </view>
 </view>

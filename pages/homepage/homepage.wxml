@@ -5,11 +5,7 @@
         <image class='header-pic' src='../../asset/index/default_header.png' mode='widthFix'></image>
       </view>
       <view class='user-name'>名字起得特别长</view>
-      <view class='level-info flx-ce-ce'>
-        <image src='../../asset/rankList/icon_zongshi.png' mode='widthFix' class='home-icon'></image>
-        <image src='../../asset/rankList/zongshi_star.png'  mode='widthFix' class='home-star'></image>
-        <view class='user-level'>X12</view>
-      </view>
+      <view class='uaer-account'>账号：13823185776</view>
     </view>
     <view class='activities-info flx-ce-ce'>
       <view class='flx-ce-no-clm total-num'>

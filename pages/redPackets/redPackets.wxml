@@ -35,9 +35,11 @@
     <image src='../../asset/hongbao/red_packets_light.png' class='packets-light'></image>
   </view>
   <view class='red-packets-rules'>
-    <view class='rules-title'>红包碎片规则</view>
-    <view class='rules-txt'>1.在宗师段位每答对一关既有一定几率掉落红包碎片。</view>
-    <view class='rules-txt'>2.集满红包碎片可在公众号、民生保险微管家，兑换现金红包。</view>
-    <view class='rules-txt'>3.兑换时间为每个赛季的第七天，当前赛季结束后该赛季的红包碎片清零。</view>
+    <view class='rules-title'>赛季现金红包奖励</view>
+    <view class='rules-txt'>1.解锁“宗师段位”后每答对一关将随机掉落“红包碎片”。</view>
+    <view class='rules-txt'>2.在当前赛季集满四种不同碎片立即合成“赛季红包”，获得现金红包派发资格。</view>
+    <view class='rules-txt'>3.赛季结束后48小时内，系统将通过微信派发1-188元随机现金红包（宗师星级越高红包越大哦～)。</view>
+    <view class='rules-txt'>4.当前赛季结束后，未合成“赛季红包”的碎片将清零，新赛季需重新获取。</view>
+    <view class='rules-txt'>5.如遇问题可关注“保险体验师”公众号咨询人工客服。</view>
   </view>
 </view>
