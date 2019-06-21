@@ -14,6 +14,16 @@ Page({
     },
     getPhoneNumber:function(e){
         console.log(e)
+        console.log(app)
+        let param={
+            sessionKey: app.globalData.sessionKey,
+            encryptedData: e.detail.encryptedData,
+            insureUid: e.detail.insureUid,
+            iv: e.detail.iv
+        }
+        app.httpPost('/xcx/insureMaster/bindTelephone', param,function(){
+
+        })
     },
     /**
      * 生命周期函数--监听页面加载

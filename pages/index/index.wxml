@@ -2,7 +2,7 @@
 <view class="index-page">
 <!-- <scroll-view scroll-y="true" class="index-page"> -->
     <!-- <view class="userinfo"> -->
-    <!-- <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button> -->
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <!-- <block wx:else>
       <image bindtap="bindVieswTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>

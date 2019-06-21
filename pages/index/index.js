@@ -96,6 +96,7 @@ Page({
             // 在没有 open-type=getUserInfo 版本的兼容处理
             wx.getUserInfo({
                 success: res => {
+                    console.log(res)
                     app.globalData.userInfo = res.userInfo
                     this.setData({
                         userInfo: res.userInfo,
@@ -105,7 +106,16 @@ Page({
             })
         }
     },
+    getHomeInfo:function(){
+        let patam={
+
+        }
+        app.httpPost('/xcx/insureMaster/index',param,function(data){
+
+        })
+    },
     getUserInfo: function(e) {
+        console.log(e)
         if (!e.detail.userInfo){
             return
         }
