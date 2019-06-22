@@ -129,7 +129,7 @@
   left:250rpx;
   top:250rpx;
   z-index: 101;
-  animation: packetsRotate 2s ease infinite;
+  animation: packetsRotate 5s ease forwards;
 }
 .packets-light{
     width:220rpx;
@@ -180,18 +180,22 @@
   from {
     transform: translateY(0)
   }
-  to{
+  to {
     transform: translateY(-185rpx)
   }
 }
 @keyframes packetsRotate{
-  from{
+  0%{
     transform: rotate(0deg);
-    transition: all
   }
-  to{
+  50%{
     transform: rotate(720deg);
-    transition: all
+  }
+  51%{
+    transform: rotate(720deg);
+  }
+  100%{
+    transform: rotate(720deg);
   }
 }
 

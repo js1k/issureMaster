@@ -2,7 +2,7 @@
 <view class="index-page">
 <!-- <scroll-view scroll-y="true" class="index-page"> -->
     <!-- <view class="userinfo"> -->
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <!-- <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button> -->
     <!-- <block wx:else>
       <image bindtap="bindVieswTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
@@ -14,10 +14,10 @@
     <view class='nav-bar flx-ce-ce'>保保大师挑战赛</view>
     <view class='home-user'>
         <view class='home-user-header'>
-            <image src="../../asset/index/default_header.png" class='header-image' bindtap='goHomepage'></image>
+            <image src="{{insureUserVO.avatarUrl?insureUserVO.avatarUrl:defaultHeader}}" class='header-image' bindtap='goHomepage'></image>
         </view>
         <view class='home-user-info'>
-            <text class='user-name' style="color:#fff;font-size:14px">名字起得特别长</text>
+            <text class='user-name' style="color:#fff;font-size:14px">{{insureUserVO.nickName}}</text>
             <view class='user-info'>
                 <image src="../../asset/index/lv.4zongshi@2x.png" class='user-level'></image>
                 <image src="../../asset/index/zongshiStar@2x.png" style="width:14px;height:20px;margin:0 4px"></image>
@@ -29,7 +29,7 @@
         <view>
             <image src="../../asset/index/logo@2x.png" class='home-logo'></image>
         </view>
-        <text class='home-time'>—— 拒绝销售误导季 7.1-7.8 ——</text>
+        <text class='home-time'>—— {{seasonCheckVO.seasonTitle}} {{seasonCheckVO.seasonDate}} ——</text>
         <text class='home-theme'>保险你做主 权益我知道</text>
         <view style='position:relative'>
             <image src="../../asset/index/cloud_lfet.svg" class='season1-cloud-left cloud-left'></image>
@@ -83,21 +83,21 @@
         <view class='menu-icon' bindtap='goTreasure'>
             <view class="icon-content">
                 <image src="../../asset/index/task_icon.svg" class='menu-img'></image>
-                <view class='task-num'>1/7</view>
+                <view class='task-num' wx:if="{{chestNum!==7}}">{{chestNum+''}}/7</view>
             </view>
             <text class='icon-font'>任务宝箱</text>
         </view>
         <view class='menu-icon' bindtap='showKnapsack'>
             <view class="icon-content">
                 <image src="../../asset/index/bag_icon.svg" class='menu-img'></image>
-                <view class='task-num'>NEW</view>
+                <view class='task-num' wx:if="{{packageFlag===1}}">NEW</view>
             </view>
             <text class='icon-font'>背包</text>
         </view>
         <view class='menu-icon' bindtap='goRedPackets'>
             <view class='icon-content'>
                 <image src="../../asset/index/money_icon.svg" class='menu-img'></image>
-                <view class='task-num'>NEW</view>
+                <view class='task-num' wx:if="{{chipFlag===1}}">NEW</view>
             </view>
             <text class='icon-font'>红包碎片</text>
         </view>

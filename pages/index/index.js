@@ -12,6 +12,14 @@ Page({
         knapsackMask: false,
         hasUserInfo: false,
         showAuth:true,
+        userHeader:'',
+        insureUserVO:{},
+        defaultHeader:'../../asset/index/default_header.png',
+        tipList:[],
+        seasonCheckVO:{},
+        chestNum:0,
+        chipFlag:0,
+        packageFlag:0,
         canIUse: wx.canIUse('button.open-type.getUserInfo')
     },
     //事件处理函数
@@ -78,6 +86,12 @@ Page({
         })
     },
     onLoad: function() {
+        let _this=this
+        app.wxLogin(function (data) {
+            _this.getHomeInfo()
+        })
+
+
         if (app.globalData.userInfo) {
             this.setData({
                 userInfo: app.globalData.userInfo,
@@ -87,16 +101,19 @@ Page({
             // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
             // 所以此处加入 callback 以防止这种情况
             app.userInfoReadyCallback = res => {
+                app.globalData.userInfo = res.userInfo
+                app.globalData.iv = res.iv
+                app.globalData.encryptedData = res.encryptedData
                 this.setData({
                     userInfo: res.userInfo,
                     hasUserInfo: true
                 })
+                this.getHomeInfo()
             }
         } else {
             // 在没有 open-type=getUserInfo 版本的兼容处理
             wx.getUserInfo({
                 success: res => {
-                    console.log(res)
                     app.globalData.userInfo = res.userInfo
                     this.setData({
                         userInfo: res.userInfo,
@@ -105,24 +122,43 @@ Page({
                 }
             })
         }
+        this.getHomeInfo()
     },
     getHomeInfo:function(){
-        let patam={
-
+        let _this=this
+        let param={
+            agentUserId:'',
+            encryptedData: app.globalData.encryptedData,
+            insureUid: app.globalData.insureUid,
+            iv: app.globalData.iv,
+            jsCode: app.globalData.jsCode
         }
         app.httpPost('/xcx/insureMaster/index',param,function(data){
-
+            _this.setData({
+                insureUid:data,
+                insureUserVO: data.insureUserVO,
+                tipList: data.tipList,
+                seasonCheckVO: data.seasonCheckVO,
+                chestNum: data.chestNum,
+                chipFlag: data.chipFlag,
+                packageFlag: data.packageFlag
+            })
+            app.globalData.insureUid = data.insureUserVO.insureUid
+        },function(data){
+            console.log('error')
         })
     },
     getUserInfo: function(e) {
-        console.log(e)
         if (!e.detail.userInfo){
             return
         }
         app.globalData.userInfo = e.detail.userInfo
+        app.globalData.encryptedData = e.detail.encryptedData
+        app.globalData.iv = e.detail.iv
         this.setData({
             userInfo: e.detail.userInfo,
             hasUserInfo: true
         })
+        this.getHomeInfo()
     }
 })

@@ -5,24 +5,32 @@
     <view class='red-packets-container'>
       <view class='packets-group'>
         <view class='cards-box card-top'>
-          <image src='../../asset/hongbao/hongbao_A_disabled.png' mode="scaleToFill" class='red-packets-pic'></image>
-          <view class='packets-A packets-txt'>红包碎片A*3</view>
-          <image class='chip-light' src='../../asset/hongbao/chip_light.png'></image>
+          <image src="{{redPacketsData.chipA?'../../asset/hongbao/hongbao_A.png':'../../asset/hongbao/hongbao_A_disabled.png'}}" mode="scaleToFill" class='red-packets-pic'></image>
+          <view class='packets-A packets-txt flx-ce-ce'>碎片A
+            <text wx:if="{{redPacketsData.chipA}}">*{{redPacketsData.chipA}}</text>
+          </view>
+          <image class='chip-light' wx:if="{{redPacketsData.chipA}}" src='../../asset/hongbao/chip_light.png'></image>
         </view>
         <view class='cards-box card-left'>
-          <image src='../../asset/hongbao/hongbao_B.png' mode="scaleToFill" class='red-packets-pic'></image>
-          <view class='packets-B packets-txt'>红包碎片B*3</view>
-          <image class='chip-light' src='../../asset/hongbao/chip_light.png'></image>
+          <image src="{{redPacketsData.chipB?'../../asset/hongbao/hongbao_B.png':'../../asset/hongbao/hongbao_B_disabled.png'}}" mode="scaleToFill" class='red-packets-pic'></image>
+          <view class='packets-B packets-txt flx-ce-ce'>碎片B
+            <text wx:if="{{redPacketsData.chipB}}">*{{redPacketsData.chipB}}</text>
+          </view>
+          <image class='chip-light' wx:if="{{redPacketsData.chipB}}" src='../../asset/hongbao/chip_light.png'></image>
         </view>
         <view class='cards-box card-bottom'>
-          <image src='../../asset/hongbao/hongbao_C.png' mode="scaleToFill" class='red-packets-pic'></image>
-          <view class='packets-B packets-txt'>红包碎片C*3</view>
-          <image class='chip-light' src='../../asset/hongbao/chip_light.png'></image>
+          <image src="{{redPacketsData.chipC?'../../asset/hongbao/hongbao_C.png':'../../asset/hongbao/hongbao_C_disabled.png'}}" mode="scaleToFill" class='red-packets-pic'></image>
+          <view class='packets-B packets-txt flx-ce-ce'>碎片C
+            <text wx:if="{{redPacketsData.chipC}}">*{{redPacketsData.chipC}}</text>
+          </view>
+          <image class='chip-light'  wx:if="{{redPacketsData.chipC}}" src='../../asset/hongbao/chip_light.png'></image>
         </view>
         <view class='cards-box card-right'>
-          <image src='../../asset/hongbao/hongbao_D.png' mode="scaleToFill" class='red-packets-pic'></image>
-          <view class='packets-B packets-txt'>红包碎片D*3</view>
-          <image class='chip-light' src='../../asset/hongbao/chip_light.png'></image>
+          <image src="{{redPacketsData.chipD?'../../asset/hongbao/hongbao_D.png':'../../asset/hongbao/hongbao_D_disabled.png'}}" mode="scaleToFill" class='red-packets-pic'></image>
+          <view class='packets-B packets-txt flx-ce-ce'>碎片D
+            <text wx:if="{{redPacketsData.chipD}}">*{{redPacketsData.chipD}}</text>
+          </view>
+          <image class='chip-light' wx:if="{{redPacketsData.chipD}}" src='../../asset/hongbao/chip_light.png'></image>
         </view>
       </view>
     </view>
@@ -31,7 +39,7 @@
     <view class='red-point move-right'></view>
     <view class='red-point move-bottom'></view>
     <image src='../../asset/hongbao/compound_btn.png' class='compound-btn'></image>
-    <!-- <image src='../../asset/hongbao/red_packets_pic.png' class='packets-pic'></image> -->
+    <image wx:if="{{redPacketsData.isCompose===1}}" src='../../asset/hongbao/red_packets_pic.png' class='packets-pic'></image>
     <image src='../../asset/hongbao/red_packets_light.png' class='packets-light'></image>
   </view>
   <view class='red-packets-rules'>
