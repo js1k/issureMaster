@@ -5,11 +5,18 @@
             <image src="{{insureUserVO.avatarUrl?insureUserVO.avatarUrl:defaultHeader}}" class='header-image' bindtap='goHomepage'></image>
         </view>
         <view class='home-user-info'>
-            <text class='user-name' style="color:#fff;font-size:14px">{{insureUserVO.nickName}}</text>
-            <view class='user-info'>
-                <image src="../../asset/index/lv.4zongshi@2x.png" class='user-level'></image>
-                <image src="../../asset/index/zongshiStar@2x.png" style="width:14px;height:20px;margin:0 4px"></image>
-                <text style="color:#fff;font-size:12px">X12</text>
+            <text class='user-name' class='nickName'>{{insureUserVO.nickName}}</text>
+            <view class='user-info flx-ce-ce' wx:if="{{insureUserVO.userLevel<4}}">
+                <image src="{{insureUserVO.userLevel===1?darenIcon:insureUserVO.userLevel===2?gaoshouIcon:dashiIcon}}" class='user-level'></image>
+                <image src="../../asset/challengeHome/star_light.png" class='home-star'></image>
+                <image src="../../asset/challengeHome/star_light.png" class='home-star' wx:if="{{insureUserVO.starNum>=2}}"></image>
+                <image src="../../asset/challengeHome/star_light.png" class='home-star' wx:if="{{insureUserVO.starNum===3}}"></image>
+                <image src="../../asset/challengeHome/star_black.png" class='home-star' wx:if="{{insureUserVO.starNum<insureUserVO.userLevel}}"></image>
+            </view>
+            <view class='user-info flx-ce-ce' wx:if="{{insureUserVO.userLevel===4}}">
+                <image src="{{zongshiIcon}}" class='user-level'></image>
+                <image src="../../asset/index/zongshiStar@2x.png" class='zongshi-star'></image>
+                <text style="color:#fff;font-size:12px">x{{insureUserVO.starNum}}</text>
             </view>
         </view>
     </view>
