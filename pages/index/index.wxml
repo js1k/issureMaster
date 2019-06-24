@@ -53,7 +53,7 @@
             <image src='../../asset/index/home_arrow.png' class='home-arrow' bindtap="openRules"></image>
         </view>
         <!-- <view class='rules-box'> -->
-            <image src='../../asset/index/season_tips.png' class='season-stragety' mode='widthFix' bindtap="openRules"></image>
+            <image src='../../asset/index/season_tips.png' class='season-stragety' bindtap="openRules"></image>
         <!-- </view> -->
     </view>
     <image src="../../asset/index/home_bg.png" class='home-btm-bg'></image>
