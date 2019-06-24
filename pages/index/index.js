@@ -16,6 +16,10 @@ Page({
         insureUserVO:{},
         defaultHeader:'../../asset/index/default_header.png',
         tipList:[],
+        loopBefore:'',
+        loopAfter:'',
+        loopInterval:'',
+        curIndex:0,
         seasonCheckVO:{},
         chestNum:0,
         chipFlag:0,
@@ -87,42 +91,56 @@ Page({
     },
     onLoad: function() {
         let _this=this
-        app.wxLogin(function (data) {
-            _this.getHomeInfo()
-        })
-
-
         if (app.globalData.userInfo) {
             this.setData({
                 userInfo: app.globalData.userInfo,
                 hasUserInfo: true
             })
-        } else if (this.data.canIUse) {
-            // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-            // 所以此处加入 callback 以防止这种情况
-            app.userInfoReadyCallback = res => {
-                app.globalData.userInfo = res.userInfo
-                app.globalData.iv = res.iv
-                app.globalData.encryptedData = res.encryptedData
-                this.setData({
-                    userInfo: res.userInfo,
-                    hasUserInfo: true
-                })
-                this.getHomeInfo()
-            }
         } else {
-            // 在没有 open-type=getUserInfo 版本的兼容处理
-            wx.getUserInfo({
-                success: res => {
-                    app.globalData.userInfo = res.userInfo
-                    this.setData({
-                        userInfo: res.userInfo,
-                        hasUserInfo: true
-                    })
-                }
+            this.setData({
+                userInfo: app.globalData.userInfo,
+                hasUserInfo: false
             })
         }
-        this.getHomeInfo()
+        app.wxLogin(function (data) {
+            _this.getHomeInfo()
+        })
+
+
+        // if (app.globalData.userInfo) {
+        //     this.setData({
+        //         userInfo: app.globalData.userInfo,
+        //         hasUserInfo: true
+        //     })
+        // } else if (this.data.canIUse) {
+        //     // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+        //     // 所以此处加入 callback 以防止这种情况
+        //     app.userInfoReadyCallback = res => {
+        //         app.globalData.userInfo = res.userInfo
+        //         app.globalData.iv = res.iv
+        //         app.globalData.encryptedData = res.encryptedData
+        //         this.setData({
+        //             userInfo: res.userInfo,
+        //             hasUserInfo: true
+        //         })
+        //         this.getHomeInfo()
+        //     }
+        // } else {
+        //     // 在没有 open-type=getUserInfo 版本的兼容处理
+        //     wx.getUserInfo({
+        //         success: res => {
+        //             app.globalData.userInfo = res.userInfo
+        //             this.setData({
+        //                 userInfo: res.userInfo,
+        //                 hasUserInfo: true
+        //             })
+        //         }
+        //     })
+        // }
+        // this.getHomeInfo()
+    },
+    onUnload:function(){
+        this.data.loopInterval=''
     },
     getHomeInfo:function(){
         let _this=this
@@ -141,8 +159,24 @@ Page({
                 seasonCheckVO: data.seasonCheckVO,
                 chestNum: data.chestNum,
                 chipFlag: data.chipFlag,
-                packageFlag: data.packageFlag
+                packageFlag: data.packageFlag,
+                loopBefore: data.tipList[0],
+                loopAfter: data.tipList[data.tipList.length-1]
             })
+
+            _this.data.loopInterval=setInterval(function () {
+                if (_this.data.curIndex === _this.data.tipList.length - 1) {
+                    _this.setData({
+                        curIndex: 0
+                    })
+                }
+                _this.setData({
+                    curIndex: _this.data.curIndex+1,
+                    loopBefore: _this.data.tipList[_this.data.curIndex],
+                    loopAfter: _this.data.tipList[_this.data.tipList.length-_this.data.curIndex-1]
+                })
+            }, 3000)
+
             app.globalData.insureUid = data.insureUserVO.insureUid
         },function(data){
             console.log('error')

@@ -1,16 +1,4 @@
-<!--index.wxml-->
 <view class="index-page">
-<!-- <scroll-view scroll-y="true" class="index-page"> -->
-    <!-- <view class="userinfo"> -->
-    <!-- <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button> -->
-    <!-- <block wx:else>
-      <image bindtap="bindVieswTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block> -->
-    <!-- </view> -->
-    <!-- <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view> -->
     <view class='nav-bar flx-ce-ce'>保保大师挑战赛</view>
     <view class='home-user'>
         <view class='home-user-header'>
@@ -31,26 +19,26 @@
         </view>
         <text class='home-time'>—— {{seasonCheckVO.seasonTitle}} {{seasonCheckVO.seasonDate}} ——</text>
         <text class='home-theme'>保险你做主 权益我知道</text>
-        <view style='position:relative'>
+        <view style='position:relative' wx:if="{{seasonCheckVO.seasonNo===1}}">
             <image src="../../asset/index/cloud_lfet.svg" class='season1-cloud-left cloud-left'></image>
             <image src="../../asset/index/cloud_right.svg" class='season1-cloud-right cloud-right'></image>
             <image src="../../asset/index/home_season1.png" class='home-main-pic'></image>
         </view>
-        <!-- <view style='position:relative'>
+        <view style='position:relative' wx:if="{{seasonCheckVO.seasonNo===2}}">
           <image src="../../asset/index/season2_cloud.png" class='season2-cloud cloud-right'></image>
           <image src="../../asset/index/insurance_policy.png" class='insurance-policy'></image>
           <image src="../../asset/index/home_season2.png" class='home-main-pic season-pic'></image>
-        </view> -->
-        <!-- <view style='position:relative'>
+        </view>
+        <view style='position:relative' wx:if="{{seasonCheckVO.seasonNo===3}}">
           <image src="../../asset/index/season3_cloud_left.png" class='season3-cloud-left cloud-left'></image>
           <image src="../../asset/index/season3_cloud_right.png" class='season3-cloud-right cloud-right'></image>
           <image src="../../asset/index/home_season3.png" class='home-main-pic'></image>
-        </view> -->
-        <!-- <view style='position:relative'>
+        </view>
+        <view style='position:relative' wx:if="{{seasonCheckVO.seasonNo===4}}">
           <image src="../../asset/index/season4_cloud_left.png" class='season4-cloud-left cloud-left'></image>
           <image src="../../asset/index/season4_cloud_right.png" class='season4-cloud-right cloud-right'></image>
           <image src="../../asset/index/home_season4.png" class='home-main-pic'></image>
-        </view> -->
+        </view>
         <view class='begin-answer'>
             <image src="../../asset/index/begainAnswer.png" class='begin-btn' bindtap='goChallenge'></image>
         </view>
@@ -69,8 +57,8 @@
     </view>
     <view class='loop-box'>
         <view class='loop-inner'>
-            <text class='loop-text loop-before'>学习保险知识</text>
-            <text class='loop-text loop-after'>保保大师挑战赛</text>
+            <text class='loop-text loop-before' wx:if="{{loopBefore}}">{{loopBefore}}</text>
+            <text class='loop-text loop-after' wx:if="{{loopAfter}}">{{loopAfter}}</text>
         </view>
     </view>
     <view class='menu-content'>

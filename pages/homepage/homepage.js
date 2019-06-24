@@ -24,7 +24,6 @@ Page({
     getData: function() {
         let _this = this
         app.httpPost('/xcx/insureMaster/personalCenter', { insureUid: app.globalData.insureUid}, function(data) {
-            console.log(data)
             _this.setData({
                 insureUserVO: data.insureUserVO,
                 seasonData: data.recordVOList
