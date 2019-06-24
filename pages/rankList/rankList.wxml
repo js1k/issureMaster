@@ -1,81 +1,86 @@
 <scroll-view scroll-y="true" class='rank-list flx-ce-no-clm' bindscrolltolower="bindscrolltolower" bindscrolltoupper="bindscrolltoupper">
-  <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack'></image>
-  <view class='navigation flx-ce-ce'>
-    <view class='tab-content'>
-      <view class="nav-tab flx-ce-ce {{showSeasonList===true?'tab-actived':''}}" bindtap='getList' data-type='season'>当前赛季排行</view>
-      <view class="nav-tab flx-ce-ce {{showSeasonList===false?'tab-actived':''}}" bindtap='getList' data-type='integral'>总积分排行</view>
-    </view>
-  </view>
-  <view scroll-y="true" class='rank-section'>
-    <view class='flx-ce-no-clm section-content'>
-      <view class='flx-ce-end rank-rules' bindtap='rankRules'>活动规则</view>
-      <view class='rank-content' wx:if="{{showSeasonList}}">
-        <view class='rank-colum flx-ce' wx:for="{{pageList}}" wx:key="index">
-          <view class='rank-medal-box flx-ce-ce'>
-              <image src='../../asset/rankList/rank_top{{item.rankNo}}.png' class='rank-medal' wx:if="{{item.rankNo>0&&item.rankNo<4}}"></image>
-              <text wx:if="{{item.rankNo===-1||item.rankNo>3}}">{{item.rankNo===-1?'--':item.rankNo}}</text>
-          </view>
-          <view class='colum-right flx-ce none-border'>
-            <view class='rank-header-box flx-ce-ce'>
-                <image src="{{item.avatarUrl?item.avatarUrl:'../../asset/index/default_header.png'}}" class='rank-header'></image>
+    <view class='scroll-container'>
+        <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack'></image>
+        <view class='navigation flx-ce-ce'>
+            <view class='tab-content'>
+                <view class="nav-tab flx-ce-ce {{showSeasonList===true?'tab-actived':''}}" bindtap='getList' data-type='season'>当前赛季排行</view>
+                <view class="nav-tab flx-ce-ce {{showSeasonList===false?'tab-actived':''}}" bindtap='getList' data-type='integral'>总积分排行</view>
             </view>
-            <view class='main-info'>
-              <view class='main-name'>{{item.nickName}}</view>
-              <view class='rank-star flx-ce'>
-                <image src='../../asset/rankList/icon_zongshi.png' class='rank-star-icon'></image>
-                <image src='../../asset/rankList/zongshi_star.png' class='common-star'></image>
-                <text class='rank-star-txt'>x{{item.starNum}}</text>
-              </view>
-            </view>
-          </view>
         </view>
-      </view>
-      <view class='rank-content' wx:if="{{!showSeasonList}}">
-        <view class='rank-colum flx-ce'>
-          <view class='rank-medal-box flx-ce-ce'>
-            <image src='../../asset/rankList/rank_top1.png' class='rank-medal'></image>
-          </view>
-          <view class='colum-right flx-ce none-border'>
-            <view class='rank-header-box flx-ce-ce'>
-              <image src='../../asset/index/default_header.png' class='rank-header'></image>
-            </view>
-            <view class='main-info'>
-              <view class='main-name'>名字起得特别长</view>
-              <view class='integral-rank'>积分：80000</view>
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class='fixed-colm'>
-        <view class='fixed-inner'>
-          <view class='rank-colum flx-ce'>
-            <view class='rank-medal-box flx-ce-ce'>
-              <image src='../../asset/rankList/rank_top{{insureUser.rankNo}}.png' class='rank-medal' wx:if="{{insureUser.rankNo>0&&insureUser.rankNo<4}}"></image>
-              <text wx:if="{{insureUser.rankNo===-1||insureUser.rankNo>3}}">{{insureUser.rankNo===-1?'--':insureUser.rankNo}}</text>
-            </view>
-            <view class='colum-right flx-ce none-border'>
-              <view class='rank-header-box flx-ce-ce'>
-                <image src="{{insureUser.avatarUrl?insureUser.avatarUrl:'../../asset/index/default_header.png'}}" class='rank-header'></image>
-              </view>
-              <view class='main-info'>
-                <view class='main-name'>{{insureUser.nickName}}</view>
-                <view class='rank-star flx-ce' wx:if="{{showSeasonList}}">
-                  <image src='../../asset/rankList/icon_zongshi.png' mode="widthFix" class='rank-star-icon'></image>
-                  <image src='../../asset/rankList/zongshi_star.png' mode="widthFix" class='common-star'></image>
-                  <text class='rank-star-txt'>x{{insureUser.starNum}}</text>
+        <view scroll-y="true" class='rank-section'>
+            <view class='flx-ce-no-clm section-content'>
+                <view class='flx-ce-end rank-rules' bindtap='rankRules'>活动规则</view>
+                <view class='rank-content' wx:if="{{showSeasonList||false}}">
+                    <view class='rank-colum flx-ce' wx:for="{{pageList}}" wx:key="index" wx:if="{{pageList&&pageList.length>0}}">
+                        <view class='rank-medal-box flx-ce-ce'>
+                            <image src='../../asset/rankList/rank_top{{item.rankNo}}.png' class='rank-medal' wx:if="{{item.rankNo>0&&item.rankNo<4}}"></image>
+                            <text wx:if="{{item.rankNo===-1||item.rankNo>3}}">{{item.rankNo===-1?'--':item.rankNo}}</text>
+                        </view>
+                        <view class='colum-right flx-ce'>
+                            <view class='rank-header-box flx-ce-ce'>
+                                <image src="{{item.avatarUrl?item.avatarUrl:'../../asset/index/default_header.png'}}" class='rank-header'></image>
+                            </view>
+                            <view class='main-info'>
+                                <view class='main-name'>{{item.nickName}}</view>
+                                <view class='rank-star flx-ce'>
+                                    <image src='../../asset/rankList/icon_zongshi.png' class='rank-star-icon'></image>
+                                    <image src='../../asset/rankList/zongshi_star.png' class='common-star'></image>
+                                    <text class='rank-star-txt'>x{{item.starNum}}</text>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class='none-data' wx:if="{{pageList&&pageList.length===0}}">暂时无人达到上榜条件</view>
                 </view>
-                <view class='integral-rank' wx:if="{{!showSeasonList}}">积分: 6400</view>
-              </view>
+                <view class='rank-content' wx:if="{{!showSeasonList}}">
+                    <view class='rank-colum flx-ce' wx:for="{{pageList}}" wx:key="index" wx:if="{{pageList&&pageList.length>0}}">
+                        <view class='rank-medal-box flx-ce-ce'>
+                            <image src='../../asset/rankList/rank_top{{item.rankNo}}.png' class='rank-medal' wx:if="{{item.rankNo>0&&item.rankNo<4}}"></image>
+                            <text wx:if="{{item.rankNo===-1||item.rankNo>3}}">{{item.rankNo===-1?'--':item.rankNo}}</text>
+                        </view>
+                        <view class='colum-right flx-ce'>
+                            <view class='rank-header-box flx-ce-ce'>
+                                <image src="{{item.avatarUrl?item.avatarUrl:'../../asset/index/default_header.png'}}" class='rank-header'></image>
+                            </view>
+                            <view class='main-info'>
+                                <view class='main-name'>{{item.nickName}}</view>
+                                <view class='integral-rank'>{{item.points}}</view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class='none-data' wx:if="{{pageList&&pageList.length===0}}">暂时无人达到上榜条件</view>
+                </view>
+                <view class='fixed-colm'>
+                    <view class='fixed-inner'>
+                        <view class='rank-colum flx-ce'>
+                            <view class='rank-medal-box flx-ce-ce'>
+                                <image src='../../asset/rankList/rank_top{{insureUser.rankNo}}.png' class='rank-medal' wx:if="{{insureUser.rankNo>0&&insureUser.rankNo<4}}"></image>
+                                <text wx:if="{{insureUser.rankNo===-1||insureUser.rankNo>3}}">{{insureUser.rankNo===-1?'--':insureUser.rankNo}}</text>
+                            </view>
+                            <view class='colum-right flx-ce none-border'>
+                                <view class='rank-header-box flx-ce-ce'>
+                                    <image src="{{insureUser.avatarUrl?insureUser.avatarUrl:'../../asset/index/default_header.png'}}" class='rank-header'></image>
+                                </view>
+                                <view class='main-info'>
+                                    <view class='main-name'>{{insureUser.nickName}}</view>
+                                    <view class='rank-star flx-ce' wx:if="{{showSeasonList}}">
+                                        <image src='../../asset/rankList/icon_zongshi.png' mode="widthFix" class='rank-star-icon'></image>
+                                        <image src='../../asset/rankList/zongshi_star.png' mode="widthFix" class='common-star'></image>
+                                        <text class='rank-star-txt'>x{{insureUser.starNum}}</text>
+                                    </view>
+                                    <view class='integral-rank' wx:if="{{!showSeasonList}}">积分: {{insureUser.points}}</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
             </view>
-          </view>
         </view>
-      </view>
+        <view class='com-mask flx-ce-ce' wx:if="{{showMask}}">
+            <scroll-view scroll-y="true" class='rank-mask flx-ce-ce' bindtap='closeMask'>
+                <image src='../../asset/mask_close.png' class='mask-close' bindtap='closeMask'></image>
+                <image src='../../asset/rankList/rank_rules.png' mode='widthFix' class='rank-pic' catchtap='closeMask' data-model='inner'></image>
+            </scroll-view>
+        </view>
     </view>
-  </view>
-  <view class='com-mask flx-ce-ce' wx:if="{{showMask}}">
-    <scroll-view scroll-y="true" class='rank-mask flx-ce-ce' bindtap='closeMask'>
-      <image src='../../asset/mask_close.png' class='mask-close' bindtap='closeMask'></image>
-      <image src='../../asset/rankList/rank_rules.png' mode='widthFix' class='rank-pic' catchtap='closeMask' data-model='inner'></image>
-    </scroll-view>
-  </view>
 </scroll-view>

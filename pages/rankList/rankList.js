@@ -27,7 +27,6 @@ Page({
         this.setData({
             pageNum: this.data.pageNum+1,
         })
-        console.log(this.data.url)
         this.getData()
     },
     goBack: function() {
