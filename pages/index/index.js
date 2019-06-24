@@ -9,8 +9,7 @@ Page({
         showRules: false,
         showCardName: '帮帮卡',
         knapsackMask: false,
-        hasUserInfo: false,
-        showAuth:true,
+        hasUserInfo: true,
         userHeader:'',
         insureUserVO:{},
         tipList:[],
@@ -106,6 +105,7 @@ Page({
                 hasUserInfo: false
             })
         }
+      console.log(this.data.hasUserInfo)
         app.wxLogin(function (data) {
             _this.getHomeInfo()
         })

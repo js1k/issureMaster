@@ -260,8 +260,8 @@
 }
 
 .home-main-pic {
-    width: 261px;
-    height: 261px;
+    width: 522rpx;
+    height: 522rpx;
 }
 
 .home-btm-bg {
@@ -499,6 +499,10 @@
     background:white;
     /* padding:34rpx 0; */
     border-top:1rpx solid rgba(229,229,229,1);
+}
+.placeholder-pic{
+    width: 522rpx;
+    height:522rpx;
 }
 @keyframes cloudLeft {
     0% {

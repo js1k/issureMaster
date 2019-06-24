@@ -105,6 +105,9 @@ view{
 .scaleBig{
     animation: scaleBig 1s forwards;
 }
+.relative{
+  position: relative;
+}
 @keyframes scaleBig{
     from{
         transform: scale(0.5);

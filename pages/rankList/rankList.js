@@ -17,9 +17,6 @@ Page({
         pageList:[],
         url:'/xcx/insureMaster/rankByStar'
     },
-    bindscrolltoupper:function(){
-        console.log('up')
-    },
     bindscrolltolower:function(e){
         if (this.data.pageNum >= this.data.totalPage){
             return
@@ -37,7 +34,8 @@ Page({
         this.setData({
             showSeasonList: !this.data.showSeasonList,
             pageNum: 1,
-            url: e.currentTarget.dataset.type === 'season' ? '/xcx/insureMaster/rankByStar' : '/xcx/insureMaster/rankByPoint'
+            url: e.currentTarget.dataset.type === 'season' ? '/xcx/insureMaster/rankByStar' : '/xcx/insureMaster/rankByPoint',
+            pageList:[]
         })
         _this.getData()
     },
@@ -62,7 +60,6 @@ Page({
             insureUid: app.globalData.insureUid
         }
         app.httpPost(_this.data.url, param, function(data) {
-            // console.log(data)
             _this.setData({
                 pageData:data,
                 insureUser: data.insureUser,

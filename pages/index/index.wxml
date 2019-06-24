@@ -26,39 +26,38 @@
         </view>
         <text class='home-time'>—— {{seasonCheckVO.seasonTitle}} {{seasonCheckVO.seasonDate}} ——</text>
         <text class='home-theme'>保险你做主 权益我知道</text>
-        <view style='position:relative' wx:if="{{seasonCheckVO.seasonNo===1}}">
+        <view class='relative' wx:if="{{seasonCheckVO.seasonNo===1||!seasonCheckVO.seasonNo}}">
             <image src="../../asset/index/cloud_lfet.svg" class='season1-cloud-left cloud-left'></image>
             <image src="../../asset/index/cloud_right.svg" class='season1-cloud-right cloud-right'></image>
             <image src="../../asset/index/home_season1.png" class='home-main-pic'></image>
         </view>
-        <view style='position:relative' wx:if="{{seasonCheckVO.seasonNo===2}}">
-          <image src="../../asset/index/season2_cloud.png" class='season2-cloud cloud-right'></image>
-          <image src="../../asset/index/insurance_policy.png" class='insurance-policy'></image>
-          <image src="../../asset/index/home_season2.png" class='home-main-pic season-pic'></image>
+        <view class='relative' wx:if="{{seasonCheckVO.seasonNo===2}}">
+            <image src="../../asset/index/season2_cloud.png" class='season2-cloud cloud-right'></image>
+            <image src="../../asset/index/insurance_policy.png" class='insurance-policy'></image>
+            <image src="../../asset/index/home_season2.png" class='home-main-pic season-pic'></image>
         </view>
-        <view style='position:relative' wx:if="{{seasonCheckVO.seasonNo===3}}">
-          <image src="../../asset/index/season3_cloud_left.png" class='season3-cloud-left cloud-left'></image>
-          <image src="../../asset/index/season3_cloud_right.png" class='season3-cloud-right cloud-right'></image>
-          <image src="../../asset/index/home_season3.png" class='home-main-pic'></image>
+        <view class='relative' wx:if="{{seasonCheckVO.seasonNo===3}}">
+            <image src="../../asset/index/season3_cloud_left.png" class='season3-cloud-left cloud-left'></image>
+            <image src="../../asset/index/season3_cloud_right.png" class='season3-cloud-right cloud-right'></image>
+            <image src="../../asset/index/home_season3.png" class='home-main-pic'></image>
         </view>
-        <view style='position:relative' wx:if="{{seasonCheckVO.seasonNo===4}}">
-          <image src="../../asset/index/season4_cloud_left.png" class='season4-cloud-left cloud-left'></image>
-          <image src="../../asset/index/season4_cloud_right.png" class='season4-cloud-right cloud-right'></image>
-          <image src="../../asset/index/home_season4.png" class='home-main-pic'></image>
+        <view class='relative' wx:if="{{seasonCheckVO.seasonNo===4}}">
+            <image src="../../asset/index/season4_cloud_left.png" class='season4-cloud-left cloud-left'></image>
+            <image src="../../asset/index/season4_cloud_right.png" class='season4-cloud-right cloud-right'></image>
+            <image src="../../asset/index/home_season4.png" class='home-main-pic'></image>
         </view>
+
         <view class='begin-answer'>
             <image src="../../asset/index/begainAnswer.png" class='begin-btn' bindtap='goChallenge'></image>
         </view>
         <view class='arrow-box'>
             <image src='../../asset/index/home_arrow.png' class='home-arrow' bindtap="openRules"></image>
         </view>
-        <!-- <view class='rules-box'> -->
-            <image src='../../asset/index/season_tips.png' class='season-stragety' bindtap="openRules"></image>
-        <!-- </view> -->
+        <image src='../../asset/index/season_tips.png' class='season-stragety' bindtap="openRules"></image>
     </view>
     <image src="../../asset/index/home_bg.png" class='home-btm-bg'></image>
     <view class='loop-content'>
-        <view style='position:relative'>
+        <view class='relative'>
             <image src="../../asset/index/baobao.png" class='bao-bao'></image>
         </view>
     </view>
@@ -193,4 +192,3 @@
         </view>
     </view>
 </view>
-

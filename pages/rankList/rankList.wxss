@@ -47,7 +47,6 @@
     flex-grow: 1;
     flex-basis: 0;
     padding: 0 78rpx 0 38rpx;
-    /* overflow: scroll; */
 }
 
 .rank-medal {
