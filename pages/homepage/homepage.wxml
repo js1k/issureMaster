@@ -35,7 +35,7 @@
             <image src="{{item.userLevel===1?darenImg:item.userLevel===2?gaoshouImg:item.userLevel===3?dashiImg:zongshiImg}}" mode='widthFix' class='card-pic'></image>
             <view class='flx-ce-ce' wx:if="{{item.userLevel<4}}">
                 <image src='../../asset/challengeHome/star_light.png' mode='widthFix' class='card-star'></image>
-                <image src='../../asset/challengeHome/star_light.png' mode='widthFix' class='card-star' wx:if="{{itm.starNum===2}}"></image>
+                <image src='../../asset/challengeHome/star_light.png' mode='widthFix' class='card-star' wx:if="{{item.starNum>=2}}"></image>
                 <image src='../../asset/challengeHome/star_light.png' mode='widthFix' class='card-star' wx:if="{{item.starNum===3}}"></image>
                 <image src='../../asset/challengeHome/star_black.png' mode='widthFix' class='card-star' wx:if="{{item.starNum<item.userLevel}}"></image>
             </view>
