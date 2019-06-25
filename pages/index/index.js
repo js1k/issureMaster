@@ -7,9 +7,18 @@ Page({
         motto: 'Hello World',
         userInfo: {},
         showRules: false,
-        showCardName: '帮帮卡',
+        showMask:false,
         knapsackMask: false,
         hasUserInfo: true,
+        showCardBtn:false,
+        showInfo: {
+            showImg: '',
+            showName: '',
+            showDesc: '',
+            curNum: 0
+        },
+        showTxt:'',
+        cardIndex:0,
         userHeader:'',
         insureUserVO:{},
         tipList:[],
@@ -22,12 +31,29 @@ Page({
         chipFlag:0,
         packageFlag:0,
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
-        showCardImg: '../../asset/index/xinren.png',
         defaultHeader:'../../asset/index/default_header.png',
         darenIcon: '../../asset/rankList/icon_daren.png',
         gaoshouIcon: '../../asset/rankList/icon_gaoshou.png',
         dashiIcon: '../../asset/rankList/icon_dashi.png',
         zongshiIcon: '../../asset/rankList/icon_zongshi.png',
+
+        openXueyiBg: '../../asset/index/xueyi_bg.png',
+        fenxiangBg: '../../asset/index/fenxiang_bg.png',
+        xinshouBg: '../../asset/index/xinshou_bg.png',
+        zhutiBg: '../../asset/index/zhuti_bg.png',
+        openBox:false,
+
+        cardData:[
+            { name: '帮帮卡', flag: 'helpCard', img: '../../asset/index/bangbang.png', disImg: '../../asset/index/bangbang_disabled.png', desc: 'asdfa', num: 0 },
+            { name: '排除卡', flag: 'removeCard', img: '../../asset/index/paichu.png', disImg: '../../asset/index/paichu_disabled.png', desc: '122', num: 0 },
+            { name: '能量卡', flag: 'energyCard', img: '../../asset/index/nengliang.png', disImg: '../../asset/index/nengliang_disabled.png', desc: 'ssss', num: 0 },
+            { name: '新人宝箱', flag: 'newerChest', btn: true, img: '../../asset/index/xinren.png', disImg: '../../asset/index/xinren_disabled.png', desc: 'zxcv', num: 0 },
+            { name: '学艺宝箱', flag: 'studyChest', btn: true, img: '../../asset/index/xueyi.png', disImg: '../../asset/index/xueyi_disabled.png', desc: 'ssda', num: 0 },
+            { name: '分享宝箱', flag: 'shareChest', btn: true, img: '../../asset/index/fenxiang.png', disImg: '../../asset/index/fenxiang_disabled.png', desc: 'hgf', num: 0 },
+            { name: '主题宝箱', flag: 'subjectChest', btn: true, img: '../../asset/index/zhuti.png', disImg: '../../asset/index/zhuti_disabled.png', desc: '666', num: 0 },
+            { name: '', flag: '', img: '', disImg: '', desc: '', num: 0 },
+            { name: '', flag: '', img: '', disImg: '', desc: '', num: 0 }
+        ]
     },
     //事件处理函数
     bindViewTap: function() {
@@ -68,16 +94,35 @@ Page({
             url: '../challengeHome/challengeHome'
         })
     },
+    openBox:function(){
+
+    },
     showCard: function(event) {
+        let tabIndex = event.currentTarget.dataset.index
+        let cardData = this.data.cardData
+        let showImg = 'showInfo.showImg'
+        let showName = 'showInfo.showName'
+        let showDesc = 'showDesc'
+        let showNum = 'showInfo.curNum'
         this.setData({
-            showCardImg: event.currentTarget.dataset.src,
-            showCardName: event.currentTarget.dataset.name
+            cardIndex: tabIndex,
+            [showImg]: cardData[tabIndex].img,
+            [showName]: cardData[tabIndex].name,
+            [showDesc]: cardData[tabIndex].desc,
+            [showNum]: cardData[tabIndex].num
         })
+        if (cardData[tabIndex].btn) {
+            this.setData({
+                showCardBtn: true
+            })
+        }else{
+            this.setData({
+                showCardBtn: false
+            })
+        }
     },
     showKnapsack: function() {
-        this.setData({
-            knapsackMask: true
-        })
+        this.getPackets()
     },
     closeMask: function(event) {
         if (event.currentTarget.dataset.model === 'inner') {
@@ -105,7 +150,6 @@ Page({
                 hasUserInfo: false
             })
         }
-      console.log(this.data.hasUserInfo)
         app.wxLogin(function (data) {
             _this.getHomeInfo()
         })
@@ -145,6 +189,37 @@ Page({
     },
     onUnload:function(){
         this.data.loopInterval=''
+    },
+    getPackets:function(){
+        let _this=this
+        let cardData = _this.data.cardData
+
+        let showImg = 'showInfo.showImg'
+        let showName = 'showInfo.showName'
+        let showDesc = 'showInfo.showDesc'
+        let showNum = 'showInfo.curNum'
+        app.httpPost('/xcx/insureMaster/myPackage', { insureUid: app.globalData.insureUid},function(data){
+            for (let i = 0; i < cardData.length;i++){
+                for(let key in data){
+                    if (cardData[i].flag==key){
+                        let temp = 'cardData['+i+'].num'
+                        _this.setData({
+                            [temp]: data[key]
+                        })
+                    }
+                }
+            }
+            _this.setData({
+                [showImg]: cardData[0].img,
+                [showName]: cardData[0].name,
+                [showDesc]: cardData[0].desc,
+                [showNum]: cardData[0].num,
+                knapsackMask: true
+            })
+            console.log(_this.data.showInfo)
+        },function(error){
+            console.log('error')
+        })
     },
     getHomeInfo:function(){
         let _this=this

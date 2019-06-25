@@ -107,8 +107,8 @@
             <button open-type="getUserInfo" class='auth-btn' bindgetuserinfo="getUserInfo">授权</button>
         </view>
     </view>
-    <view class='com-mask index-mask' bindtap='closeMask' wx:if="{{knapsackMask}}">
-        <view class='knapsack-box'>
+    <view class='com-mask index-mask' bindtap='closeMask' wx:if="{{showMask||knapsackMask}}">
+        <view class='knapsack-box' wx:if="{{knapsackMask}}">
             <view class='knapsack-close-box'>
                 <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
             </view>
@@ -116,59 +116,11 @@
                 <view class='section-card'>
                     <view class='section-header flx-ce-ce'>背包</view>
                     <view class='section-card-list'>
-                        <view class='card-box'>
-                            <view class='card-pic flx-ce-ce'>
-                                <image src='../../asset/index/bangbang.png' mode='aspectFit' data-name='帮帮卡' data-src='../../asset/index/bangbang.png' bindtap='showCard' class='card-bg'></image>
+                        <view class='card-box' wx:for="{{cardData}}" wx:key="index">
+                            <view class="card-pic flx-ce-ce {{cardIndex==index&&item.num>0?'cur-box-border':''}}">
+                                <image wx:if="{{item.name}}" src="{{item.num===0?item.disImg:item.img}}" mode='aspectFit' bindtap='showCard' class='card-bg' data-index="{{index}}"></image>
                             </view>
-                            <view class='card-name flx-ce-ce'>帮帮卡</view>
-                        </view>
-                        <view class='card-box'>
-                            <view class='card-pic flx-ce-ce'>
-                                <image src='../../asset/index/paichu.png' mode='widthFix' data-name='排除卡' data-src='../../asset/index/paichu.png' bindtap='showCard' class='card-bg'></image>
-                            </view>
-                            <view class='card-name flx-ce-ce'>排除卡</view>
-                        </view>
-                        <view class='card-box'>
-                            <view class='card-pic flx-ce-ce'>
-                                <image src='../../asset/index/nengliang.png' mode='widthFix' data-name='能量卡' data-src='../../asset/index/nengliang.png' bindtap='showCard' class='card-bg'></image>
-                            </view>
-                            <view class='card-name flx-ce-ce'>能量卡</view>
-                        </view>
-                        <view class='card-box'>
-                            <view class='card-pic flx-ce-ce'>
-                                <image src='../../asset/index/xinren.png' mode='widthFix' data-name='新人宝箱' data-src='../../asset/index/xinren.png' bindtap='showCard' class='card-bg'></image>
-                            </view>
-                            <view class='card-name flx-ce-ce'>新人宝箱</view>
-                        </view>
-                        <view class='card-box'>
-                            <view class='card-pic flx-ce-ce'>
-                                <image src='../../asset/index/xueyi.png' mode='widthFix' data-name='学艺宝箱' data-src='../../asset/index/xueyi.png' bindtap='showCard' class='card-bg'></image>
-                            </view>
-                            <view class='card-name flx-ce-ce'>学艺宝箱</view>
-                        </view>
-                        <view class='card-box'>
-                            <view class='card-pic flx-ce-ce'>
-                                <image src='../../asset/index/fenxiang.png' mode='widthFix' data-name='分享宝箱' data-src='../../asset/index/fenxiang.png' bindtap='showCard' class='card-bg'></image>
-                            </view>
-                            <view class='card-name flx-ce-ce'>分享宝箱</view>
-                        </view>
-                        <view class='card-box'>
-                            <view class='card-pic flx-ce-ce'>
-                                <image src='../../asset/index/zhuti.png' mode='widthFix' data-name='主题宝箱' data-src='../../asset/index/zhuti.png' bindtap='showCard' class='card-bg'></image>
-                            </view>
-                            <view class='card-name flx-ce-ce'>主题宝箱</view>
-                        </view>
-                        <view class='card-box'>
-                            <view class='card-pic flx-ce-ce'>
-                                <!-- <image src='../../asset/index/bangbang.png' class='card-bg'></image> -->
-                            </view>
-                            <view class='card-name flx-ce-ce'> </view>
-                        </view>
-                        <view class='card-box'>
-                            <view class='card-pic flx-ce-ce'>
-                                <!-- <image src='../../asset/index/bangbang.png' class='card-bg'></image> -->
-                            </view>
-                            <view class='card-name flx-ce-ce'> </view>
+                            <view class='card-name flx-ce-ce'>{{item.name}}</view>
                         </view>
                     </view>
                 </view>
@@ -178,17 +130,47 @@
                 </view>
                 <view class='show-box flx-ce-str'>
                     <view class='card-pic card-pic-chosed flx-ce-ce'>
-                        <image mode='widthFix' src='{{showCardImg}}' class='card-bg'></image>
+                        <image mode='widthFix' src='{{showInfo.showImg}}' class='card-bg'></image>
                     </view>
                     <view class='show-txt'>
-                        <view class='show-name'>{{showCardName}}</view>
-                        <view class='show-desc'>特权卡三选二特权卡三选二特权卡三选二特权卡三选二特权卡三选二二</view>
+                        <view class='show-name'>{{showInfo.showName}}</view>
+                        <view class='show-desc'>{{showInfo.showDesc}}</view>
                     </view>
-                    <!-- <view class='open-btn-box'>
-                        <image src='../../asset/index/open_treasureBox.png' class='open-btn'></image>
-                    </view> -->
+                    <view class='open-btn-box' wx:if="{{showCardBtn&&showInfo.curNum>0}}">
+                        <image src='../../asset/index/open_treasureBox.png' class='open-btn' bindtap='openBox'></image>
+                    </view>
                 </view>
             </view>
+        </view>
+        <view class='open-box-layer flx-ce-no-clm' wx:if="{{openBox}}">
+            <view class='knapsack-close-box'>
+                <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
+            </view>
+            <view class='open-box-container flx-ce-no-clm'>
+                <image src="{{openXueyiBg}}" class='open-bg'></image>
+                <view class='open-title'>请选择2张特权卡</view>
+                <view class='xueyi-gift flx-ce-bet'>
+                    <view class='flx-ce-no-clm'>
+                        <view class='xueyi-card-name'>帮帮卡</view>
+                        <image src="../../asset/index/bangbang.png" class='open-chose-pic'></image>
+                        <!-- <view class='xueyi-chose-icon'></view> -->
+                        <image src='../../asset/index/chose_icon.png' class='xueyi-chose-icon chosed-icon'></image>
+                    </view>
+                    <view class='flx-ce-no-clm'>
+                        <view class='xueyi-card-name'>排除卡</view>
+                        <image src="../../asset/index/paichu.png" class='open-chose-pic'></image>
+                        <view class='xueyi-chose-icon'></view>
+                        <!-- <image></image> -->
+                    </view>
+                    <view class='flx-ce-no-clm'>
+                        <view class='xueyi-card-name'>能量卡</view>
+                        <image src="../../asset/index/nengliang.png" class='open-chose-pic'></image>
+                        <view class='xueyi-chose-icon'></view>
+                        <!-- <image></image> -->
+                    </view>
+                </view>
+            </view>
+            <image src='../../asset/index/put_in_bag.png' class='put-in-bag'></image>
         </view>
     </view>
 </view>
