@@ -216,7 +216,6 @@ Page({
                 [showNum]: cardData[0].num,
                 knapsackMask: true
             })
-            console.log(_this.data.showInfo)
         },function(error){
             console.log('error')
         })
