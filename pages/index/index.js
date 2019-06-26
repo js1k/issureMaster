@@ -10,12 +10,25 @@ Page({
         showMask:false,
         knapsackMask: false,
         hasUserInfo: true,
-        showCardBtn:false,
+        showCardBtn: false,
+        openBox: false,
+        canSave: true,
+        hiddenLoading: false,
+        loadingText:'加载中...',
         showInfo: {
             showImg: '',
             showName: '',
             showDesc: '',
-            curNum: 0
+            curNum: 0,
+            chestType:''
+        },
+        saveCardParam:{
+            chestType:'',
+            energyCard:0,
+            helpCard:0,
+            insureUid:'',
+            removeCard:0,
+            curNum:0
         },
         showTxt:'',
         cardIndex:0,
@@ -30,6 +43,8 @@ Page({
         chestNum:0,
         chipFlag:0,
         packageFlag:0,
+        openTitle:'',
+
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
         defaultHeader:'../../asset/index/default_header.png',
         darenIcon: '../../asset/rankList/icon_daren.png',
@@ -37,23 +52,69 @@ Page({
         dashiIcon: '../../asset/rankList/icon_dashi.png',
         zongshiIcon: '../../asset/rankList/icon_zongshi.png',
 
-        openXueyiBg: '../../asset/index/xueyi_bg.png',
+        xueyiBg: '../../asset/index/xueyi_bg.png',
         fenxiangBg: '../../asset/index/fenxiang_bg.png',
         xinshouBg: '../../asset/index/xinshou_bg.png',
         zhutiBg: '../../asset/index/zhuti_bg.png',
-        openBox:false,
+
+        bangbangImg: '../../asset/index/bangbang.png',
+        paichuImg: '../../asset/index/paichu.png',
+        nengliangImg: '../../asset/index/nengliang.png',
+        randomImg:'',
+        randomName:'',
 
         cardData:[
-            { name: '帮帮卡', flag: 'helpCard', img: '../../asset/index/bangbang.png', disImg: '../../asset/index/bangbang_disabled.png', desc: 'asdfa', num: 0 },
-            { name: '排除卡', flag: 'removeCard', img: '../../asset/index/paichu.png', disImg: '../../asset/index/paichu_disabled.png', desc: '122', num: 0 },
-            { name: '能量卡', flag: 'energyCard', img: '../../asset/index/nengliang.png', disImg: '../../asset/index/nengliang_disabled.png', desc: 'ssss', num: 0 },
-            { name: '新人宝箱', flag: 'newerChest', btn: true, img: '../../asset/index/xinren.png', disImg: '../../asset/index/xinren_disabled.png', desc: 'zxcv', num: 0 },
-            { name: '学艺宝箱', flag: 'studyChest', btn: true, img: '../../asset/index/xueyi.png', disImg: '../../asset/index/xueyi_disabled.png', desc: 'ssda', num: 0 },
-            { name: '分享宝箱', flag: 'shareChest', btn: true, img: '../../asset/index/fenxiang.png', disImg: '../../asset/index/fenxiang_disabled.png', desc: 'hgf', num: 0 },
-            { name: '主题宝箱', flag: 'subjectChest', btn: true, img: '../../asset/index/zhuti.png', disImg: '../../asset/index/zhuti_disabled.png', desc: '666', num: 0 },
+            {
+                name: '帮帮卡', flag: 'helpCard', img: '../../asset/index/bangbang.png', disImg: '../../asset/index/bangbang_disabled.png', desc: '遇到不会的题使用“帮帮卡”自动显示正确答案,每关5道题可使用2次', num: 0 },
+            { name: '排除卡', flag: 'removeCard', img: '../../asset/index/paichu.png', disImg: '../../asset/index/paichu_disabled.png', desc: '使用“排除卡”去掉一个错误答案,每关5道题可使用3次', num: 0 },
+            {
+                name: '能量卡', flag: 'energyCard', img: '../../asset/index/nengliang.png', disImg: '../../asset/index/nengliang_disabled.png', desc: '若当天答题能量消耗光，可以使用“能量卡”开启答题,使用次数不限哦', num: 0 },
+            {
+                name: '新人宝箱', chestType: 3, flag: 'newerChest', btn: true, img: '../../asset/index/xinren.png', disImg: '../../asset/index/xinren_disabled.png', desc: '新用户专享体验"帮帮卡、排除卡、能量卡"各一张', num: 0 },
+            {
+                name: '学艺宝箱', chestType: 1, flag: 'studyChest', btn: true, img: '../../asset/index/xueyi.png', disImg: '../../asset/index/xueyi_disabled.png', desc: '民生保险导师每天送出宝箱,内含三张特权卡可任选两张', num: 0 },
+            {
+                name: '分享宝箱', chestType: 2, flag: 'shareChest', btn: true, img: '../../asset/index/fenxiang.png', disImg: '../../asset/index/fenxiang_disabled.png', desc: '分享好友参加答题,双方可获得分享宝箱,每天领取上限5次', num: 0 },
+            {
+                name: '主题宝箱', chestType: 4, flag: 'subjectChest', btn: true, img: '../../asset/index/zhuti.png', disImg: '../../asset/index/zhuti_disabled.png', desc: '关注"保险体验师"公众号,主题宝箱限时派发～', num: 0 },
             { name: '', flag: '', img: '', disImg: '', desc: '', num: 0 },
             { name: '', flag: '', img: '', disImg: '', desc: '', num: 0 }
         ]
+    },
+    handleChoseCard:function(e){
+        let dataset = e.currentTarget.dataset.card
+        let energyCard = 'saveCardParam.energyCard'
+        let helpCard = 'saveCardParam.helpCard'
+        let removeCard = 'saveCardParam.removeCard'
+        let saveParam = this.data.saveCardParam
+        if (dataset =='helpCard'){
+            if (saveParam.energyCard === 1 && saveParam.removeCard===1){
+                this.setData({
+                    [energyCard]: 0,
+                })
+            }
+            this.setData({
+                [helpCard]:1,
+            })
+        } else if (dataset == 'removeCard') {
+            if (saveParam.helpCard === 1 && saveParam.energyCard === 1) {
+                this.setData({
+                    [helpCard]: 0,
+                })
+            }
+            this.setData({
+                [removeCard]: 1,
+            })
+        } else {
+            if (saveParam.helpCard === 1 && saveParam.removeCard === 1) {
+                this.setData({
+                    [removeCard]: 0,
+                })
+            }
+            this.setData({
+                [energyCard]: 1,
+            })
+        }
     },
     //事件处理函数
     bindViewTap: function() {
@@ -94,22 +155,150 @@ Page({
             url: '../challengeHome/challengeHome'
         })
     },
-    openBox:function(){
-
+    // 打开背包宝箱
+    handleOpenBox:function(){
+        let chestType = 'saveCardParam.chestType'
+        let curNum = 'saveCardParam.curNum'
+        let energyCard = 'saveCardParam.energyCard'
+        let helpCard = 'saveCardParam.helpCard'
+        let removeCard = 'saveCardParam.removeCard'
+        let _this=this
+        let showInfo = _this.data.showInfo
+        this.setData({
+            knapsackMask:false,
+            openBox:true,
+            [chestType]: showInfo.chestType,
+            [curNum]: showInfo.curNum
+        })
+        if (showInfo.chestType==1){
+            //学艺宝箱
+            this.setData({
+                openTitle:'请选择2张特权卡',
+                openImg: _this.data.xueyiBg
+            })
+        } else if (showInfo.chestType == 2) {
+            //分享宝箱
+            //随机数确定分享宝箱中的卡片
+            let Num=Math.ceil(Math.random()*3)
+            if (Num==1){
+                this.setData({
+                    randomImg: '../../asset/index/bangbang.png',
+                    randomName: '帮帮卡',
+                    [helpCard]: 1,
+                })
+            } else if (Num == 2) {
+                this.setData({
+                    randomImg: '../../asset/index/paichu.png',
+                    randomName: '排除卡',
+                    [removeCard]: 1
+                })
+            } else {
+                this.setData({
+                    randomImg: '../../asset/index/nengliang.png',
+                    randomName: '能量卡',
+                    [energyCard]: 1,
+                })
+            }
+            this.setData({
+                openTitle: '获得排除卡一张',
+                openImg: _this.data.fenxiangBg
+            })
+        } else if (showInfo.chestType == 3) {
+            //新手宝箱
+            this.setData({
+                openTitle: '获得3张特权卡',
+                openImg: _this.data.xinshouBg,
+                [energyCard]:1,
+                [helpCard]:1,
+                [removeCard]:1
+            })
+        } else {
+            //主题宝箱
+            this.setData({
+                openTitle: '获得能量卡1张',
+                openImg: _this.data.zhutiBg,
+                [energyCard]: 1
+            })
+        }
+    },
+    //放入背包
+    saveCard:function(){
+        if (!this.data.canSave){
+            return
+        }
+        this.setData({
+            canSave: false
+        })
+        let _this=this
+        let insureUid ='saveCardParam.insureUid'
+        let num = 'saveCardParam.curNum'
+        let energyCard = 'saveCardParam.energyCard'
+        let helpCard = 'saveCardParam.helpCard'
+        let removeCard = 'saveCardParam.removeCard'
+        this.setData({
+            [insureUid]: app.globalData.insureUid
+        })
+        app.httpPost('/xcx/insureMaster/openStudyChest', _this.data.saveCardParam,function(data){
+            _this.setData({
+                canSave:true,
+                openBox:false,
+                [energyCard]: 0,
+                [helpCard]: 0,
+                [removeCard]: 0,
+                [num]: _this.data.saveCardParam.curNum-1
+            })
+            if (_this.data.saveCardParam.curNum>0){
+                if (_this.data.saveCardParam.chestType==2){
+                    let Num = Math.ceil(Math.random() * 3)
+                    if (Num == 1) {
+                        _this.setData({
+                            randomImg: '../../asset/index/bangbang.png',
+                            randomName: '帮帮卡',
+                            [helpCard]: 1,
+                        })
+                    } else if (Num == 2) {
+                        _this.setData({
+                            randomImg: '../../asset/index/paichu.png',
+                            randomName: '排除卡',
+                            [removeCard]: 1
+                        })
+                    } else {
+                        _this.setData({
+                            randomImg: '../../asset/index/nengliang.png',
+                            randomName: '能量卡',
+                            [energyCard]: 1,
+                        })
+                    }
+                }
+                setTimeout(function(){
+                    _this.setData({
+                        openBox: true
+                    })
+                },200)
+            }else{
+                _this.setData({
+                    showMask:false
+                })
+            }
+        },function(error){
+            console.log('error')
+        })
     },
     showCard: function(event) {
         let tabIndex = event.currentTarget.dataset.index
         let cardData = this.data.cardData
         let showImg = 'showInfo.showImg'
         let showName = 'showInfo.showName'
-        let showDesc = 'showDesc'
+        let showDesc = 'showInfo.showDesc'
         let showNum = 'showInfo.curNum'
+        let chestType ='showInfo.chestType'
         this.setData({
             cardIndex: tabIndex,
             [showImg]: cardData[tabIndex].img,
             [showName]: cardData[tabIndex].name,
             [showDesc]: cardData[tabIndex].desc,
-            [showNum]: cardData[tabIndex].num
+            [showNum]: cardData[tabIndex].num,
+            [chestType]: cardData[tabIndex].chestType||''
         })
         if (cardData[tabIndex].btn) {
             this.setData({
@@ -128,8 +317,10 @@ Page({
         if (event.currentTarget.dataset.model === 'inner') {
             return
         }
+        this.getHomeInfo()
         this.setData({
-            knapsackMask: false
+            showMask: false,
+            openBox:false
         })
     },
     goHomepage: function() {
@@ -147,7 +338,8 @@ Page({
         } else {
             this.setData({
                 userInfo: app.globalData.userInfo,
-                hasUserInfo: false
+                hasUserInfo: false,
+                hiddenLoading:true
             })
         }
         app.wxLogin(function (data) {
@@ -193,6 +385,9 @@ Page({
     getPackets:function(){
         let _this=this
         let cardData = _this.data.cardData
+        this.setData({
+            hiddenLoading: false
+        })
 
         let showImg = 'showInfo.showImg'
         let showName = 'showInfo.showName'
@@ -214,7 +409,9 @@ Page({
                 [showName]: cardData[0].name,
                 [showDesc]: cardData[0].desc,
                 [showNum]: cardData[0].num,
-                knapsackMask: true
+                knapsackMask: true,
+                showMask: true,
+                hiddenLoading: true
             })
         },function(error){
             console.log('error')
@@ -239,7 +436,8 @@ Page({
                 chipFlag: data.chipFlag,
                 packageFlag: data.packageFlag,
                 loopBefore: data.tipList[0],
-                loopAfter: data.tipList[data.tipList.length-1]
+                loopAfter: data.tipList[data.tipList.length-1],
+                hiddenLoading:true
             })
 
             _this.data.loopInterval=setInterval(function () {

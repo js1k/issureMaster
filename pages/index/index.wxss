@@ -396,7 +396,7 @@
 }
 
 .card-pic-chosed {
-    margin-right: 32rpx;
+    margin-right: 24rpx;
     background: linear-gradient(180deg, rgba(49, 146, 185, 0.3) 0%, rgba(12, 55, 84, 0.1) 100%);
     border-image: linear-gradient(180deg, rgba(66, 161, 218, 1), rgba(70, 153, 206, 1), rgba(132, 207, 255, 1)) 1 1;
 }
@@ -555,6 +555,17 @@
 .chosed-icon{
     width:44rpx;
     height:44rpx;
+}
+.open-box-layer{
+    animation: changeScale 0.6s ease forwards;
+}
+@keyframes changeScale{
+    from{
+        transform: scale(0.5)
+    }
+    to{
+        transform: scale(1)
+    }
 }
 @keyframes cloudLeft {
     0% {

@@ -1,4 +1,5 @@
 <view class="index-page">
+    <loading hidden="{{hiddenLoading}}">{{loadingText}}</loading>
     <view class='nav-bar flx-ce-ce'>保保大师挑战赛</view>
     <view class='home-user'>
         <view class='home-user-header'>
@@ -107,7 +108,7 @@
             <button open-type="getUserInfo" class='auth-btn' bindgetuserinfo="getUserInfo">授权</button>
         </view>
     </view>
-    <view class='com-mask index-mask' bindtap='closeMask' wx:if="{{showMask||knapsackMask}}">
+    <view class='com-mask index-mask' bindtap='closeMask' wx:if="{{showMask}}">
         <view class='knapsack-box' wx:if="{{knapsackMask}}">
             <view class='knapsack-close-box'>
                 <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
@@ -137,40 +138,66 @@
                         <view class='show-desc'>{{showInfo.showDesc}}</view>
                     </view>
                     <view class='open-btn-box' wx:if="{{showCardBtn&&showInfo.curNum>0}}">
-                        <image src='../../asset/index/open_treasureBox.png' class='open-btn' bindtap='openBox'></image>
+                        <image src='../../asset/index/open_treasureBox.png' class='open-btn' bindtap='handleOpenBox'></image>
                     </view>
                 </view>
             </view>
         </view>
-        <view class='open-box-layer flx-ce-no-clm' wx:if="{{openBox}}">
+        <view class='open-box-layer flx-ce-no-clm' wx:if="{{openBox}}" catchtap='closeMask' data-model='inner'>
             <view class='knapsack-close-box'>
                 <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
             </view>
             <view class='open-box-container flx-ce-no-clm'>
-                <image src="{{openXueyiBg}}" class='open-bg'></image>
-                <view class='open-title'>请选择2张特权卡</view>
-                <view class='xueyi-gift flx-ce-bet'>
+                <image src="{{openImg}}" class='open-bg'></image>
+                <view class='open-title'>{{openTitle}}</view>
+                <view class='xueyi-gift flx-ce-bet' wx:if="{{saveCardParam.chestType==1}}">
+                    <view class='flx-ce-no-clm' bindtap='handleChoseCard' data-card="helpCard">
+                        <view class='xueyi-card-name'>帮帮卡</view>
+                        <image src="{{bangbangImg}}" class='open-chose-pic'></image>
+                        <view class='xueyi-chose-icon' wx:if="{{saveCardParam.helpCard==0}}"></view>
+                        <image src='../../asset/index/chose_icon.png' class='xueyi-chose-icon chosed-icon' wx:if="{{saveCardParam.helpCard==1}}"></image>
+                    </view>
+                    <view class='flx-ce-no-clm' bindtap='handleChoseCard' data-card="removeCard">
+                        <view class='xueyi-card-name'>排除卡</view>
+                        <image src="{{paichuImg}}" class='open-chose-pic'></image>
+                        <view class='xueyi-chose-icon' wx:if="{{saveCardParam.removeCard==0}}"></view>
+                        <image src='../../asset/index/chose_icon.png' class='xueyi-chose-icon chosed-icon' wx:if="{{saveCardParam.removeCard==1}}"></image>
+                    </view>
+                    <view class='flx-ce-no-clm' bindtap='handleChoseCard' data-card="energyCard">
+                        <view class='xueyi-card-name'>能量卡</view>
+                        <image src="{{nengliangImg}}" class='open-chose-pic'></image>
+                        <view class='xueyi-chose-icon' wx:if="{{saveCardParam.energyCard==0}}"></view>
+                        <image src='../../asset/index/chose_icon.png' class='xueyi-chose-icon chosed-icon' wx:if="{{saveCardParam.energyCard==1}}"></image>
+                    </view>
+                </view>
+                <view class='xueyi-gift flx-ce-bet' wx:if="{{saveCardParam.chestType==2}}">
+                    <view class='flx-ce-no-clm'>
+                        <view class='xueyi-card-name'>{{randomName}}</view>
+                        <image src="{{randomImg}}" class='open-chose-pic'></image>
+                    </view>
+                </view>
+                <view class='xueyi-gift flx-ce-bet' wx:if="{{saveCardParam.chestType==3}}">
                     <view class='flx-ce-no-clm'>
                         <view class='xueyi-card-name'>帮帮卡</view>
-                        <image src="../../asset/index/bangbang.png" class='open-chose-pic'></image>
-                        <!-- <view class='xueyi-chose-icon'></view> -->
-                        <image src='../../asset/index/chose_icon.png' class='xueyi-chose-icon chosed-icon'></image>
+                        <image src="{{bangbangImg}}" class='open-chose-pic'></image>
                     </view>
                     <view class='flx-ce-no-clm'>
                         <view class='xueyi-card-name'>排除卡</view>
-                        <image src="../../asset/index/paichu.png" class='open-chose-pic'></image>
-                        <view class='xueyi-chose-icon'></view>
-                        <!-- <image></image> -->
+                        <image src="{{paichuImg}}" class='open-chose-pic'></image>
                     </view>
                     <view class='flx-ce-no-clm'>
                         <view class='xueyi-card-name'>能量卡</view>
-                        <image src="../../asset/index/nengliang.png" class='open-chose-pic'></image>
-                        <view class='xueyi-chose-icon'></view>
-                        <!-- <image></image> -->
+                        <image src="{{nengliangImg}}" class='open-chose-pic'></image>
+                    </view>
+                </view>
+                <view class='xueyi-gift flx-ce-bet' wx:if="{{saveCardParam.chestType==4}}">
+                    <view class='flx-ce-no-clm'>
+                        <view class='xueyi-card-name'>能量卡</view>
+                        <image src="{{nengliangImg}}" class='open-chose-pic'></image>
                     </view>
                 </view>
             </view>
-            <image src='../../asset/index/put_in_bag.png' class='put-in-bag'></image>
+            <image src='../../asset/index/put_in_bag.png' class='put-in-bag' bindtap='saveCard'></image>
         </view>
     </view>
 </view>
