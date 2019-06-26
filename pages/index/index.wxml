@@ -97,12 +97,12 @@
             <text class='icon-font'>红包碎片</text>
         </view>
     </view>
-    <view class='com-mask' wx:if="{{showRules||!hasUserInfo}}" catchtap='closeRules'>
+    <view class='com-mask' wx:if="{{showRules||!authFlag}}" catchtap='closeRules'>
         <view class='rules-container' wx:if="{{showRules}}">
             <image src='../../asset/index/home_arrow.png' class='close_arrow' catchtap='closeRules'></image>
             <image src="../../asset/index/home_rules.png" catchtap='closeRules' class='home-rules' data-model='inner'></image>
         </view>
-        <view class='authorization-box flx-ce-clm' wx:if="{{!hasUserInfo}}">
+        <view class='authorization-box flx-ce-clm' wx:if="{{!authFlag}}">
             <view class='auth-title'>申请获取以下权限</view>
             <view class='auth-desc'>使用您的昵称、头像等公开信息用于分享、排行使用</view>
             <button open-type="getUserInfo" class='auth-btn' bindgetuserinfo="getUserInfo">授权</button>
