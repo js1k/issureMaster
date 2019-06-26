@@ -248,7 +248,10 @@ Page({
                 [num]: _this.data.saveCardParam.curNum-1
             })
             if (_this.data.saveCardParam.curNum>0){
+                //判断宝箱是否开启完
                 if (_this.data.saveCardParam.chestType==2){
+                    //判断是否为分享宝箱
+                    //分享宝箱随机生成卡片
                     let Num = Math.ceil(Math.random() * 3)
                     if (Num == 1) {
                         _this.setData({
