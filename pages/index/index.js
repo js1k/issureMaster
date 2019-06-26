@@ -81,6 +81,40 @@ Page({
             { name: '', flag: '', img: '', disImg: '', desc: '', num: 0 }
         ]
     },
+
+    //事件判断
+    handleCheck:function(e){
+        let dataset = e.currentTarget.dataset.mark
+        //判断用户是否手机授权
+        // if (!this.data.insureUserVO.telephone) {
+        //     wx.navigateTo({
+        //         url: '../login/login'
+        //     })
+        //     return
+        // }
+        switch (dataset){
+            case 'goHome': 
+                this.goHomepage();
+                break;
+            case 'goRank': 
+                this.goRank();
+                break;
+            case 'treasureBox': 
+                this.goTreasure();
+                break;
+            case 'knapsack': 
+                this.getPackets();
+                break;
+            case 'redPackets': 
+                this.goRedPackets();
+                break;
+            case 'challenge':
+                this.goChallenge();
+                break;
+        }
+    },
+
+
     //打开学艺宝箱选择卡片
     handleChoseCard:function(e){
         let dataset = e.currentTarget.dataset.card
@@ -118,11 +152,6 @@ Page({
         }
     },
     //事件处理函数
-    bindViewTap: function() {
-        wx.navigateTo({
-            url: '../logs/logs'
-        })
-    },
     openRules: function() {
         this.setData({
             showRules: true
@@ -316,10 +345,6 @@ Page({
             })
         }
     },
-    //点击背包
-    showKnapsack: function() {
-        this.getPackets()
-    },
     //关闭弹窗
     closeMask: function(event) {
         if (event.currentTarget.dataset.model === 'inner') {
@@ -367,6 +392,9 @@ Page({
                 hiddenLoading:true
             })
         }
+    },
+    onShow:function(){
+        this.onLoad()
     },
     onUnload:function(){
         this.data.loopInterval=''

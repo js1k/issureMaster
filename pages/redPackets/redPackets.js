@@ -6,7 +6,9 @@ Page({
      * 页面的初始数据
      */
     data: {
-        redPacketsData:{}
+        redPacketsData:{},
+        hiddenLoading:true,
+        loadingText:'加载中...'
     },
 
     goBack: function() {
@@ -16,18 +18,18 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        let _this = this
-        app.wxLogin(function(data) {
-            _this.getRedPackets()
-        })
+        this.getRedPackets()
 
     },
     getRedPackets:function(){
         let _this=this
+        this.setData({
+            hiddenLoading:false
+        })
         app.httpPost('/xcx/insureMaster/chip', { insureUid: app.globalData.insureUid}, function (data) {
-            console.log(data)
             _this.setData({
-                redPacketsData:data
+                redPacketsData: data,
+                hiddenLoading: true
             })
         }, function (data) {
             console.log('error')

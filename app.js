@@ -19,8 +19,8 @@ App({
                     _this.globalData.openId = data.data.result.openId
                     _this.globalData.sessionKey = data.data.result.sessionKey
                     _this.globalData.unionId = data.data.result.unionId
+                    callback()
                 })
-                callback()
             }
         })
     },

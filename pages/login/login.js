@@ -13,16 +13,14 @@ Page({
         app.goBack()
     },
     getPhoneNumber:function(e){
-        console.log(e)
-        console.log(app)
         let param={
             sessionKey: app.globalData.sessionKey,
             encryptedData: e.detail.encryptedData,
-            insureUid: e.detail.insureUid,
+            insureUid: wx.getStorageSync('insureUid'),
             iv: e.detail.iv
         }
-        app.httpPost('/xcx/insureMaster/bindTelephone', param,function(){
-
+        app.httpPost('/xcx/insureMaster/bindTelephone', param, function () {
+            app.goBack()
         })
     },
     /**

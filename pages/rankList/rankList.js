@@ -15,7 +15,9 @@ Page({
         pageData:'',
         insureUser:'',
         pageList:[],
-        url:'/xcx/insureMaster/rankByStar'
+        url: '/xcx/insureMaster/rankByStar',
+        hiddenLoading: true,
+        loadingText: '加载中...'
     },
     bindscrolltolower:function(e){
         if (this.data.pageNum >= this.data.totalPage){
@@ -54,6 +56,9 @@ Page({
     },
     getData: function() {
         let _this = this
+        this.setData({
+            hiddenLoading:false
+        })
         let param = {
             pageNum: this.data.pageNum,
             pageSize: this.data.pageSize,
@@ -64,7 +69,8 @@ Page({
                 pageData:data,
                 insureUser: data.insureUser,
                 totalPage: data.rankUserPage.totalPage,
-                pageList: [..._this.data.pageList,...data.rankUserPage.list]
+                pageList: [..._this.data.pageList, ...data.rankUserPage.list], 
+                hiddenLoading:true
             })
         }, function(data) {
             console.log('error')
@@ -74,10 +80,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        let _this = this
-        app.wxLogin(function(data) {
-            _this.getData()
-        })
+        this.getData()
     },
 
     /**

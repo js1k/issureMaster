@@ -3,7 +3,7 @@
     <view class='nav-bar flx-ce-ce'>保保大师挑战赛</view>
     <view class='home-user'>
         <view class='home-user-header'>
-            <image src="{{insureUserVO.avatarUrl?insureUserVO.avatarUrl:defaultHeader}}" class='header-image' bindtap='goHomepage'></image>
+            <image src="{{insureUserVO.avatarUrl?insureUserVO.avatarUrl:defaultHeader}}" class='header-image' bindtap='handleCheck' data-mark="goHome"></image>
         </view>
         <view class='home-user-info'>
             <text class='user-name' class='nickName'>{{insureUserVO.nickName}}</text>
@@ -49,7 +49,7 @@
         </view>
 
         <view class='begin-answer'>
-            <image src="../../asset/index/begainAnswer.png" class='begin-btn' bindtap='goChallenge'></image>
+            <image src="../../asset/index/begainAnswer.png" class='begin-btn' bindtap='handleCheck' data-mark="challenge"></image>
         </view>
         <view class='arrow-box'>
             <image src='../../asset/index/home_arrow.png' class='home-arrow' bindtap="openRules"></image>
@@ -69,27 +69,27 @@
         </view>
     </view>
     <view class='menu-content'>
-        <view class='menu-icon' bindtap='goRank'>
+        <view class='menu-icon' bindtap='handleCheck' data-mark="goRank">
             <view class="icon-content">
                 <image src="../../asset/index/rank_icon.svg" class='menu-img'></image>
             </view>
             <text class='icon-font'>排行榜</text>
         </view>
-        <view class='menu-icon' bindtap='goTreasure'>
+        <view class='menu-icon' bindtap='handleCheck' data-mark="treasureBox">
             <view class="icon-content">
                 <image src="../../asset/index/task_icon.svg" class='menu-img'></image>
                 <view class='task-num' wx:if="{{chestNum!==7}}">{{chestNum+''}}/7</view>
             </view>
             <text class='icon-font'>任务宝箱</text>
         </view>
-        <view class='menu-icon' bindtap='showKnapsack'>
+        <view class='menu-icon' bindtap='handleCheck' data-mark="knapsack">
             <view class="icon-content">
                 <image src="../../asset/index/bag_icon.svg" class='menu-img'></image>
                 <view class='task-num' wx:if="{{packageFlag===1}}">NEW</view>
             </view>
             <text class='icon-font'>背包</text>
         </view>
-        <view class='menu-icon' bindtap='goRedPackets'>
+        <view class='menu-icon' bindtap='handleCheck' data-mark="redPackets">
             <view class='icon-content'>
                 <image src="../../asset/index/money_icon.svg" class='menu-img'></image>
                 <view class='task-num' wx:if="{{chipFlag===1}}">NEW</view>
