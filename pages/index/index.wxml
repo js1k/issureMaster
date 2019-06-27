@@ -28,8 +28,8 @@
         <text class='home-time'>—— {{seasonCheckVO.seasonTitle}} {{seasonCheckVO.seasonDate}} ——</text>
         <text class='home-theme'>保险你做主 权益我知道</text>
         <view class='relative' wx:if="{{seasonCheckVO.seasonNo===1||!seasonCheckVO.seasonNo}}">
-            <image src="../../asset/index/cloud_lfet.svg" class='season1-cloud-left cloud-left'></image>
-            <image src="../../asset/index/cloud_right.svg" class='season1-cloud-right cloud-right'></image>
+            <image src="../../asset/index/cloud_left.png" class='season1-cloud-left cloud-left'></image>
+            <image src="../../asset/index/cloud_right.png" class='season1-cloud-right cloud-right'></image>
             <image src="../../asset/index/home_season1.png" class='home-main-pic'></image>
         </view>
         <view class='relative' wx:if="{{seasonCheckVO.seasonNo===2}}">
@@ -71,27 +71,27 @@
     <view class='menu-content'>
         <view class='menu-icon' bindtap='handleCheck' data-mark="goRank">
             <view class="icon-content">
-                <image src="../../asset/index/rank_icon.svg" class='menu-img'></image>
+                <image src="../../asset/index/rank_icon.png" class='menu-img'></image>
             </view>
             <text class='icon-font'>排行榜</text>
         </view>
         <view class='menu-icon' bindtap='handleCheck' data-mark="treasureBox">
             <view class="icon-content">
-                <image src="../../asset/index/task_icon.svg" class='menu-img'></image>
+                <image src="../../asset/index/task_icon.png" class='menu-img'></image>
                 <view class='task-num' wx:if="{{chestNum!==7}}">{{chestNum+''}}/7</view>
             </view>
             <text class='icon-font'>任务宝箱</text>
         </view>
         <view class='menu-icon' bindtap='handleCheck' data-mark="knapsack">
             <view class="icon-content">
-                <image src="../../asset/index/bag_icon.svg" class='menu-img'></image>
+                <image src="../../asset/index/bag_icon.png" class='menu-img'></image>
                 <view class='task-num' wx:if="{{packageFlag===1}}">NEW</view>
             </view>
             <text class='icon-font'>背包</text>
         </view>
         <view class='menu-icon' bindtap='handleCheck' data-mark="redPackets">
             <view class='icon-content'>
-                <image src="../../asset/index/money_icon.svg" class='menu-img'></image>
+                <image src="../../asset/index/money_icon.png" class='menu-img'></image>
                 <view class='task-num' wx:if="{{chipFlag===1}}">NEW</view>
             </view>
             <text class='icon-font'>红包碎片</text>

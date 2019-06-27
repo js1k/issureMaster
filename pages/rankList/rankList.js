@@ -62,7 +62,7 @@ Page({
         let param = {
             pageNum: this.data.pageNum,
             pageSize: this.data.pageSize,
-            insureUid: app.globalData.insureUid
+            insureUid: wx.getStorageSync('insureUid')
         }
         app.httpPost(_this.data.url, param, function(data) {
             _this.setData({

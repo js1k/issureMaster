@@ -86,12 +86,12 @@ Page({
     handleCheck:function(e){
         let dataset = e.currentTarget.dataset.mark
         //判断用户是否手机授权
-        // if (!this.data.insureUserVO.telephone) {
-        //     wx.navigateTo({
-        //         url: '../login/login'
-        //     })
-        //     return
-        // }
+        if (!this.data.insureUserVO.telephone) {
+            wx.navigateTo({
+                url: '../login/login'
+            })
+            return
+        }
         switch (dataset){
             case 'goHome': 
                 this.goHomepage();
