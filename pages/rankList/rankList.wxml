@@ -80,7 +80,7 @@
         <view class='com-mask flx-ce-ce' wx:if="{{showMask}}">
             <scroll-view scroll-y="true" class='rank-mask flx-ce-ce' bindtap='closeMask'>
                 <image src='../../asset/mask_close.png' class='mask-close' bindtap='closeMask'></image>
-                <image src='../../asset/rankList/rank_rules.png' mode='widthFix' class='rank-pic' catchtap='closeMask' data-model='inner'></image>
+                <image src='http://dt.minshenglife.com/upload/img/20190627/1561639408230.png' mode='widthFix' class='rank-pic' catchtap='closeMask' data-model='inner'></image>
             </scroll-view>
         </view>
     </view>

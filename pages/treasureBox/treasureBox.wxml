@@ -10,7 +10,7 @@
         <view class='task-list section-content flx-ce-clm' wx:if="{{showTask}}">
             <image src='../../asset/treasureBox/treasureTask.png' class='task-title'></image>
             <view class='task-column'>
-                <image src="../../asset/treasureBox/teacher_bg.png" class='card-bg'></image>
+                <image src="http://dt.minshenglife.com/upload/img/20190627/1561639589395.png" class='card-bg'></image>
                 <view class='flx-start-clm card-content'>
                     <view class='card-title'>拜师学艺</view>
                     <view class='card-des'>学艺宝箱，三种特权任你挑选两张</view>
@@ -23,7 +23,7 @@
                 <view class='card-strategy flx-ce-ce' bindtap='takeTeacher'>查看攻略</view>
             </view>
             <view class='task-column'>
-                <image src="../../asset/treasureBox/share_bg.png" class='card-bg'></image>
+                <image src="http://dt.minshenglife.com/upload/img/20190627/1561639628656.png" class='card-bg'></image>
                 <view class='flx-start-clm card-content'>
                     <view class='card-title'>分享活动</view>
                     <view class='card-des'>来一次给力分享，双方得分享宝箱</view>
@@ -36,7 +36,7 @@
                 <view class='card-strategy flx-ce-ce' wx:if="{{treasureData.shareChest<5}}">分享好礼</view>
             </view>
             <view class='task-column'>
-                <image src="../../asset/treasureBox/new_play_bg.png" class='card-bg'></image>
+                <image src="http://dt.minshenglife.com/upload/img/20190627/1561639804333.png" class='card-bg'></image>
                 <view class='flx-start-clm card-content'>
                     <view class='card-title'>新手福利</view>
                     <view class='card-des'>新手专享，所有特权卡体验一次</view>
@@ -48,7 +48,7 @@
                 <view class='card-strategy flx-ce-ce' wx:if="{{treasureData.newerChest==1}}">已领取</view>
             </view>
             <view class='task-column'>
-                <image src="../../asset/treasureBox/wx_bg.png" class='card-bg'></image>
+                <image src="http://dt.minshenglife.com/upload/img/20190627/1561639537989.png" class='card-bg'></image>
                 <view class='flx-start-clm card-content'>
                     <view class='card-title'>公众号赠礼</view>
                     <view class='card-des'>关注公众号，主题宝箱随机掉落</view>
@@ -72,7 +72,7 @@
     <view class='com-mask' wx:if="{{showMask}}" bindtap='closeMask'>
         <view class='take-teacher' catchtap='closeMask' data-model='inner' wx:if="{{showBaishi}}">
             <view class='teacher-container flx-ce-clm'>
-                <image class='teacher-box' src='../../asset/treasureBox/find_teacher_box.png'></image>
+                <image class='teacher-box' src='http://dt.minshenglife.com/upload/img/20190627/1561639837974.png'></image>
                 <image src='../../asset/mask_close.png' class='close-mask' bindtap='closeMask'></image>
                 <view class='find-teacher-info flx-ce'>
                     <view class='default-header-conten'>
@@ -90,7 +90,7 @@
         </view>
         <view class='take-teacher' catchtap='closeMask' data-model='inner' wx:if="{{noClient}}">
             <view class='none-teacher-content flx-ce-clm'>
-                <image class='none-teacher' src='../../asset/treasureBox/none_teacher.png'></image>
+                <image class='none-teacher' src='http://dt.minshenglife.com/upload/img/20190627/1561639683456.png'></image>
                 <image src='../../asset/mask_close.png' class='close-mask' bindtap='closeMask'></image>
                 <view class='none-teacher-txt flx-ce-clm'>
                     <text>尚未绑定导师</text>
@@ -99,7 +99,7 @@
             </view>
         </view>
         <view class='share-pic flx-ce-no-clm' wx:if="showSharePic">
-            <image src='../../asset/baoxiang/share_pic.png' class='main-pic'></image>
+            <image src='http://dt.minshenglife.com/upload/img/20190627/1561639963838.png' class='main-pic'></image>
             <view class='dynamic-contain flx-ce-bet'>
                 <view class='share-text-contain'>
                     <text class='share-title'>{{shareName}}送你"分享宝箱"~</text>

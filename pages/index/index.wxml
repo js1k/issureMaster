@@ -30,22 +30,22 @@
         <view class='relative' wx:if="{{seasonCheckVO.seasonNo===1||!seasonCheckVO.seasonNo}}">
             <image src="../../asset/index/cloud_left.png" class='season1-cloud-left cloud-left'></image>
             <image src="../../asset/index/cloud_right.png" class='season1-cloud-right cloud-right'></image>
-            <image src="../../asset/index/home_season1.png" class='home-main-pic'></image>
+            <image src="http://dt.minshenglife.com/upload/img/20190627/1561639020102.png" class='home-main-pic'></image>
         </view>
         <view class='relative' wx:if="{{seasonCheckVO.seasonNo===2}}">
             <image src="../../asset/index/season2_cloud.png" class='season2-cloud cloud-right'></image>
             <image src="../../asset/index/insurance_policy.png" class='insurance-policy'></image>
-            <image src="../../asset/index/home_season2.png" class='home-main-pic season-pic'></image>
+            <image src="http://dt.minshenglife.com/upload/img/20190627/1561639051616.png" class='home-main-pic season-pic'></image>
         </view>
         <view class='relative' wx:if="{{seasonCheckVO.seasonNo===3}}">
             <image src="../../asset/index/season3_cloud_left.png" class='season3-cloud-left cloud-left'></image>
             <image src="../../asset/index/season3_cloud_right.png" class='season3-cloud-right cloud-right'></image>
-            <image src="../../asset/index/home_season3.png" class='home-main-pic'></image>
+            <image src="http://dt.minshenglife.com/upload/img/20190627/1561639069439.png" class='home-main-pic'></image>
         </view>
         <view class='relative' wx:if="{{seasonCheckVO.seasonNo===4}}">
             <image src="../../asset/index/season4_cloud_left.png" class='season4-cloud-left cloud-left'></image>
             <image src="../../asset/index/season4_cloud_right.png" class='season4-cloud-right cloud-right'></image>
-            <image src="../../asset/index/home_season4.png" class='home-main-pic'></image>
+            <image src="http://dt.minshenglife.com/upload/img/20190627/1561639095385.png" class='home-main-pic'></image>
         </view>
 
         <view class='begin-answer'>
@@ -56,7 +56,7 @@
         </view>
         <image src='../../asset/index/season_tips.png' class='season-stragety' bindtap="openRules"></image>
     </view>
-    <image src="../../asset/index/home_bg.png" class='home-btm-bg'></image>
+    <image src="http://dt.minshenglife.com/upload/img/20190627/1561639338754.png" class='home-btm-bg'></image>
     <view class='loop-content'>
         <view class='relative'>
             <image src="../../asset/index/baobao.png" class='bao-bao'></image>
