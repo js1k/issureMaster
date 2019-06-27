@@ -52,10 +52,14 @@ Page({
         dashiIcon: '../../asset/rankList/icon_dashi.png',
         zongshiIcon: '../../asset/rankList/icon_zongshi.png',
 
-        xueyiBg: '../../asset/index/xueyi_bg.png',
-        fenxiangBg: '../../asset/index/fenxiang_bg.png',
-        xinshouBg: '../../asset/index/xinshou_bg.png',
-        zhutiBg: '../../asset/index/zhuti_bg.png',
+        // xueyiBg: '../../asset/index/xueyi_bg.png',
+        xueyiBg: 'http://dt.minshenglife.com/upload/img/20190627/1561638085749.png',
+        // fenxiangBg: '../../asset/index/fenxiang_bg.png',
+        fenxiangBg: 'http://dt.minshenglife.com/upload/img/20190627/1561638124450.png',
+        // xinshouBg: '../../asset/index/xinshou_bg.png',
+        xinshouBg: 'http://dt.minshenglife.com/upload/img/20190627/1561638049214.png',
+        zhutiBg: 'http://dt.minshenglife.com/upload/img/20190627/1561637981625.png',
+        // zhutiBg: '../../asset/index/zhuti_bg.png',
 
         bangbangImg: '../../asset/index/bangbang.png',
         paichuImg: '../../asset/index/paichu.png',
