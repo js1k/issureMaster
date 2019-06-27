@@ -6,11 +6,12 @@ Page({
      */
     data: {
         showTask: true,
-        showMask: true,
+        showMask: false,
         showCards:false,
         showShare:false,
         noClient:false,
-        showSharePic:true,
+        showSharePic:false,
+        showShareActive:false,
         totalPage:0,
         curMark:'treasure',
         treasureData:'',
@@ -46,6 +47,12 @@ Page({
         //     ctx.draw()
         //     console.log(123)
         // })
+    },
+    handleShare:function(){
+        this.setData({
+            showMask: true,
+            showShareActive:true
+        })
     },
     saveCard:function(){
         let _this=this
@@ -139,7 +146,8 @@ Page({
             showCards: false,
             showShare: false,
             showBaishi:false,
-            noClient:false
+            noClient:false,
+            showShareActive:false
         })
     },
     shareWx: function() {

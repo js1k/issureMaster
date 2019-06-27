@@ -33,7 +33,7 @@
                         <text class='card-box-txt'>剩余{{5-treasureData.shareChest}}次</text>
                     </view>
                 </view>
-                <view class='card-strategy flx-ce-ce' wx:if="{{treasureData.shareChest<5}}">分享好礼</view>
+                <view class='card-strategy flx-ce-ce' wx:if="{{treasureData.shareChest<5}}" bindtap="handleShare">分享好礼</view>
             </view>
             <view class='task-column'>
                 <image src="http://dt.minshenglife.com/upload/img/20190627/1561639804333.png" class='card-bg'></image>
@@ -98,7 +98,7 @@
                 </view>
             </view>
         </view>
-        <view class='share-pic flx-ce-no-clm' wx:if="showSharePic">
+        <view class='share-pic flx-ce-no-clm' wx:if="showSharePic" wx:if="{{showShareActive}}">
             <image src='http://dt.minshenglife.com/upload/img/20190627/1561639963838.png' class='main-pic'></image>
             <view class='dynamic-contain flx-ce-bet'>
                 <view class='share-text-contain'>

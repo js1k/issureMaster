@@ -131,7 +131,7 @@
                 </view>
                 <view class='show-box flx-ce-str'>
                     <view class='card-pic card-pic-chosed flx-ce-ce'>
-                        <image mode='widthFix' src='{{showInfo.showImg}}' class='card-bg'></image>
+                        <image mode='aspectFit' src='{{showInfo.showImg}}' class='card-bg'></image>
                     </view>
                     <view class='show-txt'>
                         <view class='show-name'>{{showInfo.showName}}</view>
