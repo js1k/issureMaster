@@ -9,6 +9,8 @@ Page({
         currentIndex:0,
         countDown:60,
         unfinshed:false,
+        interval:null,
+        timeInterval:null,
         answerItem: ['银保监会，12378', '证监会，12386','消费者协会，12315']
     },
 
@@ -37,18 +39,26 @@ Page({
             unfinshed: false
         })
     },
+    getData:function(){
+        app.httpPost('/xcx/insureMaster/examStart', { insureUid: wx.getStorageSync('insureUid'), isUseEnergyCard:0},function(data){
+            console.log(data)
+        },function(error){
+            console.log('error')
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
         var _this=this
-        setTimeout(function () {
+        this.interval=setTimeout(function () {
             _this.calcTime()
         },2000)
+        this.getData()
     },
     calcTime: function () {
         var _this = this
-        let timeInterval = setInterval(function () {
+        this.timeInterval = setInterval(function () {
             if (_this.data.countDown>0){
                 _this.setData({
                     countDown: _this.data.countDown - 1
@@ -57,6 +67,14 @@ Page({
 
             }
         }, 1000)
+    },
+    onHide: function () {
+        clearInterval(this.data.interval)
+        clearInterval(this.data.timeInterval)
+    },
+    onUnload: function () {
+        clearInterval(this.data.interval)
+        clearInterval(this.data.timeInterval)
     },
     /**
      * 生命周期函数--监听页面初次渲染完成
