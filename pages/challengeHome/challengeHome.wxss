@@ -1,6 +1,7 @@
 .challenge-pages{
     width:100%;
     height:100%;
+    justify-content: space-between;
     padding-top:152rpx;
     background:linear-gradient(136deg,rgba(70,14,186,1) 0%,rgba(100,75,212,1) 49%,rgba(95,138,238,1) 100%);
 }
@@ -69,15 +70,11 @@
 }
 .swiper-item{
     width:100%;
-    /* height:450rpx; */
 }
 .item-actived{
-    /* width:450rpx;
-    height:450rpx; */
     animation: itemActived 1s 0.3s forwards;
 }
 .item-noactived{
-    /* width:320rpx !important; */
     height:320rpx !important;
     top:80rpx;
 }
@@ -90,8 +87,6 @@
     top:80rpx;
 }
 .swiper-pic{
-    /* width:100%;
-    height:100%; */
     width:320rpx;
     height:320rpx;
     display: flex;
@@ -167,7 +162,6 @@
 }
 .icon-name{
     font-size:20rpx;
-    font-family:PingFangSC-Regular;
     font-weight:400;
     color:rgba(255,255,255,1);
 }
@@ -180,7 +174,6 @@
     right:-14rpx;
     background:rgba(255,0,0,1);
     font-size:18rpx;
-    font-family:PingFangSC-Regular;
     font-weight:400;
     color:rgba(255,255,255,1);
 }
@@ -206,8 +199,6 @@
     text-align: center;
     padding:0 40rpx;
     box-sizing: border-box;
-    opacity: 0.4;
-    transform: scale(0.5);
 }
 .arrow{
     width:32rpx;
@@ -215,6 +206,22 @@
     position: absolute;
     bottom:-43rpx;
     left:6rpx;
+}
+.star-zongshi{
+    width:56rpx;
+    height:80rpx;
+}
+.zongshi-grap{
+    width:56rpx;
+    height:80rpx;
+}
+.zongshi-txt{
+    font-size:34rpx;
+    font-weight:500;
+    color:rgba(255,255,255,1);
+    margin-left:16rpx;
+    line-height: 34rpx;
+    margin-top:38rpx;
 }
 @keyframes picActived{
     from{

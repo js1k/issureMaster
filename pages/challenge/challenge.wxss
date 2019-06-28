@@ -109,6 +109,8 @@
     position: absolute;
     left:12rpx;
     top:12rpx;
+    border:6rpx solid #FF732C;
+    box-shadow:0px 0px 7px 0px rgba(146,20,20,0.5);
 }
 .clock-icon {
     width: 16rpx;

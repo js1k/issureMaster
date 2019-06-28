@@ -1,5 +1,6 @@
 <view class="index-page">
     <loading hidden="{{hiddenLoading}}">{{loadingText}}</loading>
+    <toast hidden="{{hiddenToast}}">{{toastText}}</toast>
     <view class='nav-bar flx-ce-ce'>保保大师挑战赛</view>
     <view class='home-user'>
         <view class='home-user-header'>
@@ -30,31 +31,37 @@
         <view class='relative' wx:if="{{seasonCheckVO.seasonNo===1||!seasonCheckVO.seasonNo}}">
             <image src="../../asset/index/cloud_left.png" class='season1-cloud-left cloud-left'></image>
             <image src="../../asset/index/cloud_right.png" class='season1-cloud-right cloud-right'></image>
-            <image src="http://dt.minshenglife.com/upload/img/20190627/1561639020102.png" class='home-main-pic'></image>
+            <image src="http://dt.minshenglife.com/upload/img/20190628/1561691285392.png" class='home-main-pic'></image>
         </view>
         <view class='relative' wx:if="{{seasonCheckVO.seasonNo===2}}">
             <image src="../../asset/index/season2_cloud.png" class='season2-cloud cloud-right'></image>
             <image src="../../asset/index/insurance_policy.png" class='insurance-policy'></image>
-            <image src="http://dt.minshenglife.com/upload/img/20190627/1561639051616.png" class='home-main-pic season-pic'></image>
+            <image src="http://dt.minshenglife.com/upload/img/20190628/1561691322047.png" class='home-main-pic season-pic'></image>
         </view>
         <view class='relative' wx:if="{{seasonCheckVO.seasonNo===3}}">
             <image src="../../asset/index/season3_cloud_left.png" class='season3-cloud-left cloud-left'></image>
             <image src="../../asset/index/season3_cloud_right.png" class='season3-cloud-right cloud-right'></image>
-            <image src="http://dt.minshenglife.com/upload/img/20190627/1561639069439.png" class='home-main-pic'></image>
+            <image src="http://dt.minshenglife.com/upload/img/20190628/1561691340542.png" class='home-main-pic'></image>
         </view>
         <view class='relative' wx:if="{{seasonCheckVO.seasonNo===4}}">
             <image src="../../asset/index/season4_cloud_left.png" class='season4-cloud-left cloud-left'></image>
             <image src="../../asset/index/season4_cloud_right.png" class='season4-cloud-right cloud-right'></image>
-            <image src="http://dt.minshenglife.com/upload/img/20190627/1561639095385.png" class='home-main-pic'></image>
+            <image src="http://dt.minshenglife.com/upload/img/20190628/1561691356684.png" class='home-main-pic'></image>
         </view>
 
         <view class='begin-answer'>
             <image src="../../asset/index/begainAnswer.png" class='begin-btn' bindtap='handleCheck' data-mark="challenge"></image>
         </view>
-        <view class='arrow-box'>
+        <view class='btm-img'>
+            <view class='arrow-box'>
+                <image src='../../asset/index/home_arrow.png' class='home-arrow' bindtap="openRules"></image>
+            </view>
+            <image src='../../asset/index/season_tips.png' class='season-stragety' bindtap="openRules"></image>
+        </view>
+        <!-- <view class='arrow-box'>
             <image src='../../asset/index/home_arrow.png' class='home-arrow' bindtap="openRules"></image>
         </view>
-        <image src='../../asset/index/season_tips.png' class='season-stragety' bindtap="openRules"></image>
+        <image src='../../asset/index/season_tips.png' class='season-stragety' bindtap="openRules"></image> -->
     </view>
     <image src="http://dt.minshenglife.com/upload/img/20190627/1561639338754.png" class='home-btm-bg'></image>
     <view class='loop-content'>
@@ -98,10 +105,12 @@
         </view>
     </view>
     <view class='com-mask' wx:if="{{showRules||!authFlag}}" catchtap='closeRules'>
-        <view class='rules-container' wx:if="{{showRules}}">
-            <image src='../../asset/index/home_arrow.png' class='close_arrow' catchtap='closeRules'></image>
-            <image src="../../asset/index/home_rules.png" catchtap='closeRules' class='home-rules' data-model='inner'></image>
-        </view>
+        <scroll-view scroll-y="true" class='rules-container flx-ce-no-clm' wx:if="{{showRules}}" bindtap='closeMask'>
+            <view class='arrow-wrap'>
+                <image src='../../asset/index/home_arrow.png' class='close_arrow' catchtap='closeRules'></image>
+            </view>
+            <image src="http://dt.minshenglife.com/upload/img/20190628/1561712685136.png" catchtap='closeRules' mode='widthFix' class='home-rules' data-model='inner'></image>
+        </scroll-view>
         <view class='authorization-box flx-ce-clm' wx:if="{{!authFlag}}">
             <view class='auth-title'>申请获取以下权限</view>
             <view class='auth-desc'>使用您的昵称、头像等公开信息用于分享、排行使用</view>

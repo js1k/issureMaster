@@ -1,10 +1,11 @@
 <view class='challenge-pages flx-ce-no-clm'>
+    <loading hidden="{{hiddenLoading}}">{{loadingText}}</loading>
     <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack'></image>
     <view class='challenge-header'>
         <image src='../../asset/challengeHome/challenge_title_bg.png' class='header-bg'></image>
-        <view class='challenge-title flx-ce-ce'>保险避免坑指南季</view>
+        <view class='challenge-title flx-ce-ce'>{{seasonCheckVO.seasonTitle}}</view>
     </view>
-    <view class='season-time-info'>距离本赛季结束还有7天</view>
+    <view class='season-time-info'>距离本赛季结束还有{{seasonCheckVO.existDays}}天</view>
     <view class='user-level-info flx-ce-ce'>
         <view class='level-icon-box'>
             <image class='level-icon' src='../../asset/challengeHome/lev_1_icon.png'></image>
@@ -32,21 +33,29 @@
         </view>
     </view>
     <view class='swiper-contain flx-ce-ce'>
-        <swiper class='swiper flx-ce-ce' previous-margin="135rpx" next-margin="135rpx" bindchange='bindchange' easing-function='easeInOutCubic'>
+        <swiper class='swiper flx-ce-ce' previous-margin="135rpx" next-margin="135rpx" bindchange='bindchange' easing-function='easeInOutCubic' current="{{itemIndex}}">
             <swiper-item wx:for="{{swiperItem}}" wx:key="{{key}}" wx:for-index="i" class='swiper-item flx-ce-ce'>
                 <image wx:if="{{i===itemIndex}}" src='{{currentSrc}}' class='swiper-pic {{i===itemIndex?"pic-actived":""}}'></image>
                 <image wx:if="{{i!==itemIndex}}" src='{{i===itemIndex?swiperItem[i]:swiperDisabeItem[i]}}' class='swiper-pic {{i===itemIndex?"pic-actived":""}}'></image>
             </swiper-item>
         </swiper>
     </view>
-    <view class='user-status flx-ce-ce'>
+    <view class='user-status flx-ce-ce' wx:if="{{insureUserVO.userLevel<4}}">
         <image class='star-light' src='../../asset/challengeHome/star_light.png'></image>
-        <image class='star-light' src='../../asset/challengeHome/star_black.png'></image>
+        <image class='star-light' src='../../asset/challengeHome/star_light.png' wx:if="{{insureUserVO.userLevel>1&&insureUserVO.starNum>=2}}"></image>
+        <image class='star-light' src='../../asset/challengeHome/star_light.png' wx:if="{{insureUserVO.starNum===3}}"></image>
+        <image class='star-light' src='../../asset/challengeHome/star_black.png' wx:if="{{insureUserVO.userLevel>insureUserVO.starNum}}"></image>
+    </view>
+    <view class='user-status flx-ce-ce' wx:if="{{insureUserVO.userLevel==4}}">
+        <view class='zongshi-grap'>
+            <image class='star-zongshi' src='../../asset/challengeHome/star_zongshi.png'></image>
+        </view>
+        <view class='zongshi-txt'>x{{insureUserVO.starNum}}</view>
     </view>
     <view class='flx-ce challenge-desc'>
         <view>每局消耗</view>
         <image src='../../asset/challengeHome/power_icon.png' class='power-icon'></image>
-        <view>5(剩余20)</view>
+        <view>5(剩余{{insureUserVO.todayEnergy}})</view>
     </view>
     <image src='../../asset/challengeHome/begain_btn.png' class='begain-btn' bindtap='goQuestion'></image>
     <view class='flx-ce-ce theme-rules'>
@@ -58,21 +67,21 @@
             <view class='icon-box flx-ce-no-clm'>
                 <view class='icon-pic-box'>
                     <image src='../../asset/challengeHome/bangbang_icon.png' class='icon-pic'></image>
-                    <view class='icon-num flx-ce-ce'>10</view>
+                    <view class='icon-num flx-ce-ce' wx:if="{{insurePackageVO.helpCard}}">{{insurePackageVO.helpCard}}</view>
                 </view>
                 <view class='icon-name'>帮帮卡</view>
             </view>
             <view class='icon-box flx-ce-no-clm'>
                 <view class='icon-pic-box'>
                     <image src='../../asset/challengeHome/paichu_icon.png' class='icon-pic'></image>
-                    <view class='icon-num flx-ce-ce'>10</view>
+                    <view class='icon-num flx-ce-ce' wx:if="{{insurePackageVO.removeCard}}">{{insurePackageVO.removeCard}}</view>
                 </view>
                 <view class='icon-name'>排除卡</view>
             </view>
             <view class='icon-box flx-ce-no-clm'>
                 <view class='icon-pic-box'>
                     <image src='../../asset/challengeHome/nengliang_icon.png' class='icon-pic'></image>
-                    <view class='icon-num flx-ce-ce'>10</view>
+                    <view class='icon-num flx-ce-ce' wx:if="{{insurePackageVO.energyCard}}">{{insurePackageVO.energyCard}}</view>
                 </view>
                 <view class='icon-name'>能量卡</view>
             </view>
@@ -80,9 +89,9 @@
         </view>
     </view>
     <view class='com-mask' bindtap='closeMask' wx:if="{{showMask}}">
-        <scroll-view class='rules flx-ce-clm scaleBig' scroll-y="true">
+        <scroll-view class='rules flx-ce-clm rules-container' scroll-y="true">
             <image class='close-rule' src='../../asset/mask_close.png' bindtap='closeMask'></image>
-            <image class='rule-pic ' src='../../asset/rankList/rank_rules.png' mode='widthFix' catchtap='closeMask' data-model='inner'></image>
+            <image class='rule-pic ' src='http://dt.minshenglife.com/upload/img/20190628/1561712685136.png' mode='widthFix' catchtap='closeMask' data-model='inner'></image>
         </scroll-view>
     </view>
 </view>

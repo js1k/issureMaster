@@ -200,6 +200,12 @@ view{
     height:88rpx;
     margin-top:140rpx;
 }
+.rules-container{
+    width:100%;
+    padding:0 33rpx;
+    height:100%;
+    animation: ruleUp 0.7s linear;
+}
 @keyframes changeScale{
     from{
         transform: scale(0.5)
@@ -242,5 +248,13 @@ view{
     100%{
         opacity: 1;
         transform: rotate(100deg)
+    }
+}
+@keyframes ruleUp {
+    from {
+        transform: translateY(1500rpx);
+    }
+    to {
+        transform: translateY(0);
     }
 }

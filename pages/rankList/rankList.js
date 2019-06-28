@@ -19,6 +19,14 @@ Page({
         hiddenLoading: true,
         loadingText: '加载中...'
     },
+    onShareAppMessage: function () {
+        return {
+            title: '2019民生保险用户体验节~ \n保保大师答题挑战赛，精彩来战',
+            path: '/pages/index/index',
+            imageUrl: 'http://dt.minshenglife.com/upload/img/20190628/1561717521552.png',
+            success: function () { }
+        }
+    },
     bindscrolltolower:function(e){
         if (this.data.pageNum >= this.data.totalPage){
             return

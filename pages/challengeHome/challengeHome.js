@@ -9,11 +9,23 @@ Page({
         itemIndex:0,
         key:0,
         showMask:false,
+        hiddenLoading:true,
+        insurePackageVO:'',
+        insureUserVO:'',
+        seasonCheckVO:'',
         currentSrc:'../../asset/challengeHome/daren_pic.png',
         swiperItem: ['../../asset/challengeHome/daren_pic.png', '../../asset/challengeHome/gaoshou_pic.png', '../../asset/challengeHome/dashi_pic.png', '../../asset/challengeHome/zongshi_pic.png'],
         swiperDisabeItem: ['../../asset/challengeHome/daren_pic_disable.png', '../../asset/challengeHome/gaoshou_pic_disable.png', '../../asset/challengeHome/dashi_pic_disable.png', '../../asset/challengeHome/zongshi_pic_disable.png'],
     },
 
+    onShareAppMessage: function () {
+        return {
+            title: '2019民生保险用户体验节~ \n保保大师答题挑战赛，精彩来战',
+            path: '/pages/index/index',
+            imageUrl: 'http://dt.minshenglife.com/upload/img/20190628/1561717521552.png',
+            success: function () { }
+        }
+    },
     goBack: function () {
         app.goBack()
     },
@@ -49,11 +61,28 @@ Page({
             showMask:true
         })
     },
+    getData:function(){
+        let _this=this
+        this.setData({
+            hiddenLoading:false
+        })
+        app.httpPost('/xcx/insureMaster/startChallenge', { insureUid: wx.getStorageSync('insureUid')},function(data){
+            _this.setData({
+                insurePackageVO: data.insurePackageVO,
+                insureUserVO: data.insureUserVO,
+                seasonCheckVO: data.seasonCheckVO,
+                hiddenLoading:true,
+                itemIndex: data.insureUserVO.userLevel-1
+            })
+        },function(error){
+            console.log('error')
+        })
+    },
   /**
    * 生命周期函数--监听页面加载
    */
     onLoad: function (options) {
-
+        this.getData()
     },
 
   /**

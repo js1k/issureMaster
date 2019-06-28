@@ -6,13 +6,22 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        
     },
 
+    onShareAppMessage: function () {
+        return {
+            title: '2019民生保险用户体验节~ \n保保大师答题挑战赛，精彩来战',
+            path: '/pages/index/index',
+            imageUrl: 'http://dt.minshenglife.com/upload/img/20190628/1561717521552.png',
+            success: function () { }
+        }
+    },
     goBack: function () {
         app.goBack()
     },
     getPhoneNumber:function(e){
+        let _this=this
         let param={
             sessionKey: app.globalData.sessionKey,
             encryptedData: e.detail.encryptedData,
@@ -21,6 +30,13 @@ Page({
         }
         app.httpPost('/xcx/insureMaster/bindTelephone', param, function () {
             app.goBack()
+        },function(errorData){
+            wx.showToast({
+                title: errorData,
+                icon:'none',
+                duration:1500,
+                mask:true
+            })
         })
     },
     /**

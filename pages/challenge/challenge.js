@@ -12,6 +12,14 @@ Page({
         answerItem: ['银保监会，12378', '证监会，12386','消费者协会，12315']
     },
 
+    onShareAppMessage: function () {
+        return {
+            title: '2019民生保险用户体验节~ \n保保大师答题挑战赛，精彩来战',
+            path: '/pages/index/index',
+            imageUrl: 'http://dt.minshenglife.com/upload/img/20190628/1561717521552.png',
+            success: function () { }
+        }
+    },
     goBack: function () {
         if (this.data.countDown>0){
             this.setData({

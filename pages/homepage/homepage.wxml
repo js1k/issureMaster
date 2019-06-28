@@ -24,7 +24,8 @@
       </view>
     </view>
   </view>
-  <view class='homepage-section'>
+  <view class='section'>
+    <view class='homepage-section'>
     <view class='section-card' wx:for="{{seasonData}}" wx:key="index">
       <view class='card-title flx-ce-str'>
         <view class='card-title-icon'></view>
@@ -77,5 +78,7 @@
       </view>
     </view>
   </view>
+  </view>
+
 </scroll-view>
   <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack'></image>

@@ -18,12 +18,20 @@ Page({
         zongshiIcon: '../../asset/rankList/icon_zongshi.png',
     },
 
+    onShareAppMessage: function () {
+        return {
+            title: '2019民生保险用户体验节~ \n保保大师答题挑战赛，精彩来战',
+            path: '/pages/index/index',
+            imageUrl: 'http://dt.minshenglife.com/upload/img/20190628/1561717521552.png',
+            success: function () { }
+        }
+    },
     goBack: function() {
         app.goBack()
     },
     getData: function() {
         let _this = this
-        app.httpPost('/xcx/insureMaster/personalCenter', { insureUid: app.globalData.insureUid}, function(data) {
+        app.httpPost('/xcx/insureMaster/personalCenter', { insureUid: wx.getStorageSync('insureUid')}, function(data) {
             _this.setData({
                 insureUserVO: data.insureUserVO,
                 seasonData: data.recordVOList

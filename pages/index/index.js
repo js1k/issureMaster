@@ -14,7 +14,11 @@ Page({
         openBox: false,
         canSave: true,
         hiddenLoading: false,
+        hiddenToast: true,
+        toastText:'1199999',
         loadingText:'加载中...',
+        uid:'',
+        type:'',
         showInfo: {
             showImg: '',
             showName: '',
@@ -37,7 +41,7 @@ Page({
         tipList:[],
         loopBefore:'',
         loopAfter:'',
-        loopInterval:'',
+        loopInterval:null,
         curIndex:0,
         seasonCheckVO:{},
         chestNum:0,
@@ -52,14 +56,10 @@ Page({
         dashiIcon: '../../asset/rankList/icon_dashi.png',
         zongshiIcon: '../../asset/rankList/icon_zongshi.png',
 
-        // xueyiBg: '../../asset/index/xueyi_bg.png',
         xueyiBg: 'http://dt.minshenglife.com/upload/img/20190627/1561638085749.png',
-        // fenxiangBg: '../../asset/index/fenxiang_bg.png',
         fenxiangBg: 'http://dt.minshenglife.com/upload/img/20190627/1561638124450.png',
-        // xinshouBg: '../../asset/index/xinshou_bg.png',
         xinshouBg: 'http://dt.minshenglife.com/upload/img/20190627/1561638049214.png',
         zhutiBg: 'http://dt.minshenglife.com/upload/img/20190627/1561637981625.png',
-        // zhutiBg: '../../asset/index/zhuti_bg.png',
 
         bangbangImg: '../../asset/index/bangbang.png',
         paichuImg: '../../asset/index/paichu.png',
@@ -118,7 +118,14 @@ Page({
         }
     },
 
-
+    onShareAppMessage: function () {
+        return {
+            title: '2019民生保险用户体验节~ \n保保大师答题挑战赛，精彩来战',
+            path: '/pages/index/index?uid=343242342342342&type=8888',
+            imageUrl: 'http://dt.minshenglife.com/upload/img/20190628/1561717521552.png',
+            success: function () { }
+        }
+    },
     //打开学艺宝箱选择卡片
     handleChoseCard:function(e){
         let dataset = e.currentTarget.dataset.card
@@ -366,8 +373,25 @@ Page({
         })
     },
     //页面加载
-    onLoad: function() {
+    onLoad: function(options) {
         let _this=this
+        if (options) {
+            if(options.scene){
+                let scene = decodeURIComponent(options.scene);
+                let paramArr = scene.split("&");
+                this.setData({
+                    toastText: paramArr[0] + '&' + paramArr[1]+'type='+'qr',
+                    uid: paramArr[0],
+                    type: paramArr[1]
+                })
+            }else if(options.type) {
+                this.setData({
+                    toastText: options.type + '&' + options.uid,
+                    uid: options.uid,
+                    type: options.type
+                })
+            }
+        }
         if (wx.getStorageSync('userInfo')) {
             wx.checkSession({
                 success: function () {
@@ -400,8 +424,11 @@ Page({
     onShow:function(){
         this.onLoad()
     },
-    onUnload:function(){
-        this.data.loopInterval=''
+    onHide: function () {
+        clearInterval(this.data.loopInterval)
+    },
+    onUnload: function () {
+        clearInterval(this.data.loopInterval)
     },
     getPackets:function(){
         let _this=this
