@@ -15,10 +15,12 @@ Page({
         canSave: true,
         hiddenLoading: false,
         hiddenToast: true,
+        showNewPlay:true,
         toastText:'',
         loadingText:'加载中...',
         uid:'',
         type:'',
+        shareDay:0,
         showInfo: {
             showImg: '',
             showName: '',
@@ -34,6 +36,8 @@ Page({
             removeCard:0,
             curNum:0
         },
+        chestTipList:'',
+        shareInfoVO:'',
         showTxt:'',
         cardIndex:0,
         userHeader:'',
@@ -55,6 +59,10 @@ Page({
         gaoshouIcon: '../../asset/rankList/icon_gaoshou.png',
         dashiIcon: '../../asset/rankList/icon_dashi.png',
         zongshiIcon: '../../asset/rankList/icon_zongshi.png',
+
+        openXueyi: '../../asset/baoxiang/open_xueyi_img.png',
+        openFenxiang: '../../asset/baoxiang/open_fenxiang_img.png',
+        openZhuti: '../../asset/baoxiang/open_zhuti_img.png',
 
         xueyiBg: 'http://dt.minshenglife.com/upload/img/20190627/1561638085749.png',
         fenxiangBg: 'http://dt.minshenglife.com/upload/img/20190627/1561638124450.png',
@@ -95,9 +103,10 @@ Page({
                 let scene = decodeURIComponent(options.scene);
                 let paramArr = scene.split("&");
                 this.setData({
-                    toastText: paramArr[0] + '&' + paramArr[1] + 'type=' + 'qr',
+                    toastText: paramArr[0] + '&' + paramArr[1] ,
                     uid: paramArr[0],
-                    type: paramArr[1]
+                    type: paramArr[1],
+                    shareDay: paramArr[2]
                 })
             //直接分享小程序进入
             } else if (options.type) {
@@ -113,14 +122,13 @@ Page({
                 success: function () {
                     _this.setData({
                         authFlag: true, 
-                        showMask:false,
                         hiddenLoading: false
                     })
-                    _this.getHomeInfo()
+                    _this.getData()
                 },
                 fail: function () {
                     app.doLogin(function () {
-                        _this.getHomeInfo()
+                        _this.getData()
                     })
                     _this.setData({
                         authFlag: false,
@@ -131,7 +139,7 @@ Page({
             })
         } else {
             app.doLogin(function () {
-                _this.getHomeInfo()
+                _this.getData()
             })
             _this.setData({
                 authFlag: false,
@@ -266,7 +274,10 @@ Page({
             knapsackMask:false,
             openBox:true,
             [chestType]: showInfo.chestType,
-            [curNum]: showInfo.curNum
+            [curNum]: showInfo.curNum,
+            [helpCard]:0,
+            [energyCard]:0,
+            [removeCard]:0
         })
         if (showInfo.chestType==1){
             //学艺宝箱
@@ -315,7 +326,9 @@ Page({
             this.setData({
                 openTitle: '获得能量卡1张',
                 openImg: _this.data.zhutiBg,
-                [energyCard]: 1
+                [energyCard]: 1,
+                [helpCard]: 0,
+                [removeCard]: 0
             })
         }
     },
@@ -340,9 +353,9 @@ Page({
             _this.setData({
                 canSave:true,
                 openBox:false,
-                [energyCard]: 0,
-                [helpCard]: 0,
-                [removeCard]: 0,
+                // [energyCard]: 0,
+                // [helpCard]: 0,
+                // [removeCard]: 0,
                 [num]: _this.data.saveCardParam.curNum-1
             })
             if (_this.data.saveCardParam.curNum>0){
@@ -350,6 +363,11 @@ Page({
                 if (_this.data.saveCardParam.chestType==2){
                     //判断是否为分享宝箱
                     //分享宝箱随机生成卡片
+                    _this.setData({
+                        [energyCard]: 0,
+                        [helpCard]: 0,
+                        [removeCard]: 0
+                    })
                     let Num = Math.ceil(Math.random() * 3)
                     if (Num == 1) {
                         _this.setData({
@@ -370,6 +388,13 @@ Page({
                             [energyCard]: 1,
                         })
                     }
+                } else if (_this.data.saveCardParam.chestType == 1) {
+                    //  学艺宝箱 清空卡片
+                    _this.setData({
+                        [energyCard]: 0,
+                        [helpCard]: 0,
+                        [removeCard]: 0
+                    })
                 }
                 setTimeout(function(){
                     _this.setData({
@@ -378,11 +403,17 @@ Page({
                 },200)
             }else{
                 _this.setData({
-                    showMask:false
+                    showMask:false,
+                    openBox:false
                 })
             }
         },function(error){
             console.log('error')
+            wx.showToast({
+                title: error.message,
+                icon:'none',
+                duration:2500
+            })
         })
     },
 
@@ -418,7 +449,7 @@ Page({
         if (event.currentTarget.dataset.model === 'inner') {
             return
         }
-        this.getHomeInfo()
+        this.getData()
         this.setData({
             showMask: false,
             openBox:false,
@@ -466,14 +497,17 @@ Page({
             console.log('error')
         })
     },
-    getHomeInfo:function(){
+    getData:function(){
         let _this=this
         let param={
             agentUserId:'',
             encryptedData: wx.getStorageSync('encryptedData'),
             insureUid: wx.getStorageSync('insureUid'),
             iv: wx.getStorageSync('iv'),
-            jsCode: wx.getStorageSync('jsCode')
+            jsCode: wx.getStorageSync('jsCode'),
+            chestType: this.data.type,
+            shareUserId: this.data.uid,
+            shareDay: this.data.shareDay
         }
         app.httpPost('/xcx/insureMaster/index',param,function(data){
             _this.setData({
@@ -486,10 +520,11 @@ Page({
                 packageFlag: data.packageFlag,
                 loopBefore: data.tipList[0],
                 loopAfter: data.tipList[data.tipList.length-1],
-                hiddenLoading:true
+                hiddenLoading:true,
+                shareInfoVO: data.shareInfoVO,
+                chestTipList: data.chestTipList
             })
             wx.setStorageSync('insureUid', data.insureUserVO.insureUid)
-
             _this.data.loopInterval=setInterval(function () {
                 if (_this.data.curIndex === _this.data.tipList.length - 1) {
                     _this.setData({
@@ -522,6 +557,6 @@ Page({
             userInfo: e.detail.userInfo,
             authFlag: true
         })
-        this.getHomeInfo()
+        this.getData()
     }
 })

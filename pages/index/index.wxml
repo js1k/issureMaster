@@ -105,6 +105,26 @@
         </view>
     </view>
     <view class='com-mask index-mask' bindtap='closeMask' wx:if="{{showMask}}">
+        <view class='flx-ce-clm' wx:if="{{chestTipList&&chestTipList.length>0}}" bindtap='closeMask' data-model='inner'>
+            <view class='knapsack-close-box'>
+                <image src='../../asset/mask_close.png' class='knapsack-close'></image>
+            </view>
+            <view class='open-pic-box'>
+                <image src="{{chestTipList.chestType==1?openXueyi:chestTipList.chestType==2?openFenxiang:openZhuti}}" class='open-box-img'></image>
+                <image src='../../asset/baoxiang/open_light.png' class='open-light'></image>
+            </view>
+            <view class='open-txt flx-ce-ce'>
+                <image wx:if="{{chestTipList.chestType!=4}}" src="{{chestTipList.shareAvatar}}" class='tiyanshi-img'></image>
+                <image wx:if="{{chestTipList.chestType==4}}" src='../../asset/baoxiang/tiyanshi_icon.png' class='tiyanshi-img'></image>
+                <view class='lx-ce-no-clm'>
+                    <view wx:if="{{chestTipList.chestType==1}}">你的导师{{chestTipList.shareUserName}}</view>
+                    <view wx:if="{{chestTipList.chestType==4}}">你的好友{{chestTipList.shareUserName}}</view>
+                    <view wx:if="{{chestTipList.chestType==4}}">保险体验师</view>
+                    <view>送你"{{chestTipList.chestType==4?'主题宝箱':chestTipList.chestType==1?'学艺宝箱':'分享宝箱'}}"</view>
+                </view>
+            </view>
+            <view class='flx-ce-ce btn-open' catchtap='handleOpen'>立即开启</view>
+        </view>
         <view class='authorization-box flx-ce-clm' wx:if="{{!authFlag}}">
             <view class='auth-title'>申请获取以下权限</view>
             <view class='auth-desc'>使用您的昵称、头像等公开信息用于分享、排行使用</view>
