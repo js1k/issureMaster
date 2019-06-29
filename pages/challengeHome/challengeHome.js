@@ -10,9 +10,13 @@ Page({
         key:0,
         showMask:false,
         hiddenLoading:true,
+        showRule:false,
         insurePackageVO:'',
         insureUserVO:'',
         seasonCheckVO:'',
+
+        showPowerWrap:false,
+        powerTxt:'',
         currentSrc:'../../asset/challengeHome/daren_pic.png',
         swiperItem: ['../../asset/challengeHome/daren_pic.png', '../../asset/challengeHome/gaoshou_pic.png', '../../asset/challengeHome/dashi_pic.png', '../../asset/challengeHome/zongshi_pic.png'],
         swiperDisabeItem: ['../../asset/challengeHome/daren_pic_disable.png', '../../asset/challengeHome/gaoshou_pic_disable.png', '../../asset/challengeHome/dashi_pic_disable.png', '../../asset/challengeHome/zongshi_pic_disable.png'],
@@ -30,9 +34,15 @@ Page({
         app.goBack()
     },
     goQuestion: function () {
-        wx.navigateTo({
-            url: '../challenge/challenge'
-        })
+        if (this.data.insureUserVO.todayEnergy<5){
+            this.setData({
+                showMask:true,
+                showPowerWrap:true
+            })
+        }
+        // wx.navigateTo({
+        //     url: '../challenge/challenge'
+        // })
     },
     bindchange:function(e){
         var that=this
@@ -53,12 +63,15 @@ Page({
             return
         }
         this.setData({
-            showMask: false
+            showMask: false,
+            showRule:false,
+            showPowerWrap:false
         })
     },
     showRule:function(){
         this.setData({
-            showMask:true
+            showMask:true,
+            showRule:true
         })
     },
     getData:function(){

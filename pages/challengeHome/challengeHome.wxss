@@ -93,12 +93,15 @@
 }
 
 .user-status{
-    margin:46rpx 0;
+    height:72rpx;
+    margin:40rpx 0;
+    animation: seasonStar 1s ease-in-out forwards;
 }
 .star-light{
     width:48rpx;
     height:48rpx;
     margin-right:8rpx;
+    animation: seasonStar 1s ease-in-out forwards;
 }
 .challenge-desc{
     font-size:22rpx;
@@ -125,8 +128,7 @@
 }
 .challenge-rule{
     text-decoration:underline;
-    margin-left:10rpx;
-    padding-left:10rpx;
+    padding-left:12rpx;
     border-left:2rpx solid #fff;
     height:22rpx;
     line-height: 22rpx;
@@ -223,6 +225,52 @@
     line-height: 34rpx;
     margin-top:38rpx;
 }
+.season-data{
+    margin:0 12rpx;
+}
+.season-lock{
+    width: 72rpx;
+    height:72rpx;
+}
+.power-wrap{
+    width:100%;
+    padding:0 64rpx;
+    animation: slideDown 0.5s ease-in-out forwards;
+}
+.power{
+    width:506rpx;
+}
+.header-pic{
+    width:506rpx;
+    height:162rpx;
+}
+.power-section{
+    width:506rpx;
+    background: white;
+    padding:58rpx 34rpx 12rpx;
+    border-radius:0px 0px 18rpx 18rpx;
+}
+.power-desc{
+    font-size:28rpx;
+    text-align: center;
+    font-weight:500;
+    color:rgba(81,82,88,1);
+}
+.power-btn{
+    width:208rpx;
+    height:60rpx;
+    background:rgba(27,214,118,1);
+    border-radius:28rpx;
+    margin:30rpx 0 36rpx;
+    font-size:28rpx;
+    font-weight:500;
+    color:rgba(255,255,255,1);
+}
+.power-tips{
+    font-size:22rpx;
+    font-weight:400;
+    color:rgba(157,157,157,1);
+}
 @keyframes picActived{
     from{
         width:320rpx;
@@ -231,5 +279,15 @@
     to{
         width:450rpx;
         height:450rpx;
+    }
+}
+@keyframes seasonStar{
+    from{
+        transform: scale(0.6);
+        transform: translateX(-40rpx)
+    }
+    to{
+        transform: scale(1);
+        transform: translateX(0)
     }
 }
