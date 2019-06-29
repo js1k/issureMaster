@@ -338,7 +338,7 @@
 }
 
 .index-mask {
-    padding: 0 44rpx;
+    padding: 120rpx 44rpx 0;
 }
 
 .knapsack-box {

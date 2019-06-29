@@ -104,20 +104,18 @@
             <text class='icon-font'>红包碎片</text>
         </view>
     </view>
-    <view class='com-mask' wx:if="{{showRules||!authFlag}}" catchtap='closeRules'>
-        <scroll-view scroll-y="true" class='rules-container flx-ce-no-clm' wx:if="{{showRules}}" bindtap='closeMask'>
-            <view class='arrow-wrap'>
-                <image src='../../asset/index/home_arrow.png' class='close_arrow' catchtap='closeRules'></image>
-            </view>
-            <image src="http://dt.minshenglife.com/upload/img/20190628/1561712685136.png" catchtap='closeRules' mode='widthFix' class='home-rules' data-model='inner'></image>
-        </scroll-view>
+    <view class='com-mask index-mask' bindtap='closeMask' wx:if="{{showMask}}">
         <view class='authorization-box flx-ce-clm' wx:if="{{!authFlag}}">
             <view class='auth-title'>申请获取以下权限</view>
             <view class='auth-desc'>使用您的昵称、头像等公开信息用于分享、排行使用</view>
             <button open-type="getUserInfo" class='auth-btn' bindgetuserinfo="getUserInfo">授权</button>
         </view>
-    </view>
-    <view class='com-mask index-mask' bindtap='closeMask' wx:if="{{showMask}}">
+        <scroll-view scroll-y="true" class='rules-container flx-ce-no-clm' wx:if="{{showRules}}" bindtap='closeMask'>
+            <view class='arrow-wrap'>
+                <image src='../../asset/index/home_arrow.png' class='close_arrow' catchtap='closeMask'></image>
+            </view>
+            <image src="http://dt.minshenglife.com/upload/img/20190628/1561712685136.png" catchtap='closeMask' mode='widthFix' class='home-rules' data-model='inner'></image>
+        </scroll-view>
         <view class='knapsack-box' wx:if="{{knapsackMask}}">
             <view class='knapsack-close-box'>
                 <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>

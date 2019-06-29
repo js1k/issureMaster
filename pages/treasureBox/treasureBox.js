@@ -35,26 +35,7 @@ Page({
         }
     },
     saveImg:function(){
-        // let _this=this
-        // const wxGetImageInfo = this.promisify(wx.getImageInfo)
-        // wxGetImageInfo({
-        //     src: '../../asset/baoxiang/share_pic.png'
-        // }).then(res => {
-        //     console.log(11111)
-        //     const ctx = wx.createCanvasContext('shareCanvas')
-        //     //底图
-        //     ctx.drawImage(res.path, 0, 0, 550, 760)
-
-        //     // 作者名称
-        //     ctx.setTextAlign('center')    // 文字居中
-        //     ctx.setFillStyle('#000000')  // 文字颜色：黑色
-        //     ctx.setFontSize(22)         // 文字字号：22px
-        //     ctx.fillText(_this.shareName+"送你'分享宝箱'快来和TA一起赢取大奖吧~", 600 / 2, 500)
-
-        //     ctx.stroke()
-        //     ctx.draw()
-        //     console.log(123)
-        // })
+        
     },
     handleShare:function(){
         this.setData({

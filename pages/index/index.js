@@ -15,7 +15,7 @@ Page({
         canSave: true,
         hiddenLoading: false,
         hiddenToast: true,
-        toastText:'1199999',
+        toastText:'',
         loadingText:'加载中...',
         uid:'',
         type:'',
@@ -86,6 +86,69 @@ Page({
         ]
     },
 
+    //页面加载
+    onLoad: function (options) {
+        let _this = this
+        if (options) {
+            //扫描二维码进入
+            if (options.scene) {
+                let scene = decodeURIComponent(options.scene);
+                let paramArr = scene.split("&");
+                this.setData({
+                    toastText: paramArr[0] + '&' + paramArr[1] + 'type=' + 'qr',
+                    uid: paramArr[0],
+                    type: paramArr[1]
+                })
+            //直接分享小程序进入
+            } else if (options.type) {
+                this.setData({
+                    toastText: options.type + '&' + options.uid,
+                    uid: options.uid,
+                    type: options.type
+                })
+            }
+        }
+        if (wx.getStorageSync('userInfo')) {
+            wx.checkSession({
+                success: function () {
+                    _this.setData({
+                        authFlag: true, 
+                        showMask:false,
+                        hiddenLoading: false
+                    })
+                    _this.getHomeInfo()
+                },
+                fail: function () {
+                    app.doLogin(function () {
+                        _this.getHomeInfo()
+                    })
+                    _this.setData({
+                        authFlag: false,
+                        showMask:true,
+                        hiddenLoading: true
+                    })
+                }
+            })
+        } else {
+            app.doLogin(function () {
+                _this.getHomeInfo()
+            })
+            _this.setData({
+                authFlag: false,
+                showMask:true,
+                hiddenLoading: true
+            })
+        }
+    },
+    onShow: function () {
+        this.onLoad()
+    },
+    onHide: function () {
+        clearInterval(this.data.loopInterval)
+    },
+    onUnload: function () {
+        clearInterval(this.data.loopInterval)
+    },
     //事件判断
     handleCheck:function(e){
         let dataset = e.currentTarget.dataset.mark
@@ -165,15 +228,9 @@ Page({
     //事件处理函数
     openRules: function() {
         this.setData({
-            showRules: true
-        })
-    },
-    closeRules: function(event) {
-        if (event.currentTarget.dataset.model === 'inner') {
-            return
-        }
-        this.setData({
-            showRules: false
+            showRules: true,
+            showMask:true
+
         })
     },
     goTreasure: function() {
@@ -364,71 +421,15 @@ Page({
         this.getHomeInfo()
         this.setData({
             showMask: false,
-            openBox:false
+            openBox:false,
+            showRules:false,
+            knapsackMask:false
         })
     },
     goHomepage: function() {
         wx.navigateTo({
             url: '../homepage/homepage'
         })
-    },
-    //页面加载
-    onLoad: function(options) {
-        let _this=this
-        if (options) {
-            if(options.scene){
-                let scene = decodeURIComponent(options.scene);
-                let paramArr = scene.split("&");
-                this.setData({
-                    toastText: paramArr[0] + '&' + paramArr[1]+'type='+'qr',
-                    uid: paramArr[0],
-                    type: paramArr[1]
-                })
-            }else if(options.type) {
-                this.setData({
-                    toastText: options.type + '&' + options.uid,
-                    uid: options.uid,
-                    type: options.type
-                })
-            }
-        }
-        if (wx.getStorageSync('userInfo')) {
-            wx.checkSession({
-                success: function () {
-                    _this.setData({
-                        authFlag:true,
-                        hiddenLoading:false
-                    })
-                    _this.getHomeInfo()
-                },
-                fail: function () {
-                    app.doLogin(function () {
-                        _this.getHomeInfo()
-                    })
-                    _this.setData({
-                        authFlag: false, 
-                        hiddenLoading:true
-                    })
-                }
-            })
-        } else {
-            app.doLogin(function () {
-                _this.getHomeInfo()
-            })
-            _this.setData({
-                authFlag: false,
-                hiddenLoading:true
-            })
-        }
-    },
-    onShow:function(){
-        this.onLoad()
-    },
-    onHide: function () {
-        clearInterval(this.data.loopInterval)
-    },
-    onUnload: function () {
-        clearInterval(this.data.loopInterval)
     },
     getPackets:function(){
         let _this=this
