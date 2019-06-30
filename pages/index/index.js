@@ -347,7 +347,7 @@ Page({
         let helpCard = 'saveCardParam.helpCard'
         let removeCard = 'saveCardParam.removeCard'
         this.setData({
-            [insureUid]: app.globalData.insureUid
+            [insureUid]: wx.getStorageSync('insureUid')
         })
         app.httpPost('/xcx/insureMaster/openStudyChest', _this.data.saveCardParam,function(data){
             _this.setData({
@@ -473,7 +473,7 @@ Page({
         let showName = 'showInfo.showName'
         let showDesc = 'showInfo.showDesc'
         let showNum = 'showInfo.curNum'
-        app.httpPost('/xcx/insureMaster/myPackage', { insureUid: app.globalData.insureUid},function(data){
+        app.httpPost('/xcx/insureMaster/myPackage', { insureUid: wx.getStorageSync('insureUid')},function(data){
             for (let i = 0; i < cardData.length;i++){
                 for(let key in data){
                     if (cardData[i].flag==key){
