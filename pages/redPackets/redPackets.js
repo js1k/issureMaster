@@ -34,7 +34,7 @@ Page({
         this.setData({
             hiddenLoading:false
         })
-        app.httpPost('/xcx/insureMaster/chip', { insureUid: app.globalData.insureUid}, function (data) {
+        app.httpPost('/xcx/insureMaster/chip', { insureUid: wx.getStorageSync('insureUid')}, function (data) {
             _this.setData({
                 redPacketsData: data,
                 hiddenLoading: true
