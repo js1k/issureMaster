@@ -7,7 +7,7 @@ Page({
         motto: 'Hello World',
         userInfo: {},
         showRules: false,
-        showMask:false,
+        showMask:true,
         knapsackMask: false,
         authFlag: true,
         showCardBtn: false,
@@ -16,6 +16,8 @@ Page({
         hiddenLoading: false,
         hiddenToast: true,
         showNewPlay:true,
+        showShare:false,
+        seasonEnd:false,
         toastText:'',
         loadingText:'加载中...',
         uid:'',
@@ -37,6 +39,9 @@ Page({
             curNum:0
         },
         chestTipList:'',
+        chestGainTipVO:{
+
+        },
         shareInfoVO:'',
         showTxt:'',
         cardIndex:0,
@@ -156,6 +161,9 @@ Page({
     },
     onUnload: function () {
         clearInterval(this.data.loopInterval)
+    },
+    handleOpen:function(){
+
     },
     //事件判断
     handleCheck:function(e){
@@ -454,7 +462,8 @@ Page({
             showMask: false,
             openBox:false,
             showRules:false,
-            knapsackMask:false
+            knapsackMask:false,
+            showShare:false
         })
     },
     goHomepage: function() {
@@ -522,8 +531,20 @@ Page({
                 loopAfter: data.tipList[data.tipList.length-1],
                 hiddenLoading:true,
                 shareInfoVO: data.shareInfoVO,
-                chestTipList: data.chestTipList
+                chestTipList: data.chestTipList,
             })
+            // 根据接口返回 领取成功则弹出宝箱
+            if (_this.data.shareInfoVO.shareStatus===1){
+                _this.setData({
+                    showMask: true,
+                    showShare: true
+                })
+            }
+            if (data.chestTipList && data.chestTipList.length>0){
+                _this.setData({
+                    chestGainTipVO: data.chestTipList[0]
+                })
+            }
             wx.setStorageSync('insureUid', data.insureUserVO.insureUid)
             _this.data.loopInterval=setInterval(function () {
                 if (_this.data.curIndex === _this.data.tipList.length - 1) {
