@@ -156,8 +156,9 @@ Page({
                 }
             })
         } else {
+            console.log('0000')
             app.doLogin(function () {
-                _this.getData()
+                // _this.getData()
             })
             _this.setData({
                 authFlag: false,
@@ -168,6 +169,7 @@ Page({
     },
     onShow: function (options) {
         if (this.data.checkShow){
+            console.log('onShow')
             this.onLoad()
         }
     },
@@ -559,7 +561,9 @@ Page({
         wx.removeStorage({
             key: 'uid'
         })
-        this.getData()
+        if (wx.getStorageSync('encryptedData')){
+            this.getData()
+        }
         this.setData({
             showMask: false,
             openBox: false,
@@ -614,7 +618,7 @@ Page({
         let param={
             agentUserId:'',
             encryptedData: wx.getStorageSync('encryptedData'),
-            insureUid: wx.getStorageSync('insureUid'),
+            // insureUid: wx.getStorageSync('insureUid'),
             iv: wx.getStorageSync('iv'),
             jsCode: wx.getStorageSync('jsCode'),
             chestType: wx.getStorageSync('type'),
@@ -704,6 +708,7 @@ Page({
             userInfo: e.detail.userInfo,
             authFlag: true
         })
+        console.log('1234')
         this.getData()
     }
 })
