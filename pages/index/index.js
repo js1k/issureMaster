@@ -7,7 +7,7 @@ Page({
         motto: 'Hello World',
         userInfo: {},
         showRules: false,
-        showMask:true,
+        showMask:false,
         knapsackMask: false,
         authFlag: true,
         showCardBtn: false,
@@ -18,11 +18,15 @@ Page({
         showNewPlay:true,
         showShare:false,
         seasonEnd:false,
+        showTeacher:false,
+        showClient:false,
+        showLimit:false,
         toastText:'',
         loadingText:'加载中...',
         uid:'',
         type:'',
         shareDay:0,
+        checkShow:false,
         showInfo: {
             showImg: '',
             showName: '',
@@ -39,12 +43,14 @@ Page({
             curNum:0
         },
         chestTipList:'',
+        giftIndex:0,
         chestGainTipVO:{
 
         },
         shareInfoVO:'',
         showTxt:'',
         cardIndex:0,
+        indexData:'',
         userHeader:'',
         insureUserVO:{},
         tipList:[],
@@ -113,13 +119,20 @@ Page({
                     type: paramArr[1],
                     shareDay: paramArr[2]
                 })
+                wx.setStorageSync('uid', paramArr[0])
+                wx.setStorageSync('type', paramArr[1])
+                wx.setStorageSync('shareDay', paramArr[2])
             //直接分享小程序进入
             } else if (options.type) {
                 this.setData({
                     toastText: options.type + '&' + options.uid,
                     uid: options.uid,
-                    type: options.type
+                    type: options.type,
+                    shareDay: options.shareDay||''
                 })
+                wx.setStorageSync('uid', options.uid)
+                wx.setStorageSync('type', options.type)
+                wx.setStorageSync('shareDay', options.shareDay||'')
             }
         }
         if (wx.getStorageSync('userInfo')) {
@@ -153,19 +166,83 @@ Page({
             })
         }
     },
-    onShow: function () {
-        this.onLoad()
+    onShow: function (options) {
+        if (this.data.checkShow){
+            this.onLoad()
+        }
     },
     onHide: function () {
+        this.setData({
+            checkShow:true
+        })
         clearInterval(this.data.loopInterval)
     },
     onUnload: function () {
         clearInterval(this.data.loopInterval)
     },
+    // 打开分享获得的宝箱
     handleOpen:function(){
-
+        let _this = this
+        let chestType ='saveCardParam.chestType'
+        let energyCard = 'saveCardParam.energyCard'
+        let helpCard = 'saveCardParam.helpCard'
+        let removeCard = 'saveCardParam.removeCard'
+        if (this.data.chestGainTipVO.chestType==1){
+            this.setData({
+                [energyCard]:0,
+                [helpCard]: 0,
+                [removeCard]: 0,
+            })
+        }
+        this.randomShare()
+        this.setData({
+            openBox:true,
+            showShare:false,
+            openTitle: wx.getStorageSync('type') == 1 ? '请选择两张特权卡' : wx.getStorageSync('type') == 2 ? '获得排除卡1张' : '获得能量卡1张',
+            [chestType]: wx.getStorageSync('type'), 
+            openImg: wx.getStorageSync('type') == 1 ? _this.data.xueyiBg : wx.getStorageSync('type') == 2 ? _this.data.fenxiangBg : _this.data.zhutiBg
+        })
     },
-    //事件判断
+    handleTeacher: function () {
+        //判断用户是否手机授权
+        if (!this.data.insureUserVO.telephone) {
+            wx.navigateTo({
+                url: '../login/login'
+            })
+            return
+        }
+        let _this=this
+        app.httpPost('/xcx/insureMaster/ackTeacher', { agentUserId: wx.getStorageSync('uid'), insureUid: wx.getStorageSync('insureUid')},function(){
+            wx.showToast({
+                title: '拜师成功',
+                icon:'success',
+                duration:1000,
+                mask:true
+            })
+            setTimeout(function(){
+                _this.setData({
+                    showMask: false,
+                    showTeacher: false
+                })
+                _this.getData()
+            },1000)
+        },function(error){
+            console.log('error')
+        })
+    },
+    handleSelfReliance:function(){
+        this.setData({
+            showMask:false,
+            showTeacher:false
+        })
+        wx.removeStorage({
+            key:'type'
+        })
+        wx.removeStorage({
+            key: 'uid'
+        })
+    },
+    //首页所有表面事件判断
     handleCheck:function(e){
         let dataset = e.currentTarget.dataset.mark
         //判断用户是否手机授权
@@ -200,7 +277,8 @@ Page({
     onShareAppMessage: function () {
         return {
             title: '2019民生保险用户体验节~ \n保保大师答题挑战赛，精彩来战',
-            path: '/pages/index/index?uid=343242342342342&type=8888',
+            path: '/pages/index/index?uid=493297558155266&type=2',
+            // path: '/pages/index/index?uid=20353074498050&type=2',
             imageUrl: 'http://dt.minshenglife.com/upload/img/20190628/1561717521552.png',
             success: function () { }
         }
@@ -293,33 +371,9 @@ Page({
                 openTitle:'请选择2张特权卡',
                 openImg: _this.data.xueyiBg
             })
-        } else if (showInfo.chestType == 2) {
-            //分享宝箱
-            //随机数确定分享宝箱中的卡片
-            let Num=Math.ceil(Math.random()*3)
-            if (Num==1){
-                this.setData({
-                    randomImg: '../../asset/index/bangbang.png',
-                    randomName: '帮帮卡',
-                    [helpCard]: 1,
-                })
-            } else if (Num == 2) {
-                this.setData({
-                    randomImg: '../../asset/index/paichu.png',
-                    randomName: '排除卡',
-                    [removeCard]: 1
-                })
-            } else {
-                this.setData({
-                    randomImg: '../../asset/index/nengliang.png',
-                    randomName: '能量卡',
-                    [energyCard]: 1,
-                })
-            }
-            this.setData({
-                openTitle: '获得排除卡一张',
-                openImg: _this.data.fenxiangBg
-            })
+        } else if (showInfo.chestType == 2) {   // 分享宝箱
+            _this.randomShare()
+            
         } else if (showInfo.chestType == 3) {
             //新手宝箱
             this.setData({
@@ -339,6 +393,38 @@ Page({
                 [removeCard]: 0
             })
         }
+    },
+    randomShare: function () {
+        let _this=this
+        let energyCard = 'saveCardParam.energyCard'
+        let helpCard = 'saveCardParam.helpCard'
+        let removeCard = 'saveCardParam.removeCard'
+        //分享宝箱
+        //随机数确定分享宝箱中的卡片
+        let Num = Math.ceil(Math.random() * 3)
+        if (Num == 1) {
+            this.setData({
+                randomImg: '../../asset/index/bangbang.png',
+                randomName: '帮帮卡',
+                [helpCard]: 1,
+            })
+        } else if (Num == 2) {
+            this.setData({
+                randomImg: '../../asset/index/paichu.png',
+                randomName: '排除卡',
+                [removeCard]: 1
+            })
+        } else {
+            this.setData({
+                randomImg: '../../asset/index/nengliang.png',
+                randomName: '能量卡',
+                [energyCard]: 1,
+            })
+        }
+        this.setData({
+            openTitle: '获得排除卡一张',
+            openImg: _this.data.fenxiangBg
+        })
     },
     //放入背包
     saveCard:function(){
@@ -414,6 +500,16 @@ Page({
                     showMask:false,
                     openBox:false
                 })
+            };
+            //获取宝箱存入卡片之后判断宝箱是否打开完毕
+            if (_this.data.chestTipList.length&&(_this.data.giftIndex < _this.data.chestTipList.length-1)){
+                setTimeout(function () {
+                    _this.setData({
+                        showShare: true,
+                        giftIndex: _this.data.giftIndex+1,
+                        chestGainTipVO: _this.data.chestTipList[_this.data.giftIndex]
+                    })
+                }, 200)
             }
         },function(error){
             console.log('error')
@@ -457,13 +553,19 @@ Page({
         if (event.currentTarget.dataset.model === 'inner') {
             return
         }
+        wx.removeStorage({
+            key: 'type'
+        })
+        wx.removeStorage({
+            key: 'uid'
+        })
         this.getData()
         this.setData({
             showMask: false,
-            openBox:false,
-            showRules:false,
-            knapsackMask:false,
-            showShare:false
+            openBox: false,
+            showRules: false,
+            knapsackMask: false,
+            showShare: false
         })
     },
     goHomepage: function() {
@@ -507,6 +609,7 @@ Page({
         })
     },
     getData:function(){
+        clearInterval(this.data.loopInterval)
         let _this=this
         let param={
             agentUserId:'',
@@ -514,12 +617,13 @@ Page({
             insureUid: wx.getStorageSync('insureUid'),
             iv: wx.getStorageSync('iv'),
             jsCode: wx.getStorageSync('jsCode'),
-            chestType: this.data.type,
-            shareUserId: this.data.uid,
-            shareDay: this.data.shareDay
+            chestType: wx.getStorageSync('type'),
+            shareUserId: wx.getStorageSync('uid'),
+            shareDay: wx.getStorageSync('shareDay')
         }
         app.httpPost('/xcx/insureMaster/index',param,function(data){
             _this.setData({
+                indexData:data,
                 insureUid: data.insureUserVO.insureUid,
                 insureUserVO: data.insureUserVO,
                 tipList: data.tipList,
@@ -533,16 +637,35 @@ Page({
                 shareInfoVO: data.shareInfoVO,
                 chestTipList: data.chestTipList,
             })
-            // 根据接口返回 领取成功则弹出宝箱
-            if (_this.data.shareInfoVO.shareStatus===1){
+            // 根据接口返回分享状态码弹出对应错误弹窗
+            if (_this.data.shareInfoVO.shareStatus === 2 || _this.data.shareInfoVO.shareStatus === 3){   //  拜他为师
                 _this.setData({
                     showMask: true,
-                    showShare: true
+                    showTeacher:true
+                })
+            } else if (_this.data.shareInfoVO.shareStatus === 4) {
+                _this.setData({
+                    showMask: true,
+                    showLimit:true
+                })
+            }else if (_this.data.shareInfoVO.shareStatus === 6){
+                wx.showToast({
+                    title: '宝箱已过期',
+                    icon: 'none',
+                    duration: 2500
+                })
+            } else if (_this.data.shareInfoVO.shareStatus === 7) {
+                _this.setData({
+                    showMask: true,
+                    showClient: true
                 })
             }
             if (data.chestTipList && data.chestTipList.length>0){
                 _this.setData({
-                    chestGainTipVO: data.chestTipList[0]
+                    chestGainTipVO: data.chestTipList[0],
+                    giftIndex: 0,
+                    showMask: true,
+                    showShare: true
                 })
             }
             wx.setStorageSync('insureUid', data.insureUserVO.insureUid)
@@ -573,6 +696,7 @@ Page({
         app.globalData.iv = e.detail.iv
         wx.setStorageSync('userInfo', e.detail.userInfo)
         wx.setStorageSync('encryptedData', e.detail.encryptedData)
+        
         wx.setStorageSync('iv', e.detail.iv)
         this.setData({
             userInfo: e.detail.userInfo,

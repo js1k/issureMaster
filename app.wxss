@@ -117,11 +117,13 @@ view{
     height:562rpx;
     border-radius: 50%;
     position: relative;
+    animation: showBig 0.6s linear forwards;
 }
 .open-box-img{
     width:562rpx;
     height:562rpx;
     border-radius: 50%;
+
 }
 .open-light{
     width:562rpx;
@@ -137,16 +139,17 @@ view{
     font-weight:400;
     color:rgba(255,255,255,1);
     margin:24rpx 0 72rpx;
+    animation: txtIn 1s linear forwards;
 }
 .btn-open{
     width:422rpx;
     height:88rpx;
     background:rgba(255,167,0,1);
-    box-shadow:0px 0px 20rpx 0px rgba(255,255,255,0.8);
     border-radius:44rpx;
     font-size:34rpx;
     font-weight:500;
     color:rgba(255,255,255,1);
+    animation: btnBig 1.5s linear forwards;
 }
 .tiyanshi-img{
     width:88rpx;
@@ -291,6 +294,46 @@ view{
     }
     100%{
         transform: rotate(90deg);
+        opacity: 1
+    }
+}
+@keyframes showBig{
+    from{
+        transform: scale(0.5);
+    }
+    to{
+        transform: scale(1);
+    }
+}
+@keyframes txtIn{
+    0%{
+        transform: translateY(40rpx);
+        opacity: 0
+    }
+    30%{
+        transform: translateY(40rpx);
+        opacity: 0
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 1
+    }
+}
+@keyframes btnBig{
+    0%{
+        transform: scale(0.8);
+        opacity: 0
+    }
+    69%{
+        transform: scale(0.8);
+        opacity: 0
+    }
+    70%{
+        transform: scale(0.8);
+        opacity: 1
+    }
+    100%{
+        transform: scale(1);
         opacity: 1
     }
 }

@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 8,
+			"current": 12,
 			"list": [
 				{
 					"id": -1,
@@ -103,6 +103,34 @@
 					"name": "param",
 					"pathName": "pages/index/index",
 					"query": "type=1&uid=12948",
+					"scene": null
+				},
+				{
+					"id": 9,
+					"name": "treasureBox",
+					"pathName": "pages/index/index",
+					"query": "type=2&uid=51498556353026&shareDay=20190701",
+					"scene": null
+				},
+				{
+					"id": 10,
+					"name": "type2",
+					"pathName": "pages/index/index",
+					"query": "type=2&uid=51345742526978&shareDay=20190701",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "share",
+					"pathName": "pages/index/index",
+					"query": "type=2&uid=493297275068418&shareDay=20190701",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "treasure",
+					"pathName": "pages/index/index",
+					"query": "type=1&uid=493297558155266&shareDay=20190701",
 					"scene": null
 				}
 			]
