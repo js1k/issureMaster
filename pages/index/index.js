@@ -277,7 +277,7 @@ Page({
     onShareAppMessage: function () {
         return {
             title: '2019民生保险用户体验节~ \n保保大师答题挑战赛，精彩来战',
-            path: '/pages/index/index?uid=493297558155266&type=2',
+            path: '/pages/index/index?uid=' + wx.getStorageSync('insureUid')+'&type=2',
             // path: '/pages/index/index?uid=20353074498050&type=2',
             imageUrl: 'http://dt.minshenglife.com/upload/img/20190628/1561717521552.png',
             success: function () { }
@@ -652,7 +652,7 @@ Page({
                 wx.showToast({
                     title: '宝箱已过期',
                     icon: 'none',
-                    duration: 2500
+                    duration: 1000
                 })
             } else if (_this.data.shareInfoVO.shareStatus === 7) {
                 _this.setData({
@@ -661,12 +661,14 @@ Page({
                 })
             }
             if (data.chestTipList && data.chestTipList.length>0){
-                _this.setData({
-                    chestGainTipVO: data.chestTipList[0],
-                    giftIndex: 0,
-                    showMask: true,
-                    showShare: true
-                })
+                setTimeout(function () {
+                    _this.setData({
+                        chestGainTipVO: data.chestTipList[0],
+                        giftIndex: 0,
+                        showMask: true,
+                        showShare: true
+                    })
+                },1000)
             }
             wx.setStorageSync('insureUid', data.insureUserVO.insureUid)
             _this.data.loopInterval=setInterval(function () {
