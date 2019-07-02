@@ -48,14 +48,12 @@ Page({
         return {...param}
     },
     saveImg: function () {
-        console.log('canvasSave')
         wx.canvasToTempFilePath({
             canvasId: 'shareCanvas',
             success: function (res) {
                 wx.saveImageToPhotosAlbum({
                     filePath: res.tempFilePath,
                     success: function (data) {
-                        console.log(data)
                         wx.showToast({
                             title: '分享图片已保存到相册',
                         })
