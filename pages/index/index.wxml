@@ -26,7 +26,7 @@
         <view>
             <image src="../../asset/index/logo@2x.png" class='home-logo'></image>
         </view>
-        <text class='home-time'>—— {{seasonCheckVO.seasonTitle}} {{seasonCheckVO.seasonDate}} ——</text>
+        <text class='home-time'>—— {{seasonCheckVO.seasonTitle||'活动未开始'}} {{seasonCheckVO.seasonDate}} ——</text>
         <text class='home-theme'>保险你做主 权益我知道</text>
         <view class='relative' wx:if="{{seasonCheckVO.seasonNo===1||!seasonCheckVO.seasonNo}}">
             <image src="../../asset/index/cloud_left.png" class='season1-cloud-left cloud-left'></image>
@@ -126,7 +126,7 @@
             </view>
             <view class='flx-ce-ce btn-open' catchtap='handleOpen'>立即开启</view>
         </view>
-        <!-- 授权 -->
+        <!-- 微信授权 -->
         <view class='authorization-box flx-ce-clm' wx:if="{{!authFlag}}">
             <view class='auth-title'>申请获取以下权限</view>
             <view class='auth-desc'>使用您的昵称、头像等公开信息用于分享、排行使用</view>
@@ -137,8 +137,69 @@
             <view class='arrow-wrap'>
                 <image src='../../asset/index/home_arrow.png' class='close_arrow' catchtap='closeMask'></image>
             </view>
-            <image src="http://dt.minshenglife.com/upload/img/20190628/1561712685136.png" catchtap='closeMask' mode='widthFix' class='home-rules' data-model='inner'></image>
+            <image src="http://dt.minshenglife.com/upload/img/20190702/1562032305943.png" catchtap='closeMask' mode='widthFix' class='home-rules' data-model='inner'></image>
         </scroll-view>
+        <!-- 赛季未开始 -->
+        <view class='season-end container flx-ce-clm' wx:if="{{preSeason}}" catchtap='closeMask'>
+            <view class='knapsack-close-box'>
+                <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
+            </view>
+            <view class='end-wrap flx-ce-no-clm'>
+                <view class='end-title'>活动尚未开始</view>
+                <view class='end-info'>快去收集特权卡为冲击赛季奖励</view>
+                <view class='end-info'>做准备吧</view>
+                <view class='follow-season' catchtap='followSeason'>关注赛季信息 ></view>
+                <view class='end-btn flx-ce-ce' catchtap='closeMask'>确定</view>
+            </view>
+        </view>
+        <!-- 赛季结算 -->
+        <view class='season-end container flx-ce-clm' wx:if="{{seasonCalc}}" catchtap='closeMask'>
+            <view class='knapsack-close-box'>
+                <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
+            </view>
+            <view class='end-wrap flx-ce-no-clm'>
+                <view class='end-title'>{{seasonCheckVO.seasonTitle}}结算中</view>
+                <view class='end-info'>本赛季正在结算成绩，</view>
+                <view class='end-info'>敬请期待下一赛季</view>
+                <view class='follow-season' catchtap='followSeason'>关注赛季信息 ></view>
+                <view class='end-btn flx-ce-ce' catchtap='closeMask'>确定</view>
+            </view>
+        </view>
+        <!-- 赛季结束 -->
+        <view class='season-end container flx-ce-clm' wx:if="{{seasonEnd}}" catchtap='closeMask'>
+            <view class='knapsack-close-box'>
+                <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
+            </view>
+            <view class='end-wrap flx-ce-no-clm'>
+                <view class='end-title'>{{seasonCheckVO.lastSeasonTitle}} 已结束</view>
+                <view class='end-info'>上赛季段位在新赛季继承，奖励于</view>
+                <view class='end-info'>48小时内发放</view>
+                <view class='follow-season' catchtap='followSeason'>关注赛季信息 ></view>
+                <view class='end-btn flx-ce-ce' catchtap='closeMask'>开启新赛季</view>
+            </view>
+        </view>
+        <!-- 代理人无法领取宝箱 -->
+        <view class='container flx-ce-clm' wx:if="{{showClient}}" catchtap='closeMask' data-model='inner'>
+            <view class='knapsack-close-box'>
+                <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
+            </view>
+            <view class='client-tips flx-ce-no-clm'>
+                <view class='end-info'>您的身份是代理人,</view>
+                <view class='end-info'>无法成为别人的徒弟哟。</view>
+                <view class='clent-btn flx-ce-ce' catchtap='closeMask'>知道了</view>
+            </view>
+        </view>
+        <!-- 分享达到领取上限 -->
+        <view class='container flx-ce-clm' catchtap='closeMask' wx:if="{{showLimit}}">
+            <view class='knapsack-close-box'>
+                <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
+            </view>
+            <view class='limit flx-ce-no-clm'>
+                <image src='../../asset/index/up_limit_bg.png' class='limit-pic'></image>
+                <view>您今天的分享宝箱领取已达上线</view>
+                <button class='limit-btn' bindtap='closeMask'>我知道了</button>
+            </view>
+        </view>
         <!-- 背包弹窗 -->
         <view class='knapsack-box' wx:if="{{knapsackMask}}">
             <view class='knapsack-close-box'>
@@ -171,6 +232,33 @@
                     <view class='open-btn-box' wx:if="{{showCardBtn&&showInfo.curNum>0}}">
                         <image src='../../asset/index/open_treasureBox.png' class='open-btn' bindtap='handleOpenBox'></image>
                     </view>
+                </view>
+            </view>
+        </view>
+        <!-- 拜师 -->
+        <view class='container flx-ce-clm' catchtap='closeMask' data-model='inner' wx:if="{{showTeacher}}">
+            <view class='knapsack-close-box' >
+                <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
+            </view>
+            <view class='baishi-wrap'>
+                <view class='teacher-info'>
+                    <image src='../../asset/index/baishi_box_bg.png' class='baishi_bg'></image>
+                    <view class='header'>
+                        <image src='../../asset/index/default_header.png' class='baishi-img'></image>
+                    </view>
+                    <view class='teacher-detail'>
+                        <view class='teacher-name'>{{shareInfoVO.agentInfoVO.agentName}}</view>
+                        <view class='teacher-num'>编号:{{shareInfoVO.agentInfoVO.agentCode}}</view>
+                        <view>{{shareInfoVO.agentInfoVO.company+' '+shareInfoVO.agentInfoVO.managecom}} </view>
+                    </view>
+                </view>
+                <view class='teacher-contain flx-ce-no-clm'>
+                    <view class='teacher-title'>拜TA为师</view>
+                    <view>每天导师都会为你送出</view>
+                    <view>“学艺宝箱”</view>
+                    <button class='baishi-btn' bindtap='handleTeacher'>确认拜师</button>
+                    <button class='spe-btn' bindtap='handleSelfReliance'>自立门户</button>
+                    <text class='teacher-tips'>- 民生保险 -</text>
                 </view>
             </view>
         </view>
@@ -230,68 +318,6 @@
                 </view>
             </view>
             <image src='../../asset/index/put_in_bag.png' class='put-in-bag' bindtap='saveCard'></image>
-        </view>
-        <!-- 赛季结算 -->
-        <view class='season-end container flx-ce-clm' wx:if="{{seasonEnd}}" catchtap='closeMask'>
-            <view class='knapsack-close-box'>
-                <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
-            </view>
-            <view class='end-wrap flx-ce-no-clm'>
-                <view class='end-title'>保险服务权益季结算中</view>
-                <view class='end-info'>本赛季正在结算成绩，</view>
-                <view class='end-info'>敬请期待下一赛季</view>
-                <view class='follow-season'>关注赛季信息></view>
-                <view class='end-btn flx-ce-ce' catchtap='closeMask'>确定</view>
-            </view>
-        </view>
-        <!-- 分享达到领取上限 -->
-        <view class='container flx-ce-clm' catchtap='closeMask' wx:if="{{showLimit}}">
-            <view class='knapsack-close-box'>
-                <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
-            </view>
-            <view class='limit flx-ce-no-clm'>
-                <image src='../../asset/index/up_limit_bg.png' class='limit-pic'></image>
-                <view>您今天的分享宝箱领取已达上线</view>
-                <button class='limit-btn' bindtap='closeMask'>我知道了</button>
-            </view>
-        </view>
-        <!-- 拜师 -->
-        <view class='container flx-ce-clm' catchtap='closeMask' data-model='inner' wx:if="{{showTeacher}}">
-            <view class='knapsack-close-box' >
-                <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
-            </view>
-            <view class='baishi-wrap'>
-                <view class='teacher-info'>
-                    <image src='../../asset/index/baishi_box_bg.png' class='baishi_bg'></image>
-                    <view class='header'>
-                        <image src='../../asset/index/default_header.png' class='baishi-img'></image>
-                    </view>
-                    <view class='teacher-detail'>
-                        <view class='teacher-name'>{{shareInfoVO.agentInfoVO.agentName}}</view>
-                        <view class='teacher-num'>编号:{{shareInfoVO.agentInfoVO.agentCode}}</view>
-                        <view>{{shareInfoVO.agentInfoVO.company+' '+shareInfoVO.agentInfoVO.managecom}} </view>
-                    </view>
-                </view>
-                <view class='teacher-contain flx-ce-no-clm'>
-                    <view class='teacher-title'>拜TA为师</view>
-                    <view>每天导师都会为你送出</view>
-                    <view>“学艺宝箱”</view>
-                    <button class='baishi-btn' bindtap='handleTeacher'>确认拜师</button>
-                    <button class='spe-btn' bindtap='handleSelfReliance'>自立门户</button>
-                    <text class='teacher-tips'>- 民生保险 -</text>
-                </view>
-            </view>
-        </view>
-        <!-- 代理人无法领取宝箱 -->
-        <view class='container flx-ce-clm' wx:if="{{showClient}}" catchtap='closeMask' data-model='inner'>
-            <view class='knapsack-close-box'>
-                <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
-            </view>
-            <view class='client-tips flx-ce-no-clm'>
-                <view class='end-info'>您的身份是代理人,</view>
-                <view class='end-info'>无法成为别人的徒弟哟。</view>
-                <view class='clent-btn flx-ce-ce' catchtap='closeMask'>知道了</view>
-            </view>
         </view>
     </view>
 </view>

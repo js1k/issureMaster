@@ -17,10 +17,12 @@ Page({
         hiddenToast: true,
         showNewPlay:true,
         showShare:false,
-        seasonEnd:false,
+        seasonCalc:false,
         showTeacher:false,
         showClient:false,
         showLimit:false,
+        seasonEnd:false,
+        preSeason:false,
         toastText:'',
         loadingText:'加载中...',
         uid:'',
@@ -156,7 +158,6 @@ Page({
                 }
             })
         } else {
-            console.log('0000')
             app.doLogin(function () {
                 // _this.getData()
             })
@@ -181,6 +182,14 @@ Page({
     },
     onUnload: function () {
         clearInterval(this.data.loopInterval)
+    },
+    followSeason:function(){
+        this.setData({
+            seasonCalc:false,
+            showRules:true,
+            seasonEnd:false,
+            preSeason:false
+        })
     },
     // 打开分享获得的宝箱
     handleOpen:function(){
@@ -561,9 +570,6 @@ Page({
         wx.removeStorage({
             key: 'uid'
         })
-        if (wx.getStorageSync('encryptedData')){
-            this.getData()
-        }
         this.setData({
             showMask: false,
             openBox: false,
@@ -571,6 +577,12 @@ Page({
             knapsackMask: false,
             showShare: false
         })
+        if (this.data.seasonCheckVO.status == 0 || this.data.seasonCheckVO.status == 2 || this.data.seasonCheckVO.status == 3){
+            return
+        }
+        if (wx.getStorageSync('encryptedData')){
+            this.getData()
+        }
     },
     goHomepage: function() {
         wx.navigateTo({
@@ -617,10 +629,10 @@ Page({
         let _this=this
         let param={
             agentUserId:'',
-            encryptedData: wx.getStorageSync('encryptedData'),
-            // insureUid: wx.getStorageSync('insureUid'),
-            iv: wx.getStorageSync('iv'),
-            jsCode: wx.getStorageSync('jsCode'),
+            encryptedData: wx.getStorageSync('insureUid')?'':wx.getStorageSync('encryptedData'),
+            insureUid: wx.getStorageSync('insureUid'),
+            iv: wx.getStorageSync('insureUid')?'':wx.getStorageSync('iv'),
+            jsCode: wx.getStorageSync('insureUid')?'':wx.getStorageSync('jsCode'),
             chestType: wx.getStorageSync('type'),
             shareUserId: wx.getStorageSync('uid'),
             shareDay: wx.getStorageSync('shareDay')
@@ -635,12 +647,31 @@ Page({
                 chestNum: data.chestNum,
                 chipFlag: data.chipFlag,
                 packageFlag: data.packageFlag,
-                loopBefore: data.tipList[0],
-                loopAfter: data.tipList[data.tipList.length-1],
+                loopBefore: data.tipList[0]||'',
+                loopAfter: data.tipList[data.tipList.length-1]||'',
                 hiddenLoading:true,
                 shareInfoVO: data.shareInfoVO,
                 chestTipList: data.chestTipList,
             })
+            wx.setStorageSync('insureUid', data.insureUserVO.insureUid)
+            app.globalData.insureUid = data.insureUserVO.insureUid
+            // 判断赛季信息
+            if (_this.data.seasonCheckVO.status == 0){
+                _this.setData({
+                    showMask: true,
+                    preSeason: true
+                })
+            }else if (_this.data.seasonCheckVO.status==2){
+                _this.setData({
+                    showMask:true,
+                    seasonCalc:true
+                })
+            } else if (_this.data.seasonCheckVO.status == 3) {
+                _this.setData({
+                    showMask: true,
+                    seasonEnd: true
+                })
+            }
             // 根据接口返回分享状态码弹出对应错误弹窗
             if (_this.data.shareInfoVO.shareStatus === 2 || _this.data.shareInfoVO.shareStatus === 3){   //  拜他为师
                 _this.setData({
@@ -664,6 +695,7 @@ Page({
                     showClient: true
                 })
             }
+            // 页面轮播消息
             if (data.chestTipList && data.chestTipList.length>0){
                 setTimeout(function () {
                     _this.setData({
@@ -674,7 +706,7 @@ Page({
                     })
                 },1000)
             }
-            wx.setStorageSync('insureUid', data.insureUserVO.insureUid)
+            //页面轮播文字赋值
             _this.data.loopInterval=setInterval(function () {
                 if (_this.data.curIndex === _this.data.tipList.length - 1) {
                     _this.setData({
@@ -683,12 +715,11 @@ Page({
                 }
                 _this.setData({
                     curIndex: _this.data.curIndex+1,
-                    loopBefore: _this.data.tipList[_this.data.curIndex],
-                    loopAfter: _this.data.tipList[_this.data.tipList.length-_this.data.curIndex-1]
+                    loopBefore: _this.data.tipList[_this.data.curIndex]||'',
+                    loopAfter: _this.data.tipList[_this.data.tipList.length-_this.data.curIndex-1]||''
                 })
             }, 3000)
 
-            app.globalData.insureUid = data.insureUserVO.insureUid
         },function(data){
             console.log('error')
         })
@@ -708,7 +739,6 @@ Page({
             userInfo: e.detail.userInfo,
             authFlag: true
         })
-        console.log('1234')
         this.getData()
     }
 })
