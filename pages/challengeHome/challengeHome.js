@@ -14,7 +14,8 @@ Page({
         insurePackageVO:'',
         insureUserVO:'',
         seasonCheckVO:'',
-
+        isUseEnergyCard:0,
+        examData:'',
         showPowerWrap:false,
         powerTxt:'',
         currentSrc:'../../asset/challengeHome/daren_pic.png',
@@ -33,16 +34,32 @@ Page({
     goBack: function () {
         app.goBack()
     },
-    goQuestion: function () {
+    startTest: function () {
+        //开始答题判断能量值是否足够
         if (this.data.insureUserVO.todayEnergy<5){
             this.setData({
                 showMask:true,
                 showPowerWrap:true
             })
+            return
         }
-        // wx.navigateTo({
-        //     url: '../challenge/challenge'
-        // })
+        console.log('start')
+        this.getQuestion()
+    },
+    getQuestion:function(){
+        let _this=this
+        app.httpPost('/xcx/insureMaster/examStart', { insureUid: wx.getStorageSync('insureUid'), isUseEnergyCard: _this.data.isUseEnergyCard},function(data){
+            _this.setData({
+                examData: data.insureExamGenerateResponse
+            })
+            wx.setStorageSync('question', data.insureExamGenerateResponse)
+            //请求考题后跳转答题页
+            wx.navigateTo({
+                url: '../challenge/challenge'
+            })
+        },function(error){
+            console.log('error')
+        })
     },
     bindchange:function(e){
         var _this=this
@@ -72,6 +89,20 @@ Page({
         this.setData({
             showMask:true,
             showRule:true
+        })
+    },
+    // 使用能量
+    usePower: function () {
+        this.setData({
+            isUseEnergyCard:1
+        })
+        console.log(123)
+        this.getQuestion()
+    },
+    // 做任务
+    goTreasure: function () {
+        wx.navigateTo({
+            url: '../treasureBox/treasureBox'
         })
     },
     getData:function(){

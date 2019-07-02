@@ -54,7 +54,7 @@ Page({
         this.interval=setTimeout(function () {
             _this.calcTime()
         },2000)
-        this.getData()
+        // this.getData()
     },
     calcTime: function () {
         var _this = this
