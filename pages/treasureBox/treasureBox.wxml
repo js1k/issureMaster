@@ -1,5 +1,5 @@
 <scroll-view class="treasure-box" scroll-y="true" bindscrolltolower="bindscrolltolower">
-    <canvas canvas-id="shareCanvas" style="width:550rpx;height:760rpx" class='canvas-bg'></canvas>
+    <loading hidden="{{hiddenLoading}}">{{loadingText}}</loading>
     <view class='navigation flx-ce-ce'>
         <view class='tab-content'>
             <view class="nav-tab flx-ce-ce {{showTask===true?'tab-actived':''}}" bindtap='handleToggle' data-mark="treasure">任务宝箱</view>
@@ -16,7 +16,6 @@
                     <view class='card-des'>学艺宝箱，三种特权任你挑选两张</view>
                     <view class='card-box-content'>
                         <image src='../../asset/treasureBox/teacher_box.png' class='card-box'></image>
-                        <!-- <text class='card-box-txt'>{{treasureData.studyChest}}/1</text> -->
                         <text class='card-box-txt'>剩余{{1-treasureData.studyChest}}次</text>
                     </view>
                 </view>
@@ -29,7 +28,6 @@
                     <view class='card-des'>来一次给力分享，双方得分享宝箱</view>
                     <view class='card-box-content'>
                         <image src='../../asset/treasureBox/share_box.png' class='card-box'></image>
-                        <!-- <text class='card-box-txt'>{{treasureData.shareChest}}/5</text> -->
                         <text class='card-box-txt'>剩余{{5-treasureData.shareChest}}次</text>
                     </view>
                 </view>
@@ -70,6 +68,7 @@
         </view>
     </view>
     <view class='com-mask' wx:if="{{showMask}}" bindtap='closeMask'>
+        <!-- 学艺宝箱 -->
         <view class='take-teacher' catchtap='closeMask' data-model='inner' wx:if="{{showBaishi}}">
             <view class='teacher-container flx-ce-clm'>
                 <image class='teacher-box' src='http://dt.minshenglife.com/upload/img/20190627/1561639837974.png'></image>
@@ -98,23 +97,29 @@
                 </view>
             </view>
         </view>
+        <!-- 分享友礼弹窗 -->
         <view class='share-pic flx-ce-no-clm' wx:if="showSharePic" wx:if="{{showShareActive}}">
-            <image src='http://dt.minshenglife.com/upload/img/20190627/1561639963838.png' class='main-pic'></image>
-            <view class='dynamic-contain flx-ce-bet'>
-                <view class='share-text-contain'>
-                    <text class='share-title'>{{shareName}}送你"分享宝箱"~</text>
-                    <text class='share-txt'>快来和TA一起赢取大奖吧~</text>
+            <view class='download-wrap flx-ce-no-clm'>
+                <image src='https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190702/1562054485634.png' class='main-pic' wx:if="{{creatImg}}"></image>
+                <view class='dynamic-contain flx-ce-bet' wx:if="{{creatImg}}">
+                    <view class='share-text-contain'>
+                        <text class='share-title'>{{shareName}}送你"分享宝箱"~</text>
+                        <text class='share-txt'>快来和TA一起赢取大奖吧~</text>
+                    </view>
+                    <view class='qr-box'>
+                        <image src="{{shareQrImg}}" class='qr-img'></image>
+                    </view>
                 </view>
-                <view class='qr-box'>
-                    <image src='../../asset/index/xueyi_bg.png' class='qr-img'></image>
+                <view class='share' wx:if="{{!creatImg}}">
+                    <canvas canvas-id="shareCanvas" style='width:550rpx;height:760rpx;display:block'></canvas>
                 </view>
             </view>
             <view class='btn-group flx-ce-bet'>
-                <view class='save-btn flx-ce-ce share-btn-txt' catchtap='saveImg'>保存图片</view>
-                <!-- <view class='share-btn flx-ce-ce share-btn-txt'>立即分享</view> -->
-                <button data-id="shareBtn" open-type='share' class='share-btn flx-ce-ce share-btn-txt'>立即分享</button>
+                <button class='save-btn flx-ce-ce share-btn-txt' catchtap='saveImg'>保存图片</button>
+                <button data-id="shareBtn" open-type='share' class='share-btn share-btn-txt'>立即分享</button>
             </view>
         </view>
+        <!-- 新手宝箱 -->
         <view class='take-teacher' catchtap='closeMask' data-model='inner' wx:if="{{showShare}}">
             <view class='none-teacher-content flx-ce-clm'>
                 <image class='none-teacher' src='http://dt.minshenglife.com/upload/img/20190628/1561715002804.png'></image>
@@ -138,6 +143,7 @@
             </view>
             <view class='flx-ce-ce btn-open' catchtap='handleOpen'>立即开启</view>
         </view>
+        <!-- 关注公众号弹窗 -->
         <view class='open-box-layer flx-ce-no-clm' catchtap='closeMask' data-model='inner' wx:if="{{showCards}}">
             <view class='knapsack-close-box'>
                 <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>

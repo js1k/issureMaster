@@ -288,9 +288,8 @@ Page({
     onShareAppMessage: function () {
         return {
             title: '2019民生保险用户体验节~ \n保保大师答题挑战赛，精彩来战',
-            path: '/pages/index/index?uid=' + wx.getStorageSync('insureUid')+'&type=2',
-            // path: '/pages/index/index?uid=20353074498050&type=2',
-            imageUrl: 'http://dt.minshenglife.com/upload/img/20190628/1561717521552.png',
+            path: '/pages/index/index',
+            imageUrl: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190628/1561717521552.png',
             success: function () { }
         }
     },
