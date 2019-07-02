@@ -26,13 +26,18 @@ Page({
         },
         recordList:[]
     },
-    onShareAppMessage: function () {
-        return {
+    onShareAppMessage: function (options) {
+        let param = {
             title: '2019民生保险用户体验节~ \n保保大师答题挑战赛，精彩来战',
             path: '/pages/index/index',
             imageUrl: 'http://dt.minshenglife.com/upload/img/20190628/1561717521552.png',
             success: function () { }
         }
+        if(options.from==='button'){
+            var dataid=options.target.dataset;
+            param.path ='/pages/index/index'
+        }
+        return param
     },
     saveImg:function(){
         
@@ -163,8 +168,8 @@ Page({
     getRecords: function() {
         let _this = this
         wx.showToast({
-            title: '加载中',
-            icon: 'success',
+            title: '加载中...',
+            icon: 'loading',
             duration: 1000
         })
         app.httpPost('/xcx/insureMaster/chestRecord', _this.data.recordParam, function(data) {

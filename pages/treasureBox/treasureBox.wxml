@@ -111,7 +111,8 @@
             </view>
             <view class='btn-group flx-ce-bet'>
                 <view class='save-btn flx-ce-ce share-btn-txt' catchtap='saveImg'>保存图片</view>
-                <view class='share-btn flx-ce-ce share-btn-txt'>立即分享</view>
+                <!-- <view class='share-btn flx-ce-ce share-btn-txt'>立即分享</view> -->
+                <button data-id="shareBtn" open-type='share' class='share-btn flx-ce-ce share-btn-txt'>立即分享</button>
             </view>
         </view>
         <view class='take-teacher' catchtap='closeMask' data-model='inner' wx:if="{{showShare}}">

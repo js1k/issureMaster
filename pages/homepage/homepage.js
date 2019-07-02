@@ -31,6 +31,11 @@ Page({
     },
     getData: function() {
         let _this = this
+        wx.showToast({
+            title: '加载中...',
+            icon: 'loading',
+            duration: 1000
+        })
         app.httpPost('/xcx/insureMaster/personalCenter', { insureUid: wx.getStorageSync('insureUid')}, function(data) {
             _this.setData({
                 insureUserVO: data.insureUserVO,
