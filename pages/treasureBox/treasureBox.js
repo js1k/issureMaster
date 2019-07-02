@@ -161,7 +161,12 @@ Page({
         })
     },
     getRecords: function() {
-        let _this=this
+        let _this = this
+        wx.showToast({
+            title: '加载中',
+            icon: 'success',
+            duration: 1000
+        })
         app.httpPost('/xcx/insureMaster/chestRecord', _this.data.recordParam, function(data) {
             _this.setData({
                 recordList: [..._this.data.recordList,...data.list],
