@@ -170,7 +170,6 @@ Page({
     },
     onShow: function (options) {
         if (this.data.checkShow){
-            console.log('onShow')
             this.onLoad()
         }
     },
