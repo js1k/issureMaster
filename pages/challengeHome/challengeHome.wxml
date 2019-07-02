@@ -40,18 +40,32 @@
             </swiper-item>
         </swiper>
     </view>
-    <view class='user-status flx-ce-ce' wx:if="{{insureUserVO.userLevel<4&&itemIndex+1<4}}">
+    <!-- 用户等级1-->
+    <view class='user-status flx-ce-ce' wx:if="{{itemIndex==0}}">
         <image class='star-light' src='../../asset/challengeHome/star_light.png'></image>
-        <image class='star-light' src='../../asset/challengeHome/star_light.png' wx:if="{{insureUserVO.userLevel>1&&itemIndex!=0&&(insureUserVO.starNum>=2||itemIndex+1<insureUserVO.userLevel)}}"></image>
-        <image class='star-light' src='../../asset/challengeHome/star_light.png' wx:if="{{insureUserVO.starNum===3}}"></image>
-        <image class='star-light' src='../../asset/challengeHome/star_black.png' wx:if="{{insureUserVO.userLevel>insureUserVO.starNum&&insureUserVO.userLevel==itemIndex+1}}"></image>
     </view>
-    <view class='user-status flx-ce-ce' wx:if="{{insureUserVO.userLevel==4&&insureUserVO.userLevel==itemIndex+1}}">
+    <!-- 用户等级2 -->
+    <view class='user-status flx-ce-ce' wx:if="{{itemIndex==1&&insureUserVO.userLevel>=2}}">
+        <image class='star-light' src='../../asset/challengeHome/star_light.png'></image>
+        <image class='star-light' src='../../asset/challengeHome/star_light.png' wx:if="{{(insureUserVO.userLevel>2)||(insureUserVO.userLevel==2&&insureUserVO.starNum==2)}}"></image>
+        <image class='star-light' src='../../asset/challengeHome/star_black.png' wx:if="{{(insureUserVO.userLevel==2&&insureUserVO.starNum==1)}}"></image>
+    </view>
+    <!-- 用户等级3 -->
+    <view class='user-status flx-ce-ce' wx:if="{{itemIndex==2&&insureUserVO.userLevel>=3}}">
+        <image class='star-light' src='../../asset/challengeHome/star_light.png'></image>
+        <image class='star-light' src='../../asset/challengeHome/star_light.png' wx:if="{{(insureUserVO.userLevel>3)||(insureUserVO.userLevel==3&&insureUserVO.starNum>=2)}}"></image>
+        <image class='star-light' src='../../asset/challengeHome/star_light.png' wx:if="{{(insureUserVO.userLevel>3)||(insureUserVO.userLevel==3&&insureUserVO.starNum==3)}}"></image>
+        <image class='star-light' src='../../asset/challengeHome/star_black.png' wx:if="{{insureUserVO.userLevel==3&&insureUserVO.starNum<3}}"></image>
+        <image class='star-light' src='../../asset/challengeHome/star_black.png' wx:if="{{insureUserVO.userLevel==3&&insureUserVO.starNum==1}}"></image>
+    </view>
+    <!-- 宗师级别 -->
+    <view class='user-status flx-ce-ce' wx:if="{{itemIndex==3&&insureUserVO.userLevel==4}}">
         <view class='zongshi-grap'>
             <image class='star-zongshi' src='../../asset/challengeHome/star_zongshi.png'></image>
         </view>
         <view class='zongshi-txt'>x{{insureUserVO.starNum}}</view>
     </view>
+    <!-- 等级未开启 -->
     <view class='user-status flx-ce-ce' wx:if="{{insureUserVO.userLevel<itemIndex+1}}">
         <image src='../../asset/rankList/season_lock.png' class='season-lock'></image>
     </view>
@@ -92,17 +106,14 @@
             <image src='../../asset/challengeHome/question_icon.png' class='question-icon'></image>
         </view>
     </view>
-    <!-- <view class='com-mask' bindtap='closeMask' wx:if="{{showMask}}">
-        <scroll-view class='rules flx-ce-clm rules-container' scroll-y="true" wx:if="{{showRule}}">
-            <image class='close-rule' src='../../asset/mask_close.png' bindtap='closeMask'></image>
-            <image class='rule-pic ' src='http://dt.minshenglife.com/upload/img/20190628/1561712685136.png' mode='widthFix' catchtap='closeMask' data-model='inner'></image>
-        </scroll-view>
-    </view> -->
+    <!-- 弹窗 -->
     <view class='com-mask' wx:if="{{showMask}}" bindtap='closeMask'>
+        <!-- 规则 -->
         <scroll-view class='rules flx-ce-clm rules-container' scroll-y="true" wx:if="{{showRule}}">
             <image class='close-rule' src='../../asset/mask_close.png' bindtap='closeMask'></image>
             <image class='rule-pic ' src='http://dt.minshenglife.com/upload/img/20190628/1561712685136.png' mode='widthFix' catchtap='closeMask' data-model='inner'></image>
         </scroll-view>
+        <!-- 能量窗口 -->
         <view class='power-wrap flx-ce-no-clm' wx:if="{{showPowerWrap}}">
             <view class='knapsack-close-box'>
                 <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>

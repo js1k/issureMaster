@@ -95,13 +95,13 @@
 .user-status{
     height:72rpx;
     margin:40rpx 0;
-    animation: seasonStar 1s ease-in-out forwards;
+    /* animation: seasonStar 1s ease-in-out forwards; */
 }
 .star-light{
     width:48rpx;
     height:48rpx;
     margin-right:8rpx;
-    animation: seasonStar 1s ease-in-out forwards;
+    /* animation: seasonStar 1s ease-in-out forwards; */
 }
 .challenge-desc{
     font-size:22rpx;

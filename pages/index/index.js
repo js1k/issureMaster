@@ -14,7 +14,6 @@ Page({
         openBox: false,
         canSave: true,
         hiddenLoading: false,
-        hiddenToast: true,
         showNewPlay:true,
         showShare:false,
         seasonCalc:false,
@@ -23,7 +22,6 @@ Page({
         showLimit:false,
         seasonEnd:false,
         preSeason:false,
-        toastText:'',
         loadingText:'加载中...',
         uid:'',
         type:'',
@@ -116,7 +114,6 @@ Page({
                 let scene = decodeURIComponent(options.scene);
                 let paramArr = scene.split("&");
                 this.setData({
-                    toastText: paramArr[0] + '&' + paramArr[1] ,
                     uid: paramArr[0],
                     type: paramArr[1],
                     shareDay: paramArr[2]
@@ -127,7 +124,6 @@ Page({
             //直接分享小程序进入
             } else if (options.type) {
                 this.setData({
-                    toastText: options.type + '&' + options.uid,
                     uid: options.uid,
                     type: options.type,
                     shareDay: options.shareDay||''

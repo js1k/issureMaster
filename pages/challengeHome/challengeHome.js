@@ -45,15 +45,15 @@ Page({
         // })
     },
     bindchange:function(e){
-        var that=this
+        var _this=this
         if (e.detail.source==='touch'){
             this.setData({
                 currentSrc: this.data.swiperDisabeItem[e.detail.current],
                 itemIndex: e.detail.current
             })
             setTimeout(function () {
-                that.setData({
-                    currentSrc: that.data.swiperItem[e.detail.current]
+                _this.setData({
+                    currentSrc: _this.data.swiperItem[e.detail.current]
                 })
             },400)
         }

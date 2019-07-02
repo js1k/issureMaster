@@ -1,6 +1,5 @@
 <view class="index-page">
     <loading hidden="{{hiddenLoading}}">{{loadingText}}</loading>
-    <toast hidden="{{hiddenToast}}">{{toastText}}</toast>
     <view class='nav-bar flx-ce-ce'>保保大师挑战赛</view>
     <view class='home-user'>
         <view class='home-user-header'>
@@ -244,7 +243,7 @@
                 <view class='teacher-info'>
                     <image src='../../asset/index/baishi_box_bg.png' class='baishi_bg'></image>
                     <view class='header'>
-                        <image src='../../asset/index/default_header.png' class='baishi-img'></image>
+                        <image src="{{seasonCheckVO.agentInfoVO.avatarUrl?seasonCheckVO.agentInfoVO.avatarUrl:'../../asset/index/default_header.png'}}" class='baishi-img'></image>
                     </view>
                     <view class='teacher-detail'>
                         <view class='teacher-name'>{{shareInfoVO.agentInfoVO.agentName}}</view>
