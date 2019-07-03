@@ -7,8 +7,7 @@
     "pages/redPackets/redPackets",
     "pages/challengeHome/challengeHome",
     "pages/challenge/challenge",
-    "pages/login/login",
-    "pages/seeAnswer/seeAnswer"
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "dark",
