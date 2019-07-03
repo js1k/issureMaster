@@ -54,6 +54,10 @@
     opacity: 0;
     animation: showCardBar 2.8s linear forwards;
 }
+.review-btn{
+    width: 402rpx;
+    height: 88rpx;
+}
 
 .submit {
     width: 100%;
@@ -143,6 +147,9 @@
     background:rgba(255,248,248,1);
     animation: questionIn 2.6s ease-in forwards;
 }
+.review-question{
+    background:rgba(255,248,248,1);
+}
 .question-tips{
     font-size:22rpx;
     font-weight:500;
@@ -160,7 +167,9 @@
     color:rgba(255,255,255,1);
 }
 .cur-index{
-    background:rgba(255,106,53,1);
+    background:rgba(255,106,53,1) !important;
+    color:white !important;
+    border:none !important;
 }
 .wrong-index{
     border:1px solid rgba(255,80,80,1);
@@ -187,7 +196,13 @@
     color:rgba(58,61,79,1);
     margin-bottom:44rpx;
 }
-
+.right-icon{
+    width:44rpx;
+    height:44rpx;
+    position:absolute;
+    right:32rpx;
+    top:22rpx;
+}
 .que-answer{
     width:506rpx;
     height:88rpx;
@@ -249,6 +264,7 @@
     position: fixed;
     left:236rpx;
     top:76rpx;
+    z-index: 99
 }
 .header-img{
     width:280rpx;
@@ -456,6 +472,15 @@
 }
 .remove-index{
     color:rgba(217,215,228,1);
+}
+.closeBtn{
+    width:402rpx;
+    height:88rpx;
+    background:rgba(255,167,0,1);
+    border-radius:44rpx;
+    font-size:34rpx;
+    font-weight:500;
+    color:rgba(255,255,255,1);
 }
 @keyframes questionIn{
     0%{

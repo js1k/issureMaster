@@ -1,0 +1,6 @@
+<view class='answer-page'>
+    <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack'></image>
+    <view class='section flx-ce-clm'>
+        <view class='answer-btn'>关闭</view>
+    </view>
+</view>

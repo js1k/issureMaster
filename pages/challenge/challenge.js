@@ -13,6 +13,7 @@ Page({
         interval: null,
         timeInterval: null,
         answerEnd:false,
+        onTest:true,
         hiddenLoading:true,
         showShareActive:false,
         showPackets:false,
@@ -21,6 +22,10 @@ Page({
         upgrade:false,
         creatImg:true,
         canSubUse:true,
+        reviewQuestion:false,
+        reviewIndex:0,
+        reviewData:'',
+        curReview:'',
         result:'',
         useParam: {
             cardType: 1,
@@ -121,6 +126,7 @@ Page({
             }
         }, this)
     },
+    // 分享图片
     handleShare: function () {
         let _this = this
         this.setData({
@@ -238,21 +244,61 @@ Page({
             clearTimeout(timeout)
         },800)
     },
+    reviewResult:function(){
+        this.setData({
+            reviewQuestion:true,
+            answerEnd:false
+        })
+    },
+    //  处理review question
+    dealReview:function(){
+        let _this=this
+        this.setData({
+            curReview: _this.data.reviewData[_this.data.reviewIndex]
+        })
+        let optionA = 'curReview.reviewList[0].option'
+        let serialA = 'curReview.reviewList[0].serial'
+        let optionB = 'curReview.reviewList[1].option'
+        let serialB = 'curReview.reviewList[1].serial'
+        let optionC = 'curReview.reviewList[2].option'
+        let serialC = 'curReview.reviewList[2].serial'
+        this.setData({
+            [optionA]: _this.data.curReview.optionA,
+            [optionB]: _this.data.curReview.optionB,
+            [optionC]: _this.data.curReview.optionC,
+            [serialA]: 'A',
+            [serialB]: 'B',
+            [serialC]: 'C',
+        })
+    },
+    // 查看某题
+    handleReview:function(e){
+        let curReviewIndex=e.currentTarget.dataset.index
+        this.setData({
+            reviewIndex: curReviewIndex
+        })
+        this.dealReview()
+    },
     //提交答案
     submitTest:function(){
         let _this = this
         if (!_this.data.canSubmit) {
             return
         }
+        clearInterval(_this.data.interval)
         _this.setData({
-            canSubmit: false
+            canSubmit: false,
+            countDownTime:0
         })
         app.httpPost('/xcx/insureMaster/examHandIn', _this.data.subParam,function(data){
             _this.setData({
                 canSubmit:true,
                 answerEnd:true,
-                result:data
+                onTest:false,
+                result:data,
+                reviewData: data.subjectList
             })
+            _this.dealReview()
             // 如果有碎片或红包
             if (data.chip || data.isMergeChip==1){
                 _this.setData({
@@ -267,7 +313,6 @@ Page({
                     showMask: true
                 })
             }
-            clearInterval(_this.data.interval)
         },function(error){
             wx.showToast({
                 title: error.message,
@@ -307,6 +352,13 @@ Page({
             showShareActive:false,
             showBangbang:false,
             showPaichu:false
+        })
+    },
+    //  关闭查看答题
+    closeAnswer:function(){
+        this.setData({
+            reviewQuestion:false,
+            answerEnd:true
         })
     },
     //点击卡片

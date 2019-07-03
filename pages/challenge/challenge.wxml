@@ -1,7 +1,8 @@
 <view class='challenge-page flx-ce-no-clm'>
     <loading hidden="{{hiddenLoading}}">{{loadingText}}</loading>
     <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack'></image>
-    <view class='section flx-ce-bet flx-start-clm' wx:if="{{!answerEnd}}">
+    <!-- 答题页 -->
+    <view class='section flx-ce-bet flx-start-clm' wx:if="{{onTest}}">
         <view class='question'>
             <view class='question-container flx-ce-ce'>
                 <view class='ready-txt before-txt flx-ce-ce'>预备</view>
@@ -44,6 +45,34 @@
             <image class='submit' src='../../asset/challengeHome/submit_disable.png' wx:if="{{subParam.answerList.length<5}}"></image>
         </view>
     </view>
+    <!-- 查看结果 -->
+    <view class='section flx-ce-bet flx-start-clm' wx:if="{{reviewQuestion}}">
+        <view class='question'>
+            <view class='end-wrap'>
+                <image class='header-img' src='../../asset/challenge/review_question_header.png'></image>
+            </view>
+            <view class='question-container flx-ce-ce'>
+                <view class='review-question flx-ce-bet-clm'>
+                    <view class='question-info flx-ce-clm'>
+                        <view class='queistion-name flx-ce-ce'>{{curReview.subjectTitle}}</view>
+                        <view wx:for="{{curReview.reviewList}}" wx:key="index" class="que-answer flx-ce-ce {{curReview.submitAnswer==item.serial?'item-chosed':''}}">
+                            <text>{{item.option}}</text>
+                            <image class='right-icon' src='../../asset/question_true.png' wx:if="{{curReview.answer==item.serial}}"></image>
+                            <image class='right-icon' src='../../asset/question_false.png' wx:if="{{curReview.answer!=item.serial}}"></image>
+                        </view>
+                    </view>
+                    <view class='question-tips'>--   保险维权知识  --</view>
+                    <view class='question-index-bar flx-ce-ce'>
+                        <view wx:for="{{5}}" wx:key="index" class='index flx-ce-ce {{(reviewData[index].answer==reviewData[index].submitAnswer)?"done-index":"wrong-index"}} {{index==reviewIndex?"cur-index":""}}' bindtap='handleReview' data-index="{{index}}">{{index+1}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class='review-btn'>
+            <button class='closeBtn' bindtap='closeAnswer'>关闭</button>
+        </view>
+    </view>
+    <!-- 答题结果 -->
     <view class='answer-end' wx:if="{{answerEnd}}">
         <view class='question'>
             <view class='question-container flx-ce-bet-clm en-question'>
@@ -84,7 +113,7 @@
                     <image src='../../asset/challengeHome/answer_end_logo.png' class='end-logo'></image>
                 </view>
                 <view class='answer-info'>你答对了{{result.rightNum}}道题！</view>
-                <view class='look-back'>回顾本关题目</view>
+                <view class='look-back' bindtap='reviewResult'>回顾本关题目</view>
                 <view class='star-info'>
                     <image class='star-btn' src='../../asset/challengeHome/star_plus.png' wx:if="{{result.addStarNum==1}}"></image>
                     <image class='star-btn' src='../../asset/challengeHome/star_minus.png' wx:if="{{result.addStarNum==0}}"></image>
@@ -166,7 +195,7 @@
             <view class='knapsack-close-box'>
                 <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
             </view>
-            <view class='flx-ce-clm' wx:if="{{result.chip}}">
+            <view class='flx-ce-clm' wx:if="{{result.chip&&result.isMergeChip!=1}}">
                 <view class='wrap flx-ce-ce'>
                     <image class='light' src='../../asset/challengeHome/packet_light.png'></image>
                     <image class='packet-img' src="{{result.chip=='ChipA'?chipA:result.chip=='ChipB'?chipB:result.chip=='ChipC'?chipC:chipD}}"></image>
