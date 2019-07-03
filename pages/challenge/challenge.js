@@ -6,15 +6,18 @@ Page({
      */
     data: {
         curIndex: 0,    //当前答题序号
-        showMask:true,
+        showMask:false,
         countDownTime: 60,
         unfinshed: false,
         interval: null,
         timeInterval: null,
-        answerEnd:true,
+        answerEnd:false,
         hiddenLoading:true,
         showShareActive:false,
         showPackets:false,
+        showBangbang:false,
+        showPaichu:false,
+        upgrade:false,
         creatImg:true,
         result:'',
         loadingText:'图片生成中...',
@@ -86,8 +89,8 @@ Page({
         this.setData({
             question: wx.getStorageSync('question').subjectList,
             examUserId: wx.getStorageSync('examUserId'),
-            helpCard: wx.getStorageSync('helpCard'),
-            removeCard: wx.getStorageSync('removeCard'),
+            helpCard: wx.getStorageSync('helpCard') > 2 ? 2 : wx.getStorageSync('helpCard'),
+            removeCard: wx.getStorageSync('removeCard') > 2 ? 2 : wx.getStorageSync('removeCard'),
             [examUserId]: wx.getStorageSync('examUserId'),
             [insureUid]: wx.getStorageSync('insureUid')
         })
@@ -179,6 +182,16 @@ Page({
             return
         }
         let _this = this
+
+
+
+
+
+
+        // 需要回归此处
+        let answer ='curQuestion.answer'
+
+
         let queListA = 'queList['+0+'].question'
         let queListB = 'queList['+1+'].question'
         let queListC = 'queList['+2+'].question'
@@ -187,6 +200,9 @@ Page({
             [queListA]: _this.data.question[num].optionA,
             [queListB]: _this.data.question[num].optionB,
             [queListC]: _this.data.question[num].optionC,
+
+
+            [answer]:'A'
         })
         if (num===0){
             return 
@@ -237,6 +253,12 @@ Page({
                     showMask:true
                 })
             }
+            if (data.isUpgrade==1){
+                _this.setData({
+                    upgrade: true,
+                    showMask: true
+                })
+            }
             clearInterval(_this.data.interval)
         },function(error){
             wx.showToast({
@@ -274,9 +296,39 @@ Page({
             showMask: false,
             unfinshed:false,
             showShareActive:false,
+            showBangbang:false
         })
     },
+    // 点击帮帮卡
+    useBangbang:function(e){
+        let canUse = e.currentTarget.dataset.canuse
+        if (!canUse){
+            return
+        }
+        let _this=this
+        this.setData({
+            showMask:true,
+            showBangbang:true
+        })
+    },
+    // 点击排除卡
+    useRemove: function (e) {
+        let canUse = e.currentTarget.dataset.canuse
+        if (!canUse) {
+            return
+        }
+        console.log(121212)
+        let _this = this
+        // this.setData({
+        //     showMask: true,
+        //     showBangbang: true
+        // })
+    },
+    // 使用帮帮卡
     handleBang: function() {
+        if (this.data.helpCard<=0){
+            return
+        }
         let _this=this
         let param = {
             cardType: 1,
@@ -286,6 +338,29 @@ Page({
         }
         app.httpPost('/xcx/insureMaster/examUseCard', param, function() {
             
+        }, function (error) {
+            wx.showToast({
+                title: error.message,
+                icon: 'none',
+                duration: 1000,
+                mask: true
+            })
+        })
+    },
+    // 使用排除卡
+    handlePaichu: function () {
+        if (this.data.removeCard <= 0) {
+            return
+        }
+        let _this = this
+        let param = {
+            cardType: 2,
+            examUserId: this.data.examUserId,
+            insureUid: wx.getStorageSync('insureUid'),
+            subjectId: this.data.question[_this.data.curIndex].id
+        }
+        app.httpPost('/xcx/insureMaster/examUseCard', param, function () {
+
         }, function (error) {
             wx.showToast({
                 title: error.message,

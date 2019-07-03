@@ -9,7 +9,7 @@
                 <view class='question-list flx-ce-bet-clm'>
                     <view class='question-info flx-ce-clm'>
                         <view class='queistion-name flx-ce-ce'>{{curQuestion.subjectTitle}}</view>
-                        <view wx:for="{{queList}}" wx:key="index" class="que-answer flx-ce-ce {{choseItem==index?'item-chosed':''}}" bindtap='choseAnswer' data-serial="{{item.serial}}">{{item.question}}</view>
+                        <view wx:for="{{queList}}" wx:key="index" class="que-answer flx-ce-ce {{choseItem==index?'item-chosed':''}} {{}}" bindtap='choseAnswer' data-serial="{{item.serial}}">{{item.question}}</view>
                     </view>
                     <view class='question-tips'>--   保险维权知  --</view>
                     <view class='question-index-bar flx-ce-ce'>
@@ -25,7 +25,6 @@
                 <view class='clock-contain flx-ce-ce'>
                     <view class='flx-ce-ce clock-txt'>
                         <view class='clock-num'>{{countDownTime}}</view>
-                        <!-- <image src='../../asset/challengeHome/clock_icon.png' class='clock-icon'></image> -->
                     </view>
                 </view>
             </view>
@@ -33,11 +32,11 @@
         <view class='privilegev-card flx-ce-bet'>
             <view class='privilege-title flx-ce-ce'>特权卡</view>
             <view class='privilege-contain flx-ce-ce'>
-                <image src="{{helpCard>0?bangbang:bangbangDisable}}" class='privilege-pic' bindtap='handleBang'></image>
-                <image src="{{helpCard>1?bangbang:bangbangDisable}}" class='privilege-pic' bindtap='handleBang'></image>
-                <image src="{{removeCard>0?paichu:paichuDisable}}" class='privilege-pic' bindtap='handleRemove'></image>
-                <image src="{{removeCard>1?paichu:paichuDisable}}" class='privilege-pic' bindtap='handleRemove'></image>
-                <image src="{{removeCard>2?paichu:paichuDisable}}" class='privilege-pic' bindtap='handleRemove'></image>
+                <image src="{{helpCard>0?bangbang:bangbangDisable}}" data-canUse="{{helpCard>0?true:false}}" class='privilege-pic' bindtap='useBangbang'></image>
+                <image src="{{helpCard>1?bangbang:bangbangDisable}}" data-canUse="{{helpCard>1?true:false}}" class='privilege-pic' bindtap='useBangbang'></image>
+                <image src="{{removeCard>0?paichu:paichuDisable}}" data-canUse="{{helpCard>0?true:false}}" class='privilege-pic' bindtap='useRemove'></image>
+                <image src="{{removeCard>1?paichu:paichuDisable}}" data-canUse="{{helpCard>1?true:false}}" class='privilege-pic' bindtap='useRemove'></image>
+                <image src="{{removeCard>2?paichu:paichuDisable}}" data-canUse="{{helpCard>2?true:false}}" class='privilege-pic' bindtap='useRemove'></image>
             </view>
         </view>
         <view class='test-submit'>
@@ -52,7 +51,7 @@
                     <image src="{{result.addStarNum!=1?'../../asset/challengeHome/en_fail_header.png':'../../asset/challengeHome/answer_end_title.png'}}" class='header-img'></image>
                 </view>
                 <view class='header-wrap-box'>
-                    <image class='header-pic' src="{{result.avatarUrl?result.avatarUrl:'../../asset/index/default_header.png'}}"></image>
+                    <image class='header-pic-img' src="{{result.avatarUrl?result.avatarUrl:'../../asset/index/default_header.png'}}"></image>
                 </view>
                 <view class='user-name'>{{result.nickName}}</view>
                 <view class='user-level'>
@@ -110,6 +109,36 @@
                 </view>
             </view>
         </view>
+        <!-- 使用帮帮卡 -->
+        <view class='user-card' wx:if="{{showBangbang}}">
+            <view class='knapsack-close-box'>
+                <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
+            </view>
+            <view class='use-wrap flx-ce-clm'>
+                <image src='../../asset/challengeHome/bangbang_img.png' class='header-pic'></image>
+                <view class='power-section flx-ce-no-clm'>
+                    <text class='power-desc'>帮帮卡</text>
+                    <text class='power-desc'>帮你答这道题啦！</text>
+                    <view class='power-btn flx-ce-ce' bindtap='handleBang'>确认使用</view>
+                    <text class='power-tips'>每关最多使用2次</text>
+                </view>
+            </view>
+        </view>
+        <!-- 使用排除卡 -->
+        <view class='user-card' wx:if="{{showPaichu}}">
+            <view class='knapsack-close-box'>
+                <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
+            </view>
+            <view class='use-wrap flx-ce-clm'>
+                <image src='../../asset/challengeHome/bangbang_img.png' class='header-pic'></image>
+                <view class='power-section flx-ce-no-clm'>
+                    <text class='power-desc'>排除卡</text>
+                    <text class='power-desc'>帮你排除一道！</text>
+                    <view class='power-btn flx-ce-ce' bindtap='handlePaichu'>确认使用</view>
+                    <text class='power-tips'>每关最多使用3次</text>
+                </view>
+            </view>
+        </view>
         <!-- 立即分享 -->
         <view class='share-mask flx-ce-no-clm' wx:if="{{showShareActive}}">
             <view class='download-wrap flx-ce-no-clm'>
@@ -155,7 +184,7 @@
             </view>
         </view>
         <!-- 等级晋升 -->
-        <view class='upgrade'>
+        <view class='upgrade' wx:if="{{upgrade}}">
             <view class='knapsack-close-box'>
                 <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
             </view>

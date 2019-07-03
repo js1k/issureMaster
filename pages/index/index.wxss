@@ -382,7 +382,16 @@
     background: linear-gradient(180deg, rgba(136, 213, 245, 0.3) 0%, rgba(80, 171, 231, 0.1) 100%);
     border-radius: 12rpx;
     border: 2rpx solid;
+    position: relative;
     border-image: linear-gradient(180deg, rgba(88, 173, 224, 1), rgba(97, 181, 235, 1), rgba(177, 224, 255, 1)) 1 1;
+}
+.card-num{
+    position:absolute;
+    right:6rpx;
+    bottom:2rpx;
+    font-size:22rpx;
+    font-weight:400;
+    color:rgba(255,255,255,1);
 }
 
 .card-pic-chosed {

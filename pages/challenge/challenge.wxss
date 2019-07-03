@@ -261,7 +261,7 @@
     border:5rpx solid #FF732C;
     box-sizing: content-box;
 }
-.header-pic{
+.header-pic-img{
     width:84rpx;
     height:84rpx;
     border-radius: 50%;
@@ -446,6 +446,13 @@
 .up-icon{
     width:480rpx;
     height:480rpx;
+}
+.user-card{
+    width:100%;
+    padding:0 122rpx;
+}
+.use-wrap{
+    width:100%;
 }
 @keyframes questionIn{
     0%{

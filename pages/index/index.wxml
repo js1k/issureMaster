@@ -211,6 +211,7 @@
                         <view class='card-box' wx:for="{{cardData}}" wx:key="index">
                             <view class="card-pic flx-ce-ce {{cardIndex==index&&item.num>0?'cur-box-border':''}}">
                                 <image wx:if="{{item.name}}" src="{{item.num===0?item.disImg:item.img}}" mode='aspectFit' bindtap='showCard' class='card-bg' data-index="{{index}}"></image>
+                                <text class='card-num' wx:if="{{item.name}}">{{item.num}}</text>
                             </view>
                             <view class='card-name flx-ce-ce'>{{item.name}}</view>
                         </view>
