@@ -101,7 +101,7 @@
             <view class='share end-btn flx-ce-ce' bindtap='handleShare'>立即分享</view>
         </view>
     </view>
-    <view class='com-mask' wx:if="{{showMask}}">
+    <view class='com-mask' wx:if="{{showMask}}" bindtap='closeMask'>
         <view class='unfinshed-back-dialog' wx:if="{{unfinshed}}">
             <view class='unfinshed-back'>
                 <view class='unfinshed-txt'>当前关卡未结束</view>
@@ -119,7 +119,6 @@
                     <view class='share-text-contain'>
                         <text class='share-title'>我在答题赢大奖 不服来战~</text>
                         <text class='share-txt'>保保大师答题挑战赛~</text>
-                        <text class='share-txt'>大量红包、积分等你来拿~</text>
                     </view>
                     <view class='qr-box'>
                         <image src="{{shareQrImg}}" class='qr-img'></image>

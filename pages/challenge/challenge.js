@@ -11,7 +11,6 @@ Page({
         unfinshed: false,
         interval: null,
         timeInterval: null,
-        showShare:false,
         answerEnd:true,
         hiddenLoading:true,
         showShareActive:false,
@@ -48,7 +47,7 @@ Page({
             }
         ],
 
-        shareCoverImg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190703/1562141592564.png',
+        shareCoverImg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190703/1562146275324.png',
         shareQrImg: '',
     },
 
@@ -122,11 +121,11 @@ Page({
                             ctx.draw(true)
                             ctx.setFontSize(14)
                             ctx.setFillStyle('#000')
-                            ctx.fillText(data.nickName + '送你"分享宝箱"', 16, 330)
+                            ctx.fillText('我在答题赢大奖 不服来战', 16, 330)
                             ctx.draw(true)
                             ctx.setFontSize(12)
                             ctx.setFillStyle('#000')
-                            ctx.fillText('快来和TA一起赢取大奖吧~', 16, 356)
+                            ctx.fillText('保保大师答题挑战赛~', 16, 356)
                             ctx.draw(true)
                             _this.setData({
                                 creatImg: false,
@@ -235,6 +234,17 @@ Page({
     cancleBack: function() {
         this.setData({
             unfinshed: false
+        })
+    },
+    closeMask: function (event) {
+        if (event.currentTarget.dataset.model === 'inner') {
+            return
+        }
+        this.setData({
+            showMask: false,
+            unfinshed:false,
+            showShareActive:false,
+
         })
     },
     handleBang: function() {
