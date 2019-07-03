@@ -1,6 +1,7 @@
 <view class='challenge-page flx-ce-no-clm'>
+    <loading hidden="{{hiddenLoading}}">{{loadingText}}</loading>
     <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack'></image>
-    <view class='section flx-ce-bet flx-start-clm'>
+    <view class='section flx-ce-bet flx-start-clm' wx:if="{{!answerEnd}}">
         <view class='question'>
             <view class='question-container flx-ce-ce'>
                 <view class='ready-txt before-txt flx-ce-ce'>预备</view>
@@ -12,18 +13,18 @@
                     </view>
                     <view class='question-tips'>--   保险维权知  --</view>
                     <view class='question-index-bar flx-ce-ce'>
-                        <view class='index flx-ce-ce {{curIndex==0?"cur-index":""}}'>1</view>
-                        <view class='index flx-ce-ce {{curIndex==1?"cur-index":""}}'>2</view>
-                        <view class='index flx-ce-ce {{curIndex==2?"cur-index":""}}'>3</view>
-                        <view class='index flx-ce-ce {{curIndex==3?"cur-index":""}}'>4</view>
-                        <view class='index flx-ce-ce {{curIndex==4?"cur-index":""}}'>5</view>
+                        <view class='index flx-ce-ce {{curIndex==0?"cur-index":""}} {{curIndex>0?"done-index":""}}'>1</view>
+                        <view class='index flx-ce-ce {{curIndex==1?"cur-index":""}} {{curIndex>1?"done-index":""}}'>2</view>
+                        <view class='index flx-ce-ce {{curIndex==2?"cur-index":""}} {{curIndex>2?"done-index":""}}'>3</view>
+                        <view class='index flx-ce-ce {{curIndex==3?"cur-index":""}} {{curIndex>3?"done-index":""}}'>4</view>
+                        <view class='index flx-ce-ce {{curIndex==4?"cur-index":""}} {{curIndex>4?"done-index":""}}'>5</view>
                     </view>
                 </view>
             </view>
             <view class='clock-box flx-ce-ce'>
                 <view class='clock-contain flx-ce-ce'>
                     <view class='flx-ce-ce clock-txt'>
-                        <view class='clock-num'>{{countDown}}</view>
+                        <view class='clock-num'>{{countDownTime}}</view>
                         <!-- <image src='../../asset/challengeHome/clock_icon.png' class='clock-icon'></image> -->
                     </view>
                 </view>
@@ -40,12 +41,67 @@
             </view>
         </view>
         <view class='test-submit'>
-            <image class='submit' src='../../asset/challengeHome/submit.png' wx:if="{{subParam.answerList.length==5}}"></image>
+            <image class='submit' src='../../asset/challengeHome/submit.png' wx:if="{{subParam.answerList.length==5}}" bindtap='submitTest'></image>
             <image class='submit' src='../../asset/challengeHome/submit_disable.png' wx:if="{{subParam.answerList.length<5}}"></image>
         </view>
     </view>
-
-    <view class='com-mask' wx:if="{{unfinshed}}">
+    <view class='answer-end'>
+        <view class='question'>
+            <view class='question-container flx-ce-bet-clm en-question'>
+                <view class='end-wrap'>
+                    <image src='../../asset/challengeHome/answer_end_title.png' class='header-img'></image>
+                </view>
+                <view class='header-wrap-box'>
+                    <image class='header-pic' src='../../asset/index/default_header.png'></image>
+                </view>
+                <view class='user-name'>名字起得特别长</view>
+                <view class='user-level'>
+                    <image src='../../asset/challengeHome/end_box.png' class='end-box'></image>
+                    <!-- <view class='level-wrap flx-ce-ce'>
+                        <image src='../../asset/rankList/icon_daren.png' class='level-icon'></image>
+                        <image class='star' src='../../asset/challengeHome/star_light.png'></image>
+                    </view> -->
+                    <view class='level-wrap flx-ce-ce'>
+                        <image src='../../asset/rankList/icon_gaoshou.png' class='level-icon'></image>
+                        <image class='star' src='../../asset/challengeHome/star_light.png'></image>
+                        <image class='star' src='../../asset/challengeHome/star_light.png'></image>
+                        <image class='star' src='../../asset/challengeHome/star_black.png'></image>
+                    </view>
+                    <!-- <view class='level-wrap flx-ce-ce'>
+                        <image src='../../asset/rankList/icon_dashi.png' class='level-icon'></image>
+                        <image class='star' src='../../asset/challengeHome/star_light.png'></image>
+                        <image class='star' src='../../asset/challengeHome/star_light.png'></image>
+                        <image class='star' src='../../asset/challengeHome/star_light.png'></image>
+                        <image class='star' src='../../asset/challengeHome/star_black.png'></image>
+                        <image class='star' src='../../asset/challengeHome/star_black.png'></image>
+                    </view> -->
+                    <!-- <view class='level-wrap flx-ce-ce'>
+                        <image src='../../asset/rankList/icon_zongshi.png' class='level-icon'></image>
+                        <image class='star' src='../../asset/challengeHome/star_light.png'></image>
+                        <image class='star' src='../../asset/challengeHome/star_light.png'></image>
+                        <image class='star' src='../../asset/challengeHome/star_light.png'></image>
+                        <image class='star' src='../../asset/challengeHome/star_black.png'></image>
+                        <image class='star' src='../../asset/challengeHome/star_black.png'></image>
+                    </view> -->
+                </view>
+                <view class='logo-wrap'>
+                    <image src='../../asset/challengeHome/answer_end_logo.png' class='end-logo'></image>
+                </view>
+                <view class='answer-info'>你答对了4道题！</view>
+                <view class='look-back'>回顾本关题目</view>
+                <view class='star-info'>
+                    <image class='star-btn' src='../../asset/challengeHome/star_plus.png'></image>
+                    <!-- <image class='star-btn' src='../../asset/challengeHome/star_minus.png'></image> -->
+                </view>
+                <view class='look-rank' bindtap='goRankList'>查看排行榜 ></view>
+            </view>
+        </view>
+        <view class='btns-group flx-ce-bet'>
+            <view class='challenge end-btn flx-ce-ce' bindtap='goChallengeHome'>继续挑战</view>
+            <view class='share end-btn flx-ce-ce' bindtap='handleShare'>立即分享</view>
+        </view>
+    </view>
+    <view class='com-mask' wx:if="{{showMask}}">
         <view class='unfinshed-back-dialog' wx:if="{{unfinshed}}">
             <view class='unfinshed-back'>
                 <view class='unfinshed-txt'>当前关卡未结束</view>
@@ -54,6 +110,28 @@
                     <view class='btn flx-ce-ce' bindtap='confirmBack'>仍要返回</view>
                     <view class='btn go-on flx-ce-ce' bindtap='cancleBack'>继续答题</view>
                 </view>
+            </view>
+        </view>
+        <view class='share-mask flx-ce-no-clm' wx:if="{{showShareActive}}">
+            <view class='download-wrap flx-ce-no-clm'>
+                <image src="{{shareCoverImg}}" class='main-pic'></image>
+                <view class='dynamic-contain flx-ce-bet' wx:if="{{creatImg}}">
+                    <view class='share-text-contain'>
+                        <text class='share-title'>我在答题赢大奖 不服来战~</text>
+                        <text class='share-txt'>保保大师答题挑战赛~</text>
+                        <text class='share-txt'>大量红包、积分等你来拿~</text>
+                    </view>
+                    <view class='qr-box'>
+                        <image src="{{shareQrImg}}" class='qr-img'></image>
+                    </view>
+                </view>
+                <view class='share-canvas' wx:if="{{!creatImg}}">
+                    <canvas canvas-id="shareCanvas" style='width:550rpx;height:760rpx;display:block'></canvas>
+                </view>
+            </view>
+            <view class='btns-group flx-ce-bet'>
+                <button class='save-btn flx-ce-ce share-btn-txt' catchtap='saveImg'>保存图片</button>
+                <button data-id="shareBtn" open-type='share' class='share-btn share-btn-txt'>立即分享</button>
             </view>
         </view>
     </view>

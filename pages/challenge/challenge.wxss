@@ -59,7 +59,9 @@
     width: 100%;
     height: 100%;
 }
-
+.answer-end{
+    width:100%;
+}
 .question {
     width: 100%;
     height: 824rpx;
@@ -75,6 +77,8 @@
     height: 100%;
     border-radius: 20rpx;
     border: 2rpx solid rgba(249, 192, 192, 1);
+    position: relative;
+    padding-top:52rpx;
 }
 
 .clock-box {
@@ -234,6 +238,129 @@
 .go-on{
     color:rgba(27,214,118,1);
     border-left:2rpx solid #ececec;
+}
+.answer-end{
+    width:100%;
+    position: relative;
+}
+.end-wrap{
+    width:280rpx;
+    height:176rpx;
+    position: fixed;
+    left:236rpx;
+    top:76rpx;
+}
+.header-img{
+    width:280rpx;
+    height:176rpx;
+}
+.header-wrap-box{
+    width:84rpx;
+    height:84rpx;
+    border-radius: 50%;
+    border:5rpx solid #FF732C;
+    box-sizing: content-box;
+}
+.header-pic{
+    width:84rpx;
+    height:84rpx;
+    border-radius: 50%;
+}
+.header-wrap{
+    font-size:28rpx;
+    font-weight:500;
+    color:rgba(34,34,34,1);
+    margin:24rpx 0 20rpx;
+}
+.user-level{
+    width:520rpx;
+    height:64rpx;
+    position: relative;
+}
+.level-wrap{
+    width:520rpx;
+    height:64rpx;
+}
+.end-box{
+    width:520rpx;
+    height:64rpx;
+    position: absolute;
+    left:0;
+    top:0;
+    z-index: 0;
+}
+.level-icon{
+    width:88rpx;
+    height:40rpx;
+}
+.star{
+    width:24rpx;
+    height:24rpx;
+    margin:0 8rpx;
+}
+.logo-wrap{
+    width:148rpx;
+    height:200rpx;
+    margin:20rpx 0 14rpx;
+}
+.end-logo{
+    width:148rpx;
+    height:200rpx;
+}
+.answer-info{
+    font-size:32rpx;
+    font-weight:500;
+    color:rgba(255,120,87,1);
+    margin-bottom:16rpx;
+}
+.look-back{
+    font-size:24rpx;
+    font-weight:500;
+    color:rgba(255,120,87,1);
+    text-decoration: underline;
+    margin-bottom:20rpx;
+}
+.star-info{
+    width:256rpx;
+    height:80rpx;
+    margin-bottom:24rpx;
+}
+.user-name{
+    font-size:28rpx;
+    font-weight:500;
+    color:rgba(34,34,34,1);
+    margin:24rpx 0 20rpx;
+}
+.star-btn{
+    width:256rpx;
+    height:80rpx;
+}
+.look-rank{
+    font-size:28rpx;
+    font-weight:400;
+    color:rgba(255,120,87,1);
+}
+.en-question{
+    padding:40rpx 0 20rpx;
+}
+.btns-group{
+    width:100%;
+    margin-top:90rpx;
+    padding:0 36rpx;
+}
+.end-btn{
+    width:272rpx;
+    height:80rpx;
+    border-radius:44rpx;
+    font-size:34rpx;
+    font-weight:500;
+    color:rgba(255,255,255,1);
+}
+.challenge{
+    background:rgba(91,155,255,1);
+}
+.share{
+    background:rgba(255,191,17,1);
 }
 @keyframes questionIn{
     0%{

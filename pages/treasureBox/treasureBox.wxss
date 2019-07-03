@@ -192,78 +192,9 @@
 .share-pic{
     border-radius:12rpx;
 }
-.download-wrap{
-    width:550rpx;
-    height:760rpx;
-}
-.main-pic{
-    width:550rpx;
-    height:600rpx;
-}
-.qr-box{
-    width:112rpx;
-    height:112rpx;
-}
-.qr-img{
-    width:112rpx;
-    height:112rpx;
-}
-.dynamic-contain{
-    width:100%;
-    background:white;
-    padding:24rpx 32rpx;
-    font-size:24rpx;
-    font-weight:500;
-    color:rgba(58,61,79,1);
-    border-bottom-right-radius: 12rpx;
-    border-bottom-left-radius: 12rpx;
-}
-.btn-group{
-    width:100%;
-    height:72rpx;
-    display: block;
-    margin-top:32rpx;
-}
-.save-btn{
-    display: inline-block;
-    background:rgba(255,187,1,1);
-}
-.share-btn{
-    display: inline-block;
-    background:rgba(27,214,118,1);
-    margin:0 0 0 70rpx;
-}
-.share-btn-txt{
-    width:240rpx;
-    height:72rpx;
-    font-size:30rpx;
-    font-weight:400;
-    border-radius:36rpx;
-    color:rgba(255,255,255,1);
-}
 .canvas-bg{
     position: absolute;
     left:0;
     top:0;
     z-index: -9;
-}
-.share-text-contain{
-    width:350rpx;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-.share-title{
-    font-size:28rpx;
-    font-weight:500;
-    color:rgba(58,61,79,1);
-}
-.share-txt{
-    font-size:22rpx;
-    font-weight:400;
-    color:rgba(58,61,79,1);
-}
-.share{
-    width:550rpx;
-    height:760rpx;
 }

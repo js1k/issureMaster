@@ -110,7 +110,7 @@
                         <image src="{{shareQrImg}}" class='qr-img'></image>
                     </view>
                 </view>
-                <view class='share' wx:if="{{!creatImg}}">
+                <view class='share-canvas' wx:if="{{!creatImg}}">
                     <canvas canvas-id="shareCanvas" style='width:550rpx;height:760rpx;display:block'></canvas>
                 </view>
             </view>
