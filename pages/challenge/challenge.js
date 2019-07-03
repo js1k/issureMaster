@@ -6,6 +6,7 @@ Page({
      */
     data: {
         curIndex: 0,    //当前答题序号
+        removeIndex:-1,
         showMask:false,
         countDownTime: 60,
         unfinshed: false,
@@ -19,9 +20,15 @@ Page({
         showPaichu:false,
         upgrade:false,
         creatImg:true,
+        canSubUse:true,
         result:'',
+        useParam: {
+            cardType: 1,
+            examUserId: wx.getStorageSync('examUserId') ,
+            insureUid: wx.getStorageSync('insureUid'),
+            subjectId: ''
+        },
         loadingText:'图片生成中...',
-        examUserId: '',
         question: '',
         bangbang: '../../asset/challengeHome/bangbang_icon.png',
         paichu: '../../asset/challengeHome/paichu_icon.png',
@@ -88,9 +95,8 @@ Page({
         let insureUid ='subParam.insureUid'
         this.setData({
             question: wx.getStorageSync('question').subjectList,
-            examUserId: wx.getStorageSync('examUserId'),
             helpCard: wx.getStorageSync('helpCard') > 2 ? 2 : wx.getStorageSync('helpCard'),
-            removeCard: wx.getStorageSync('removeCard') > 2 ? 2 : wx.getStorageSync('removeCard'),
+            removeCard: wx.getStorageSync('removeCard') > 3 ? 3 : wx.getStorageSync('removeCard'),
             [examUserId]: wx.getStorageSync('examUserId'),
             [insureUid]: wx.getStorageSync('insureUid')
         })
@@ -200,7 +206,7 @@ Page({
             [queListA]: _this.data.question[num].optionA,
             [queListB]: _this.data.question[num].optionB,
             [queListC]: _this.data.question[num].optionC,
-
+            removeIndex:-1,
 
             [answer]:'A'
         })
@@ -221,7 +227,7 @@ Page({
             return
         }
         let idList = 'subParam.subjectIdList[' + this.data.subParam.subjectIdList.length + ']'
-        let answerList = 'subParam.answerList[' + this.data.subParam.subjectIdList.length + ']'
+        let answerList = 'subParam.answerList[' + this.data.subParam.answerList.length + ']'
         _this.setData({
             choseItem: serial == 'A' ? 0 : serial == 'B'?1:2,
             [idList]: _this.data.question[_this.data.curIndex].id,
@@ -247,12 +253,14 @@ Page({
                 answerEnd:true,
                 result:data
             })
+            // 如果有碎片或红包
             if (data.chip || data.isMergeChip==1){
                 _this.setData({
                     showPackets:true,
                     showMask:true
                 })
             }
+            // 如果升级
             if (data.isUpgrade==1){
                 _this.setData({
                     upgrade: true,
@@ -269,18 +277,19 @@ Page({
             })
         })
     },
-    goBack: function() {
-        if (this.data.countDownTime > 0) {
+    goBack: function () {
+        if (this.data.answerEnd) {
             this.setData({
-                showMask:true,
+                showMask: true,
                 unfinshed: true
             })
             return
         }
         this.confirmBack()
     },
-    //答题过程中后退  确认后退
+    //答题过程中后退  确认后退  自动提交答案
     confirmBack: function() {
+        this.submitTest()
         app.goBack()
     },
     cancleBack: function() {
@@ -296,71 +305,69 @@ Page({
             showMask: false,
             unfinshed:false,
             showShareActive:false,
-            showBangbang:false
+            showBangbang:false,
+            showPaichu:false
         })
     },
-    // 点击帮帮卡
-    useBangbang:function(e){
+    //点击卡片
+    useCard: function (e) {
         let canUse = e.currentTarget.dataset.canuse
-        if (!canUse){
-            return
-        }
-        let _this=this
-        this.setData({
-            showMask:true,
-            showBangbang:true
-        })
-    },
-    // 点击排除卡
-    useRemove: function (e) {
-        let canUse = e.currentTarget.dataset.canuse
+        let type = e.currentTarget.dataset.type
+        let cardType ='useParam.cardType'
         if (!canUse) {
             return
         }
-        console.log(121212)
-        let _this = this
-        // this.setData({
-        //     showMask: true,
-        //     showBangbang: true
-        // })
+        if (type === 'bangbang') {
+            this.setData({
+                showMask: true,
+                showBangbang: true,
+                [cardType]:1
+            })
+        } else {
+            this.setData({
+                showMask: true,
+                showPaichu: true,
+                [cardType]: 2
+            })
+        }
     },
-    // 使用帮帮卡
-    handleBang: function() {
-        if (this.data.helpCard<=0){
+    // 使用卡片
+    handleCard: function() {
+        if (!this.data.canSubUse){
             return
         }
         let _this=this
-        let param = {
-            cardType: 1,
-            examUserId: this.data.examUserId,
-            insureUid: wx.getStorageSync('insureUid'),
-            subjectId: this.data.question[_this.data.curIndex].id
-        }
-        app.httpPost('/xcx/insureMaster/examUseCard', param, function() {
-            
-        }, function (error) {
-            wx.showToast({
-                title: error.message,
-                icon: 'none',
-                duration: 1000,
-                mask: true
-            })
+        let cardType = this.data.useParam.cardType
+        let subjectId ='useParam.subjectId'
+        this.setData({
+            [subjectId]: _this.data.question[_this.data.curIndex].id,
+            canSubUse:false
         })
-    },
-    // 使用排除卡
-    handlePaichu: function () {
-        if (this.data.removeCard <= 0) {
-            return
-        }
-        let _this = this
-        let param = {
-            cardType: 2,
-            examUserId: this.data.examUserId,
-            insureUid: wx.getStorageSync('insureUid'),
-            subjectId: this.data.question[_this.data.curIndex].id
-        }
-        app.httpPost('/xcx/insureMaster/examUseCard', param, function () {
 
+
+        let idList = 'subParam.subjectIdList[' + _this.data.subParam.subjectIdList.length + ']'
+        let answerList = 'subParam.answerList[' + _this.data.subParam.answerList.length + ']'
+        app.httpPost('/xcx/insureMaster/examUseCard', _this.data.useParam, function(data) {
+            if (cardType == 1) {// 如果是使用了帮帮卡
+                _this.setData({
+                    choseItem: data.rightAnswer == 'A' ? 0 : data.rightAnswer == 'B' ? 1 : 2,
+                    [idList]: _this.data.question[_this.data.curIndex].id,
+                    [answerList]: data.rightAnswer,
+                    helpCard: _this.data.helpCard-1
+                })
+                let timeout = setTimeout(function () {
+                    _this.setQuestion(_this.data.curIndex + 1)
+                    clearTimeout(timeout)
+                }, 800)
+            } else {
+                _this.setData({
+                    removeIndex: data.removeAnswer == 'A' ? 0 : data.removeAnswer == 'B' ? 1 : 2,
+                    removeCard: _this.data.removeCard - 1
+                })
+            }
+            _this.setData({
+                canSubUse:true
+            })
         }, function (error) {
             wx.showToast({
                 title: error.message,
@@ -370,6 +377,7 @@ Page({
             })
         })
     },
+    //倒计时
     calcTime: function() {
         var _this = this
         this.setData({

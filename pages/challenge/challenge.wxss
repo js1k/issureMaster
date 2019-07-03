@@ -454,6 +454,9 @@
 .use-wrap{
     width:100%;
 }
+.remove-index{
+    color:rgba(217,215,228,1);
+}
 @keyframes questionIn{
     0%{
         transform: translateY(20rpx);

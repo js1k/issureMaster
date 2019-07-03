@@ -51,7 +51,7 @@ Page({
         })
         // 1.5s后开始进入答题页
         let timeout=setTimeout(function(){
-            this.getQuestion()
+            _this.getQuestion()
             clearTimeout(timeout)
         },2500)
     },
