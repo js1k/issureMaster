@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 14,
+			"current": 15,
 			"list": [
 				{
 					"id": -1,
@@ -144,6 +144,13 @@
 					"id": -1,
 					"name": "challengeHome",
 					"pathName": "pages/challengeHome/challengeHome",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "challenge",
+					"pathName": "pages/challenge/challenge",
 					"scene": null
 				}
 			]

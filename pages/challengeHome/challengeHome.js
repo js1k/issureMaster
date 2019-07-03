@@ -118,6 +118,8 @@ Page({
                 hiddenLoading:true,
                 itemIndex: data.insureUserVO.userLevel-1
             })
+            wx.setStorageSync('helpCard', data.insurePackageVO.helpCard)
+            wx.setStorageSync('removeCard', data.insurePackageVO.removeCard)
         },function(error){
             console.log('error')
         })

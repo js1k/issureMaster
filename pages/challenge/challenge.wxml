@@ -7,21 +7,16 @@
                 <view class='start-txt before-txt flx-ce-ce'>开始</view>
                 <view class='question-list flx-ce-bet-clm'>
                     <view class='question-info flx-ce-clm'>
-                        <view class='queistion-name flx-ce-ce'>中国保险监督官方组织及其维权投诉电话是？</view>
-                        <view class='question-answer flx-ce-ce item-chosed' wx:for="{{answerItem}}" wx:key="key">
-                            <view>{{item}}</view>
-                            <image src='../../asset/question_true.png' class='question-icon'></image>
-                            <!-- <image src='../../asset/question_false.png' class='question-icon'></image> -->
-                        </view>
-                        <!-- <view class='question-answer flx-ce-ce' wx:for="{{answerItem}}" wx:key="key">
-                            <view class='' >{{item}}</view>
-                            <image src='../../asset/question_true.png' class='question-icon'></image>
-                            <image src='../../asset/question_false.png' class='question-icon'></image>
-                        </view> -->
+                        <view class='queistion-name flx-ce-ce'>{{curQuestion.subjectTitle}}</view>
+                        <view wx:for="{{queList}}" wx:key="index" class="que-answer flx-ce-ce {{choseItem==index?'item-chosed':''}}" bindtap='choseAnswer' data-serial="{{item.serial}}">{{item.question}}</view>
                     </view>
                     <view class='question-tips'>--   保险维权知  --</view>
                     <view class='question-index-bar flx-ce-ce'>
-                        <view wx:for="{{5}}" wx:key="key" class='question-index flx-ce-ce {{index===currentIndex?"wrong-index":""}}'>{{index+1}}</view>
+                        <view class='index flx-ce-ce {{curIndex==0?"cur-index":""}}'>1</view>
+                        <view class='index flx-ce-ce {{curIndex==1?"cur-index":""}}'>2</view>
+                        <view class='index flx-ce-ce {{curIndex==2?"cur-index":""}}'>3</view>
+                        <view class='index flx-ce-ce {{curIndex==3?"cur-index":""}}'>4</view>
+                        <view class='index flx-ce-ce {{curIndex==4?"cur-index":""}}'>5</view>
                     </view>
                 </view>
             </view>
@@ -37,16 +32,16 @@
         <view class='privilegev-card flx-ce-bet'>
             <view class='privilege-title flx-ce-ce'>特权卡</view>
             <view class='privilege-contain flx-ce-ce'>
-                <image src='../../asset/challengeHome/bangbang_icon.png' class='privilege-pic'></image>
-                <image src='../../asset/challengeHome/bangbang_icon.png' class='privilege-pic'></image>
-                <image src='../../asset/challengeHome/paichu_icon.png' class='privilege-pic'></image>
-                <image src='../../asset/challengeHome/paichu_icon.png' class='privilege-pic'></image>
-                <image src='../../asset/challengeHome/paichu_icon.png' class='privilege-pic'></image>
+                <image src="{{helpCard>0?bangbang:bangbangDisable}}" class='privilege-pic' bindtap='handleBang'></image>
+                <image src="{{helpCard>1?bangbang:bangbangDisable}}" class='privilege-pic' bindtap='handleBang'></image>
+                <image src="{{removeCard>0?paichu:paichuDisable}}" class='privilege-pic' bindtap='handleRemove'></image>
+                <image src="{{removeCard>1?paichu:paichuDisable}}" class='privilege-pic' bindtap='handleRemove'></image>
+                <image src="{{removeCard>2?paichu:paichuDisable}}" class='privilege-pic' bindtap='handleRemove'></image>
             </view>
         </view>
         <view class='test-submit'>
-            <!-- <image class='submit' src='../../asset/challengeHome/submit.png'></image> -->
-            <image class='submit' src='../../asset/challengeHome/submit_disable.png'></image>
+            <image class='submit' src='../../asset/challengeHome/submit.png' wx:if="{{subParam.answerList.length==5}}"></image>
+            <image class='submit' src='../../asset/challengeHome/submit_disable.png' wx:if="{{subParam.answerList.length<5}}"></image>
         </view>
     </view>
 
