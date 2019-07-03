@@ -45,53 +45,50 @@
             <image class='submit' src='../../asset/challengeHome/submit_disable.png' wx:if="{{subParam.answerList.length<5}}"></image>
         </view>
     </view>
-    <view class='answer-end'>
+    <view class='answer-end' wx:if="{{answerEnd}}">
         <view class='question'>
             <view class='question-container flx-ce-bet-clm en-question'>
                 <view class='end-wrap'>
-                    <image src='../../asset/challengeHome/answer_end_title.png' class='header-img'></image>
+                    <image src="{{result.addStarNum!=1?'../../asset/challengeHome/en_fail_header.png':'../../asset/challengeHome/answer_end_title.png'}}" class='header-img'></image>
                 </view>
                 <view class='header-wrap-box'>
-                    <image class='header-pic' src='../../asset/index/default_header.png'></image>
+                    <image class='header-pic' src="{{result.avatarUrl?result.avatarUrl:'../../asset/index/default_header.png'}}"></image>
                 </view>
-                <view class='user-name'>名字起得特别长</view>
+                <view class='user-name'>{{result.nickName}}</view>
                 <view class='user-level'>
                     <image src='../../asset/challengeHome/end_box.png' class='end-box'></image>
-                    <!-- <view class='level-wrap flx-ce-ce'>
+                    <view class='level-wrap flx-ce-ce' wx:if="{{result.userLevel===1}}">
                         <image src='../../asset/rankList/icon_daren.png' class='level-icon'></image>
                         <image class='star' src='../../asset/challengeHome/star_light.png'></image>
-                    </view> -->
-                    <view class='level-wrap flx-ce-ce'>
+                    </view>
+                    <view class='level-wrap flx-ce-ce' wx:if="{{result.userLevel===2}}">
                         <image src='../../asset/rankList/icon_gaoshou.png' class='level-icon'></image>
                         <image class='star' src='../../asset/challengeHome/star_light.png'></image>
-                        <image class='star' src='../../asset/challengeHome/star_light.png'></image>
-                        <image class='star' src='../../asset/challengeHome/star_black.png'></image>
+                        <image class='star' src='../../asset/challengeHome/star_light.png' wx:if="{{result.starNum==2}}"></image>
+                        <image class='star' src='../../asset/challengeHome/star_black.png' wx:if="{{result.starNum==1}}"></image>
                     </view>
-                    <!-- <view class='level-wrap flx-ce-ce'>
+                    <view class='level-wrap flx-ce-ce' wx:if="{{result.userLevel===3}}">
                         <image src='../../asset/rankList/icon_dashi.png' class='level-icon'></image>
                         <image class='star' src='../../asset/challengeHome/star_light.png'></image>
-                        <image class='star' src='../../asset/challengeHome/star_light.png'></image>
-                        <image class='star' src='../../asset/challengeHome/star_light.png'></image>
-                        <image class='star' src='../../asset/challengeHome/star_black.png'></image>
-                        <image class='star' src='../../asset/challengeHome/star_black.png'></image>
-                    </view> -->
-                    <!-- <view class='level-wrap flx-ce-ce'>
+                        <image class='star' src='../../asset/challengeHome/star_light.png' wx:if="{{result.starNum>1}}"></image>
+                        <image class='star' src='../../asset/challengeHome/star_light.png' wx:if="{{result.starNum==3}}"></image>
+                        <image class='star' src='../../asset/challengeHome/star_black.png' wx:if="{{result.starNum<3}}"></image>
+                        <image class='star' src='../../asset/challengeHome/star_black.png' wx:if="{{result.starNum==1}}"></image>
+                    </view>
+                    <view class='level-wrap flx-ce-ce' wx:if="{{result.userLevel===4}}">
                         <image src='../../asset/rankList/icon_zongshi.png' class='level-icon'></image>
-                        <image class='star' src='../../asset/challengeHome/star_light.png'></image>
-                        <image class='star' src='../../asset/challengeHome/star_light.png'></image>
-                        <image class='star' src='../../asset/challengeHome/star_light.png'></image>
-                        <image class='star' src='../../asset/challengeHome/star_black.png'></image>
-                        <image class='star' src='../../asset/challengeHome/star_black.png'></image>
-                    </view> -->
+                        <image class='zongshi-star' src='../../asset/challengeHome/star_zongshi.png'></image>
+                        <text class='level-text'>x{{result.starNum}}</text>
+                    </view>
                 </view>
                 <view class='logo-wrap'>
                     <image src='../../asset/challengeHome/answer_end_logo.png' class='end-logo'></image>
                 </view>
-                <view class='answer-info'>你答对了4道题！</view>
+                <view class='answer-info'>你答对了{{result.rightNum}}道题！</view>
                 <view class='look-back'>回顾本关题目</view>
                 <view class='star-info'>
-                    <image class='star-btn' src='../../asset/challengeHome/star_plus.png'></image>
-                    <!-- <image class='star-btn' src='../../asset/challengeHome/star_minus.png'></image> -->
+                    <image class='star-btn' src='../../asset/challengeHome/star_plus.png' wx:if="{{result.addStarNum==1}}"></image>
+                    <image class='star-btn' src='../../asset/challengeHome/star_minus.png' wx:if="{{result.addStarNum==0}}"></image>
                 </view>
                 <view class='look-rank' bindtap='goRankList'>查看排行榜 ></view>
             </view>

@@ -298,6 +298,11 @@
     height:24rpx;
     margin:0 8rpx;
 }
+.zongshi-star{
+    width:28rpx;
+    height:40rpx;
+    margin:0 8rpx;
+}
 .logo-wrap{
     width:148rpx;
     height:200rpx;
@@ -361,6 +366,12 @@
 }
 .share{
     background:rgba(255,191,17,1);
+}
+.level-text{
+    font-size:24rpx;
+    font-weight:400;
+    color:rgba(247,181,0,1);
+    margin-top:10rpx;
 }
 @keyframes questionIn{
     0%{

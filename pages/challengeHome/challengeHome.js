@@ -43,7 +43,6 @@ Page({
             })
             return
         }
-        console.log('start')
         this.getQuestion()
     },
     getQuestion:function(){
@@ -53,6 +52,7 @@ Page({
                 examData: data.insureExamGenerateResponse
             })
             wx.setStorageSync('question', data.insureExamGenerateResponse)
+            wx.setStorageSync('examUserId', data.insureExamGenerateResponse.examUserId)
             //请求考题后跳转答题页
             wx.navigateTo({
                 url: '../challenge/challenge'
@@ -96,7 +96,6 @@ Page({
         this.setData({
             isUseEnergyCard:1
         })
-        console.log(123)
         this.getQuestion()
     },
     // 做任务

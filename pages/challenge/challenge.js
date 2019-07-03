@@ -11,12 +11,13 @@ Page({
         unfinshed: false,
         interval: null,
         timeInterval: null,
-        answerEnd:true,
+        answerEnd:false,
         hiddenLoading:true,
         showShareActive:false,
         creatImg:true,
+        result:'',
         loadingText:'图片生成中...',
-        examUserId: wx.getStorageSync('question').examUserId,
+        examUserId: wx.getStorageSync('examUserId'),
         question: wx.getStorageSync('question').subjectList,
         bangbang: '../../asset/challengeHome/bangbang_icon.png',
         paichu: '../../asset/challengeHome/paichu_icon.png',
@@ -29,7 +30,7 @@ Page({
         canSubmit:true,
         subParam:{
             answerList:[],
-            examUserId: wx.getStorageSync('question').examUserId,
+            examUserId: wx.getStorageSync('examUserId'),
             insureUid: wx.getStorageSync('insureUid'),
             subjectIdList:[]
         },
@@ -154,6 +155,7 @@ Page({
     },
     //处理考题
     setQuestion: function (num) {
+        console.log(12)
         if (num>4){
             return
         }
@@ -203,15 +205,11 @@ Page({
         _this.setData({
             canSubmit: false
         })
-        app.httpPost('/xcx/insureMaster/examHandIn', _this.data.subParam,function(){
-            wx.showToast({
-                title: '提交成功',
-                icon: 'success',
-                duration: 1000,
-                mask: true
-            })
+        app.httpPost('/xcx/insureMaster/examHandIn', _this.data.subParam,function(data){
             _this.setData({
-                canSubmit:true
+                canSubmit:true,
+                answerEnd:true,
+                result:data
             })
         },function(error){
             console.log('error')
@@ -268,9 +266,6 @@ Page({
                     countDownTime: _this.data.countDownTime - 1
                 })
             } else {// 时间结束 自动提交答案
-                _this.setData({
-                    answerEnd:true
-                })
                 _this.submitTest()
                 clearInterval(_this.timeInterval)
             }
