@@ -414,3 +414,25 @@ view{
         opacity: 1
     }
 }
+@keyframes packetsRotate{
+  0%{
+    transform: rotate(0deg);
+  }
+  50%{
+    transform: rotate(720deg);
+  }
+  51%{
+    transform: rotate(720deg);
+  }
+  100%{
+    transform: rotate(720deg);
+  }
+}
+@keyframes rotateImg{
+    from{
+        transform: rotate(0deg)
+    }
+    to{
+        transform: rotate(90deg)
+    }
+}

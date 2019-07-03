@@ -42,7 +42,7 @@ Page({
     getList:function(e){
         let _this = this
         this.setData({
-            showSeasonList: !this.data.showSeasonList,
+            showSeasonList: !_this.data.showSeasonList,
             pageNum: 1,
             url: e.currentTarget.dataset.type === 'season' ? '/xcx/insureMaster/rankByStar' : '/xcx/insureMaster/rankByPoint',
             pageList:[]
@@ -80,8 +80,13 @@ Page({
                 pageList: [..._this.data.pageList, ...data.rankUserPage.list], 
                 hiddenLoading:true
             })
-        }, function(data) {
-            console.log('error')
+        }, function (error) {
+            wx.showToast({
+                title: error.message,
+                icon: 'none',
+                duration: 1000,
+                mask: true
+            })
         })
     },
     /**
@@ -132,11 +137,4 @@ Page({
     onReachBottom: function() {
 
     },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
-
-    }
 })

@@ -6,32 +6,41 @@ Page({
      */
     data: {
         curIndex: 0,    //当前答题序号
-        showMask:false,
+        showMask:true,
         countDownTime: 60,
         unfinshed: false,
         interval: null,
         timeInterval: null,
-        answerEnd:false,
+        answerEnd:true,
         hiddenLoading:true,
         showShareActive:false,
+        showPackets:false,
         creatImg:true,
         result:'',
         loadingText:'图片生成中...',
-        examUserId: wx.getStorageSync('examUserId'),
-        question: wx.getStorageSync('question').subjectList,
+        examUserId: '',
+        question: '',
         bangbang: '../../asset/challengeHome/bangbang_icon.png',
         paichu: '../../asset/challengeHome/paichu_icon.png',
         bangbangDisable: '../../asset/challengeHome/bangbang_icon_disable.png',
         paichuDisable: '../../asset/challengeHome/paichu_icon_disable.png',
-        helpCard: wx.getStorageSync('helpCard'),
-        removeCard: wx.getStorageSync('removeCard'),
+        chipA: '../../asset/hongbao/A.png',
+        chipB: '../../asset/hongbao/B.png',
+        chipC: '../../asset/hongbao/C.png',
+        chipD: '../../asset/hongbao/D.png',
+        darenUp: '../../asset/challenge/daren_up.png',
+        gaoshouUp: '../../asset/challenge/gaoshou_up.png',
+        dashiUp: '../../asset/challenge/dashi_up.png',
+        zongshiUp: '../../asset/challenge/zongshi_up.png',
+        helpCard: '',
+        removeCard: '',
         curQuestion: '',
         choseItem:-1,
         canSubmit:true,
         subParam:{
             answerList:[],
-            examUserId: wx.getStorageSync('examUserId'),
-            insureUid: wx.getStorageSync('insureUid'),
+            examUserId: '',
+            insureUid: '',
             subjectIdList:[]
         },
         queList: [{
@@ -72,10 +81,21 @@ Page({
      */
     onLoad: function(options) {
         let _this = this  
-        this.setQuestion(0)
-        this.interval = setTimeout(function() {
+        let examUserId ='subParam.examUserId'
+        let insureUid ='subParam.insureUid'
+        this.setData({
+            question: wx.getStorageSync('question').subjectList,
+            examUserId: wx.getStorageSync('examUserId'),
+            helpCard: wx.getStorageSync('helpCard'),
+            removeCard: wx.getStorageSync('removeCard'),
+            [examUserId]: wx.getStorageSync('examUserId'),
+            [insureUid]: wx.getStorageSync('insureUid')
+        })
+        let timeout=setTimeout(function () {
             _this.calcTime()
+            clearTimeout(timeout)
         }, 2300)
+        this.setQuestion(_this.data.curIndex)
     },
     saveImg: function () {
         wx.canvasToTempFilePath({
@@ -155,14 +175,13 @@ Page({
     },
     //处理考题
     setQuestion: function (num) {
-        console.log(12)
         if (num>4){
             return
         }
         let _this = this
-        let queListA = 'queList[0].question'
-        let queListB = 'queList[1].question'
-        let queListC = 'queList[2].question'
+        let queListA = 'queList['+0+'].question'
+        let queListB = 'queList['+1+'].question'
+        let queListC = 'queList['+2+'].question'
         this.setData({
             curQuestion: _this.data.question[num],
             [queListA]: _this.data.question[num].optionA,
@@ -192,8 +211,9 @@ Page({
             [idList]: _this.data.question[_this.data.curIndex].id,
             [answerList]: serial
         })
-        setTimeout(function () {
+        let timeout=setTimeout(function () {
             _this.setQuestion(_this.data.curIndex+1)
+            clearTimeout(timeout)
         },800)
     },
     //提交答案
@@ -211,8 +231,20 @@ Page({
                 answerEnd:true,
                 result:data
             })
+            if (data.chip || data.isMergeChip==1){
+                _this.setData({
+                    showPackets:true,
+                    showMask:true
+                })
+            }
+            clearInterval(_this.data.interval)
         },function(error){
-            console.log('error')
+            wx.showToast({
+                title: error.message,
+                icon: 'none',
+                duration: 2000,
+                mask: true
+            })
         })
     },
     goBack: function() {
@@ -242,34 +274,41 @@ Page({
             showMask: false,
             unfinshed:false,
             showShareActive:false,
-
         })
     },
     handleBang: function() {
+        let _this=this
         let param = {
             cardType: 1,
             examUserId: this.data.examUserId,
             insureUid: wx.getStorageSync('insureUid'),
-            subjectId: this.data.question[this.data.curIndex].id
+            subjectId: this.data.question[_this.data.curIndex].id
         }
         app.httpPost('/xcx/insureMaster/examUseCard', param, function() {
-
-        }, function(error) {
-            console.log('error')
+            
+        }, function (error) {
+            wx.showToast({
+                title: error.message,
+                icon: 'none',
+                duration: 1000,
+                mask: true
+            })
         })
     },
     calcTime: function() {
         var _this = this
-        this.timeInterval = setInterval(function() {
-            if (_this.data.countDownTime > 0) {
-                _this.setData({
-                    countDownTime: _this.data.countDownTime - 1
-                })
-            } else {// 时间结束 自动提交答案
-                _this.submitTest()
-                clearInterval(_this.timeInterval)
-            }
-        }, 1000)
+        this.setData({
+            timeInterval: setInterval(function () {
+                if (_this.data.countDownTime > 0) {
+                    _this.setData({
+                        countDownTime: _this.data.countDownTime - 1
+                    })
+                } else {// 时间结束 自动提交答案
+                    _this.submitTest()
+                    clearInterval(_this.data.timeInterval)
+                }
+            }, 1000)
+        })
     },
     onHide: function() {
         clearInterval(this.data.interval)

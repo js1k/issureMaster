@@ -4,7 +4,6 @@ const app = getApp()
 
 Page({
     data: {
-        motto: 'Hello World',
         userInfo: {},
         showRules: false,
         showMask:false,
@@ -44,9 +43,7 @@ Page({
         },
         chestTipList:'',
         giftIndex:0,
-        chestGainTipVO:{
-
-        },
+        chestGainTipVO:{},
         shareInfoVO:'',
         showTxt:'',
         cardIndex:0,
@@ -170,13 +167,15 @@ Page({
         }
     },
     onHide: function () {
+        let _this=this
         this.setData({
             checkShow:true
         })
-        clearInterval(this.data.loopInterval)
+        clearInterval(_this.data.loopInterval)
     },
     onUnload: function () {
-        clearInterval(this.data.loopInterval)
+        let _this = this
+        clearInterval(_this.data.loopInterval)
     },
     followSeason:function(){
         this.setData({
@@ -232,8 +231,13 @@ Page({
                 })
                 _this.getData()
             },1000)
-        },function(error){
-            console.log('error')
+        }, function (error) {
+            wx.showToast({
+                title: error.message,
+                icon: 'none',
+                duration: 1000,
+                mask: true
+            })
         })
     },
     handleSelfReliance:function(){
@@ -242,9 +246,7 @@ Page({
             showTeacher:false
         })
         wx.removeStorage({
-            key:'type'
-        })
-        wx.removeStorage({
+            key:'type',
             key: 'uid'
         })
     },
@@ -329,7 +331,6 @@ Page({
         this.setData({
             showRules: true,
             showMask:true
-
         })
     },
     goTreasure: function() {
@@ -436,9 +437,6 @@ Page({
         if (!this.data.canSave){
             return
         }
-        this.setData({
-            canSave: false
-        })
         let _this=this
         let insureUid ='saveCardParam.insureUid'
         let num = 'saveCardParam.curNum'
@@ -446,15 +444,13 @@ Page({
         let helpCard = 'saveCardParam.helpCard'
         let removeCard = 'saveCardParam.removeCard'
         this.setData({
+            canSave: false,
             [insureUid]: wx.getStorageSync('insureUid')
         })
         app.httpPost('/xcx/insureMaster/openStudyChest', _this.data.saveCardParam,function(data){
             _this.setData({
                 canSave:true,
                 openBox:false,
-                // [energyCard]: 0,
-                // [helpCard]: 0,
-                // [removeCard]: 0,
                 [num]: _this.data.saveCardParam.curNum-1
             })
             if (_this.data.saveCardParam.curNum>0){
@@ -495,10 +491,11 @@ Page({
                         [removeCard]: 0
                     })
                 }
-                setTimeout(function(){
+                let timeout1=setTimeout(function(){
                     _this.setData({
                         openBox: true
                     })
+                    clearTimeout(timeout1)
                 },200)
             }else{
                 _this.setData({
@@ -508,16 +505,16 @@ Page({
             };
             //获取宝箱存入卡片之后判断宝箱是否打开完毕
             if (_this.data.chestTipList.length&&(_this.data.giftIndex < _this.data.chestTipList.length-1)){
-                setTimeout(function () {
+                let timeout=setTimeout(function () {
                     _this.setData({
                         showShare: true,
                         giftIndex: _this.data.giftIndex+1,
                         chestGainTipVO: _this.data.chestTipList[_this.data.giftIndex]
                     })
+                    clearTimeout(timeout)
                 }, 200)
             }
         },function(error){
-            console.log('error')
             wx.showToast({
                 title: error.message,
                 icon:'none',
@@ -559,9 +556,7 @@ Page({
             return
         }
         wx.removeStorage({
-            key: 'type'
-        })
-        wx.removeStorage({
+            key: 'type', 
             key: 'uid'
         })
         this.setData({
@@ -615,12 +610,16 @@ Page({
                 hiddenLoading: true
             })
         },function(error){
-            console.log('error')
+            wx.showToast({
+                title: error.message,
+                icon: 'none',
+                duration: 2500
+            })
         })
     },
-    getData:function(){
-        clearInterval(this.data.loopInterval)
-        let _this=this
+    getData: function () {
+        let _this = this
+        clearInterval(_this.data.loopInterval)
         let param={
             agentUserId:'',
             encryptedData: wx.getStorageSync('insureUid')?'':wx.getStorageSync('encryptedData'),
@@ -691,31 +690,38 @@ Page({
             }
             // 页面轮播消息
             if (data.chestTipList && data.chestTipList.length>0){
-                setTimeout(function () {
+                let timeout2=setTimeout(function () {
                     _this.setData({
                         chestGainTipVO: data.chestTipList[0],
                         giftIndex: 0,
                         showMask: true,
                         showShare: true
                     })
+                    clearTimeout(timeout2)
                 },1000)
             }
             //页面轮播文字赋值
-            _this.data.loopInterval=setInterval(function () {
-                if (_this.data.curIndex === _this.data.tipList.length - 1) {
+            _this.setData({
+                loopInterval: setInterval(function () {
+                    if (_this.data.curIndex === _this.data.tipList.length - 1) {
+                        _this.setData({
+                            curIndex: 0
+                        })
+                    }
                     _this.setData({
-                        curIndex: 0
+                        curIndex: _this.data.curIndex + 1,
+                        loopBefore: _this.data.tipList[_this.data.curIndex] || '',
+                        loopAfter: _this.data.tipList[_this.data.tipList.length - _this.data.curIndex - 1] || ''
                     })
-                }
-                _this.setData({
-                    curIndex: _this.data.curIndex+1,
-                    loopBefore: _this.data.tipList[_this.data.curIndex]||'',
-                    loopAfter: _this.data.tipList[_this.data.tipList.length-_this.data.curIndex-1]||''
-                })
-            }, 3000)
+                }, 3000)
+            })
 
-        },function(data){
-            console.log('error')
+        },function(error){
+            wx.showToast({
+                title: error.message,
+                icon: 'none',
+                duration: 1500
+            })
         })
     },
     getUserInfo: function(e) {

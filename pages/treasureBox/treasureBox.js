@@ -128,8 +128,13 @@ Page({
                 showCards: false
             })
             _this.getTreasure()
-        }, function(error) {
-            console.log('error')
+        }, function (error) {
+            wx.showToast({
+                title: error.message,
+                icon: 'none',
+                duration: 1000,
+                mask: true
+            })
         })
     },
     goBack: function() {
@@ -162,11 +167,17 @@ Page({
                 showNewPlay: true,
                 showShare: false
             })
-        }, function(error) {
-            console.log('error')
+            }, function (error) {
+                wx.showToast({
+                    title: error.message,
+                    icon: 'none',
+                    duration: 1000,
+                    mask: true
+                })
         })
     },
     bindscrolltolower: function(e) {
+        let _this=this
         if (this.data.curMark === 'treasure') {
             return
         }
@@ -175,7 +186,7 @@ Page({
         }
         let pageNum = 'recordParam.pageNum'
         this.setData({
-            [pageNum]: this.data.recordParam.pageNum + 1,
+            [pageNum]: _this.data.recordParam.pageNum + 1,
         })
         this.getRecords()
     },
@@ -235,22 +246,33 @@ Page({
             _this.setData({
                 treasureData: data
             })
+        },function(error){
+            wx.showToast({
+                title: error.message,
+                icon: 'none',
+                duration: 1000,
+                mask: true
+            })
         })
     },
     getRecords: function() {
         let _this = this
-        wx.showToast({
-            title: '加载中...',
-            icon: 'loading',
-            duration: 1000
+        this.setData({
+            hiddenLoading:false
         })
         app.httpPost('/xcx/insureMaster/chestRecord', _this.data.recordParam, function(data) {
             _this.setData({
                 recordList: [..._this.data.recordList, ...data.list],
-                totalPage: data.totalPage
+                totalPage: data.totalPage,
+                hiddenLoading:true
             })
-        }, function(error) {
-            console.log('error')
+        }, function (error) {
+            wx.showToast({
+                title: error.message,
+                icon: 'none',
+                duration: 1000,
+                mask: true
+            })
         })
     },
     handleOpen: function() {

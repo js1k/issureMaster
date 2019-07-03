@@ -99,6 +99,7 @@
         </view>
     </view>
     <view class='com-mask' wx:if="{{showMask}}" bindtap='closeMask'>
+        <!-- 退出答题 -->
         <view class='unfinshed-back-dialog' wx:if="{{unfinshed}}">
             <view class='unfinshed-back'>
                 <view class='unfinshed-txt'>当前关卡未结束</view>
@@ -109,6 +110,7 @@
                 </view>
             </view>
         </view>
+        <!-- 立即分享 -->
         <view class='share-mask flx-ce-no-clm' wx:if="{{showShareActive}}">
             <view class='download-wrap flx-ce-no-clm'>
                 <image src="{{shareCoverImg}}" class='main-pic'></image>
@@ -128,6 +130,42 @@
             <view class='btns-group flx-ce-bet'>
                 <button class='save-btn flx-ce-ce share-btn-txt' catchtap='saveImg'>保存图片</button>
                 <button data-id="shareBtn" open-type='share' class='share-btn share-btn-txt'>立即分享</button>
+            </view>
+        </view>
+        <!-- 领取红包碎片、红包 -->
+        <view class='readPackets' wx:if="{{showPackets}}">
+            <view class='knapsack-close-box'>
+                <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
+            </view>
+            <view class='flx-ce-clm' wx:if="{{result.chip}}">
+                <view class='wrap flx-ce-ce'>
+                    <image class='light' src='../../asset/challengeHome/packet_light.png'></image>
+                    <image class='packet-img' src="{{result.chip=='ChipA'?chipA:result.chip=='ChipB'?chipB:result.chip=='ChipC'?chipC:chipD}}"></image>
+                </view>
+                <view class='chip-name'>恭喜你获得红包碎片{{result.chip.splice(4)}}</view>
+                <view class='chip-tips'>集齐四中红包碎片即可自动合</view>
+                <view class='chip-tips tip-btn'>成赛季红包</view>
+                <button class='chip-btn' catchtap='closeMask'>收下</button>
+            </view>
+            <view class='big-packets' wx:if="{{result.isMergeChip==1}}">
+                <view class='packets-wrap'>
+                    <image src='../../asset/hongbao/redPackets.png' class='packets-img'></image>
+                </view>
+                <button class='chip-btn' catchtap='closeMask'>收下</button>
+            </view>
+        </view>
+        <!-- 等级晋升 -->
+        <view class='upgrade'>
+            <view class='knapsack-close-box'>
+                <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
+            </view>
+            <view class='flx-ce-clm'>
+                <view class='up-wrap flx-ce-ce'>
+                    <image src='../../asset/challengeHome/packet_light.png' class='light'></image>
+                    <image src='../../asset/challenge/daren_up.png' class='up-icon'></image>
+                </view>                       
+                <view class='chip-name'>恭喜你晋升Lv.{{result.userLevel}}{{result.userLevel==1?'达人':result.userLevel==2?'高手':result.userLevel==3?'大师':'宗师'}}</view>
+                <view class='chip-tips'>请继续努力，再接再厉哟~</view>
             </view>
         </view>
     </view>

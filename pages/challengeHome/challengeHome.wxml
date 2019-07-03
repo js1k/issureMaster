@@ -74,6 +74,7 @@
         <image src='../../asset/challengeHome/power_icon.png' class='power-icon'></image>
         <view>5 (剩余{{insureUserVO.todayEnergy}})</view>
     </view>
+    <!-- 开始答题 -->
     <image src='../../asset/challengeHome/begain_btn.png' class='begain-btn' bindtap='startTest'></image>
     <view class='flx-ce-ce theme-rules'>
         <view>{{seasonCheckVO.seasonTitle}}</view>
@@ -125,10 +126,20 @@
                     <text class='power-desc' wx:if="{{insurePackageVO.energyCard==0}}">今日能量已用完，做任务可获得额外答题机会</text>
                     <text class='power-desc' wx:if="{{insurePackageVO.energyCard>0}}">今日能量已用完，是否使用能量卡</text>
                     <view class='power-btn flx-ce-ce' wx:if="{{insurePackageVO.energyCard==0}}" bindtap='goTreasure'>去做任务</view>
-                    <view class='power-btn flx-ce-ce' wx:if="{{insurePackageVO.energyCard>0}}" bindtap="usePower">确认使用</view>
+                    <view class='power-btn flx-ce-ce' wx:if="{{insurePackageVO.energyCard>0}}" catchtap="usePower">确认使用</view>
                     <text class='power-tips'>剩余能量卡:{{insurePackageVO.energyCard}}</text>
                 </view>
             </view>
+        </view>
+        <view class='progress flx-ce-clm' wx:if="{{showProgress}}">
+            <view class='cartoon-wrap'>
+                <image class='cartoon' src='../../asset/index/baobao.png'></image>
+            </view>
+            <image class='gift' src='../../asset/progress_bar.gif'></image>
+            <view class='progress-tips'>微小保正在为您准备题目</view>
+            <view class='progress-txt'>共5题，答题时间一分钟</view>
+            <view class='progress-txt'>每局最多使用两张帮帮卡三张排除卡</view>
+            <view class='ms'>- 本题库由民生保险提供 -</view>
         </view>
     </view>
 </view>

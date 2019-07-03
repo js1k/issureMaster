@@ -11,6 +11,7 @@ Page({
         showMask:false,
         hiddenLoading:true,
         showRule:false,
+        showProgress:false,
         insurePackageVO:'',
         insureUserVO:'',
         seasonCheckVO:'',
@@ -35,6 +36,7 @@ Page({
         app.goBack()
     },
     startTest: function () {
+        let _this=this
         //开始答题判断能量值是否足够
         if (this.data.insureUserVO.todayEnergy<5){
             this.setData({
@@ -43,7 +45,15 @@ Page({
             })
             return
         }
-        this.getQuestion()
+        this.setData({
+            showMask:true,
+            showProgress:true
+        })
+        // 1.5s后开始进入答题页
+        let timeout=setTimeout(function(){
+            this.getQuestion()
+            clearTimeout(timeout)
+        },2500)
     },
     getQuestion:function(){
         let _this=this
@@ -51,27 +61,37 @@ Page({
             _this.setData({
                 examData: data.insureExamGenerateResponse
             })
+            wx.removeStorage({
+                key: 'question',
+                key: 'examUserId'
+            })
             wx.setStorageSync('question', data.insureExamGenerateResponse)
             wx.setStorageSync('examUserId', data.insureExamGenerateResponse.examUserId)
             //请求考题后跳转答题页
             wx.navigateTo({
                 url: '../challenge/challenge'
             })
-        },function(error){
-            console.log('error')
+        }, function (error) {
+            wx.showToast({
+                title: error.message,
+                icon: 'none',
+                duration: 1000,
+                mask: true
+            })
         })
     },
     bindchange:function(e){
         var _this=this
         if (e.detail.source==='touch'){
             this.setData({
-                currentSrc: this.data.swiperDisabeItem[e.detail.current],
+                currentSrc: _this.data.swiperDisabeItem[e.detail.current],
                 itemIndex: e.detail.current
             })
-            setTimeout(function () {
+            let timeout=setTimeout(function () {
                 _this.setData({
                     currentSrc: _this.data.swiperItem[e.detail.current]
                 })
+                clearTimeout(timeout)
             },400)
         }
     },
@@ -93,10 +113,22 @@ Page({
     },
     // 使用能量
     usePower: function () {
-        this.setData({
-            isUseEnergyCard:1
+        let _this=this
+        _this.setData({
+            showMask: true,
+            showProgress: true,
+            showPowerWrap:false,
+            isUseEnergyCard: 1
         })
-        this.getQuestion()
+        // 2.5s后开始进入答题页
+        let timeOut=setTimeout(function () {
+            _this.setData({
+                showMask: false,
+                showProgress: false
+            })
+            _this.getQuestion()
+            clearTimeout(timeOut)
+        }, 2500)
     },
     // 做任务
     goTreasure: function () {
@@ -119,8 +151,13 @@ Page({
             })
             wx.setStorageSync('helpCard', data.insurePackageVO.helpCard)
             wx.setStorageSync('removeCard', data.insurePackageVO.removeCard)
-        },function(error){
-            console.log('error')
+        }, function (error) {
+            wx.showToast({
+                title: error.message,
+                icon: 'none',
+                duration: 1000,
+                mask: true
+            })
         })
     },
   /**
@@ -171,11 +208,4 @@ Page({
   onReachBottom: function () {
 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

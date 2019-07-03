@@ -373,6 +373,80 @@
     color:rgba(247,181,0,1);
     margin-top:10rpx;
 }
+.readPackets{
+    width:100%;
+    padding:0 98rpx;
+}
+.wrap{
+    width:561rpx;
+    height:561rpx;
+    position: relative;
+    animation: showBig 1s linear forwards;
+}
+.light{
+    width:561rpx;
+    height:561rpx;
+    position: absolute;
+    left:0;
+    top:0;
+    z-index: -1;
+    animation: rotateImg 10s linear infinite;
+}
+.packet-img{
+    width:336rpx;
+    height:336rpx;
+}
+.chip-name{
+    font-size:34rpx;
+    font-weight:500;
+    color:rgba(255,255,255,1);
+    margin-bottom:24rpx;
+    animation: moveDown 2s linear forwards;
+}
+.chip-tips{
+    font-size:22rpx;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    animation: moveDown 2s linear forwards;
+}
+.chip-btn{
+    width:422rpx;
+    height:88rpx;
+    background:rgba(255,167,0,1);
+    border-radius:44rpx;
+    font-size:34rpx;
+    font-weight:500;
+    color:rgba(255,255,255,1);
+    /* margin-top:180rpx; */
+    animation: btnBig 3s linear forwards;
+}
+.big-packets{
+    width:100%;
+}
+.packets-wrap,.packets-img{
+    width:598rpx;
+    height:852rpx;
+}
+.tip-btn{
+    margin-bottom:180rpx;
+}
+.packets-wrap{
+    animation: btnBig 1.5s linear forwards;
+    margin-bottom:70rpx;
+}
+.upgrade{
+    width:100%;
+    padding:0 94rpx;
+}
+.up-wrap{
+    width:562rpx;
+    height:562rpx;
+    position: relative
+}
+.up-icon{
+    width:480rpx;
+    height:480rpx;
+}
 @keyframes questionIn{
     0%{
         transform: translateY(20rpx);
@@ -446,4 +520,37 @@
         transform: translateY(0rpx)
     }
 }
-
+@keyframes moveDown{
+    0%{
+        transform: translateY(-40rpx);
+        opacity:0
+    }
+    49%{
+        transform: translateY(-40rpx);
+        opacity:0
+    }
+    50%{
+        transform: translateY(-40rpx);
+        opacity:1
+    }
+    100%{
+        transform: translateY(0rpx);
+        opacity:1
+    }
+}
+@keyframes btnBig{
+    0%{
+        opacity: 0
+    }
+    59%{
+        opacity: 0
+    }
+    60%{
+        opacity: 1;
+        transform: scale(0.6)
+    }
+    100%{
+        opacity: 1;
+        transform: scale(1)
+    }
+}

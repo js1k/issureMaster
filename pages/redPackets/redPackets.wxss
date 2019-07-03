@@ -76,13 +76,11 @@
 .rules-title{
   font-size:34rpx;
   margin-bottom:20rpx;
-  font-family:PingFangSC-Medium;
   font-weight:500;
   color:rgba(255,255,255,1);
 }
 .rules-txt{
   font-size:28rpx;
-  font-family:PingFangSC-Regular;
   font-weight:400;
   color:rgba(255,255,255,1);
 }
@@ -184,7 +182,7 @@
     transform: translateY(-185rpx)
   }
 }
-@keyframes packetsRotate{
+/* @keyframes packetsRotate{
   0%{
     transform: rotate(0deg);
   }
@@ -197,7 +195,7 @@
   100%{
     transform: rotate(720deg);
   }
-}
+} */
 
 @keyframes packetsLight{
     50%{

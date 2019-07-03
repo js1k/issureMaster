@@ -39,8 +39,13 @@ Page({
                 redPacketsData: data,
                 hiddenLoading: true
             })
-        }, function (data) {
-            console.log('error')
+        }, function (error) {
+            wx.showToast({
+                title: error.message,
+                icon: 'none',
+                duration: 1000,
+                mask: true
+            })
         })
     },
     /**
@@ -84,11 +89,4 @@ Page({
     onReachBottom: function() {
 
     },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
-
-    }
 })

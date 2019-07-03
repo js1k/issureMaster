@@ -1,4 +1,5 @@
 <scroll-view scroll-y="true" class='home-page'>
+    <loading hidden="{{hiddenLoading}}">{{loadingText}}</loading>
   <view class='homepage-header flx-ce-no-clm'>
     <view class='person-info flx-ce-clm'>
       <view class='header-box flx-ce-ce'>

@@ -8,6 +8,8 @@ Page({
     data: {
         insureUserVO:'',
         seasonData:[],
+        loadingText:'加载中...',
+        hiddenLoading:true,
         darenImg: '../../asset/rankList/daren_pic.png',
         gaoshouImg: '../../asset/rankList/gaoshou_pic.png',
         dashiImg: '../../asset/rankList/dashi_pic.png',
@@ -31,18 +33,22 @@ Page({
     },
     getData: function() {
         let _this = this
-        wx.showToast({
-            title: '加载中...',
-            icon: 'loading',
-            duration: 1000
+        this.setData({
+            hiddenLoading:false
         })
         app.httpPost('/xcx/insureMaster/personalCenter', { insureUid: wx.getStorageSync('insureUid')}, function(data) {
             _this.setData({
                 insureUserVO: data.insureUserVO,
-                seasonData: data.recordVOList
+                seasonData: data.recordVOList,
+                hiddenLoading:true
             })
-        }, function(data) {
-            console.log('error')
+        }, function (error) {
+            wx.showToast({
+                title: error.message,
+                icon: 'none',
+                duration: 1000,
+                mask: true
+            })
         })
     },
     /**
@@ -93,11 +99,4 @@ Page({
     onReachBottom: function() {
 
     },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
-
-    }
 })

@@ -271,6 +271,46 @@
     font-weight:400;
     color:rgba(157,157,157,1);
 }
+.progress{
+    width:100%;
+    height:100%;
+    position: relative;
+}
+.cartoon-wrap{
+    width:138rpx;
+    height:160rpx;
+}
+.cartoon{
+    width:138rpx;
+    height:160rpx;
+}
+.gift{
+    width:374rpx;
+    height:16rpx;
+    margin:24rpx 0;
+}
+.progress-tips{
+    font-size:24rpx;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    margin-bottom:50rpx;
+}
+.progress-txt{
+    font-size:32rpx;
+    font-weight:500;
+    color:rgba(255,255,255,1);
+    margin-top:30rpx;
+}
+.ms{
+    width: 100%;
+    text-align: center;
+    font-size:28rpx;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    position: absolute;
+    left:0;
+    bottom:46rpx;
+}
 @keyframes picActived{
     from{
         width:320rpx;
