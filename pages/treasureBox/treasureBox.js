@@ -23,6 +23,7 @@ Page({
         hiddenLoading: true,
         loadingText: '图片生成中...',
         shareName: wx.getStorageSync('userInfo').nickName,
+        insureUid: wx.getStorageSync('insureUid'),
         recordParam: {
             pageNum: 1,
             pageSize: 15,
@@ -74,7 +75,7 @@ Page({
         ctx.draw()
         //获取小程序二维码
         app.httpPost('/xcx/insureMaster/lookXcxQrCode', {
-            insureUid: wx.getStorageSync('insureUid')
+            insureUid: _this.data.insureUid
         }, function(data) {
             _this.setData({
                 shareQrImg: data.xcxQrCode
@@ -121,7 +122,7 @@ Page({
             energyCard: 1,
             helpCard: 1,
             removeCard: 1,
-            insureUid: wx.getStorageSync('insureUid')
+            insureUid: _this.data.insureUid
         }
         app.httpPost('/xcx/insureMaster/openStudyChest', param, function(data) {
             _this.setData({
@@ -161,7 +162,7 @@ Page({
     takeNew: function() {
         let _this = this
         app.httpPost('/xcx/insureMaster/gainNewChest', {
-            insureUid: wx.getStorageSync('insureUid')
+            insureUid: _this.data.insureUid
         }, function() {
             _this.setData({
                 showMask: true,
@@ -197,7 +198,7 @@ Page({
     getTeacher: function() {
         let _this = this
         app.httpPost('/xcx/insureMaster/lookAgent', {
-            insureUid: wx.getStorageSync('insureUid')
+            insureUid: _this.data.insureUid
         }, function(data) {
             _this.setData({
                 clientData: data,
@@ -242,7 +243,7 @@ Page({
     getTreasure: function() {
         let _this = this
         app.httpPost('/xcx/insureMaster/taskChest', {
-            insureUid: wx.getStorageSync('insureUid')
+            insureUid: _this.data.insureUid
         }, function(data) {
             _this.setData({
                 treasureData: data

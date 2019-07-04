@@ -1,13 +1,13 @@
-<scroll-view class="treasure-box" scroll-y="true" bindscrolltolower="bindscrolltolower" style='padding-top:{{statusBarHeight}}rpx;}}'>
+<scroll-view class="trea-pages" scroll-y="true" bindscrolltolower="bindscrolltolower" style='padding-top:{{statusBarHeight}}rpx;}}'>
     <loading hidden="{{hiddenLoading}}">{{loadingText}}</loading>
-    <view class='navigation flx-ce-ce' style='padding-top:{{statusBarHeight}}rpx;}}'>
+    <view class='nav flx-ce-ce' style='padding-top:{{statusBarHeight}}rpx;}}'>
         <view class='tab-content'>
             <view class="nav-tab flx-ce-ce {{showTask===true?'tab-actived':''}}" bindtap='handleToggle' data-mark="treasure">任务宝箱</view>
             <view class="nav-tab flx-ce-ce {{showTask===false?'tab-actived':''}}" bindtap='handleToggle' data-mark="records">宝箱记录</view>
         </view>
     </view>
     <view class='section'>
-        <view class='task-list section-content flx-ce-clm' wx:if="{{showTask}}">
+        <view class='task-list wrap flx-ce-clm' wx:if="{{showTask}}">
             <image src='../../asset/treasureBox/treasureTask.png' class='task-title'></image>
             <view class='task-column'>
                 <image src="http://dt.minshenglife.com/upload/img/20190627/1561639589395.png" class='card-bg'></image>
@@ -59,7 +59,7 @@
             </view>
             <view class='task-more'>—— 更多任务正在筹备中 ——</view>
         </view>
-        <view wx:if="{{!showTask}}" class='task-list section-content flx-ce-clm'>
+        <view wx:if="{{!showTask}}" class='task-list wrap flx-ce-clm'>
             <image src='../../asset/treasureBox/treasure_records.png' class='task-title'></image>
             <view class='records-colm' wx:for="{{recordList}}" wx:key="index">
                 <view>{{item.operateTime}} </view>
@@ -70,9 +70,11 @@
     <view class='com-mask' wx:if="{{showMask}}" bindtap='closeMask'>
         <!-- 学艺宝箱 -->
         <view class='take-teacher' catchtap='closeMask' data-model='inner' wx:if="{{showBaishi}}">
+            <view class='knapsack-close-box'>
+                <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
+            </view>
             <view class='teacher-container flx-ce-clm'>
                 <image class='teacher-box' src='http://dt.minshenglife.com/upload/img/20190627/1561639837974.png'></image>
-                <image src='../../asset/mask_close.png' class='close-mask' bindtap='closeMask'></image>
                 <view class='find-teacher-info flx-ce'>
                     <view class='default-header-conten'>
                         <image src="{{clientData.avatarUrl}}" class='default-header'></image>
@@ -121,14 +123,17 @@
         </view>
         <!-- 新手宝箱 -->
         <view class='take-teacher' catchtap='closeMask' data-model='inner' wx:if="{{showShare}}">
+            <view class='knapsack-close-box'>
+                <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
+            </view>
             <view class='none-teacher-content flx-ce-clm'>
                 <image class='none-teacher' src='http://dt.minshenglife.com/upload/img/20190628/1561715002804.png'></image>
-                <image src='../../asset/mask_close.png' class='close-mask' bindtap='closeMask'></image>
+                <!-- <image src='../../asset/mask_close.png' class='close-mask' bindtap='closeMask'></image> -->
             </view>
         </view>
         <view class='flx-ce-clm' wx:if="{{showNewPlay}}" bindtap='closeMask' data-model='inner'>
             <view class='knapsack-close-box'>
-                <image src='../../asset/mask_close.png' class='knapsack-close'></image>
+                <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
             </view>
             <view class='open-pic-box'>
                 <image src='../../asset/baoxiang/open_xinshou_img.png' class='open-box-img'></image>

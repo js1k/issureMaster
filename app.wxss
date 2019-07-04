@@ -139,7 +139,7 @@ view{
     font-weight:400;
     color:rgba(255,255,255,1);
     margin:24rpx 0 72rpx;
-    animation: txtIn 2s linear forwards;
+    animation: standSlideDown 2.5s linear forwards;
 }
 .btn-open{
     width:422rpx;
@@ -377,6 +377,24 @@ view{
         opacity: 1
     }
 }
+@keyframes standSlideDown{
+    0%{
+        transform: translateY(-40rpx);
+        opacity: 0
+    }
+    45%{
+        transform: translateY(-40rpx);
+        opacity: 0
+    }
+    46%{
+        transform: translateY(-40rpx);
+        opacity: 0.6
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 1
+    }
+}
 @keyframes slideDown{
     from{
         transform: translateY(-40rpx);
@@ -432,11 +450,11 @@ view{
         transform: scale(0.8);
         opacity: 0
     }
-    59%{
+    69%{
         transform: scale(0.8);
         opacity: 0
     }
-    60%{
+    70%{
         transform: scale(0.8);
         opacity: 0.8
     }
