@@ -21,6 +21,7 @@ Page({
         showLimit:false,
         seasonEnd:false,
         preSeason:false,
+        statusBarHeight: app.globalData.statusBarHeight,
         loadingText:'加载中...',
         uid:'',
         type:'',
@@ -60,7 +61,7 @@ Page({
         chipFlag:0,
         packageFlag:0,
         openTitle:'',
-
+        isIpx: app.globalData.isIpx,
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
         defaultHeader:'../../asset/index/default_header.png',
         darenIcon: '../../asset/rankList/icon_daren.png',

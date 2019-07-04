@@ -1,6 +1,6 @@
-<scroll-view class="treasure-box" scroll-y="true" bindscrolltolower="bindscrolltolower">
+<scroll-view class="treasure-box" scroll-y="true" bindscrolltolower="bindscrolltolower" style='padding-top:{{statusBarHeight}}rpx;}}'>
     <loading hidden="{{hiddenLoading}}">{{loadingText}}</loading>
-    <view class='navigation flx-ce-ce'>
+    <view class='navigation flx-ce-ce' style='padding-top:{{statusBarHeight}}rpx;}}'>
         <view class='tab-content'>
             <view class="nav-tab flx-ce-ce {{showTask===true?'tab-actived':''}}" bindtap='handleToggle' data-mark="treasure">任务宝箱</view>
             <view class="nav-tab flx-ce-ce {{showTask===false?'tab-actived':''}}" bindtap='handleToggle' data-mark="records">宝箱记录</view>
@@ -170,4 +170,4 @@
         </view>
     </view>
 </scroll-view>
-<image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack'></image>
+<image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack' style='top:{{statusBarHeight+22}}rpx;}}'></image>

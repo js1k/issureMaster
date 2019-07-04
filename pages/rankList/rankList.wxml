@@ -1,7 +1,7 @@
-<scroll-view scroll-y="true" class='rank-list flx-ce-no-clm' bindscrolltolower="bindscrolltolower">
+<scroll-view scroll-y="true" class='rank-list flx-ce-no-clm' bindscrolltolower="bindscrolltolower"  style='padding-top:{{statusBarHeight}}rpx;}}'>
     <loading hidden="{{hiddenLoading}}">{{loadingText}}</loading>
     <view class='scroll-container'>
-        <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack'></image>
+        <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack' style='top:{{statusBarHeight+22}}rpx;}}'></image>
         <view class='navigation flx-ce-ce'>
             <view class='tab-content'>
                 <view class="nav-tab flx-ce-ce {{showSeasonList===true?'tab-actived':''}}" bindtap='getList' data-type='season'>当前赛季排行</view>
@@ -15,7 +15,7 @@
                     <view class='rank-colum flx-ce' wx:for="{{pageList}}" wx:key="index" wx:if="{{pageList&&pageList.length>0}}">
                         <view class='rank-medal-box flx-ce-ce'>
                             <image src='../../asset/rankList/rank_top{{item.rankNo}}.png' class='rank-medal' wx:if="{{item.rankNo>0&&item.rankNo<4}}"></image>
-                            <text wx:if="{{item.rankNo===-1||item.rankNo>3}}">{{item.rankNo===-1?'--':item.rankNo}}</text>
+                            <view class='order-num flx-ce-ce' wx:if="{{item.rankNo===-1||item.rankNo>3}}">{{item.rankNo===-1?'--':item.rankNo}}</view>
                         </view>
                         <view class='colum-right flx-ce'>
                             <view class='rank-header-box flx-ce-ce'>
@@ -37,7 +37,7 @@
                     <view class='rank-colum flx-ce' wx:for="{{pageList}}" wx:key="index" wx:if="{{pageList&&pageList.length>0}}">
                         <view class='rank-medal-box flx-ce-ce'>
                             <image src='../../asset/rankList/rank_top{{item.rankNo}}.png' class='rank-medal' wx:if="{{item.rankNo>0&&item.rankNo<4}}"></image>
-                            <text wx:if="{{item.rankNo===-1||item.rankNo>3}}">{{item.rankNo===-1?'--':item.rankNo}}</text>
+                            <view class='order-num flx-ce-ce' wx:if="{{item.rankNo===-1||item.rankNo>3}}">{{item.rankNo===-1?'--':item.rankNo}}</view>
                         </view>
                         <view class='colum-right flx-ce'>
                             <view class='rank-header-box flx-ce-ce'>
@@ -56,7 +56,7 @@
                         <view class='rank-colum flx-ce'>
                             <view class='rank-medal-box flx-ce-ce'>
                                 <image src='../../asset/rankList/rank_top{{insureUser.rankNo}}.png' class='rank-medal' wx:if="{{insureUser.rankNo>0&&insureUser.rankNo<4}}"></image>
-                                <text wx:if="{{insureUser.rankNo===-1||insureUser.rankNo>3}}">{{insureUser.rankNo===-1?'--':insureUser.rankNo}}</text>
+                                <view class='order-num flx-ce-ce' wx:if="{{insureUser.rankNo===-1||insureUser.rankNo>3}}">{{insureUser.rankNo===-1?'--':insureUser.rankNo}}</view>
                             </view>
                             <view class='colum-right flx-ce none-border'>
                                 <view class='rank-header-box flx-ce-ce'>

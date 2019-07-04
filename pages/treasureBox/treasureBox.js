@@ -5,6 +5,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        statusBarHeight: app.globalData.statusBarHeight,
         showTask: true,
         showMask: false,
         showCards: false,
@@ -92,7 +93,7 @@ Page({
                             ctx.draw(true)
                             ctx.setFontSize(14)
                             ctx.setFillStyle('#000')
-                            ctx.fillText(data.nickName + '送你"分享宝箱"', 16, 330)
+                            ctx.fillText((data.nickName && data.nickName.length > 5 ? data.nickName.splice(0, 5) : data.nickName) + '送你"分享宝箱"', 16, 330)
                             ctx.draw(true)
                             ctx.setFontSize(12)
                             ctx.setFillStyle('#000')

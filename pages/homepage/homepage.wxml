@@ -1,4 +1,4 @@
-<scroll-view scroll-y="true" class='home-page'>
+<scroll-view scroll-y="true" class='home-page' style='padding-top:{{statusBarHeight+116}}rpx;}}'>
     <loading hidden="{{hiddenLoading}}">{{loadingText}}</loading>
   <view class='homepage-header flx-ce-no-clm'>
     <view class='person-info flx-ce-clm'>
@@ -82,4 +82,4 @@
   </view>
 
 </scroll-view>
-  <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack'></image>
+  <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack' style='top:{{statusBarHeight+22}}rpx;}}'></image>

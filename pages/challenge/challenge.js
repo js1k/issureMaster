@@ -5,6 +5,8 @@ Page({
      * 页面的初始数据
      */
     data: {
+        isIpx: app.globalData.isIpx,
+        statusBarHeight: app.globalData.statusBarHeight,
         curIndex: 0,    //当前答题序号
         removeIndex:-1,
         showMask:false,
@@ -12,8 +14,8 @@ Page({
         unfinshed: false,
         interval: null,
         timeInterval: null,
-        answerEnd:false,
-        onTest:true,
+        answerEnd:true,
+        onTest:false,
         hiddenLoading:true,
         showShareActive:false,
         showPackets:false,
@@ -194,16 +196,6 @@ Page({
             return
         }
         let _this = this
-
-
-
-
-
-
-        // 需要回归此处
-        let answer ='curQuestion.answer'
-
-
         let queListA = 'queList['+0+'].question'
         let queListB = 'queList['+1+'].question'
         let queListC = 'queList['+2+'].question'
@@ -212,9 +204,7 @@ Page({
             [queListA]: _this.data.question[num].optionA,
             [queListB]: _this.data.question[num].optionB,
             [queListC]: _this.data.question[num].optionC,
-            removeIndex:-1,
-
-            [answer]:'A'
+            removeIndex:-1
         })
         if (num===0){
             return 

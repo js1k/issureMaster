@@ -2,7 +2,6 @@
     width:100%;
     height:100%;
     justify-content: space-between;
-    padding-top:152rpx;
     background:linear-gradient(136deg,rgba(70,14,186,1) 0%,rgba(100,75,212,1) 49%,rgba(95,138,238,1) 100%);
 }
 .challenge-header{

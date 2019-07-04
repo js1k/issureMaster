@@ -1,8 +1,9 @@
-<view class='challenge-page flx-ce-no-clm'>
+<view class='challenge-page flx-ce-no-clm' style='padding-top:{{statusBarHeight+152}}rpx'>
     <loading hidden="{{hiddenLoading}}">{{loadingText}}</loading>
-    <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack'></image>
+    <image class='light_bg' src='../../asset/challenge/challenge_bg_light.png' wx:if="{{!onTest}}"></image>
+    <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack' style='top:{{statusBarHeight+22}}rpx'></image>
     <!-- 答题页 -->
-    <view class='section flx-ce-bet flx-start-clm' wx:if="{{onTest}}">
+    <view class='section flx-ce-clm' wx:if="{{onTest}}">
         <view class='question'>
             <view class='question-container flx-ce-ce'>
                 <view class='ready-txt before-txt flx-ce-ce'>预备</view>
@@ -30,7 +31,7 @@
                 </view>
             </view>
         </view>
-        <view class='privilegev-card flx-ce-bet'>
+        <view class='privilegev-card flx-ce-bet' style='margin-top:{{isIpx?80:40}}rpx;margin-bottom:{{isIpx?80:40}}rpx;'>
             <view class='privilege-title flx-ce-ce'>特权卡</view>
             <view class='privilege-contain flx-ce-ce'>
                 <image src="{{helpCard>0?bangbang:bangbangDisable}}" data-canUse="{{helpCard>0?true:false}}" data-type='bangbang' class='privilege-pic' bindtap='useCard'></image>
@@ -45,8 +46,8 @@
             <image class='submit' src='../../asset/challengeHome/submit_disable.png' wx:if="{{subParam.answerList.length<5}}"></image>
         </view>
     </view>
-    <!-- 查看结果 -->
-    <view class='section flx-ce-bet flx-start-clm' wx:if="{{reviewQuestion}}">
+    <!-- 查看考题 -->
+    <view class='section flx-ce-clm' style='margin-top:106rpx' wx:if="{{reviewQuestion}}">
         <view class='question'>
             <view class='end-wrap'>
                 <image class='header-img' src='../../asset/challenge/review_question_header.png'></image>
@@ -68,13 +69,14 @@
                 </view>
             </view>
         </view>
-        <view class='review-btn'>
+        <view class='review-btn' style='margin-top:{{isIpx?"80":"40"}}rpx'>
             <button class='closeBtn' bindtap='closeAnswer'>关闭</button>
         </view>
     </view>
     <!-- 答题结果 -->
-    <view class='answer-end' wx:if="{{answerEnd}}">
-        <view class='question'>
+    <view class='answer-end' style='margin-top:106rpx' wx:if="{{answerEnd}}">
+
+        <view class='question result-page'>
             <view class='question-container flx-ce-bet-clm en-question'>
                 <view class='end-wrap'>
                     <image src="{{result.addStarNum!=1?'../../asset/challengeHome/en_fail_header.png':'../../asset/challengeHome/answer_end_title.png'}}" class='header-img'></image>
@@ -116,12 +118,13 @@
                 <view class='look-back' bindtap='reviewResult'>回顾本关题目</view>
                 <view class='star-info'>
                     <image class='star-btn' src='../../asset/challengeHome/star_plus.png' wx:if="{{result.addStarNum==1}}"></image>
-                    <image class='star-btn' src='../../asset/challengeHome/star_minus.png' wx:if="{{result.addStarNum==0}}"></image>
+                    <image class='star-btn' src='../../asset/challengeHome/star_origin.png' wx:if="{{result.addStarNum==0}}"></image>
+                    <image class='star-btn' src='../../asset/challengeHome/star_minus.png' wx:if="{{result.addStarNum==-1}}"></image>
                 </view>
                 <view class='look-rank' bindtap='goRankList'>查看排行榜 ></view>
             </view>
         </view>
-        <view class='btns-group flx-ce-bet'>
+        <view class='btns-group flx-ce-bet' style='margin-top:{{isIpx?"80":"40"}}rpx'>
             <view class='challenge end-btn flx-ce-ce' bindtap='goChallengeHome'>继续挑战</view>
             <view class='share end-btn flx-ce-ce' bindtap='handleShare'>立即分享</view>
         </view>
@@ -198,7 +201,7 @@
             <view class='flx-ce-clm' wx:if="{{result.chip&&result.isMergeChip!=1}}">
                 <view class='wrap flx-ce-ce'>
                     <image class='light' src='../../asset/challengeHome/packet_light.png'></image>
-                    <image class='packet-img' src="{{result.chip=='ChipA'?chipA:result.chip=='ChipB'?chipB:result.chip=='ChipC'?chipC:chipD}}"></image>
+                    <image class='packet-img' src="{{result.chip=='A'?chipA:result.chip=='B'?chipB:result.chip=='C'?chipC:D}}"></image>
                 </view>
                 <view class='chip-name'>恭喜你获得红包碎片{{result.chip.splice(4)}}</view>
                 <view class='chip-tips'>集齐四中红包碎片即可自动合</view>

@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
     data: {
+        statusBarHeight: app.globalData.statusBarHeight,
         itemIndex:0,
         key:0,
         showMask:false,
@@ -165,6 +166,7 @@ Page({
    */
     onLoad: function (options) {
         this.getData()
+        console.log(this.data.statusBarHeight)
     },
 
   /**

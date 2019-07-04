@@ -6,6 +6,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        statusBarHeight: app.globalData.statusBarHeight,
         insureUserVO:'',
         seasonData:[],
         loadingText:'加载中...',

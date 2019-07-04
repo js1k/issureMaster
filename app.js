@@ -23,6 +23,18 @@ App({
         })
     },
     onLaunch: function () {
+        let _this=this
+        // 获取顶部bar高度
+        this.globalData.statusBarHeight=wx.getSystemInfoSync().statusBarHeight * 2
+        //获取设备信息  判断Iphone X
+        wx.getSystemInfo({
+            success: function(res) {
+                if(res.model.indexOf('iPhone X')>-1){
+                    _this.globalData.isIpx=true
+                }
+            },
+        })
+
         // 登录
         // wx.login({
         //     success: res => {
@@ -103,6 +115,8 @@ App({
         userInfo: null,
         encryptedData:'',
         iv:'',
+        isIpx:false,
+        statusBarHeight:'',
         urlDomain: "https://edu.minshenglife.com/sign-api",
         testUrl: "https://v.minshenglife.com/sign-api",
         prodUrl: "https://edu.minshenglife.com/sign-api"
