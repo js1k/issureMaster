@@ -35,7 +35,7 @@
     <view class='swiper-contain flx-ce-ce'>
         <swiper class='swiper flx-ce-ce' previous-margin="135rpx" next-margin="135rpx" bindchange='bindchange' easing-function='easeInOutCubic' current="{{itemIndex}}">
             <swiper-item wx:for="{{swiperItem}}" wx:key="{{key}}" wx:for-index="i" class='swiper-item flx-ce-ce'>
-                <image wx:if="{{i===itemIndex}}" src='{{currentSrc}}' class='swiper-pic {{i===itemIndex?"pic-actived":""}}'></image>
+                <image wx:if="{{i===itemIndex}}" src='{{curSrc}}' class='swiper-pic {{i===itemIndex?"pic-actived":""}}'></image>
                 <image wx:if="{{i!==itemIndex}}" src='{{i===itemIndex?swiperItem[i]:swiperDisabeItem[i]}}' class='swiper-pic {{i===itemIndex?"pic-actived":""}}'></image>
             </swiper-item>
         </swiper>

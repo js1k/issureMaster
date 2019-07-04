@@ -16,10 +16,9 @@ Page({
         insureUserVO:'',
         seasonCheckVO:'',
         isUseEnergyCard:0,
-        examData:'',
         showPowerWrap:false,
         powerTxt:'',
-        currentSrc:'../../asset/challengeHome/daren_pic.png',
+        curSrc:'../../asset/challengeHome/daren_pic.png',
         swiperItem: ['../../asset/challengeHome/daren_pic.png', '../../asset/challengeHome/gaoshou_pic.png', '../../asset/challengeHome/dashi_pic.png', '../../asset/challengeHome/zongshi_pic.png'],
         swiperDisabeItem: ['../../asset/challengeHome/daren_pic_disable.png', '../../asset/challengeHome/gaoshou_pic_disable.png', '../../asset/challengeHome/dashi_pic_disable.png', '../../asset/challengeHome/zongshi_pic_disable.png'],
     },
@@ -57,10 +56,11 @@ Page({
     },
     getQuestion:function(){
         let _this=this
-        app.httpPost('/xcx/insureMaster/examStart', { insureUid: wx.getStorageSync('insureUid'), isUseEnergyCard: _this.data.isUseEnergyCard},function(data){
-            _this.setData({
-                examData: data.insureExamGenerateResponse
-            })
+        let param={
+            insureUid: wx.getStorageSync('insureUid'),
+            isUseEnergyCard: _this.data.isUseEnergyCard
+        }
+        app.httpPost('/xcx/insureMaster/examStart', param,function(data){
             wx.removeStorage({
                 key: 'question',
                 key: 'examUserId'
@@ -84,12 +84,12 @@ Page({
         var _this=this
         if (e.detail.source==='touch'){
             this.setData({
-                currentSrc: _this.data.swiperDisabeItem[e.detail.current],
+                curSrc: _this.data.swiperDisabeItem[e.detail.current],
                 itemIndex: e.detail.current
             })
             let timeout=setTimeout(function () {
                 _this.setData({
-                    currentSrc: _this.data.swiperItem[e.detail.current]
+                    curSrc: _this.data.swiperItem[e.detail.current]
                 })
                 clearTimeout(timeout)
             },400)
@@ -111,7 +111,7 @@ Page({
             showRule:true
         })
     },
-    // 使用能量
+    // 使用能量卡
     usePower: function () {
         let _this=this
         _this.setData({
@@ -128,7 +128,7 @@ Page({
             })
             _this.getQuestion()
             clearTimeout(timeOut)
-        }, 2500)
+        }, 1500)
     },
     // 做任务
     goTreasure: function () {
