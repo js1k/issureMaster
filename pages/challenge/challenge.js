@@ -1,9 +1,5 @@
-// pages/challenge/challenge.js
 const app = getApp()
 Page({
-    /**privilege-titleasdfasdf
-     * 页面的初始数据
-     */
     data: {
         isIpx: app.globalData.isIpx,
         statusBarHeight: app.globalData.statusBarHeight,
@@ -14,8 +10,8 @@ Page({
         unfinshed: false,
         interval: null,
         timeInterval: null,
-        answerEnd:true,
-        onTest:false,
+        answerEnd:false,
+        onTest:true,
         hiddenLoading:true,
         showShareActive:false,
         showPackets:false,

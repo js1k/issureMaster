@@ -128,7 +128,6 @@
             </view>
             <view class='none-teacher-content flx-ce-clm'>
                 <image class='none-teacher' src='http://dt.minshenglife.com/upload/img/20190628/1561715002804.png'></image>
-                <!-- <image src='../../asset/mask_close.png' class='close-mask' bindtap='closeMask'></image> -->
             </view>
         </view>
         <view class='flx-ce-clm' wx:if="{{showNewPlay}}" bindtap='closeMask' data-model='inner'>

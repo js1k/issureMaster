@@ -1,10 +1,5 @@
-// pages/rankList/rankList.js
 const app = getApp()
 Page({
-
-    /**
-     * 页面的初始数据
-     */
     data: {
         statusBarHeight: app.globalData.statusBarHeight,
         showSeasonList: true,
@@ -42,10 +37,11 @@ Page({
     },
     getList:function(e){
         let _this = this
+        let type = e.currentTarget.dataset.type
         this.setData({
             showSeasonList: !_this.data.showSeasonList,
             pageNum: 1,
-            url: e.currentTarget.dataset.type === 'season' ? '/xcx/insureMaster/rankByStar' : '/xcx/insureMaster/rankByPoint',
+            url: type === 'season' ? '/xcx/insureMaster/rankByStar' : '/xcx/insureMaster/rankByPoint',
             pageList:[]
         })
         _this.getData()
@@ -122,20 +118,6 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload: function() {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function() {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function() {
 
     },
 })

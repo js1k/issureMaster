@@ -1,4 +1,4 @@
-hao<view class="index-page" style='padding-top:{{statusBarHeight}}rpx;padding-bottom:{{isIpx?"60rpx":""}}'>
+<view class="index-page" style='padding-top:{{statusBarHeight}}rpx;padding-bottom:{{isIpx?"60rpx":""}}'>
     <loading hidden="{{hiddenLoading}}">{{loadingText}}</loading>
     <view class='nav-bar flx-ce-ce'>
         <text>保保大师挑战赛</text>

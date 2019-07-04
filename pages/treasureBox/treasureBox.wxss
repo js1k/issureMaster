@@ -175,6 +175,7 @@
 .none-teacher-content{
   width:100%;
   position: relative;
+  animation: slideDown 0.5s linear forwards;
 }
 .none-teacher-txt{
   position: absolute;

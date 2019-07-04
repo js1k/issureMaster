@@ -1,7 +1,4 @@
-//index.js
-//获取应用实例
 const app = getApp()
-
 Page({
     data: {
         userInfo: {},
@@ -759,7 +756,6 @@ Page({
                     showLimit:true
                 })
             }
-            // 页面轮播消息
             if (data.chestTipList && data.chestTipList.length>0){
                 let timeout2=setTimeout(function () {
                     _this.setData({

@@ -1,9 +1,5 @@
-// pages/treasureBox/treasureBox.js
 const app = getApp()
 Page({
-    /**
-     * 页面的初始数据
-     */
     data: {
         statusBarHeight: app.globalData.statusBarHeight,
         showTask: true,
@@ -22,7 +18,7 @@ Page({
         clientData: '',
         hiddenLoading: true,
         loadingText: '图片生成中...',
-        shareName: wx.getStorageSync('userInfo').nickName,
+        shareName: '',
         insureUid: wx.getStorageSync('insureUid'),
         recordParam: {
             pageNum: 1,
@@ -30,7 +26,6 @@ Page({
             insureUid: wx.getStorageSync('insureUid')
         },
         recordList: [],
-
         shareCoverImg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190702/1562054485634.png',
         shareQrImg: '',
     },
@@ -39,9 +34,7 @@ Page({
             title: '2019民生保险用户体验节~ \n保保大师答题挑战赛，精彩来战',
             path: '/pages/index/index',
             imageUrl: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190628/1561717521552.png',
-            success: function() {
-
-            }
+            success: function() {}
         }
         if (options.from === 'button') {
             var dataid = options.target.dataset;
@@ -154,7 +147,8 @@ Page({
             })
         } else {
             this.setData({
-                showTask: false
+                showTask: false,
+                recordList:[]
             })
             this.getRecords()
         }
@@ -233,6 +227,7 @@ Page({
             showShare: true
         })
     },
+    //预览图片
     previewImage: function(e) {
         var current = e.target.dataset.src;
         wx.previewImage({
@@ -259,14 +254,10 @@ Page({
     },
     getRecords: function() {
         let _this = this
-        this.setData({
-            hiddenLoading:false
-        })
         app.httpPost('/xcx/insureMaster/chestRecord', _this.data.recordParam, function(data) {
             _this.setData({
                 recordList: [..._this.data.recordList, ...data.list],
-                totalPage: data.totalPage,
-                hiddenLoading:true
+                totalPage: data.totalPage
             })
         }, function (error) {
             wx.showToast({
@@ -287,6 +278,15 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+        let _this=this
+        wx.getStorage({
+            key:'userInfo',
+            success:function(res){
+                _this.setData({
+                    shareName: res.data.nickName
+                })
+            }
+        })
         this.getTreasure()
     },
 
