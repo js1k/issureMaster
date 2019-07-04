@@ -52,7 +52,7 @@
             </view>
         </view>
     </view>
-    <view class='home-section flx-ce-clm'>
+    <view class='home-section'>
         <view>
             <image src="../../asset/index/logo@2x.png" class='home-logo'></image>
         </view>
@@ -82,14 +82,14 @@
         <view class='begin-answer'>
             <image src="../../asset/index/begainAnswer.png" class='begin-btn' bindtap='handleCheck' data-mark="challenge"></image>
         </view>
-        <view class='btm-img' style='bottom:{{isIpx?"60rpx":""}}'>
+        <view class='btm-img' style='bottom:{{isIpx?"60rpx":"0rpx"}}'>
             <view class='arrow-box'>
                 <image src='../../asset/index/home_arrow.png' class='home-arrow' bindtap="openRules"></image>
             </view>
             <image src='../../asset/index/season_tips.png' class='season-stragety' bindtap="openRules"></image>
         </view>
     </view>
-    <image src="http://dt.minshenglife.com/upload/img/20190627/1561639338754.png" class='home-btm-bg'></image>
+    <image src="http://dt.minshenglife.com/upload/img/20190704/1562222610804.png" class='home-btm-bg'></image>
     <view class='loop-content'>
         <view class='relative'>
             <image src="../../asset/index/baobao.png" class='bao-bao'></image>
@@ -126,7 +126,7 @@
         <!-- 微信授权 -->
         <view class='authorization-box flx-ce-clm' wx:if="{{!authFlag}}">
             <view class='auth-title'>申请获取以下权限</view>
-            <view class='auth-desc'>使用您的昵称、头像等公开信息用于分享、排行使用</view>
+            <view class='auth-desc'>使用你的昵称、头像等公开信息用于分享、排行使用</view>
             <button open-type="getUserInfo" class='auth-btn' bindgetuserinfo="getUserInfo">授权</button>
         </view>
         <!-- 赛季攻略 -->
@@ -175,25 +175,20 @@
                 <view class='end-btn flx-ce-ce' catchtap='closeMask'>开启新赛季</view>
             </view>
         </view>
-        <!-- 代理人无法领取宝箱 -->
-        <view class='container flx-ce-clm' wx:if="{{showClient}}" catchtap='closeMask' data-model='inner'>
-            <view class='knapsack-close-box'>
-                <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
-            </view>
-            <view class='client-tips flx-ce-no-clm'>
-                <view class='end-info'>您的身份是代理人,</view>
-                <view class='end-info'>无法成为别人的徒弟哟。</view>
-                <view class='clent-btn flx-ce-ce' catchtap='closeMask'>知道了</view>
-            </view>
-        </view>
-        <!-- 分享达到领取上限 -->
+        <!-- 学艺/分享达到领取上限、代理人无法领取宝箱、重复领取、自己不能领自己分享的 -->
         <view class='container flx-ce-clm' catchtap='closeMask' wx:if="{{showLimit}}">
             <view class='knapsack-close-box'>
                 <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
             </view>
             <view class='limit flx-ce-no-clm'>
                 <image src='../../asset/index/up_limit_bg.png' class='limit-pic'></image>
-                <view>您今天的分享宝箱领取已达上线</view>
+                <view wx:if="{{shareInfoVO.shareStatus==7}}">
+                    <view>你的身份是代理人,</view>
+                    <view>无法成为别人的徒弟哟。</view>
+                </view>
+                <view wx:if="{{shareInfoVO.shareStatus==8}}">你不能打开自己分享的宝箱哦～</view>
+                <view wx:if="{{shareInfoVO.shareStatus==5}}">同一人的分享宝箱一天仅能领取一次哦</view>
+                <view wx:if="{{shareInfoVO.shareStatus==4}}">你今天的{{type==1?'学艺':'分享'}}宝箱领取已达上限</view>
                 <button class='limit-btn' bindtap='closeMask'>我知道了</button>
             </view>
         </view>
@@ -233,7 +228,7 @@
                 </view>
             </view>
         </view>
-        <!-- 拜师 -->
+        <!-- 拜师弹窗 -->
         <view class='container flx-ce-clm' catchtap='closeMask' data-model='inner' wx:if="{{showTeacher}}">
             <view class='knapsack-close-box' >
                 <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>

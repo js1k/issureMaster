@@ -113,9 +113,8 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    z-index: 99;
+    z-index: 0;
 }
-
 .loop-inner {
     position: relative;
     width: 100%;
@@ -164,7 +163,7 @@
 .menu-content {
     position: absolute;
     right: 26rpx;
-    top: 128rpx;
+    top: 200rpx;
     z-index: 99;
 }
 
@@ -253,7 +252,8 @@
 .begin-answer {
     width: 298rpx;
     height: 88rpx;
-    margin-top: 60rpx;
+    margin-top: 40rpx;
+    z-index: 99;
 }
 
 .begin-btn {
@@ -268,10 +268,10 @@
 }
 
 .home-btm-bg {
-    width: 100%;
-    height: 640rpx;
+    width: 750rpx;
+    height: 498rpx;
     position: absolute;
-    bottom: 0;
+    bottom: 11.99%;
     left: 0;
     z-index: -1;
 }

@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
     data: {
+        isIpx: app.globalData.isIpx,
         statusBarHeight: app.globalData.statusBarHeight,
         itemIndex:0,
         key:0,

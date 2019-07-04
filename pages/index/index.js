@@ -17,7 +17,6 @@ Page({
         showShare:false,
         seasonCalc:false,
         showTeacher:false,
-        showClient:false,
         showLimit:false,
         seasonEnd:false,
         preSeason:false,
@@ -126,9 +125,9 @@ Page({
                     type: options.type,
                     shareDay: options.shareDay||''
                 })
-                wx.setStorageSync('uid', options.uid)
-                wx.setStorageSync('type', options.type)
-                wx.setStorageSync('shareDay', options.shareDay||'')
+                wx.setStorageSync('uid', _this.data.uid)
+                wx.setStorageSync('type', _this.data.type)
+                wx.setStorageSync('shareDay', _this.data.shareDay||'')
             }
         }
         if (wx.getStorageSync('userInfo')) {
@@ -218,7 +217,11 @@ Page({
             return
         }
         let _this=this
-        app.httpPost('/xcx/insureMaster/ackTeacher', { agentUserId: wx.getStorageSync('uid'), insureUid: wx.getStorageSync('insureUid')},function(){
+        let param = { 
+            agentUserId: _this.data.uid,
+            insureUid: wx.getStorageSync('insureUid') 
+        }
+        app.httpPost('/xcx/insureMaster/ackTeacher', param,function(){
             wx.showToast({
                 title: '拜师成功',
                 icon:'success',
@@ -247,7 +250,9 @@ Page({
             showTeacher:false
         })
         wx.removeStorage({
-            key:'type',
+            key:'type'
+        })
+        wx.removeStorage({
             key: 'uid'
         })
     },
@@ -334,7 +339,15 @@ Page({
             showMask:true
         })
     },
+    //  任务宝箱
     goTreasure: function() {
+        if (this.data.seasonCheckVO.status == 2) {   // 活动结算中
+            _this.setData({
+                showMask: true,
+                seasonCalc: true
+            })
+            return
+        }
         wx.navigateTo({
             url: '../treasureBox/treasureBox'
         })
@@ -349,7 +362,21 @@ Page({
             url: '../redPackets/redPackets'
         })
     },
+    // 开始挑战
     goChallenge: function () {
+        if (this.data.seasonCheckVO.status == 0) {  // 活动未开始
+            _this.setData({
+                showMask: true,
+                preSeason: true
+            })
+            return
+        } else if (this.data.seasonCheckVO.status == 2) {   // 活动结算中
+            _this.setData({
+                showMask: true,
+                seasonCalc: true
+            })
+            return
+        }
         wx.navigateTo({
             url: '../challengeHome/challengeHome'
         })
@@ -556,10 +583,6 @@ Page({
         if (event.currentTarget.dataset.model === 'inner') {
             return
         }
-        wx.removeStorage({
-            key: 'type', 
-            key: 'uid'
-        })
         this.setData({
             showMask: false,
             openBox: false,
@@ -647,46 +670,62 @@ Page({
                 shareInfoVO: data.shareInfoVO,
                 chestTipList: data.chestTipList,
             })
+            // 请求完成之后清除本地存储的分享人信息
+            wx.removeStorage({
+                key: 'type'
+            })
+            wx.removeStorage({
+                key: 'uid'
+            })
             wx.setStorageSync('insureUid', data.insureUserVO.insureUid)
             app.globalData.insureUid = data.insureUserVO.insureUid
-            // 判断赛季信息
-            if (_this.data.seasonCheckVO.status == 0){
-                _this.setData({
-                    showMask: true,
-                    preSeason: true
-                })
-            }else if (_this.data.seasonCheckVO.status==2){
+            // 判断赛季信息 status 0 未开始； 1 进行中； 2 结算中； 3 已结束
+            if (_this.data.seasonCheckVO.status==2){
+                if (wx.getStorageSync('seasonCalc')){
+                    return
+                }
+                wx.setStorageSync('seasonCalc', true)
                 _this.setData({
                     showMask:true,
                     seasonCalc:true
                 })
             } else if (_this.data.seasonCheckVO.status == 3) {
+                if (wx.getStorageSync('seasonEnd')) {
+                    return
+                }
+                wx.setStorageSync('seasonEnd', true)
                 _this.setData({
                     showMask: true,
                     seasonEnd: true
                 })
             }
-            // 根据接口返回分享状态码弹出对应错误弹窗
-            if (_this.data.shareInfoVO.shareStatus === 2 || _this.data.shareInfoVO.shareStatus === 3){   //  拜他为师
+            // 根据接口返回分享状态码弹出对应错误弹窗 
+            // shareStatus 
+            // 0 什么也不弹
+            // 1 领取成功 
+            // 2 拜ta为师吧 
+            // 3 导师不对，无法领取 
+            // 4 领取到达上限 
+            // 5重复领取 
+            // 6分享宝箱过期 
+            // 7身份是代理人，无法成为别人的徒弟 
+            // 8自己不能领自己分享的
+            let shareStatus = _this.data.shareInfoVO.shareStatus
+            if (shareStatus === 2 || shareStatus === 3){   //  拜他为师
                 _this.setData({
                     showMask: true,
                     showTeacher:true
                 })
-            } else if (_this.data.shareInfoVO.shareStatus === 4) {
-                _this.setData({
-                    showMask: true,
-                    showLimit:true
-                })
-            }else if (_this.data.shareInfoVO.shareStatus === 6){
+            } else if (shareStatus === 6){
                 wx.showToast({
                     title: '宝箱已过期',
                     icon: 'none',
                     duration: 1000
                 })
-            } else if (_this.data.shareInfoVO.shareStatus === 7) {
+            } else if (shareStatus === 4 || shareStatus === 5 || shareStatus === 7 || shareStatus === 8 ) {
                 _this.setData({
                     showMask: true,
-                    showClient: true
+                    showLimit:true
                 })
             }
             // 页面轮播消息
