@@ -179,6 +179,12 @@ Page({
         this.setData({
             checkShow:true
         })
+        wx.removeStorage({
+            key: 'seasonCalc',
+        })
+        wx.removeStorage({
+            key: 'seasonEnd',
+        })
         clearInterval(_this.data.loopInterval)
     },
     onUnload: function () {
