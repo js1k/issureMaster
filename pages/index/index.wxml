@@ -1,4 +1,4 @@
-<view class="index-page" style='padding-top:{{statusBarHeight}}rpx;padding-bottom:{{isIpx?"60rpx":""}}'>
+hao<view class="index-page" style='padding-top:{{statusBarHeight}}rpx;padding-bottom:{{isIpx?"60rpx":""}}'>
     <loading hidden="{{hiddenLoading}}">{{loadingText}}</loading>
     <view class='nav-bar flx-ce-ce'>
         <text>保保大师挑战赛</text>
@@ -116,7 +116,8 @@
                 <image wx:if="{{chestGainTipVO.chestType==4}}" src='../../asset/baoxiang/tiyanshi_icon.png' class='tiyanshi-img'></image>
                 <view class='lx-ce-no-clm'>
                     <view wx:if="{{chestGainTipVO.chestType==1}}">你的导师 {{chestGainTipVO.shareUserName}}</view>
-                    <view wx:if="{{chestGainTipVO.chestType==4}}">你的好友{{chestGainTipVO.shareUserName}}</view>
+                    <view wx:if="{{chestGainTipVO.chestType!=4}}">你的好友</view>
+                    <view wx:if="{{chestGainTipVO.chestType==4}}">{{chestGainTipVO.shareUserName}}</view>
                     <view wx:if="{{chestGainTipVO.chestType==4}}">保险体验师</view>
                     <view>送你"{{chestGainTipVO.chestType==4?'主题宝箱':chestGainTipVO.chestType==1?'学艺宝箱':'分享宝箱'}}"</view>
                 </view>
