@@ -13,13 +13,13 @@ Page({
         openBox: false,
         canSave: true,
         hiddenLoading: false,
-        showNewPlay:true,
         showShare:false,
         seasonCalc:false,
         showTeacher:false,
         showLimit:false,
         seasonEnd:false,
         preSeason:false,
+        teacherLimit:false,
         statusBarHeight: app.globalData.statusBarHeight,
         loadingText:'加载中...',
         uid:'',
@@ -162,6 +162,14 @@ Page({
         }
     },
     onShow: function (options) {
+        this.setData({
+            showMask: false,
+            openBox: false,
+            showRules: false,
+            knapsackMask: false,
+            showShare: false,
+            showTeacher: false
+        })
         if (this.data.checkShow){
             this.onLoad()
         }
@@ -200,12 +208,13 @@ Page({
             })
         }
         this.randomShare()
+        let type = wx.getStorageSync('type')
         this.setData({
             openBox:true,
             showShare:false,
-            openTitle: wx.getStorageSync('type') == 1 ? '请选择两张特权卡' : wx.getStorageSync('type') == 2 ? '获得排除卡1张' : '获得能量卡1张',
+            openTitle: type == 1 ? '请选择两张特权卡' : type == 2 ? '获得排除卡1张' : '获得能量卡1张',
             [chestType]: wx.getStorageSync('type'), 
-            openImg: wx.getStorageSync('type') == 1 ? _this.data.xueyiBg : wx.getStorageSync('type') == 2 ? _this.data.fenxiangBg : _this.data.zhutiBg
+            openImg: type == 1 ? _this.data.xueyiBg : type == 2 ? _this.data.fenxiangBg : _this.data.zhutiBg
         })
     },
     handleTeacher: function () {
@@ -364,13 +373,14 @@ Page({
     },
     // 开始挑战
     goChallenge: function () {
-        if (this.data.seasonCheckVO.status == 0) {  // 活动未开始
+        let status = this.data.seasonCheckVO.status
+        if (status == 0) {  // 活动未开始
             _this.setData({
                 showMask: true,
                 preSeason: true
             })
             return
-        } else if (this.data.seasonCheckVO.status == 2) {   // 活动结算中
+        } else if (status == 2) {   // 活动结算中
             _this.setData({
                 showMask: true,
                 seasonCalc: true
@@ -438,19 +448,19 @@ Page({
         let Num = Math.ceil(Math.random() * 3)
         if (Num == 1) {
             this.setData({
-                randomImg: '../../asset/index/bangbang.png',
+                randomImg: _this.data.bangbangImg,
                 randomName: '帮帮卡',
                 [helpCard]: 1,
             })
         } else if (Num == 2) {
             this.setData({
-                randomImg: '../../asset/index/paichu.png',
+                randomImg: _this.data.paichuImg,
                 randomName: '排除卡',
                 [removeCard]: 1
             })
         } else {
             this.setData({
-                randomImg: '../../asset/index/nengliang.png',
+                randomImg: _this.data.nengliangImg,
                 randomName: '能量卡',
                 [energyCard]: 1,
             })
@@ -494,19 +504,19 @@ Page({
                     let Num = Math.ceil(Math.random() * 3)
                     if (Num == 1) {
                         _this.setData({
-                            randomImg: '../../asset/index/bangbang.png',
+                            randomImg: _this.data.bangbangImg,
                             randomName: '帮帮卡',
                             [helpCard]: 1,
                         })
                     } else if (Num == 2) {
                         _this.setData({
-                            randomImg: '../../asset/index/paichu.png',
+                            randomImg: _this.data.paichuImg,
                             randomName: '排除卡',
                             [removeCard]: 1
                         })
                     } else {
                         _this.setData({
-                            randomImg: '../../asset/index/nengliang.png',
+                            randomImg: _this.data.nengliangImg,
                             randomName: '能量卡',
                             [energyCard]: 1,
                         })
@@ -588,9 +598,11 @@ Page({
             openBox: false,
             showRules: false,
             knapsackMask: false,
-            showShare: false
+            showShare: false,
+            showTeacher:false
         })
-        if (this.data.seasonCheckVO.status == 0 || this.data.seasonCheckVO.status == 2 || this.data.seasonCheckVO.status == 3){
+        let status = this.data.seasonCheckVO.status
+        if (status == 0 || status == 2 || status == 3){
             return
         }
         if (wx.getStorageSync('encryptedData')){
@@ -722,7 +734,19 @@ Page({
                     icon: 'none',
                     duration: 1000
                 })
-            } else if (shareStatus === 4 || shareStatus === 5 || shareStatus === 7 || shareStatus === 8 ) {
+            } else if(shareStatus === 4){
+                if (_this.data.type === 1) {    //学艺宝箱达到上限
+                    _this.setData({
+                        showMask: true,
+                        teacherLimit: true
+                    })
+                } else {  //分享宝箱达到上限
+                    _this.setData({
+                        showMask: true,
+                        showLimit: true
+                    })
+                }
+            } else if(shareStatus === 5 || shareStatus === 7 || shareStatus === 8 ) {
                 _this.setData({
                     showMask: true,
                     showLimit:true

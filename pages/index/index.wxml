@@ -188,7 +188,7 @@
                 </view>
                 <view wx:if="{{shareInfoVO.shareStatus==8}}">你不能打开自己分享的宝箱哦～</view>
                 <view wx:if="{{shareInfoVO.shareStatus==5}}">同一人的分享宝箱一天仅能领取一次哦</view>
-                <view wx:if="{{shareInfoVO.shareStatus==4}}">你今天的{{type==1?'学艺':'分享'}}宝箱领取已达上限</view>
+                <view wx:if="{{shareInfoVO.shareStatus==4}}">你今天的分享宝箱领取已达上限</view>
                 <button class='limit-btn' bindtap='closeMask'>我知道了</button>
             </view>
         </view>
@@ -228,7 +228,7 @@
                 </view>
             </view>
         </view>
-        <!-- 拜师弹窗 -->
+        <!-- 拜师弹窗、导师不一致弹窗 -->
         <view class='container flx-ce-clm' catchtap='closeMask' data-model='inner' wx:if="{{showTeacher}}">
             <view class='knapsack-close-box' >
                 <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
@@ -237,7 +237,43 @@
                 <view class='teacher-info'>
                     <image src='../../asset/index/baishi_box_bg.png' class='baishi_bg'></image>
                     <view class='header'>
-                        <image src="{{seasonCheckVO.agentInfoVO.avatarUrl?seasonCheckVO.agentInfoVO.avatarUrl:'../../asset/index/default_header.png'}}" class='baishi-img'></image>
+                        <image src="{{shareInfoVO.agentInfoVO.avatarUrl?shareInfoVO.agentInfoVO.avatarUrl:'../../asset/index/default_header.png'}}" class='baishi-img'></image>
+                    </view>
+                    <view class='teacher-detail'>
+                        <view class='teacher-name'>{{shareInfoVO.agentInfoVO.agentName}}</view>
+                        <view class='teacher-num'>编号:{{shareInfoVO.agentInfoVO.agentCode}}</view>
+                        <view>{{shareInfoVO.agentInfoVO.company+' '+shareInfoVO.agentInfoVO.managecom}} </view>
+                    </view>
+                </view>
+                <view class='teacher-contain flx-ce-no-clm' wx:if="{{shareInfoVO.shareStatus==2}}">
+                    <view class='teacher-title'>拜TA为师</view>
+                    <view>每天导师都会为你送出</view>
+                    <view>“学艺宝箱”</view>
+                    <button class='baishi-btn' bindtap='handleTeacher'>确认拜师</button>
+                    <button class='spe-btn' bindtap='handleSelfReliance'>自立门户</button>
+                    <text class='teacher-tips'>- 民生保险 -</text>
+                </view>
+                <view class='teacher-contain flx-ce-no-clm' wx:if="{{shareInfoVO.shareStatus==3}}">
+                    <view class='disabled-receive'>无法领取宝箱</view>
+                    <view>我才是你的导师</view>
+                    <view>快来找我领取学艺宝箱吧！</view>
+                    <button class='baishi-btn' bindtap='goTreasure'>去索要</button>
+                    <text class='teacher-tips'>- 民生保险 -</text>
+                </view>
+            </view>
+            <view class='tearher-tips'>温馨提示：绑定后，代理人将获取您的联系方式</view>
+            <view class='tearher-tips'>绑定后将不能换帮</view>
+        </view>
+        <!-- 学艺宝箱达到上限 -->
+        <view class='container flx-ce-clm' catchtap='closeMask' data-model='inner' wx:if="{{teacherLimit}}">
+            <view class='knapsack-close-box' >
+                <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
+            </view>
+            <view class='baishi-wrap'>
+                <view class='teacher-info'>
+                    <image src='../../asset/index/baishi_box_bg.png' class='baishi_bg'></image>
+                    <view class='header'>
+                        <image src="{{shareInfoVO.agentInfoVO.avatarUrl?shareInfoVO.agentInfoVO.avatarUrl:'../../asset/index/default_header.png'}}" class='baishi-img'></image>
                     </view>
                     <view class='teacher-detail'>
                         <view class='teacher-name'>{{shareInfoVO.agentInfoVO.agentName}}</view>
@@ -246,11 +282,10 @@
                     </view>
                 </view>
                 <view class='teacher-contain flx-ce-no-clm'>
-                    <view class='teacher-title'>拜TA为师</view>
-                    <view>每天导师都会为你送出</view>
-                    <view>“学艺宝箱”</view>
-                    <button class='baishi-btn' bindtap='handleTeacher'>确认拜师</button>
-                    <button class='spe-btn' bindtap='handleSelfReliance'>自立门户</button>
+                    <view class='teacher-title'>今日领取已达上限</view>
+                    <view>师傅领进门，修行靠个人，每天</view>
+                    <view>只能领取一个定制宝箱哦！</view>
+                    <button class='baishi-btn' bindtap='goTreasure'>获取其他宝箱</button>
                     <text class='teacher-tips'>- 民生保险 -</text>
                 </view>
             </view>
