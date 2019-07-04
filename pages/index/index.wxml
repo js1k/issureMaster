@@ -105,7 +105,7 @@
         <!-- 宝箱 -->
         <view class='flx-ce-clm' catchtap='closeMask' wx:if="{{showShare}}" data-model='inner'>
             <view class='knapsack-close-box'>
-                <image src='../../asset/mask_close.png' class='knapsack-close'></image>
+                <image src='../../asset/mask_close.png' class='knapsack-close' catchtap='closeMask'></image>
             </view>
             <view class='open-pic-box'>
                 <image src="{{chestGainTipVO.chestType==1?openXueyi:chestGainTipVO.chestType==2?openFenxiang:openZhuti}}" class='open-box-img'></image>

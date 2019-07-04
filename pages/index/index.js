@@ -159,17 +159,10 @@ Page({
                 showMask:true,
                 hiddenLoading: true
             })
+            console.log(this.data.showMask)
         }
     },
     onShow: function (options) {
-        this.setData({
-            showMask: false,
-            openBox: false,
-            showRules: false,
-            knapsackMask: false,
-            showShare: false,
-            showTeacher: false
-        })
         if (this.data.checkShow){
             this.onLoad()
         }
@@ -661,6 +654,14 @@ Page({
     },
     getData: function () {
         let _this = this
+        this.setData({
+            showMask: false,
+            openBox: false,
+            showRules: false,
+            knapsackMask: false,
+            showShare: false,
+            showTeacher: false
+        })
         clearInterval(_this.data.loopInterval)
         let param={
             agentUserId:'',
