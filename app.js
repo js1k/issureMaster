@@ -1,4 +1,5 @@
 //app.js
+const utils=require('/utils/util.js')
 App({
     goBack:function(){
         wx.navigateBack({

@@ -169,7 +169,7 @@ view{
     height: 48rpx;
     margin-bottom: 16rpx;
     opacity: 0;
-    animation: rotateDeg 3s ease-in-out forwards;
+    animation: rotateDeg 2s ease-in-out forwards;
 }
 .open-box-layer{
     animation: changeScale 0.6s ease forwards;

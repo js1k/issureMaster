@@ -34,13 +34,14 @@ Page({
         let _this=this
         
         let param = {
-            title: '2019民生保险用户体验节~ \n保保大师答题挑战赛，精彩来战',
+            title: '2019民生保险用户体验节~保保大师答题挑战赛，精彩来战',
             path: '/pages/index/index',
             imageUrl: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190628/1561717521552.png',
             success: function() {}
         }
         if (options.from === 'button') {
             var dataid = options.target.dataset;
+            param.title = this.data.shareName+'送你“分享宝箱”快来和TA一起赢取大奖吧～',
             param.path = '/pages/index/index?uid=' + _this.data.insureUid + '&type=2&shareDay=' + util.getNow()
         }
         return {...param}

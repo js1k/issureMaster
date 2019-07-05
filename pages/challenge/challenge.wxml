@@ -13,7 +13,7 @@
                         <view class='queistion-name flx-ce-ce'>{{curQuestion.subjectTitle}}</view>
                         <view wx:for="{{queList}}" wx:key="index" class="que-answer flx-ce-ce {{choseItem==index?'item-chosed':''}} {{removeIndex==index?'remove-index':''}}" bindtap='choseAnswer' data-serial="{{item.serial}}">{{item.question}}</view>
                     </view>
-                    <view class='question-tips'>--   保险维权知  --</view>
+                    <view class='question-tips'>--   保险维权知识  --</view>
                     <view class='question-index-bar flx-ce-ce'>
                         <view class='index flx-ce-ce {{curIndex==0?"cur-index":""}} {{curIndex>0?"done-index":""}}'>1</view>
                         <view class='index flx-ce-ce {{curIndex==1?"cur-index":""}} {{curIndex>1?"done-index":""}}'>2</view>
@@ -75,7 +75,6 @@
     </view>
     <!-- 答题结果 -->
     <view class='answer-end' style='margin-top:106rpx' wx:if="{{answerEnd}}">
-
         <view class='question result-page'>
             <view class='question-container flx-ce-bet-clm en-question'>
                 <view class='end-wrap'>

@@ -25,6 +25,7 @@ Page({
         reviewData:'',
         curReview:'',
         result:'',
+        shareLevel:'',
         useParam: {
             cardType: 1,
             examUserId: '',
@@ -50,6 +51,7 @@ Page({
         curQuestion: '',
         choseItem:-1,
         canSubmit:true,
+        shareUserName:'',
         subParam:{
             answerList:[],
             examUserId: '',
@@ -76,15 +78,17 @@ Page({
 
     onShareAppMessage: function (options) {
         let param = {
-            title: '2019民生保险用户体验节~ \n保保大师答题挑战赛，精彩来战',
+            title: '2019民生保险用户体验节~保保大师答题挑战赛，精彩来战',
             path: '/pages/index/index',
             imageUrl: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190628/1561717521552.png',
             success: function () {
 
             }
         }
+        let title = this.data.shareUserName + 'xxx达到' + (this.data.shareLevel == 1 ? '达人' : this.data.shareLevel == 2 ? '高手' : this.data.shareLevel == 3 ? '大师' : '宗师') + '，参加保保大师挑战赛～一大波红包、积分等着你'
         if (options.from === 'button') {
             var dataid = options.target.dataset;
+            param.title = title,
             param.path = '/pages/index/index'
         }
         return { ...param }
@@ -98,14 +102,21 @@ Page({
         let insureUid ='subParam.insureUid'
         let useParamExamUserId = 'useParam.examUserId'
         let useParamInsureUid = 'useParam.insureUid'
+        let questionsList = wx.getStorageSync('question').subjectList
+        let subjectIdList ='subParam.subjectIdList'
+        let idList=[]
+        for(let i=0;i<this.question.length;i++){
+            idList.push(this.question[i].id)
+        }
         this.setData({
-            question: wx.getStorageSync('question').subjectList,
+            question: questionsList,
             helpCard: wx.getStorageSync('helpCard') > 2 ? 2 : wx.getStorageSync('helpCard'),
             removeCard: wx.getStorageSync('removeCard') > 3 ? 3 : wx.getStorageSync('removeCard'),
             [examUserId]: wx.getStorageSync('examUserId'),
             [insureUid]: wx.getStorageSync('insureUid'),
             [useParamExamUserId]: wx.getStorageSync('examUserId'),
-            [useParamInsureUid]: wx.getStorageSync('insureUid')
+            [useParamInsureUid]: wx.getStorageSync('insureUid'),
+            [subjectIdList]: idList
         })
         let timeout=setTimeout(function () {
             _this.calcTime()
@@ -222,11 +233,9 @@ Page({
         if (this.data.subParam.answerList.length == 5 || this.data.countDownTime==0){
             return
         }
-        let idList = 'subParam.subjectIdList[' + this.data.subParam.subjectIdList.length + ']'
         let answerList = 'subParam.answerList[' + this.data.subParam.answerList.length + ']'
         _this.setData({
             choseItem: serial == 'A' ? 0 : serial == 'B'?1:2,
-            [idList]: _this.data.question[_this.data.curIndex].id,
             [answerList]: serial
         })
         let timeout=setTimeout(function () {
@@ -275,10 +284,18 @@ Page({
         if (!_this.data.canSubmit) {
             return
         }
+        let answerList =this.data.subParam.answerList
+        for(let i=0;i<5;i++){
+            if (!answerList[i]){
+                answerList[i]=''
+            }
+        }
+        let subAnswerList ='subParam.answerList'
         clearInterval(_this.data.interval)
         _this.setData({
             canSubmit: false,
-            countDownTime:0
+            countDownTime:0,
+            [subAnswerList]: subAnswerList
         })
         app.httpPost('/xcx/insureMaster/examHandIn', _this.data.subParam,function(data){
             _this.setData({
@@ -286,6 +303,8 @@ Page({
                 answerEnd:true,
                 onTest:false,
                 result:data,
+                shareLevel: data.userLevel,
+                shareUserName: data.nickName,
                 reviewData: data.subjectList
             })
             _this.dealReview()
@@ -467,20 +486,6 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload: function() {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function() {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function() {
 
     },
 })

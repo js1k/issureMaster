@@ -192,6 +192,20 @@
                 <button class='limit-btn' bindtap='closeMask'>我知道了</button>
             </view>
         </view>
+        <!-- 网络异常 -->
+        <view class='container flx-ce-clm' catchtap='closeMask' wx:if="{{noNetWork}}">
+            <view class='knapsack-close-box'>
+                <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
+            </view>
+            <view class='limit flx-ce-no-clm'>
+                <image src='../../asset/index/up_limit_bg.png' class='limit-pic'></image>
+                <view>
+                    <view>网络开小差了~</view>
+                    <view>请稍等片刻！</view>
+                </view>
+                <button class='limit-btn' bindtap='closeMask'>我知道了</button>
+            </view>
+        </view>
         <!-- 背包弹窗 -->
         <view class='knapsack-box' wx:if="{{knapsackMask}}">
             <view class='knapsack-close-box'>
@@ -262,7 +276,7 @@
                 </view>
             </view>
             <view class='tearher-tips'>温馨提示：绑定后，代理人将获取您的联系方式</view>
-            <view class='tearher-tips'>绑定后将不能换帮</view>
+            <view class='tearher-tips'>绑定后将不能换绑</view>
         </view>
         <!-- 学艺宝箱达到上限 -->
         <view class='container flx-ce-clm' catchtap='closeMask' data-model='inner' wx:if="{{teacherLimit}}">
@@ -284,7 +298,7 @@
                 <view class='teacher-contain flx-ce-no-clm'>
                     <view class='teacher-title'>今日领取已达上限</view>
                     <view>师傅领进门，修行靠个人，每天</view>
-                    <view>只能领取一个定制宝箱哦！</view>
+                    <view>只能领取一个学艺宝箱哦！</view>
                     <button class='baishi-btn' bindtap='goTreasure'>获取其他宝箱</button>
                     <text class='teacher-tips'>- 民生保险 -</text>
                 </view>

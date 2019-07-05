@@ -22,7 +22,18 @@ const getNow=()=>{
     return year + '' + (mounth > 9 ? mounth+1 : ('0' + (mounth+1))) + '' + (day > 9 ? day : ('0' + day))
 }
 
+const getNetWork=()=>{
+    return new Promise((resolve,reject)=>{
+        wx.getNetworkType({
+            success: function(res) {
+                resolve(res.networkType)
+            },
+        })
+    })
+}
+
 module.exports = {
   formatTime: formatTime,
-    getNow: getNow
+    getNow: getNow,
+    getNetWork: getNetWork
 }
