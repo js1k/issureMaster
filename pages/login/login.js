@@ -18,7 +18,7 @@ Page({
     getPhoneNumber:function(e){
         let _this=this
         let param={
-            sessionKey: app.globalData.sessionKey,
+            sessionKey: wx.getStorageSync('sessionKey'),
             encryptedData: e.detail.encryptedData,
             insureUid: wx.getStorageSync('insureUid'),
             iv: e.detail.iv

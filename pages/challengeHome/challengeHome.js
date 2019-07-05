@@ -117,12 +117,12 @@ Page({
             showPowerWrap:false,
             isUseEnergyCard: 1
         })
-        // 2.5s后开始进入答题页
+        // 1.5s后开始进入答题页
         let timeOut=setTimeout(function () {
-            _this.setData({
-                showMask: false,
-                showProgress: false
-            })
+            // _this.setData({
+            //     showMask: false,
+            //     showProgress: false
+            // })
             _this.getQuestion()
             clearTimeout(timeOut)
         }, 1500)
@@ -175,7 +175,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
     onShow: function () {
-
+        this.setData({
+            showMask: false,
+            showRule: false,
+            showPowerWrap: false
+        })
     },
 
   /**

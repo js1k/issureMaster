@@ -27,8 +27,8 @@ Page({
         result:'',
         useParam: {
             cardType: 1,
-            examUserId: wx.getStorageSync('examUserId') ,
-            insureUid: wx.getStorageSync('insureUid'),
+            examUserId: '',
+            insureUid: '',
             subjectId: ''
         },
         loadingText:'图片生成中...',
@@ -96,12 +96,16 @@ Page({
         let _this = this  
         let examUserId ='subParam.examUserId'
         let insureUid ='subParam.insureUid'
+        let useParamExamUserId = 'useParam.examUserId'
+        let useParamInsureUid = 'useParam.insureUid'
         this.setData({
             question: wx.getStorageSync('question').subjectList,
             helpCard: wx.getStorageSync('helpCard') > 2 ? 2 : wx.getStorageSync('helpCard'),
             removeCard: wx.getStorageSync('removeCard') > 3 ? 3 : wx.getStorageSync('removeCard'),
             [examUserId]: wx.getStorageSync('examUserId'),
-            [insureUid]: wx.getStorageSync('insureUid')
+            [insureUid]: wx.getStorageSync('insureUid'),
+            [useParamExamUserId]: wx.getStorageSync('examUserId'),
+            [useParamInsureUid]: wx.getStorageSync('insureUid')
         })
         let timeout=setTimeout(function () {
             _this.calcTime()
@@ -381,7 +385,6 @@ Page({
             [subjectId]: _this.data.question[_this.data.curIndex].id,
             canSubUse:false
         })
-
 
         let idList = 'subParam.subjectIdList[' + _this.data.subParam.subjectIdList.length + ']'
         let answerList = 'subParam.answerList[' + _this.data.subParam.answerList.length + ']'

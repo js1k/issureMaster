@@ -131,6 +131,7 @@ Page({
             wx.checkSession({
                 success: function () {
                     _this.setData({
+                        showMask: false,
                         authFlag: true, 
                         hiddenLoading: false
                     })
@@ -150,13 +151,12 @@ Page({
         } else {
             app.doLogin(function () {
                 // _this.getData()
+                _this.setData({
+                    authFlag: false,
+                    showMask:true,
+                    hiddenLoading: true
+                })
             })
-            _this.setData({
-                authFlag: false,
-                showMask:true,
-                hiddenLoading: true
-            })
-            console.log(this.data.showMask)
         }
     },
     onShow: function (options) {

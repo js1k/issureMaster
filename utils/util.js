@@ -14,6 +14,15 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const getNow=()=>{
+    let now=new Date()
+    let year=now.getFullYear()
+    let mounth=now.getMonth()
+    let day=now.getDay()
+    return year + '' + (mounth > 9 ? mounth+1 : ('0' + (mounth+1))) + '' + (day > 9 ? day : ('0' + day))
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+    getNow: getNow
 }

@@ -115,11 +115,10 @@
                 <image wx:if="{{chestGainTipVO.chestType!=4}}" src="{{chestGainTipVO.shareAvatar}}" class='tiyanshi-img'></image>
                 <image wx:if="{{chestGainTipVO.chestType==4}}" src='../../asset/baoxiang/tiyanshi_icon.png' class='tiyanshi-img'></image>
                 <view class='lx-ce-no-clm'>
-                    <view wx:if="{{chestGainTipVO.chestType==1}}">你的导师 {{chestGainTipVO.shareUserName}}</view>
-                    <view wx:if="{{chestGainTipVO.chestType!=4}}">你的好友</view>
-                    <view wx:if="{{chestGainTipVO.chestType==4}}">{{chestGainTipVO.shareUserName}}</view>
+                    <view wx:if="{{chestGainTipVO.chestType==1}}">你的导师{{chestGainTipVO.shareUserName.length>8?(chestGainTipVO.shareUserName.splice(0,8)+'...'):chestGainTipVO.shareUserName}}</view>
+                    <view wx:if="{{chestGainTipVO.chestType==2}}">你的好友{{chestGainTipVO.shareUserName}}</view>
                     <view wx:if="{{chestGainTipVO.chestType==4}}">保险体验师</view>
-                    <view>送你"{{chestGainTipVO.chestType==4?'主题宝箱':chestGainTipVO.chestType==1?'学艺宝箱':'分享宝箱'}}"</view>
+                    <view>送你"{{chestGainTipVO.chestType==4?chestGainTipVO.chestSubject:chestGainTipVO.chestType==1?'学艺宝箱':'分享宝箱'}}"</view>
                 </view>
             </view>
             <view class='flx-ce-ce btn-open' catchtap='handleOpen'>立即开启</view>

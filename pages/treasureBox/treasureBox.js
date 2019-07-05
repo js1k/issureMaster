@@ -1,4 +1,5 @@
 const app = getApp()
+let util=require('../../utils/util.js')
 Page({
     data: {
         statusBarHeight: app.globalData.statusBarHeight,
@@ -19,17 +20,19 @@ Page({
         hiddenLoading: true,
         loadingText: '图片生成中...',
         shareName: '',
-        insureUid: wx.getStorageSync('insureUid'),
+        insureUid: '',
         recordParam: {
             pageNum: 1,
             pageSize: 15,
-            insureUid: wx.getStorageSync('insureUid')
+            insureUid: ''
         },
         recordList: [],
         shareCoverImg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190702/1562054485634.png',
         shareQrImg: '',
     },
     onShareAppMessage: function (options) {
+        let _this=this
+        
         let param = {
             title: '2019民生保险用户体验节~ \n保保大师答题挑战赛，精彩来战',
             path: '/pages/index/index',
@@ -38,7 +41,7 @@ Page({
         }
         if (options.from === 'button') {
             var dataid = options.target.dataset;
-            param.path = '/pages/index/index'
+            param.path = '/pages/index/index?uid=' + _this.data.insureUid + '&type=2&shareDay=' + util.getNow()
         }
         return {...param}
     },
@@ -235,10 +238,11 @@ Page({
             urls: [current]
         })
     },
+    //  获取任务信息
     getTreasure: function() {
         let _this = this
         app.httpPost('/xcx/insureMaster/taskChest', {
-            insureUid: _this.data.insureUid
+            insureUid: wx.getStorageSync('insureUid')
         }, function(data) {
             _this.setData({
                 treasureData: data
@@ -252,8 +256,13 @@ Page({
             })
         })
     },
+    //  获取领取列表
     getRecords: function() {
         let _this = this
+        let insureUid ='recordParam.insureUid'
+        this.setData({
+            [insureUid]: wx.getStorageSync('insureUid')
+        })
         app.httpPost('/xcx/insureMaster/chestRecord', _this.data.recordParam, function(data) {
             _this.setData({
                 recordList: [..._this.data.recordList, ...data.list],
@@ -287,6 +296,10 @@ Page({
                 })
             }
         })
+        this.setData({
+            insureUid: wx.getStorageSync('insureUid')
+        })
+        console.log(util.getNow())
         this.getTreasure()
     },
 
