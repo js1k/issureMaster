@@ -119,10 +119,6 @@ Page({
         })
         // 1.5s后开始进入答题页
         let timeOut=setTimeout(function () {
-            // _this.setData({
-            //     showMask: false,
-            //     showProgress: false
-            // })
             _this.getQuestion()
             clearTimeout(timeOut)
         }, 1500)
@@ -138,13 +134,16 @@ Page({
         this.setData({
             hiddenLoading:false
         })
+        let picList = this.data.swiperItem
         app.httpPost('/xcx/insureMaster/startChallenge', { insureUid: wx.getStorageSync('insureUid')},function(data){
+        let userLevel = data.insureUserVO.userLevel
             _this.setData({
                 insurePackageVO: data.insurePackageVO,
                 insureUserVO: data.insureUserVO,
                 seasonCheckVO: data.seasonCheckVO,
                 hiddenLoading:true,
-                itemIndex: data.insureUserVO.userLevel-1
+                itemIndex: data.insureUserVO.userLevel-1,
+                curSrc: picList[data.insureUserVO.userLevel - 1]
             })
             wx.setStorageSync('helpCard', data.insurePackageVO.helpCard)
             wx.setStorageSync('removeCard', data.insurePackageVO.removeCard)

@@ -113,7 +113,8 @@
                 <view class='logo-wrap'>
                     <image src='../../asset/challengeHome/answer_end_logo.png' class='end-logo'></image>
                 </view>
-                <view class='answer-info'>你答对了{{result.rightNum}}道题！</view>
+                <view class='answer-info' wx:if="{{result.rightNum<5}}">你答对了{{result.rightNum}}道题！</view>
+                <view class='answer-info' wx:if="{{result.rightNum==5}}">全部答对太棒了！</view>
                 <view class='look-back' bindtap='reviewResult'>回顾本关题目</view>
                 <view class='star-info'>
                     <image class='star-btn' src='../../asset/challengeHome/star_plus.png' wx:if="{{result.addStarNum==1}}"></image>
@@ -200,7 +201,7 @@
             <view class='flx-ce-clm' wx:if="{{result.chip&&result.isMergeChip!=1}}">
                 <view class='wrap flx-ce-ce'>
                     <image class='light' src='../../asset/challengeHome/packet_light.png'></image>
-                    <image class='packet-img' src="{{result.chip=='A'?chipA:result.chip=='B'?chipB:result.chip=='C'?chipC:D}}"></image>
+                    <image class='packet-img' src="{{result.chip=='A'?chipA:result.chip=='B'?chipB:result.chip=='C'?chipC:chipD}}"></image>
                 </view>
                 <view class='chip-name'>恭喜你获得红包碎片{{result.chip.splice(4)}}</view>
                 <view class='chip-tips'>集齐四中红包碎片即可自动合</view>
@@ -222,7 +223,7 @@
             <view class='flx-ce-clm'>
                 <view class='up-wrap flx-ce-ce'>
                     <image src='../../asset/challengeHome/packet_light.png' class='light'></image>
-                    <image src='../../asset/challenge/daren_up.png' class='up-icon'></image>
+                    <image src="{{result.userLevel==2?gaoshouUp:result.userLevel==3?dashiUp:zongshiUp}}" class='up-icon'></image>
                 </view>                       
                 <view class='chip-name'>恭喜你晋升Lv.{{result.userLevel}}{{result.userLevel==1?'达人':result.userLevel==2?'高手':result.userLevel==3?'大师':'宗师'}}</view>
                 <view class='chip-tips'>请继续努力，再接再厉哟~</view>

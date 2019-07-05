@@ -21,6 +21,7 @@ Page({
         creatImg:true,
         canSubUse:true,
         reviewQuestion:false,
+        receivedChip:false,
         reviewIndex:0,
         reviewData:'',
         curReview:'',
@@ -85,7 +86,7 @@ Page({
 
             }
         }
-        let title = this.data.shareUserName + 'xxx达到' + (this.data.shareLevel == 1 ? '达人' : this.data.shareLevel == 2 ? '高手' : this.data.shareLevel == 3 ? '大师' : '宗师') + '，参加保保大师挑战赛～一大波红包、积分等着你'
+        let title = this.data.shareUserName + '达到Lv.' + (this.data.shareLevel == 1 ? '达人' : this.data.shareLevel == 2 ? '高手' : this.data.shareLevel == 3 ? '大师' : '宗师') + '，参加保保大师挑战赛～一大波红包、积分等着你'
         if (options.from === 'button') {
             var dataid = options.target.dataset;
             param.title = title,
@@ -105,8 +106,8 @@ Page({
         let questionsList = wx.getStorageSync('question').subjectList
         let subjectIdList ='subParam.subjectIdList'
         let idList=[]
-        for(let i=0;i<this.question.length;i++){
-            idList.push(this.question[i].id)
+        for (let i = 0; i < questionsList.length;i++){
+            idList.push(questionsList[i].id)
         }
         this.setData({
             question: questionsList,
@@ -295,7 +296,7 @@ Page({
         _this.setData({
             canSubmit: false,
             countDownTime:0,
-            [subAnswerList]: subAnswerList
+            [subAnswerList]: answerList
         })
         app.httpPost('/xcx/insureMaster/examHandIn', _this.data.subParam,function(data){
             _this.setData({
@@ -308,19 +309,20 @@ Page({
                 reviewData: data.subjectList
             })
             _this.dealReview()
-            // 如果有碎片或红包
-            if (data.chip || data.isMergeChip==1){
-                _this.setData({
-                    showPackets:true,
-                    showMask:true
-                })
-            }
             // 如果升级
             if (data.isUpgrade==1){
                 _this.setData({
                     upgrade: true,
                     showMask: true
                 })
+            } else {
+                // 如果有碎片或红包
+                if (data.chip || data.isMergeChip == 1) {
+                    _this.setData({
+                        showPackets: true,
+                        showMask: true
+                    })
+                }
             }
         },function(error){
             wx.showToast({
@@ -332,7 +334,7 @@ Page({
         })
     },
     goBack: function () {
-        if (this.data.answerEnd) {
+        if (!this.data.answerEnd && !this.data.reviewQuestion) {
             this.setData({
                 showMask: true,
                 unfinshed: true
@@ -352,6 +354,7 @@ Page({
         })
     },
     closeMask: function (event) {
+        let _this=this
         if (event.currentTarget.dataset.model === 'inner') {
             return
         }
@@ -360,8 +363,22 @@ Page({
             unfinshed:false,
             showShareActive:false,
             showBangbang:false,
-            showPaichu:false
+            showPaichu:false,
+            showPackets:false,
+            upgrade:false
         })
+        setTimeout(function(){
+            if (_this.data.receivedChip) {
+                return
+            }
+            if (_this.data.result.chip || (_this.data.result.isMergeChip == 1)) {
+                _this.setData({
+                    showMask: true,
+                    showPackets: true,
+                    receivedChip: true   //领取了碎片或红包标志
+                })
+            }
+        },500)
     },
     //  关闭查看答题
     closeAnswer:function(){
@@ -405,13 +422,11 @@ Page({
             canSubUse:false
         })
 
-        let idList = 'subParam.subjectIdList[' + _this.data.subParam.subjectIdList.length + ']'
         let answerList = 'subParam.answerList[' + _this.data.subParam.answerList.length + ']'
         app.httpPost('/xcx/insureMaster/examUseCard', _this.data.useParam, function(data) {
             if (cardType == 1) {// 如果是使用了帮帮卡
                 _this.setData({
                     choseItem: data.rightAnswer == 'A' ? 0 : data.rightAnswer == 'B' ? 1 : 2,
-                    [idList]: _this.data.question[_this.data.curIndex].id,
                     [answerList]: data.rightAnswer,
                     helpCard: _this.data.helpCard-1
                 })
