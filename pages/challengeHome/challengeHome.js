@@ -45,11 +45,16 @@ Page({
             showMask:true,
             showProgress:true
         })
-        // 1.5s后开始进入答题页
+        // 2.5s后开始进入答题页
         let timeout=setTimeout(function(){
             _this.getQuestion()
             clearTimeout(timeout)
         },2500)
+    },
+    goRedPackets: function () {
+        wx.navigateTo({
+            url: '../redPackets/redPackets'
+        })
     },
     getQuestion:function(){
         let _this=this
@@ -117,11 +122,11 @@ Page({
             showPowerWrap:false,
             isUseEnergyCard: 1
         })
-        // 1.5s后开始进入答题页
+        // 2.5s后开始进入答题页
         let timeOut=setTimeout(function () {
             _this.getQuestion()
             clearTimeout(timeOut)
-        }, 1500)
+        }, 2500)
     },
     // 做任务
     goTreasure: function () {
@@ -174,11 +179,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
     onShow: function () {
-        this.setData({
-            showMask: false,
-            showRule: false,
-            showPowerWrap: false
-        })
+        // this.setData({
+        //     showMask: false,
+        //     showRule: false,
+        //     showPowerWrap: false
+        // })
         this.onLoad()
     },
 

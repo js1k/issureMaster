@@ -27,9 +27,10 @@
             <image wx:if="{{itemIndex===3}}" class='arrow' src='../../asset/challengeHome/cur_arrow.png'></image>
         </view>
         <image class='level-line' src='../../asset/challengeHome/level_line.png'></image>
-        <view class='level-icon-box red-packets-icon'>
+        <view class='level-icon-box red-packets-icon' bindtap='goRedPackets'>
             <image class='level-icon' src='../../asset/challengeHome/red_packets_icon.png'></image>
             <image wx:if="{{itemIndex===4}}" class='arrow' src='../../asset/challengeHome/cur_arrow.png'></image>
+            <image class='season-awards' src='../../asset/hongbao/season_awards.png'></image>
         </view>
     </view>
     <view class='swiper-contain flx-ce-ce'>
@@ -75,7 +76,10 @@
         <view>5 (剩余{{insureUserVO.todayEnergy}})</view>
     </view>
     <!-- 开始答题 -->
-    <image src='../../asset/challengeHome/begain_btn.png' class='begain-btn' bindtap='startTest'></image>
+    <view class='btn-wrap'>
+        <image src='../../asset/challengeHome/begain_btn.png' class='begain-btn' bindtap='startTest'></image>
+    </view>
+    <!-- <image src='../../asset/challengeHome/begain_btn.png' class='begain-btn' bindtap='startTest'></image> -->
     <view class='flx-ce-ce theme-rules'>
         <view>{{seasonCheckVO.seasonTitle}}</view>
         <view class='season-data'>{{seasonCheckVO.seasonDate}}</view>

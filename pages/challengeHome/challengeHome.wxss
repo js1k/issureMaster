@@ -114,10 +114,14 @@
     height:36rpx;
     margin:0 10rpx;
 }
-.begain-btn{
+.btn-wrap{
     width:296rpx;
     height:80rpx;
     margin-bottom:90rpx;
+}
+.begain-btn{
+    width:296rpx;
+    height:88rpx;
 }
 .theme-rules{
     font-size:22rpx;
@@ -251,6 +255,7 @@
 .cartoon{
     width:138rpx;
     height:160rpx;
+    animation: cartonIn 1s ease-in forwards;
 }
 .gift{
     width:374rpx;
@@ -262,12 +267,16 @@
     font-weight:400;
     color:rgba(255,255,255,1);
     margin-bottom:50rpx;
+    opacity: 0;
+    animation: leftIn 2s linear forwards;
 }
 .progress-txt{
     font-size:32rpx;
     font-weight:500;
     color:rgba(255,255,255,1);
     margin-top:30rpx;
+    opacity: 0;
+    animation: rightIn 2s linear forwards;
 }
 .ms{
     width: 100%;
@@ -278,6 +287,14 @@
     position: absolute;
     left:0;
     bottom:46rpx;
+    animation: slideUp 1s linear forwards;
+}
+.season-awards{
+    width:96rpx;
+    height:38rpx;
+    position: absolute;
+    left:0;
+    top:-44rpx;
 }
 @keyframes picActived{
     from{
@@ -296,6 +313,46 @@
     }
     to{
         transform: scale(1);
+        transform: translateX(0)
+    }
+}
+@keyframes cartonIn{
+    0%{
+        transform: translate3D(-400rpx,300rpx,0) scale(0.6);
+    }
+    40%{
+        transform: translate3D(-200rpx,-200rpx,0) scale(0.7);
+    }
+    100%{
+        transform: translate3D(0,0,0) scale(1);
+    }
+    
+}
+@keyframes leftIn{
+    49%{
+        opacity: 0;
+        transform: translateX(-300rpx)
+    }
+    50%{
+        opacity: 1;
+        transform: translateX(-300rpx)
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0)
+    }
+}
+@keyframes rightIn{
+    49%{
+        opacity: 0;
+        transform: translateX(300rpx)
+    }
+    50%{
+        opacity: 1;
+        transform: translateX(300rpx)
+    }
+    100%{
+        opacity: 1;
         transform: translateX(0)
     }
 }

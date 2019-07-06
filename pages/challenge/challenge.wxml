@@ -56,10 +56,10 @@
                 <view class='review-question flx-ce-bet-clm'>
                     <view class='question-info flx-ce-clm'>
                         <view class='queistion-name flx-ce-ce'>{{curReview.subjectTitle}}</view>
-                        <view wx:for="{{curReview.reviewList}}" wx:key="index" class="que-answer flx-ce-ce {{curReview.submitAnswer==item.serial?'item-chosed':''}}">
+                        <view wx:for="{{curReview.reviewList}}" wx:key="index" class="que-answer flx-ce-ce {{(curReview.submitAnswer!=item.serial)&&(curReview.answer!=item.serial)?'unchosed':''}} {{(curReview.submitAnswer==item.serial)&&(curReview.submitAnswer==curReview.answer)?'item-chosed':''}} {{(curReview.submitAnswer==item.serial)&&(curReview.submitAnswer!=curReview.answer)?'chose-wrong':''}}">
                             <text>{{item.option}}</text>
                             <image class='right-icon' src='../../asset/question_true.png' wx:if="{{curReview.answer==item.serial}}"></image>
-                            <image class='right-icon' src='../../asset/question_false.png' wx:if="{{curReview.answer!=item.serial}}"></image>
+                            <image class='right-icon' src='../../asset/question_false_review.png' wx:if="{{curReview.submitAnswer==item.serial&&curReview.submitAnswer!=curReview.answer}}"></image>
                         </view>
                     </view>
                     <view class='question-tips'>--   保险维权知识  --</view>
