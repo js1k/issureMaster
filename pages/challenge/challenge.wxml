@@ -203,8 +203,8 @@
                     <image class='light' src='../../asset/challengeHome/packet_light.png'></image>
                     <image class='packet-img' src="{{result.chip=='A'?chipA:result.chip=='B'?chipB:result.chip=='C'?chipC:chipD}}"></image>
                 </view>
-                <view class='chip-name'>恭喜你获得红包碎片{{result.chip.splice(4)}}</view>
-                <view class='chip-tips'>集齐四中红包碎片即可自动合</view>
+                <view class='chip-name'>恭喜你获得红包碎片{{result.chip}}</view>
+                <view class='chip-tips'>集齐四种红包碎片即可自动合</view>
                 <view class='chip-tips tip-btn'>成赛季红包</view>
                 <button class='chip-btn' catchtap='closeMask'>收下</button>
             </view>

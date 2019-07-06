@@ -320,7 +320,8 @@ Page({
                 if (data.chip || data.isMergeChip == 1) {
                     _this.setData({
                         showPackets: true,
-                        showMask: true
+                        showMask: true, 
+                        receivedChip:true   //领取标志
                     })
                 }
             }
@@ -345,7 +346,9 @@ Page({
     },
     //答题过程中后退  确认后退  自动提交答案
     confirmBack: function() {
-        this.submitTest()
+        if (!this.data.result) {
+            this.submitTest()
+        }
         app.goBack()
     },
     cancleBack: function() {
@@ -462,7 +465,7 @@ Page({
                         countDownTime: _this.data.countDownTime - 1
                     })
                 } else {// 时间结束 自动提交答案
-                    if (_this.data.canSubmit){
+                    if (!_this.data.result){
                         _this.submitTest()
                     }
                     clearInterval(_this.data.timeInterval)

@@ -437,7 +437,7 @@
     font-size:22rpx;
     font-weight:400;
     color:rgba(255,255,255,1);
-    animation: moveDown 2s linear forwards;
+    animation: moveDown 2.2s linear forwards;
 }
 .chip-btn{
     width:422rpx;
@@ -448,7 +448,7 @@
     font-weight:500;
     color:rgba(255,255,255,1);
     /* margin-top:180rpx; */
-    animation: btnBig 3s linear forwards;
+    animation: btnBig 2s linear forwards;
 }
 .big-packets{
     width:100%;
