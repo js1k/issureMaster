@@ -179,11 +179,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
     onShow: function () {
-        // this.setData({
-        //     showMask: false,
-        //     showRule: false,
-        //     showPowerWrap: false
-        // })
+        this.setData({
+            showMask: false,
+            showRule: false,
+            showPowerWrap: false
+        })
         this.onLoad()
     },
 

@@ -139,7 +139,7 @@ view{
     font-weight:400;
     color:rgba(255,255,255,1);
     margin:24rpx 0 72rpx;
-    animation: standSlideDown 2.5s linear forwards;
+    animation: standSlideDown 2.2s linear forwards;
 }
 .btn-open{
     width:422rpx;
@@ -390,7 +390,7 @@ view{
         transform: translateY(-40rpx);
         opacity: 0.6
     }
-    100%{
+    90%{
         transform: translateY(0);
         opacity: 1
     }

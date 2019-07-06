@@ -193,7 +193,7 @@ Page({
         })
     },
     goChallengeHome: function () {
-        wx.navigateTo({
+        wx.redirectTo({
             url: '../challengeHome/challengeHome'
         })
     },

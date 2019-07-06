@@ -451,6 +451,10 @@ Page({
         wx.navigateTo({
             url: '../treasureBox/treasureBox'
         })
+        this.setData({
+            showMask: false,
+            teacherLimit:false
+        })
     },
     goRank: function() {
         wx.navigateTo({
@@ -626,15 +630,10 @@ Page({
                     })
                 }
                 let timeout1 = setTimeout(function() {
-                    if (_this.data.saveCardParam.curNum > 0) {  //如果还有可弹出的宝箱 则关闭弹出卡片窗口
-                        _this.setData({
-                            openBox: false
-                        })
-                    } else {    //背包连续弹出宝箱卡片
-                        _this.setData({
-                            openBox: true
-                        })
-                    }
+                    //背包连续弹出宝箱卡片
+                    _this.setData({
+                        openBox: true
+                    })
                     clearTimeout(timeout1)
                 }, 200)
             } else {
@@ -939,7 +938,6 @@ Page({
             userInfo: e.detail.userInfo,
             authFlag: true
         })
-        console.log(1234)
         this.getData()
     }
 })
