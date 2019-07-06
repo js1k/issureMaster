@@ -11,7 +11,7 @@
         <view scroll-y="true" class='rank-section'>
             <view class='flx-ce-no-clm section-content'>
                 <view class='flx-ce-end rank-rules' bindtap='rankRules'>活动规则</view>
-                <view class='rank-content' wx:if="{{showSeasonList||false}}">
+                <view class='rank-content' wx:if="{{showSeasonList}}">
                     <view class='rank-colum flx-ce' wx:for="{{pageList}}" wx:key="index" wx:if="{{pageList&&pageList.length>0}}">
                         <view class='rank-medal-box flx-ce-ce'>
                             <image src='../../asset/rankList/rank_top{{item.rankNo}}.png' class='rank-medal' wx:if="{{item.rankNo>0&&item.rankNo<4}}"></image>
@@ -24,8 +24,15 @@
                             <view class='main-info'>
                                 <view class='main-name'>{{item.nickName}}</view>
                                 <view class='rank-star flx-ce'>
-                                    <image src='../../asset/rankList/icon_zongshi.png' class='rank-star-icon'></image>
-                                    <image src='../../asset/challengeHome/star_zongshi.png' class='common-star'></image>
+                                    <image src="{{item.userLevel==1?darenIcon:item.userLevel==2?gaoshouIcon:item.userLevel==3?dashiIcon:zongshiIcon}}" mode="widthFix" class='rank-star-icon'></image>
+                                    <view>
+                                        <image class='user-star' src='../../asset/challengeHome/star_light.png' wx:if="{{item.userLevel<4}}"></image>
+                                        <image class='user-star' src='../../asset/challengeHome/star_light.png' wx:if="{{item.starNum>1&&(item.userLevel==2||item.userLevel==3)}}"></image>
+                                        <image class='user-star' src='../../asset/challengeHome/star_light.png' wx:if="{{item.userLevel==3&&item.starNum==3}}"></image>
+                                        <image class='user-star' src='../../asset/challengeHome/star_black.png' wx:if="{{(item.userLevel==3&&item.starNum<3)||(item.userLevel==2&&item.starNum<2)}}"></image>
+                                        <image class='user-star' src='../../asset/challengeHome/star_black.png' wx:if="{{item.userLevel==3&&item.starNum==1}}"></image>
+                                        <image src='../../asset/challengeHome/star_zongshi.png' mode="widthFix" class='common-star' wx:if="{{item.userLevel==4}}"></image>
+                                    </view>
                                     <text class='rank-star-txt'>x{{item.starNum}}</text>
                                 </view>
                             </view>
@@ -65,9 +72,15 @@
                                 <view class='main-info'>
                                     <view class='main-name'>{{insureUser.nickName}}</view>
                                     <view class='rank-star flx-ce' wx:if="{{showSeasonList}}">
-                                        <image src='../../asset/rankList/icon_zongshi.png' mode="widthFix" class='rank-star-icon'></image>
-                                        <image src='../../asset/challengeHome/star_zongshi.png' mode="widthFix" class='common-star'></image>
-                                        <text class='rank-star-txt'>x{{insureUser.starNum}}</text>
+                                    <image src="{{insureUser.userLevel==1?darenIcon:insureUser.userLevel==2?gaoshouIcon:insureUser.userLevel==3?dashiIcon:zongshiIcon}}" mode="widthFix" class='rank-star-icon'></image>
+                                    <view>
+                                        <image class='user-star' src='../../asset/challengeHome/star_light.png' wx:if="{{insureUser.userLevel<4}}"></image>
+                                        <image class='user-star' src='../../asset/challengeHome/star_light.png' wx:if="{{insureUser.starNum>1&&(insureUser.userLevel==2||insureUser.userLevel==3)}}"></image>
+                                        <image class='user-star' src='../../asset/challengeHome/star_light.png' wx:if="{{insureUser.userLevel==3&&insureUser.starNum==3}}"></image>
+                                        <image class='user-star' src='../../asset/challengeHome/star_black.png' wx:if="{{(insureUser.userLevel==3&&insureUser.starNum<3)||(insureUser.userLevel==2&&insureUser.starNum<2)}}"></image>
+                                        <image class='user-star' src='../../asset/challengeHome/star_black.png' wx:if="{{insureUser.userLevel==3&&insureUser.starNum==1}}"></image>
+                                        <image src='../../asset/challengeHome/star_zongshi.png' mode="widthFix" class='common-star' wx:if="{{insureUser.userLevel==4}}"></image>
+                                    </view>
                                     </view>
                                     <view class='integral-rank' wx:if="{{!showSeasonList}}">积分: {{insureUser.points}}</view>
                                 </view>

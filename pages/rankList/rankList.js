@@ -11,6 +11,12 @@ Page({
         pageData:'',
         insureUser:'',
         pageList:[],
+
+        darenIcon: '../../asset/rankList/icon_daren.png',
+        gaoshouIcon: '../../asset/rankList/icon_gaoshou.png',
+        dashiIcon: '../../asset/rankList/icon_dashi.png',
+        zongshiIcon: '../../asset/rankList/icon_zongshi.png',
+        
         url: '/xcx/insureMaster/rankByStar',
         hiddenLoading: true,
         loadingText: '加载中...'

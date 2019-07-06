@@ -172,3 +172,7 @@
     height: 60rpx;
     margin: 50rpx 0 30rpx;
 }
+.user-star{
+    width:24rpx;
+    height:24rpx;
+}
