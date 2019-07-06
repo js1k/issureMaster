@@ -45,11 +45,11 @@ Page({
             showMask:true,
             showProgress:true
         })
-        // 2.5s后开始进入答题页
+        // 3.5s后开始进入答题页
         let timeout=setTimeout(function(){
             _this.getQuestion()
             clearTimeout(timeout)
-        },2500)
+        },3500)
     },
     goRedPackets: function () {
         wx.navigateTo({
@@ -62,20 +62,24 @@ Page({
             insureUid: wx.getStorageSync('insureUid'),
             isUseEnergyCard: _this.data.isUseEnergyCard
         }
+        wx.removeStorage({
+            key: 'question',
+        })
+        wx.removeStorage({
+            key: 'examUserId',
+        })
         app.httpPost('/xcx/insureMaster/examStart', param,function(data){
-            wx.removeStorage({
-                key: 'question',
-                key: 'examUserId'
-            })
             wx.setStorageSync('question', data.insureExamGenerateResponse)
             wx.setStorageSync('examUserId', data.insureExamGenerateResponse.examUserId)
             //请求考题后跳转答题页
             wx.navigateTo({
-                url: '../challenge/challenge'
-            })
-            _this.setData({
-                showMask:false,
-                showProgress:false
+                url: '../challenge/challenge',
+                success: function () {
+                    _this.setData({
+                        showMask: false,
+                        showProgress: false
+                    })
+                }
             })
         }, function (error) {
             wx.showToast({
@@ -126,11 +130,11 @@ Page({
             showPowerWrap:false,
             isUseEnergyCard: 1
         })
-        // 2.5s后开始进入答题页
+        // 3.5s后开始进入答题页
         let timeOut=setTimeout(function () {
             _this.getQuestion()
             clearTimeout(timeOut)
-        }, 2500)
+        }, 3500)
     },
     // 做任务
     goTreasure: function () {

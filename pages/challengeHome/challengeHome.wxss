@@ -190,8 +190,8 @@
     left:30rpx;
 }
 .close-rule{
-    width:40rpx;
-    height:40rpx;
+    width:60rpx;
+    height:60rpx;
     margin-bottom:20rpx;
 }
 .rule-pic{
@@ -251,11 +251,16 @@
 .cartoon-wrap{
     width:138rpx;
     height:160rpx;
+    overflow: hidden;
+}
+.wrap-cartoon{
+    width:138rpx;
+    height:160rpx;
+    animation: cartonIn 0.5s ease-in forwards;
 }
 .cartoon{
     width:138rpx;
     height:160rpx;
-    animation: cartonIn 1s ease-in forwards;
 }
 .gift{
     width:374rpx;
@@ -268,7 +273,7 @@
     color:rgba(255,255,255,1);
     margin-bottom:50rpx;
     opacity: 0;
-    animation: leftIn 2s linear forwards;
+    animation: leftIn 1.4s linear forwards;
 }
 .progress-txt{
     font-size:32rpx;
@@ -276,7 +281,7 @@
     color:rgba(255,255,255,1);
     margin-top:30rpx;
     opacity: 0;
-    animation: rightIn 2s linear forwards;
+    animation: rightIn 1.4s linear forwards;
 }
 .ms{
     width: 100%;
@@ -287,7 +292,8 @@
     position: absolute;
     left:0;
     bottom:46rpx;
-    animation: slideUp 1s linear forwards;
+    opacity: 0;
+    animation: msSlideUp 2.2s linear forwards;
 }
 .season-awards{
     width:96rpx;
@@ -318,13 +324,12 @@
 }
 @keyframes cartonIn{
     0%{
-        transform: translate3D(-400rpx,300rpx,0) scale(0.6);
-    }
-    40%{
-        transform: translate3D(-200rpx,-200rpx,0) scale(0.7);
+        /* transform: scaleY(0); */
+        height:0rpx;
     }
     100%{
-        transform: translate3D(0,0,0) scale(1);
+        height:160rpx;
+        /* transform: scaleY(1); */
     }
     
 }
@@ -354,5 +359,19 @@
     100%{
         opacity: 1;
         transform: translateX(0)
+    }
+}
+@keyframes msSlideUp{
+    69%{
+        transform: translateY(40rpx);
+        opacity: 0;
+    }
+    70%{
+        transform: translateY(40rpx);
+        opacity: 1;
+    }
+    100%{
+        transform: translateY(0rpx);
+        opacity: 1;
     }
 }

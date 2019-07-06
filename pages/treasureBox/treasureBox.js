@@ -13,8 +13,6 @@ Page({
         totalPage: 0,
         curMark: 'treasure',
         treasureData: '',
-        winWidth:'',
-        winHeight:'',
         showNewPlay: false,
         showBaishi: false,
         creatImg: true,
@@ -65,6 +63,8 @@ Page({
     },
     handleShare: function() {
         let _this = this
+        let winWidth = app.globalData.winWidth
+        let winHeight = app.globalData.winHeight
         this.setData({
             hiddenLoading: false
         })
@@ -83,21 +83,21 @@ Page({
                 src: _this.data.shareCoverImg,
                 success: (res1) => {
                     let url = res1.path
-                    ctx.drawImage(res1.path, 0, 0, 0.733 * _this.data.winWidth, 0.733 * _this.data.winWidth/0.9167 )
+                    ctx.drawImage(res1.path, 0, 0, 0.733 * winWidth, 0.733 * winWidth/0.9167 )
                     wx.getImageInfo({
                         src: data.xcxQrCode,
                         success: (res2) => {
                             let qrImgSize = 70
-                            ctx.drawImage(res2.path, 0.552 * _this.data.winWidth, 0.552 * _this.data.winWidth/0.6635, 56, 56)
+                            ctx.drawImage(res2.path, 0.552 * winWidth, 0.552 * winWidth/0.6635, 56, 56)
                             ctx.stroke()
                             ctx.draw(true)
                             ctx.setFontSize(14)
                             ctx.setFillStyle('#000')
-                            ctx.fillText((data.nickName && data.nickName.length > 5 ? data.nickName.splice(0, 5) : data.nickName) + '送你"分享宝箱"', 0.0473 * _this.data.winWidth, 0.0473 * _this.data.winWidth/0.0533)
+                            ctx.fillText((data.nickName && data.nickName.length > 5 ? data.nickName.splice(0, 5) : data.nickName) + '送你"分享宝箱"', 0.0473 * winWidth, 0.0473 * winWidth/0.0533)
                             ctx.draw(true)
                             ctx.setFontSize(12)
                             ctx.setFillStyle('#000')
-                            ctx.fillText('快来和TA一起赢取大奖吧~', 0.0473 * _this.data.winWidth, 0.0473 * _this.data.winWidth/0.0493)
+                            ctx.fillText('快来和TA一起赢取大奖吧~', 0.0473 * winWidth, 0.0473 * winWidth/0.0493)
                             ctx.draw(true)
                             _this.setData({
                                 creatImg: false,
@@ -301,9 +301,7 @@ Page({
             }
         })
         this.setData({
-            insureUid: wx.getStorageSync('insureUid'),
-            winWidth: wx.getSystemInfoSync().windowWidth,
-            winHeight: wx.getSystemInfoSync().windowHeight
+            insureUid: wx.getStorageSync('insureUid')
         })
         this.getTreasure()
     },

@@ -19,7 +19,7 @@ Page({
         showPaichu:false,
         upgrade:false,
         creatImg:true,
-        canSubUse:true,
+        canSubUse:true, // 是否可以使用卡片
         reviewQuestion:false,
         receivedChip:false,
         unfinshedBack:false,
@@ -144,6 +144,8 @@ Page({
     // 分享图片
     handleShare: function () {
         let _this = this
+        let winWidth = app.globalData.winWidth
+        let winHeight = app.globalData.winHeight
         this.setData({
             hiddenLoading: false
         })
@@ -162,21 +164,21 @@ Page({
                 src: _this.data.shareCoverImg,
                 success: (res1) => {
                     let url = res1.path
-                    ctx.drawImage(res1.path, 0, 0, 0.733 * _this.data.winWidth, 0.733 * _this.data.winWidth / 0.9167)
+                    ctx.drawImage(res1.path, 0, 0, 0.733 * winWidth, 0.733 * winWidth / 0.9167)
                     wx.getImageInfo({
                         src: data.xcxQrCode,
                         success: (res2) => {
                             let qrImgSize = 70
-                            ctx.drawImage(res2.path, 0.552 * _this.data.winWidth, 0.552 * _this.data.winWidth / 0.6635, 56, 56)
+                            ctx.drawImage(res2.path, 0.552 * winWidth, 0.552 * winWidth / 0.6635, 56, 56)
                             ctx.stroke()
                             ctx.draw(true)
                             ctx.setFontSize(14)
                             ctx.setFillStyle('#000')
-                            ctx.fillText('我在答题赢大奖 不服来战', 0.0473 * _this.data.winWidth, 0.0473 * _this.data.winWidth / 0.0533)
+                            ctx.fillText('我在答题赢大奖 不服来战', 0.0473 * winWidth, 0.0473 * winWidth / 0.0533)
                             ctx.draw(true)
                             ctx.setFontSize(12)
                             ctx.setFillStyle('#000')
-                            ctx.fillText('保保大师答题挑战赛~', 0.0473 * _this.data.winWidth, 0.0473 * _this.data.winWidth / 0.0493)
+                            ctx.fillText('保保大师答题挑战赛~', 0.0473 * winWidth, 0.0473 * winWidth / 0.0493)
                             ctx.draw(true)
                             _this.setData({
                                 creatImg: false,
@@ -215,7 +217,8 @@ Page({
             [queListA]: _this.data.question[num].optionA,
             [queListB]: _this.data.question[num].optionB,
             [queListC]: _this.data.question[num].optionC,
-            removeIndex:-1
+            removeIndex:-1,
+            canSubUse: true // 使用卡片后 切换到下一题之后恢复卡片可使用状态
         })
         if (num===0){
             return 
@@ -400,7 +403,7 @@ Page({
         let canUse = e.currentTarget.dataset.canuse
         let type = e.currentTarget.dataset.type
         let cardType ='useParam.cardType'
-        if (!canUse) {
+        if (!canUse || !this.data.canSubUse) {
             return
         }
         if (type === 'bangbang') {
@@ -442,15 +445,12 @@ Page({
                     _this.setQuestion(_this.data.curIndex + 1)
                     clearTimeout(timeout)
                 }, 800)
-            } else {
+            } else {    //使用了排除卡
                 _this.setData({
                     removeIndex: data.removeAnswer == 'A' ? 0 : data.removeAnswer == 'B' ? 1 : 2,
                     removeCard: _this.data.removeCard - 1
                 })
             }
-            _this.setData({
-                canSubUse:true
-            })
         }, function (error) {
             wx.showToast({
                 title: error.message,

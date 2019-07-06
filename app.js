@@ -118,6 +118,8 @@ App({
         iv:'',
         isIpx:false,
         statusBarHeight:'',
+        winWidth: wx.getSystemInfoSync().windowWidth,
+        winHeight: wx.getSystemInfoSync().windowHeight,
         urlDomain: "https://edu.minshenglife.com/sign-api",
         testUrl: "https://v.minshenglife.com/sign-api",
         prodUrl: "https://edu.minshenglife.com/sign-api"

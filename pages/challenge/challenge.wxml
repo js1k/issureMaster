@@ -3,7 +3,7 @@
     <image class='light_bg' src='../../asset/challenge/challenge_bg_light.png' wx:if="{{!onTest}}"></image>
     <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack' style='top:{{statusBarHeight+22}}rpx'></image>
     <!-- 答题页 -->
-    <view class='section flx-ce-clm' wx:if="{{onTest}}">
+    <view class='section flx-ce-clm test-page' wx:if="{{onTest}}">
         <view class='question'>
             <view class='question-container flx-ce-ce'>
                 <view class='ready-txt before-txt flx-ce-ce'>预备</view>
@@ -47,7 +47,7 @@
         </view>
     </view>
     <!-- 查看考题 -->
-    <view class='section flx-ce-clm' style='margin-top:106rpx' wx:if="{{reviewQuestion}}">
+    <view class='section flx-ce-clm review-page' style='margin-top:106rpx' wx:if="{{reviewQuestion}}">
         <view class='question'>
             <view class='end-wrap'>
                 <image class='header-img' src='../../asset/challenge/review_question_header.png'></image>
@@ -174,7 +174,7 @@
         <!-- 立即分享 -->
         <view class='share-mask flx-ce-no-clm' wx:if="{{showShareActive}}">
             <view class='download-wrap flx-ce-no-clm'>
-                <image src="{{shareCoverImg}}" class='main-pic'></image>
+                <image src="{{shareCoverImg}}" class='main-pic' wx:if="{{creatImg}}"></image>
                 <view class='dynamic-contain flx-ce-bet' wx:if="{{creatImg}}">
                     <view class='share-text-contain'>
                         <text class='share-title'>我在答题赢大奖 不服来战~</text>
