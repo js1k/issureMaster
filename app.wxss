@@ -250,6 +250,7 @@ view{
 .share-canvas{
     width:550rpx;
     height:760rpx;
+    overflow: scroll;
 }
 .dynamic-contain{
     width:100%;

@@ -108,7 +108,7 @@
 
 .loop-box {
     position: absolute;
-    left: 112rpx;
+    left: 150rpx;
     bottom: 310rpx;
     display: flex;
     flex-direction: column;

@@ -1,6 +1,8 @@
 const app = getApp()
 Page({
     data: {
+        isIpx: app.globalData.isIpx,
+        statusBarHeight: app.globalData.statusBarHeight,
         redPacketsData:{},
         hiddenLoading:true,
         loadingText:'加载中...'

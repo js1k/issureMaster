@@ -1,4 +1,4 @@
-<scroll-view scroll-y="true" class='rank-list flx-ce-no-clm' bindscrolltolower="bindscrolltolower"  style='padding-top:{{statusBarHeight}}rpx;}}'>
+<scroll-view scroll-y="true" class='rank-list flx-ce-no-clm' bindscrolltolower="bindscrolltolower" style='padding-top:{{statusBarHeight}}rpx;}}'>
     <loading hidden="{{hiddenLoading}}">{{loadingText}}</loading>
     <view class='scroll-container'>
         <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack' style='top:{{statusBarHeight+22}}rpx;}}'></image>
@@ -81,6 +81,7 @@
                                         <image class='user-star' src='../../asset/challengeHome/star_black.png' wx:if="{{insureUser.userLevel==3&&insureUser.starNum==1}}"></image>
                                         <image src='../../asset/challengeHome/star_zongshi.png' mode="widthFix" class='common-star' wx:if="{{insureUser.userLevel==4}}"></image>
                                     </view>
+                                    <text class='rank-star-txt'>x{{insureUser.starNum}}</text>
                                     </view>
                                     <view class='integral-rank' wx:if="{{!showSeasonList}}">积分: {{insureUser.points}}</view>
                                 </view>

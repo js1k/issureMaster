@@ -442,7 +442,7 @@ Page({
     //  任务宝箱
     goTreasure: function() {
         if (this.data.seasonCheckVO.status == 2) { // 活动结算中
-            _this.setData({
+            this.setData({
                 showMask: true,
                 seasonCalc: true
             })

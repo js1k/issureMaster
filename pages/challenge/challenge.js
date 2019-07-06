@@ -22,6 +22,7 @@ Page({
         canSubUse:true,
         reviewQuestion:false,
         receivedChip:false,
+        unfinshedBack:false,
         reviewIndex:0,
         reviewData:'',
         curReview:'',
@@ -161,21 +162,21 @@ Page({
                 src: _this.data.shareCoverImg,
                 success: (res1) => {
                     let url = res1.path
-                    ctx.drawImage(res1.path, 0, 0, 275, 300)
+                    ctx.drawImage(res1.path, 0, 0, 0.733 * _this.data.winWidth, 0.733 * _this.data.winWidth / 0.9167)
                     wx.getImageInfo({
                         src: data.xcxQrCode,
                         success: (res2) => {
                             let qrImgSize = 70
-                            ctx.drawImage(res2.path, 190, 306, qrImgSize, qrImgSize)
+                            ctx.drawImage(res2.path, 0.552 * _this.data.winWidth, 0.552 * _this.data.winWidth / 0.6635, 56, 56)
                             ctx.stroke()
                             ctx.draw(true)
                             ctx.setFontSize(14)
                             ctx.setFillStyle('#000')
-                            ctx.fillText('我在答题赢大奖 不服来战', 16, 330)
+                            ctx.fillText('我在答题赢大奖 不服来战', 0.0473 * _this.data.winWidth, 0.0473 * _this.data.winWidth / 0.0533)
                             ctx.draw(true)
                             ctx.setFontSize(12)
                             ctx.setFillStyle('#000')
-                            ctx.fillText('保保大师答题挑战赛~', 16, 356)
+                            ctx.fillText('保保大师答题挑战赛~', 0.0473 * _this.data.winWidth, 0.0473 * _this.data.winWidth / 0.0493)
                             ctx.draw(true)
                             _this.setData({
                                 creatImg: false,
@@ -193,9 +194,7 @@ Page({
         })
     },
     goChallengeHome: function () {
-        wx.redirectTo({
-            url: '../challengeHome/challengeHome'
-        })
+        app.goBack()
     },
     goRankList: function () {
         wx.navigateTo({
@@ -299,6 +298,9 @@ Page({
             [subAnswerList]: answerList
         })
         app.httpPost('/xcx/insureMaster/examHandIn', _this.data.subParam,function(data){
+            if (_this.data.unfinshedBack){  // 如果在答题过程中强行退出  则提交答案后 再后退
+                app.goBack()
+            }
             _this.setData({
                 canSubmit:true,
                 answerEnd:true,
@@ -335,21 +337,24 @@ Page({
         })
     },
     goBack: function () {
-        if (!this.data.answerEnd && !this.data.reviewQuestion) {
+        if (this.data.onTest) {
             this.setData({
                 showMask: true,
                 unfinshed: true
             })
             return
         }
-        this.confirmBack()
+        app.goBack()
+        // this.confirmBack()
     },
     //答题过程中后退  确认后退  自动提交答案
     confirmBack: function() {
         if (!this.data.result) {
+            this.setData({
+                unfinshedBack:true
+            })
             this.submitTest()
         }
-        app.goBack()
     },
     cancleBack: function() {
         this.setData({

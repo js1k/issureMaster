@@ -79,7 +79,6 @@
     <view class='btn-wrap'>
         <image src='../../asset/challengeHome/begain_btn.png' class='begain-btn' bindtap='startTest'></image>
     </view>
-    <!-- <image src='../../asset/challengeHome/begain_btn.png' class='begain-btn' bindtap='startTest'></image> -->
     <view class='flx-ce-ce theme-rules'>
         <view>{{seasonCheckVO.seasonTitle}}</view>
         <view class='season-data'>{{seasonCheckVO.seasonDate}}</view>
@@ -115,12 +114,12 @@
     <!-- 弹窗 -->
     <view class='com-mask' wx:if="{{showMask}}" bindtap='closeMask'>
         <!-- 规则 -->
-        <scroll-view class='rules flx-ce-clm rules-container' scroll-y="true" wx:if="{{showRule}}">
+        <scroll-view class='rules flx-ce-clm rules-container' scroll-y="true" wx:if="{{showRule}}" catchtap='closeMask' data-model='inner'>
             <image class='close-rule' src='../../asset/mask_close.png' bindtap='closeMask'></image>
             <image class='rule-pic ' src='http://dt.minshenglife.com/upload/img/20190628/1561712685136.png' mode='widthFix' catchtap='closeMask' data-model='inner'></image>
         </scroll-view>
         <!-- 能量窗口 -->
-        <view class='power-wrap flx-ce-no-clm' wx:if="{{showPowerWrap}}">
+        <view class='power-wrap flx-ce-no-clm' wx:if="{{showPowerWrap}}" catchtap='closeMask' data-model='inner'>
             <view class='knapsack-close-box'>
                 <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
             </view>
@@ -135,7 +134,7 @@
                 </view>
             </view>
         </view>
-        <view class='progress flx-ce-clm' wx:if="{{showProgress}}">
+        <view class='progress flx-ce-clm' wx:if="{{showProgress}}" catchtap='closeMask' data-model='inner'>
             <view class='cartoon-wrap'>
                 <image class='cartoon' src='../../asset/index/baobao.png'></image>
             </view>

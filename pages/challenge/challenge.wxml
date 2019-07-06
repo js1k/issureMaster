@@ -13,7 +13,7 @@
                         <view class='queistion-name flx-ce-ce'>{{curQuestion.subjectTitle}}</view>
                         <view wx:for="{{queList}}" wx:key="index" class="que-answer flx-ce-ce {{choseItem==index?'item-chosed':''}} {{removeIndex==index?'remove-index':''}}" bindtap='choseAnswer' data-serial="{{item.serial}}">{{item.question}}</view>
                     </view>
-                    <view class='question-tips'>--   保险维权知识  --</view>
+                    <view class='question-tips'>--   {{curQuestion.subjectType}}  --</view>
                     <view class='question-index-bar flx-ce-ce'>
                         <view class='index flx-ce-ce {{curIndex==0?"cur-index":""}} {{curIndex>0?"done-index":""}}'>1</view>
                         <view class='index flx-ce-ce {{curIndex==1?"cur-index":""}} {{curIndex>1?"done-index":""}}'>2</view>
@@ -56,13 +56,13 @@
                 <view class='review-question flx-ce-bet-clm'>
                     <view class='question-info flx-ce-clm'>
                         <view class='queistion-name flx-ce-ce'>{{curReview.subjectTitle}}</view>
-                        <view wx:for="{{curReview.reviewList}}" wx:key="index" class="que-answer flx-ce-ce {{(curReview.submitAnswer!=item.serial)&&(curReview.answer!=item.serial)?'unchosed':''}} {{(curReview.submitAnswer==item.serial)&&(curReview.submitAnswer==curReview.answer)?'item-chosed':''}} {{(curReview.submitAnswer==item.serial)&&(curReview.submitAnswer!=curReview.answer)?'chose-wrong':''}}">
+                        <view wx:for="{{curReview.reviewList}}" wx:key="index" class="que-answer flx-ce-ce {{(curReview.submitAnswer!=item.serial)&&(curReview.answer!=item.serial)?'unchosed':''}} {{item.serial==curReview.answer?'item-chosed':''}} {{(curReview.submitAnswer==item.serial)&&(curReview.submitAnswer!=curReview.answer)?'chose-wrong':''}}">
                             <text>{{item.option}}</text>
                             <image class='right-icon' src='../../asset/question_true.png' wx:if="{{curReview.answer==item.serial}}"></image>
                             <image class='right-icon' src='../../asset/question_false_review.png' wx:if="{{curReview.submitAnswer==item.serial&&curReview.submitAnswer!=curReview.answer}}"></image>
                         </view>
                     </view>
-                    <view class='question-tips'>--   保险维权知识  --</view>
+                    <view class='question-tips'>--   {{curReview.subjectType}}  --</view>
                     <view class='question-index-bar flx-ce-ce'>
                         <view wx:for="{{5}}" wx:key="index" class='index flx-ce-ce {{(reviewData[index].answer==reviewData[index].submitAnswer)?"done-index":"wrong-index"}} {{index==reviewIndex?"cur-index":""}}' bindtap='handleReview' data-index="{{index}}">{{index+1}}</view>
                     </view>
@@ -226,7 +226,8 @@
                     <image src="{{result.userLevel==2?gaoshouUp:result.userLevel==3?dashiUp:zongshiUp}}" class='up-icon'></image>
                 </view>                       
                 <view class='chip-name'>恭喜你晋升Lv.{{result.userLevel}}{{result.userLevel==1?'达人':result.userLevel==2?'高手':result.userLevel==3?'大师':'宗师'}}</view>
-                <view class='chip-tips'>请继续努力，再接再厉哟~</view>
+                <view class='chip-tips' wx:if="{{result.userLevel<4}}">请继续努力，再接再厉哟~</view>
+                <view class='chip-tips' wx:if="{{result.userLevel==4}}">开启排位赛，瓜分红包和积分啦~</view>
             </view>
         </view>
     </view>
