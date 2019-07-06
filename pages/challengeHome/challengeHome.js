@@ -74,11 +74,14 @@ Page({
             //请求考题后跳转答题页
             wx.navigateTo({
                 url: '../challenge/challenge',
-                success: function () {
-                    _this.setData({
-                        showMask: false,
-                        showProgress: false
-                    })
+                success: function (res) {
+                    let timeOut = setTimeout(function () {
+                        _this.setData({
+                            showMask: false,
+                            showProgress: false
+                        })
+                        clearTimeout(timeOut)
+                    },500)
                 }
             })
         }, function (error) {
@@ -138,8 +141,17 @@ Page({
     },
     // 做任务
     goTreasure: function () {
+        let _this=this
         wx.navigateTo({
-            url: '../treasureBox/treasureBox'
+            url: '../treasureBox/treasureBox',
+            success:function(){
+                let timeOut=setTimeout(function(){
+                    _this.setData({
+                        showMask:false,
+                        showPowerWrap:false
+                    })
+                },500)
+            }
         })
     },
     getData:function(){
