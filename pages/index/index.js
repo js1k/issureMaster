@@ -775,7 +775,6 @@ Page({
     },
     getData: function() {
         let _this = this
-        console.log(9999)
         this.setData({
             showMask: false,
             openBox: false,

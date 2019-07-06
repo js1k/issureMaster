@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 4,
 			"list": [
 				{
 					"id": 0,
@@ -68,6 +68,13 @@
 					"name": "rankList",
 					"pathName": "pages/rankList/rankList",
 					"query": "uid=493297558155266&type=1&shareDay=20190705",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "challenge",
+					"pathName": "pages/challengeHome/challengeHome",
+					"query": "",
 					"scene": null
 				}
 			]
