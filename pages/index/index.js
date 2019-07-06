@@ -81,7 +81,6 @@ Page({
         nengliangImg: '../../asset/index/nengliang.png',
         randomImg: '',
         randomName: '',
-
         cardData: [{
                 name: '帮帮卡',
                 flag: 'helpCard',
@@ -197,7 +196,7 @@ Page({
             wx.checkSession({
                 success: function() {
                     _this.setData({
-                        showMask: false,
+                        // showMask: false,
                         authFlag: true,
                         hiddenLoading: false
                     })
@@ -216,7 +215,6 @@ Page({
             })
         } else {
             app.doLogin(function() {
-                // _this.getData()
                 _this.setData({
                     authFlag: false,
                     showMask: true,
@@ -734,14 +732,16 @@ Page({
     getPackets: function() {
         let _this = this
         let cardData = _this.data.cardData
-        this.setData({
-            hiddenLoading: false
-        })
-
         let showImg = 'showInfo.showImg'
         let showName = 'showInfo.showName'
         let showDesc = 'showInfo.showDesc'
         let showNum = 'showInfo.curNum'
+        _this.setData({
+            hiddenLoading: false,
+            cardIndex:0,
+            showCardBtn:false
+        })
+
         app.httpPost('/xcx/insureMaster/myPackage', {
             insureUid: wx.getStorageSync('insureUid')
         }, function(data) {
@@ -774,14 +774,14 @@ Page({
     },
     getData: function() {
         let _this = this
-        this.setData({
-            showMask: false,
-            openBox: false,
-            showRules: false,
-            knapsackMask: false,
-            showShare: false,
-            showTeacher: false
-        })
+        // this.setData({
+        //     showMask: false,
+        //     openBox: false,
+        //     showRules: false,
+        //     knapsackMask: false,
+        //     showShare: false,
+        //     showTeacher: false
+        // })
         clearInterval(_this.data.loopInterval)
         let param = {
             agentUserId: '',
