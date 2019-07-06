@@ -470,13 +470,13 @@ Page({
     goChallenge: function() {
         let status = this.data.seasonCheckVO.status
         if (status == 0) { // 活动未开始
-            _this.setData({
+            this.setData({
                 showMask: true,
                 preSeason: true
             })
             return
         } else if (status == 2) { // 活动结算中
-            _this.setData({
+            this.setData({
                 showMask: true,
                 seasonCalc: true
             })

@@ -86,7 +86,7 @@ Page({
 
             }
         }
-        let title = this.data.shareUserName + '达到Lv.' + this.data.userLevel +''+ (this.data.shareLevel == 1 ? '达人' : this.data.shareLevel == 2 ? '高手' : this.data.shareLevel == 3 ? '大师' : '宗师') + '，参加保保大师挑战赛～一大波红包、积分等着你'
+        let title = this.data.shareUserName + '达到Lv.' + this.data.shareLevel +''+ (this.data.shareLevel == 1 ? '达人' : this.data.shareLevel == 2 ? '高手' : this.data.shareLevel == 3 ? '大师' : '宗师') + '，参加保保大师挑战赛～一大波红包、积分等着你'
         if (options.from === 'button') {
             var dataid = options.target.dataset;
             param.title = title,

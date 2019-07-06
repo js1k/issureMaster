@@ -224,6 +224,7 @@ Page({
             noClient: false,
             showShareActive: false
         })
+        this.getTreasure()
     },
     shareWx: function() {
         this.setData({
@@ -300,7 +301,6 @@ Page({
         this.setData({
             insureUid: wx.getStorageSync('insureUid')
         })
-        console.log(util.getNow())
         this.getTreasure()
     },
 
