@@ -10,7 +10,7 @@
         <view class='task-list wrap flx-ce-clm' wx:if="{{showTask}}">
             <image src='../../asset/treasureBox/treasureTask.png' class='task-title'></image>
             <view class='task-column'>
-                <image src="http://dt.minshenglife.com/upload/img/20190627/1561639589395.png" class='card-bg'></image>
+                <image src="{{studyBg}}" class='card-bg'></image>
                 <view class='flx-start-clm card-content'>
                     <view class='card-title'>拜师学艺</view>
                     <view class='card-des'>学艺宝箱，三种特权任你挑选两张</view>
@@ -22,7 +22,7 @@
                 <view class='card-strategy flx-ce-ce' bindtap='takeTeacher'>查看攻略</view>
             </view>
             <view class='task-column'>
-                <image src="http://dt.minshenglife.com/upload/img/20190627/1561639628656.png" class='card-bg'></image>
+                <image src="{{shareBg}}" class='card-bg'></image>
                 <view class='flx-start-clm card-content'>
                     <view class='card-title'>分享活动</view>
                     <view class='card-des'>来一次给力分享，双方得分享宝箱</view>
@@ -34,7 +34,7 @@
                 <view class='card-strategy flx-ce-ce' wx:if="{{treasureData.shareChest<5}}" bindtap="handleShare">分享友礼</view>
             </view>
             <view class='task-column'>
-                <image src="http://dt.minshenglife.com/upload/img/20190627/1561639804333.png" class='card-bg'></image>
+                <image src="{{newBg}}" class='card-bg'></image>
                 <view class='flx-start-clm card-content'>
                     <view class='card-title'>新手福利</view>
                     <view class='card-des'>新手专享，所有特权卡体验一次</view>
@@ -46,7 +46,7 @@
                 <view class='card-strategy flx-ce-ce' wx:if="{{treasureData.newerChest==1}}">已领取</view>
             </view>
             <view class='task-column'>
-                <image src="http://dt.minshenglife.com/upload/img/20190627/1561639537989.png" class='card-bg'></image>
+                <image src="{{followBg}}" class='card-bg'></image>
                 <view class='flx-start-clm card-content'>
                     <view class='card-title'>公众号赠礼</view>
                     <view class='card-des'>关注公众号，主题宝箱随机掉落</view>
@@ -74,7 +74,7 @@
                 <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
             </view>
             <view class='teacher-container flx-ce-clm'>
-                <image class='teacher-box' src='http://dt.minshenglife.com/upload/img/20190627/1561639837974.png'></image>
+                <image class='teacher-box' src="{{studyBox}}"></image>
                 <view class='find-teacher-info flx-ce'>
                     <view class='default-header-conten'>
                         <image src="{{clientData.avatarUrl}}" class='default-header'></image>
@@ -91,7 +91,7 @@
         </view>
         <view class='take-teacher' catchtap='closeMask' data-model='inner' wx:if="{{noClient}}">
             <view class='none-teacher-content flx-ce-clm'>
-                <image class='none-teacher' src='http://dt.minshenglife.com/upload/img/20190627/1561639683456.png'></image>
+                <image class='none-teacher' src="{{noTeacher}}"></image>
                 <image src='../../asset/mask_close.png' class='close-mask' bindtap='closeMask'></image>
                 <view class='none-teacher-txt flx-ce-clm'>
                     <text>尚未绑定导师</text>
@@ -102,7 +102,7 @@
         <!-- 分享友礼弹窗 -->
         <view class='share-pic flx-ce-no-clm' wx:if="showSharePic" wx:if="{{showShareActive}}">
             <view class='download-wrap flx-ce-no-clm'>
-                <image src='https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190702/1562054485634.png' class='main-pic' wx:if="{{creatImg}}"></image>
+                <image src="{{wxShareImg}}" class='main-pic' wx:if="{{creatImg}}"></image>
                 <view class='dynamic-contain flx-ce-bet' wx:if="{{creatImg}}">
                     <view class='share-text-contain'>
                         <text class='share-title'>{{shareName}}送你"分享宝箱"~</text>
@@ -127,7 +127,7 @@
                 <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
             </view>
             <view class='none-teacher-content flx-ce-clm'>
-                <image class='none-teacher' src='http://dt.minshenglife.com/upload/img/20190628/1561715002804.png'></image>
+                <image class='none-teacher' src="{{followAccount}}"></image>
             </view>
         </view>
         <view class='flx-ce-clm' wx:if="{{showNewPlay}}" bindtap='closeMask' data-model='inner'>

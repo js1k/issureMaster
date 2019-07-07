@@ -58,25 +58,26 @@
         </view>
         <text class='home-time'>—— {{seasonCheckVO.seasonTitle||'活动未开始'}} {{seasonCheckVO.seasonDate}} ——</text>
         <text class='home-theme'>保险你做主 权益我知道</text>
+        <!-- 四个赛季主题图 -->
         <view class='relative' wx:if="{{seasonCheckVO.seasonNo===1||!seasonCheckVO.seasonNo}}">
             <image src="../../asset/index/cloud_left.png" class='season1-cloud-left cloud-left'></image>
             <image src="../../asset/index/cloud_right.png" class='season1-cloud-right cloud-right'></image>
-            <image src="http://dt.minshenglife.com/upload/img/20190628/1561691285392.png" class='home-main-pic'></image>
+            <image src="{{s1Theme}}" class='home-main-pic'></image>
         </view>
         <view class='relative' wx:if="{{seasonCheckVO.seasonNo===2}}">
             <image src="../../asset/index/season2_cloud.png" class='season2-cloud cloud-right'></image>
             <image src="../../asset/index/insurance_policy.png" class='insurance-policy'></image>
-            <image src="http://dt.minshenglife.com/upload/img/20190628/1561691322047.png" class='home-main-pic season-pic'></image>
+            <image src="{{s2Theme}}" class='home-main-pic season-pic'></image>
         </view>
         <view class='relative' wx:if="{{seasonCheckVO.seasonNo===3}}">
             <image src="../../asset/index/season3_cloud_left.png" class='season3-cloud-left cloud-left'></image>
             <image src="../../asset/index/season3_cloud_right.png" class='season3-cloud-right cloud-right'></image>
-            <image src="http://dt.minshenglife.com/upload/img/20190628/1561691340542.png" class='home-main-pic'></image>
+            <image src="{{s3Theme}}" class='home-main-pic'></image>
         </view>
         <view class='relative' wx:if="{{seasonCheckVO.seasonNo===4}}">
             <image src="../../asset/index/season4_cloud_left.png" class='season4-cloud-left cloud-left'></image>
             <image src="../../asset/index/season4_cloud_right.png" class='season4-cloud-right cloud-right'></image>
-            <image src="http://dt.minshenglife.com/upload/img/20190628/1561691356684.png" class='home-main-pic'></image>
+            <image src="{{s3Theme}}" class='home-main-pic'></image>
         </view>
 
         <view class='begin-answer'>
@@ -89,7 +90,7 @@
             <image src='../../asset/index/season_tips.png' class='season-stragety' bindtap="openRules"></image>
         </view>
     </view>
-    <image src="http://dt.minshenglife.com/upload/img/20190704/1562222610804.png" class='home-btm-bg'></image>
+    <image src="{{hmBg}}" class='home-btm-bg'></image>
     <view class='loop-content'>
         <view class='relative'>
             <image src="../../asset/index/baobao.png" class='bao-bao'></image>
@@ -134,7 +135,7 @@
             <view class='arrow-wrap'>
                 <image src='../../asset/index/home_arrow.png' class='close_arrow' catchtap='closeMask'></image>
             </view>
-            <image src="http://dt.minshenglife.com/upload/img/20190707/1562487058606.png" catchtap='closeMask' mode='widthFix' class='home-rules' data-model='inner'></image>
+            <image src="{{seasonRules}}" catchtap='closeMask' mode='widthFix' class='home-rules' data-model='inner'></image>
         </scroll-view>
         <!-- 赛季未开始 -->
         <view class='season-end container flx-ce-clm' wx:if="{{preSeason}}" catchtap='closeMask'>

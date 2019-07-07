@@ -19,7 +19,8 @@ Page({
         
         url: '/xcx/insureMaster/rankByStar',
         hiddenLoading: true,
-        loadingText: '加载中...'
+        loadingText: '加载中...',
+        activesRuels: app.globalData.activesRuels
     },
     onShareAppMessage: function () {
         return {

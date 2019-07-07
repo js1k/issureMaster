@@ -18,13 +18,15 @@ Page({
         curSrc:'../../asset/challengeHome/daren_pic.png',
         swiperItem: ['../../asset/challengeHome/daren_pic.png', '../../asset/challengeHome/gaoshou_pic.png', '../../asset/challengeHome/dashi_pic.png', '../../asset/challengeHome/zongshi_pic.png'],
         swiperDisabeItem: ['../../asset/challengeHome/daren_pic_disable.png', '../../asset/challengeHome/gaoshou_pic_disable.png', '../../asset/challengeHome/dashi_pic_disable.png', '../../asset/challengeHome/zongshi_pic_disable.png'],
+        activesRuels: app.globalData.activesRuels,
+        wxShareImg: app.globalData.wxShareImg
     },
 
     onShareAppMessage: function () {
         return {
             title: '2019民生保险用户体验节~保保大师答题挑战赛，精彩来战',
             path: '/pages/index/index',
-            imageUrl: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190628/1561717521552.png',
+            imageUrl: this.data.wxShareImg,
             success: function () { }
         }
     },
@@ -73,17 +75,15 @@ Page({
             wx.setStorageSync('examUserId', data.insureExamGenerateResponse.examUserId)
             //请求考题后跳转答题页
             wx.navigateTo({
-                url: '../challenge/challenge',
-                success: function (res) {
-                    let timeOut = setTimeout(function () {
-                        _this.setData({
-                            showMask: false,
-                            showProgress: false
-                        })
-                        clearTimeout(timeOut)
-                    },500)
-                }
+                url: '../challenge/challenge'
             })
+            let timeOut = setTimeout(function () {
+                _this.setData({
+                    showMask: false,
+                    showProgress: false
+                })
+                clearTimeout(timeOut)
+            }, 500)
         }, function (error) {
             wx.showToast({
                 title: error.message,

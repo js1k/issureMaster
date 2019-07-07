@@ -210,7 +210,7 @@
             </view>
             <view class='big-packets' wx:if="{{result.isMergeChip==1}}">
                 <view class='packets-wrap'>
-                    <image src="http://dt.minshenglife.com/upload/img/20190707/1562486898642.png" class='packets-img'></image>
+                    <image src="{{redPackets}}" class='packets-img'></image>
                 </view>
                 <button class='chip-btn' catchtap='closeMask'>收下</button>
             </view>

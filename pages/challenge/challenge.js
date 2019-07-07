@@ -75,8 +75,10 @@ Page({
             }
         ],
 
-        shareCoverImg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190703/1562146275324.png',
+        challengeCoverImg: app.globalData.challengeCoverImg,
         shareQrImg: '',
+        redPackets: app.globalData.redPackets,
+        wxShareImg: app.globalData.wxShareImg
     },
 
     onShareAppMessage: function (options) {
@@ -84,7 +86,7 @@ Page({
         let param = {
             title: '2019民生保险用户体验节~保保大师答题挑战赛，精彩来战',
             path: '/pages/index/index',
-            imageUrl: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190628/1561717521552.png',
+            imageUrl: this.data.wxShareImg,
             success: function () {
 
             }
@@ -165,7 +167,7 @@ Page({
                 shareQrImg: data.xcxQrCode
             })
             wx.getImageInfo({
-                src: _this.data.shareCoverImg,
+                src: _this.data.challengeCoverImg,
                 success: (res1) => {
                     let url = res1.path
                     ctx.drawImage(res1.path, 0, 0, 0.733 * winWidth, 0.733 * winWidth / 0.9167)

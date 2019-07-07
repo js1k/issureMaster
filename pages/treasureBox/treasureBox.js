@@ -27,8 +27,16 @@ Page({
             insureUid: ''
         },
         recordList: [],
-        shareCoverImg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190702/1562054485634.png',
+        shareCoverImg: app.globalData.shareCoverImg,
         shareQrImg: '',
+        studyBg: app.globalData.studyBg,
+        shareBg: app.globalData.shareBg,
+        newBg: app.globalData.newBg,
+        followBg: app.globalData.followBg,
+        wxShareImg: app.globalData.wxShareImg,
+        studyBox: app.globalData.studyBox,
+        noTeacher: app.globalData.noTeacher,
+        followAccount: app.globalData.followAccount
     },
     onShareAppMessage: function (options) {
         let _this=this
@@ -36,7 +44,7 @@ Page({
         let param = {
             title: '2019民生保险用户体验节~保保大师答题挑战赛，精彩来战',
             path: '/pages/index/index',
-            imageUrl: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190628/1561717521552.png',
+            imageUrl: _this.data.wxShareImg,
             success: function() {}
         }
         if (options.from === 'button') {

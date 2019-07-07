@@ -2,7 +2,7 @@
     <loading hidden="{{hiddenLoading}}">{{loadingText}}</loading>
     <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack' style='top:{{statusBarHeight+22}}rpx'></image>
     <view class='compound-box'>
-        <image src='http://dt.minshenglife.com/upload/img/20190627/1561639258907.png' mode="widthFix" class='compound-bg'></image>
+        <image src='{{circleBg}}' mode="widthFix" class='compound-bg'></image>
         <view class='red-packets-container'>
             <view class='packets-group'>
                 <view class='cards-box card-top'>
@@ -39,7 +39,7 @@
         <view class='red-point move-top'></view>
         <view class='red-point move-right'></view>
         <view class='red-point move-bottom'></view>
-        <image src='http://dt.minshenglife.com/upload/img/20190627/1561639215494.png' class='compound-btn'></image>
+        <image src="{{compoundBt}}" class='compound-btn'></image>
         <image wx:if="{{redPacketsData.isCompose===1}}" src='../../asset/hongbao/red_packets_pic.png' class='packets-pic'></image>
         <image src='../../asset/hongbao/red_packets_light.png' class='packets-light'></image>
     </view>

@@ -1,7 +1,8 @@
 const app = getApp()
 Page({
     data: {
-        statusBarHeight: app.globalData.statusBarHeight
+        statusBarHeight: app.globalData.statusBarHeight,
+        loginImg: app.globalData.loginImg
     },
 
     onShareAppMessage: function () {

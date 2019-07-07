@@ -5,7 +5,9 @@ Page({
         statusBarHeight: app.globalData.statusBarHeight,
         redPacketsData:{},
         hiddenLoading:true,
-        loadingText:'加载中...'
+        loadingText:'加载中...',
+        circleBg: app.globalData.circleBg,
+        compoundBt: app.globalData.compoundBt
     },
 
     onShareAppMessage: function () {
