@@ -41,7 +41,7 @@
         <view class='red-point move-bottom'></view>
         <image src="{{compoundBt}}" class='compound-btn'></image>
         <image wx:if="{{redPacketsData.isCompose===1}}" src='../../asset/hongbao/red_packets_pic.png' class='packets-pic'></image>
-        <image src='../../asset/hongbao/red_packets_light.png' class='packets-light'></image>
+        <image wx:if="{{redPacketsData.isCompose===1}}" src='../../asset/hongbao/red_packets_light.png' class='packets-light'></image>
     </view>
     <view class='red-packets-rules'>
         <view class='rules-title'>赛季现金红包奖励</view>
