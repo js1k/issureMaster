@@ -118,7 +118,7 @@
                     <view wx:if="{{chestGainTipVO.chestType==1}}">你的导师{{chestGainTipVO.shareUserName.length>8?(chestGainTipVO.shareUserName.splice(0,8)+'...'):chestGainTipVO.shareUserName}}</view>
                     <view wx:if="{{chestGainTipVO.chestType==2}}">你的好友{{chestGainTipVO.shareUserName}}</view>
                     <view wx:if="{{chestGainTipVO.chestType==4}}">保险体验师</view>
-                    <view>送你"{{chestGainTipVO.chestType==4?chestGainTipVO.chestSubject:chestGainTipVO.chestType==1?'学艺宝箱':'分享宝箱'}}"</view>
+                    <view>送你"{{chestGainTipVO.chestType==4?(chestGainTipVO.chestSubject+'宝箱'):chestGainTipVO.chestType==1?'学艺宝箱':'分享宝箱'}}"</view>
                 </view>
             </view>
             <view class='flx-ce-ce btn-open' catchtap='handleOpen'>立即开启</view>
@@ -134,7 +134,7 @@
             <view class='arrow-wrap'>
                 <image src='../../asset/index/home_arrow.png' class='close_arrow' catchtap='closeMask'></image>
             </view>
-            <image src="http://dt.minshenglife.com/upload/img/20190702/1562032305943.png" catchtap='closeMask' mode='widthFix' class='home-rules' data-model='inner'></image>
+            <image src="http://dt.minshenglife.com/upload/img/20190707/1562487058606.png" catchtap='closeMask' mode='widthFix' class='home-rules' data-model='inner'></image>
         </scroll-view>
         <!-- 赛季未开始 -->
         <view class='season-end container flx-ce-clm' wx:if="{{preSeason}}" catchtap='closeMask'>

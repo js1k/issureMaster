@@ -1,7 +1,7 @@
 /**index.wxss**/
 
 .home-rules {
-    width: 683rpx;
+    width: 686rpx;
     height: auto;
     z-index: 100;
 }
@@ -340,7 +340,7 @@
 }
 
 .index-mask {
-    padding: 120rpx 44rpx 0;
+    padding: 120rpx 32rpx 0;
 }
 
 .knapsack-box {

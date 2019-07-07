@@ -26,7 +26,7 @@ view{
   top:0;
   padding-top:120rpx;
   background:rgba(0, 0, 0, 0.8);
-  z-index: 99;
+  z-index: 999;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -211,7 +211,7 @@ view{
 }
 .rules-container{
     width:100%;
-    padding:0 33rpx;
+    padding:0 30rpx;
     height:100%;
     animation: ruleUp 0.7s linear;
 }

@@ -1,4 +1,5 @@
 const app = getApp()
+let util = require('../../utils/util.js')
 Page({
     data: {
         isIpx: app.globalData.isIpx,
@@ -44,10 +45,10 @@ Page({
         chipB: '../../asset/hongbao/B.png',
         chipC: '../../asset/hongbao/C.png',
         chipD: '../../asset/hongbao/D.png',
-        darenUp: '../../asset/challenge/daren_up.png',
-        gaoshouUp: '../../asset/challenge/gaoshou_up.png',
-        dashiUp: '../../asset/challenge/dashi_up.png',
-        zongshiUp: '../../asset/challenge/zongshi_up.png',
+        
+        gaoshouUp: '../../asset/challengeHome/gaoshou_pic.png',
+        dashiUp: '../../asset/challengeHome/dashi_pic.png',
+        zongshiUp: '../../asset/challengeHome/zongshi_pic.png',
         helpCard: '',
         removeCard: '',
         curQuestion: '',
@@ -79,6 +80,7 @@ Page({
     },
 
     onShareAppMessage: function (options) {
+        let insureUid = wx.getStorageSync('insureUid')
         let param = {
             title: '2019民生保险用户体验节~保保大师答题挑战赛，精彩来战',
             path: '/pages/index/index',
@@ -91,7 +93,7 @@ Page({
         if (options.from === 'button') {
             var dataid = options.target.dataset;
             param.title = title,
-            param.path = '/pages/index/index'
+            param.path = '/pages/index/index?uid=' + insureUid + '&type=2&shareDay=' + util.getNow()
         }
         return { ...param }
     },
@@ -107,8 +109,10 @@ Page({
         let questionsList = wx.getStorageSync('question').subjectList
         let subjectIdList ='subParam.subjectIdList'
         let idList=[]
-        for (let i = 0; i < questionsList.length;i++){
-            idList.push(questionsList[i].id)
+        if (questionsList && questionsList.length > 0) {
+            for (let i = 0; i < questionsList.length; i++) {
+                idList.push(questionsList[i].id)
+            }
         }
         this.setData({
             question: questionsList,
@@ -323,11 +327,14 @@ Page({
             } else {
                 // 如果有碎片或红包
                 if (data.chip || data.isMergeChip == 1) {
-                    _this.setData({
-                        showPackets: true,
-                        showMask: true, 
-                        receivedChip:true   //领取标志
-                    })
+                    let timeOut = setTimeout(function () {
+                        _this.setData({
+                            showPackets: true,
+                            showMask: true,
+                            receivedChip: true   //领取标志
+                        })
+                        clearTimeout(timeOut)
+                    },1500)
                 }
             }
         },function(error){
@@ -378,7 +385,7 @@ Page({
             showPackets:false,
             upgrade:false
         })
-        setTimeout(function(){
+        let timeOut=setTimeout(function(){
             if (_this.data.receivedChip) {
                 return
             }
@@ -389,6 +396,7 @@ Page({
                     receivedChip: true   //领取了碎片或红包标志
                 })
             }
+            clearTimeout(timeOut)
         },500)
     },
     //  关闭查看答题

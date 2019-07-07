@@ -19,8 +19,8 @@ const getNow=()=>{
     let now=new Date()
     let year=now.getFullYear()
     let mounth=now.getMonth()
-    let day=now.getDay()
-    return year + '' + (mounth > 9 ? mounth+1 : ('0' + (mounth+1))) + '' + (day > 9 ? day : ('0' + day))
+    let day=now.getDate()
+    return year + '' + (mounth > 9 ? (mounth+1) : ('0' + (mounth+1))) + '' + (day > 9 ? day : ('0' + day))
 }
 
 const getNetWork=()=>{

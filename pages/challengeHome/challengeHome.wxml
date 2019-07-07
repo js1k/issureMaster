@@ -116,7 +116,7 @@
         <!-- 规则 -->
         <scroll-view class='rules flx-ce-clm rules-container' scroll-y="true" wx:if="{{showRule}}" catchtap='closeMask' data-model='inner'>
             <image class='close-rule' src='../../asset/mask_close.png' bindtap='closeMask'></image>
-            <image class='rule-pic ' src='http://dt.minshenglife.com/upload/img/20190628/1561712685136.png' mode='widthFix' catchtap='closeMask' data-model='inner'></image>
+            <image class='rule-pic ' src="http://dt.minshenglife.com/upload/img/20190707/1562487139638.png" mode='widthFix' catchtap='closeMask' data-model='inner'></image>
         </scroll-view>
         <!-- 能量窗口 -->
         <view class='power-wrap flx-ce-no-clm' wx:if="{{showPowerWrap}}" catchtap='closeMask' data-model='inner'>

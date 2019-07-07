@@ -10,7 +10,15 @@
 		"minified": true,
 		"newFeature": true,
 		"autoAudits": true,
-		"checkInvalidKey": true
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"uglifyFileName": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.7.3",
@@ -40,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 5,
 			"list": [
 				{
 					"id": 0,
@@ -81,7 +89,7 @@
 					"id": 5,
 					"name": "share",
 					"pathName": "pages/index/index",
-					"query": "uid=51498561507842&type=2&shareDay=20190706",
+					"query": "uid=53993488873986&type=2&shareDay=20190706",
 					"scene": null
 				},
 				{
