@@ -33,7 +33,6 @@ Page({
         shareBg: app.globalData.shareBg,
         newBg: app.globalData.newBg,
         followBg: app.globalData.followBg,
-        wxShareImg: app.globalData.wxShareImg,
         studyBox: app.globalData.studyBox,
         noTeacher: app.globalData.noTeacher,
         followAccount: app.globalData.followAccount
@@ -44,7 +43,7 @@ Page({
         let param = {
             title: '2019民生保险用户体验节~保保大师答题挑战赛，精彩来战',
             path: '/pages/index/index',
-            imageUrl: _this.data.wxShareImg,
+            imageUrl: app.globalData.wxShareImg,
             success: function() {}
         }
         if (options.from === 'button') {

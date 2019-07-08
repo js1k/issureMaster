@@ -32,9 +32,26 @@ const getNetWork=()=>{
         })
     })
 }
+const catchImg=(key,val)=>{
+    wx.downloadFile({
+        url: val,
+        success: function (res1) {
+            if (res1.statusCode === 200) {
+                const fs = wx.getFileSystemManager()
+                fs.saveFile({
+                    tempFilePath: res1.tempFilePath,
+                    success: function (res2) {
+                        wx.setStorageSync(key, res2.savedFilePath)
+                    }
+                })
+            }
+        }
+    })
+}
 
 module.exports = {
   formatTime: formatTime,
     getNow: getNow,
-    getNetWork: getNetWork
+    getNetWork: getNetWork,
+    catchImg: catchImg
 }

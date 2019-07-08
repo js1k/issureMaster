@@ -1,5 +1,6 @@
 const app = getApp()
 const netWork = require('../../utils/util.js')
+const utils = require('../../utils/util.js')
 Page({
     data: {
         userInfo: {},
@@ -10,6 +11,7 @@ Page({
         showCardBtn: false,
         openBox: false,
         canSave: true,
+        showLoadingImg:false,
         hiddenLoading: false,
         showShare: false,
         seasonCalc: false,
@@ -174,6 +176,59 @@ Page({
     //页面加载
     onLoad: function(options) {
         let _this = this
+
+        // let global = app.globalData
+        // let arrList = {
+        //     's1Theme': global.s1Theme,
+        //     's2Theme': global.s2Theme,
+        //     's3Theme': global.s3Theme,
+        //     's4Theme': global.s4Theme,
+        //     'hmBg': global.hmBg,
+        //     'seasonRules': global.seasonRules,
+        //     'xueyiBg': global.xueyiBg,
+        //     'fenxiangBg': global.fenxiangBg,
+        //     'xinshouBg': global.xinshouBg,
+        //     'zhutiBg': global.zhutiBg,
+        //     'activesRuels': global.activesRuels,
+        //     'circleBg': global.circleBg,
+        //     'compoundBt': global.compoundBt,
+        //     'loginImg': global.loginImg,
+        //     'studyBg': global.studyBg,
+        //     'shareBg': global.shareBg,
+        //     'newBg': global.newBg,
+        //     'followBg': global.followBg,
+        //     'shareCoverImg': global.shareCoverImg,
+        //     'wxShareImg': global.wxShareImg,
+        //     'studyBox': global.studyBox,
+        //     'noTeacher': global.noTeacher,
+        //     'followAccount': global.followAccount,
+        //     'redPackets': global.redPackets,
+        //     'challengeCoverImg': global.challengeCoverImg,
+        //     'bgLight': global.bgLight
+        // }
+        // if (wx.getStorageSync('s1Theme')){
+        //     this.dealLoad(options)
+        // }else{
+        //     this.setData({
+        //         showMask:true,
+        //         showLoadingImg:true,
+        //         hiddenLoading:true
+        //     })
+        //     for (let key in arrList) {
+        //         utils.catchImg(key,arrList[key])
+        //         if (key == 'bgLight') {
+        //             this.setData({
+        //                 showMask: false,
+        //                 showLoadingImg: false,
+        //             })
+        //         }
+        //     }
+        // }
+        this.dealLoad(options)
+
+    },
+    dealLoad: function (options){
+        let _this=this
         if (options) {
             //扫描二维码进入
             if (options.scene) {
@@ -201,7 +256,7 @@ Page({
         }
         if (wx.getStorageSync('userInfo')) {
             wx.checkSession({
-                success: function() {
+                success: function () {
                     _this.setData({
                         // showMask: false,
                         authFlag: true,
@@ -209,8 +264,8 @@ Page({
                     })
                     _this.getData()
                 },
-                fail: function() {
-                    app.doLogin(function() {
+                fail: function () {
+                    app.doLogin(function () {
                         _this.getData()
                     })
                     _this.setData({
@@ -221,7 +276,7 @@ Page({
                 }
             })
         } else {
-            app.doLogin(function() {
+            app.doLogin(function () {
                 _this.setData({
                     authFlag: false,
                     showMask: true,
@@ -388,7 +443,7 @@ Page({
         return {
             title: '2019民生保险用户体验节~保保大师答题挑战赛，精彩来战',
             path: '/pages/index/index',
-            imageUrl: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190628/1561717521552.png',
+            imageUrl: app.globalData.wxShareImg,
             success: function() {}
         }
     },
@@ -707,7 +762,8 @@ Page({
             teacherLimit: false,
             showLimit: false,
             openBox: false,
-            examStartFlag:true
+            examStartFlag:true,
+            showLoadingImg:false
         })
     },
     //关闭弹窗

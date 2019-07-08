@@ -243,38 +243,6 @@
 .power{
     width:506rpx;
 }
-.progress{
-    width:100%;
-    height:100%;
-    position: relative;
-}
-.cartoon-wrap{
-    width:138rpx;
-    height:160rpx;
-    overflow: hidden;
-}
-.wrap-cartoon{
-    width:138rpx;
-    height:160rpx;
-    animation: cartonIn 0.5s ease-in forwards;
-}
-.cartoon{
-    width:138rpx;
-    height:160rpx;
-}
-.gift{
-    width:374rpx;
-    height:16rpx;
-    margin:24rpx 0;
-}
-.progress-tips{
-    font-size:24rpx;
-    font-weight:400;
-    color:rgba(255,255,255,1);
-    margin-bottom:50rpx;
-    opacity: 0;
-    animation: leftIn 1.4s linear forwards;
-}
 .progress-txt{
     font-size:32rpx;
     font-weight:500;
@@ -332,20 +300,6 @@
         /* transform: scaleY(1); */
     }
     
-}
-@keyframes leftIn{
-    49%{
-        opacity: 0;
-        transform: translateX(-300rpx)
-    }
-    50%{
-        opacity: 1;
-        transform: translateX(-300rpx)
-    }
-    100%{
-        opacity: 1;
-        transform: translateX(0)
-    }
 }
 @keyframes rightIn{
     49%{

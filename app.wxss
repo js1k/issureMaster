@@ -100,11 +100,11 @@ view{
 }
 .go-back{
   position: fixed;
-  top:62rpx;
-  left:32rpx;
+  top:64rpx;
+  left:34rpx;
   z-index: 999;
-  width:44rpx;
-  height:44rpx;
+  width:48rpx;
+  height:48rpx;
 }
 .scaleBig{
     animation: scaleBig 1s forwards;
@@ -144,7 +144,7 @@ view{
 .btn-open{
     width:422rpx;
     height:88rpx;
-    background:rgb(238, 209, 156);
+    background:rgba(255,187,1,1);
     border-radius:44rpx;
     font-size:34rpx;
     font-weight:500;
@@ -169,7 +169,7 @@ view{
     height: 48rpx;
     margin-bottom: 16rpx;
     opacity: 0;
-    animation: rotateDeg 2s ease-in-out forwards;
+    animation: rotateDeg 1.5s ease-in-out forwards;
 }
 .open-box-layer{
     animation: changeScale 0.6s ease forwards;
@@ -316,6 +316,42 @@ view{
     padding:58rpx 34rpx 12rpx;
     border-radius:0px 0px 18rpx 18rpx;
 }
+.progress{
+    width:100%;
+    height:100%;
+    position: relative;
+}
+.cartoon-wrap{
+    width:138rpx;
+    height:160rpx;
+    overflow: hidden;
+}
+.wrap-cartoon{
+    width:138rpx;
+    height:160rpx;
+    animation: cartonIn 0.5s ease-in forwards;
+}
+.index-wrap-cartoon{
+    width:138rpx;
+    height:160rpx;
+}
+.cartoon{
+    width:138rpx;
+    height:160rpx;
+}
+.gift{
+    width:374rpx;
+    height:16rpx;
+    margin:24rpx 0;
+}
+.progress-tips{
+    font-size:24rpx;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    margin-bottom:50rpx;
+    opacity: 0;
+    animation: leftIn 1.4s linear forwards;
+}
 @keyframes changeScale{
     from{
         transform: scale(0.5)
@@ -411,11 +447,11 @@ view{
         transform: translateX(-100rpx) rotate(0deg);
         opacity: 0
     }
-    49%{
+    39%{
         transform: translateX(-100rpx) rotate(0deg);
         opacity: 0
     }
-    50%{
+    40%{
         transform: translateX(-100rpx) rotate(0deg);
         opacity: 0
     }
@@ -484,5 +520,19 @@ view{
     }
     to{
         transform: rotate(90deg)
+    }
+}
+@keyframes leftIn{
+    49%{
+        opacity: 0;
+        transform: translateX(-300rpx)
+    }
+    50%{
+        opacity: 1;
+        transform: translateX(-300rpx)
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0)
     }
 }

@@ -146,8 +146,8 @@
 }
 
 .home-arrow {
-    width: 44rpx;
-    height: 44rpx;
+    width: 48rpx;
+    height: 48rpx;
 }
 
 .season-stragety {
@@ -458,8 +458,8 @@
 }
 
 .close_arrow{
-    width: 44rpx;
-    height: 44rpx;
+    width: 48rpx;
+    height: 48rpx;
     transform: rotate(180deg);
     margin-bottom:10rpx;
 }
@@ -703,6 +703,11 @@
 }
 .tearher-tips:last-child{
     margin-top:0;
+}
+.index-progress-tips{
+    font-size:24rpx;
+    font-weight:400;
+    color:rgba(255,255,255,1);
 }
 @keyframes cloudLeft {
     0% {

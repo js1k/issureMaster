@@ -18,15 +18,14 @@ Page({
         curSrc:'../../asset/challengeHome/daren_pic.png',
         swiperItem: ['../../asset/challengeHome/daren_pic.png', '../../asset/challengeHome/gaoshou_pic.png', '../../asset/challengeHome/dashi_pic.png', '../../asset/challengeHome/zongshi_pic.png'],
         swiperDisabeItem: ['../../asset/challengeHome/daren_pic_disable.png', '../../asset/challengeHome/gaoshou_pic_disable.png', '../../asset/challengeHome/dashi_pic_disable.png', '../../asset/challengeHome/zongshi_pic_disable.png'],
-        activesRuels: app.globalData.activesRuels,
-        wxShareImg: app.globalData.wxShareImg
+        activesRuels: app.globalData.activesRuels
     },
 
     onShareAppMessage: function () {
         return {
             title: '2019民生保险用户体验节~保保大师答题挑战赛，精彩来战',
             path: '/pages/index/index',
-            imageUrl: this.data.wxShareImg,
+            imageUrl: app.globalData.wxShareImg,
             success: function () { }
         }
     },

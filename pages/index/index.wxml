@@ -319,6 +319,15 @@
                 </view>
             </view>
         </view>
+        <view class="progress flx-ce-clm" wx:if="{{showLoadingImg}}">
+            <view class='cartoon-wrap flx-ce-ce'>
+                <view class='index-wrap-cartoon'>
+                    <image class='cartoon' src='../../asset/index/baobao.png'></image>
+                </view>
+            </view>
+            <image class='gift' src='../../asset/progress_bar.gif'></image>
+            <view class="index-progress-tips">玩命儿加载中...</view>
+        </view>
         <!-- 领取卡片 -->
         <view class='open-box-layer flx-ce-no-clm' wx:if="{{openBox}}" catchtap='closeMask' data-model='inner'>
             <view class='knapsack-close-box'>
