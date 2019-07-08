@@ -84,7 +84,7 @@ App({
     httpGet:function (url, callback) {
         let _this = this;
         wx.request({
-            url: _this.globalData.testUrl + url,
+            url: _this.globalData.urlDomain + url,
             method: 'GET',
             header: {
                 'Content-Type': 'application/json;charset=UTF-8'
@@ -97,7 +97,7 @@ App({
     httpPost:function(url,param,callback,errorCallback){
         let _this=this;
         wx.request({
-            url: _this.globalData.testUrl+url,
+            url: _this.globalData.urlDomain+url,
             data:param,
             method: 'POST',
             header: {
