@@ -35,7 +35,8 @@ Page({
         followBg: app.globalData.followBg,
         studyBox: app.globalData.studyBox,
         noTeacher: app.globalData.noTeacher,
-        followAccount: app.globalData.followAccount
+        followAccount: app.globalData.followAccount,
+        wxShareImg: app.globalData.wxShareImg
     },
     onShareAppMessage: function (options) {
         let _this=this

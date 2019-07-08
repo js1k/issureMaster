@@ -174,7 +174,7 @@
         <!-- 立即分享 -->
         <view class='share-mask flx-ce-no-clm' wx:if="{{showShareActive}}">
             <view class='download-wrap flx-ce-no-clm'>
-                <image src="{{shareCoverImg}}" class='main-pic' wx:if="{{creatImg}}"></image>
+                <image src="{{challengeCoverImg}}" class='main-pic' wx:if="{{creatImg}}"></image>
                 <view class='dynamic-contain flx-ce-bet' wx:if="{{creatImg}}">
                     <view class='share-text-contain'>
                         <text class='share-title'>我在答题赢大奖 不服来战~</text>
