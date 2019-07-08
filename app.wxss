@@ -139,17 +139,17 @@ view{
     font-weight:400;
     color:rgba(255,255,255,1);
     margin:24rpx 0 72rpx;
-    animation: standSlideDown 2.2s linear forwards;
+    animation: standSlideDown 1.6s linear forwards;
 }
 .btn-open{
     width:422rpx;
     height:88rpx;
-    background:rgba(255,167,0,1);
+    background:rgb(238, 209, 156);
     border-radius:44rpx;
     font-size:34rpx;
     font-weight:500;
     color:rgba(255,255,255,1);
-    animation: btnBig 3s linear forwards;
+    animation: btnBig 2.4s linear forwards;
 }
 .tiyanshi-img{
     width:88rpx;

@@ -119,7 +119,7 @@
                     <view wx:if="{{chestGainTipVO.chestType==1}}">你的导师{{chestGainTipVO.shareUserName.length>8?(chestGainTipVO.shareUserName.splice(0,8)+'...'):chestGainTipVO.shareUserName}}</view>
                     <view wx:if="{{chestGainTipVO.chestType==2}}">你的好友{{chestGainTipVO.shareUserName}}</view>
                     <view wx:if="{{chestGainTipVO.chestType==4}}">保险体验师</view>
-                    <view>送你"{{chestGainTipVO.chestType==4?(chestGainTipVO.chestSubject+'宝箱'):chestGainTipVO.chestType==1?'学艺宝箱':'分享宝箱'}}"</view>
+                    <view>送你"{{chestGainTipVO.chestType==4?(chestGainTipVO.chestSubject):chestGainTipVO.chestType==1?'学艺宝箱':'分享宝箱'}}"</view>
                 </view>
             </view>
             <view class='flx-ce-ce btn-open' catchtap='handleOpen'>立即开启</view>
@@ -203,6 +203,20 @@
                 <view>
                     <view>网络开小差了~</view>
                     <view>请稍等片刻！</view>
+                </view>
+                <button class='limit-btn' bindtap='closeMask'>我知道了</button>
+            </view>
+        </view>
+        <!-- 答题尚未开始 -->
+        <view class='container flx-ce-clm' catchtap='closeMask' wx:if="{{!examStartFlag}}">
+            <view class='knapsack-close-box'>
+                <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeMask'></image>
+            </view>
+            <view class='limit flx-ce-no-clm'>
+                <image src='../../asset/index/up_limit_bg.png' class='limit-pic'></image>
+                <view>
+                    <view>答题尚未开始~</view>
+                    <view>敬请期待</view>
                 </view>
                 <button class='limit-btn' bindtap='closeMask'>我知道了</button>
             </view>

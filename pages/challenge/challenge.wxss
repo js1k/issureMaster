@@ -270,7 +270,8 @@
     border-left:2rpx solid #ececec;
 }
 .end-wrap{
-    width:100%;
+    width:670rpx;
+    height:1rpx;
     text-align: center;
 }
 .result-page{
@@ -283,7 +284,7 @@
     height:176rpx;
     position: absolute;
     top:-130rpx;
-    left:180rpx;
+    left:195rpx;
     z-index: 99;
 }
 .header-wrap-box{

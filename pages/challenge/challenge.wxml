@@ -1,6 +1,6 @@
 <view class='challenge-page flx-ce-no-clm' style='padding-top:{{statusBarHeight+152}}rpx'>
     <loading hidden="{{hiddenLoading}}">{{loadingText}}</loading>
-    <image class='light_bg' src="http://dt.minshenglife.com/upload/img/20190707/1562487749256.png" wx:if="{{!onTest}}"></image>
+    <image class='light_bg' src="{{bgLight}}" wx:if="{{!onTest}}"></image>
     <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack' style='top:{{statusBarHeight+22}}rpx'></image>
     <!-- 答题页 -->
     <view class='section flx-ce-clm test-page' wx:if="{{onTest}}">

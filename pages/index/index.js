@@ -19,6 +19,7 @@ Page({
         preSeason: false,
         teacherLimit: false,
         noNetWork: false,
+        examStartFlag:true,
         statusBarHeight: app.globalData.statusBarHeight,
         loadingText: '加载中...',
         uid: '',
@@ -297,6 +298,7 @@ Page({
             wx.navigateTo({
                 url: '../login/login'
             })
+            this.clearMask()
             return
         }
         let _this = this
@@ -350,44 +352,34 @@ Page({
                     noNetWork: true
                 })
             } else {
-                netWork.getNetWork().then(res => {
-                    if (res === 'none') {
-                        wx.showToast({
-                            icon: none,
-                            title: '网络异常~',
-                        })
-                        return
-                    } else {
-                        let dataset = e.currentTarget.dataset.mark
-                        //判断用户是否手机授权
-                        if (!this.data.insureUserVO.telephone) {
-                            wx.navigateTo({
-                                url: '../login/login'
-                            })
-                            return
-                        }
-                        switch (dataset) {
-                            case 'goHome':
-                                this.goHomepage();
-                                break;
-                            case 'goRank':
-                                this.goRank();
-                                break;
-                            case 'treasureBox':
-                                this.goTreasure();
-                                break;
-                            case 'knapsack':
-                                this.getPackets();
-                                break;
-                            case 'redPackets':
-                                this.goRedPackets();
-                                break;
-                            case 'challenge':
-                                this.goChallenge();
-                                break;
-                        }
-                    }
-                })
+                let dataset = e.currentTarget.dataset.mark
+                //判断用户是否手机授权
+                if (!this.data.insureUserVO.telephone) {
+                    wx.navigateTo({
+                        url: '../login/login'
+                    })
+                    return
+                }
+                switch (dataset) {
+                    case 'goHome':
+                        this.goHomepage();
+                        break;
+                    case 'goRank':
+                        this.goRank();
+                        break;
+                    case 'treasureBox':
+                        this.goTreasure();
+                        break;
+                    case 'knapsack':
+                        this.getPackets();
+                        break;
+                    case 'redPackets':
+                        this.goRedPackets();
+                        break;
+                    case 'challenge':
+                        this.goChallenge();
+                        break;
+                }
             }
         })
     },
@@ -472,6 +464,14 @@ Page({
     },
     // 开始挑战
     goChallenge: function() {
+        //答题尚未开始
+        if (this.data.indexData.examStartFlag==0){
+            this.setData({
+                showMask:true,
+                examStartFlag:false
+            })
+            return
+        }
         let status = this.data.seasonCheckVO.status
         if (status == 0) { // 活动未开始
             this.setData({
@@ -693,25 +693,29 @@ Page({
             })
         }
     },
+    clearMask:function(){
+        this.setData({
+            showMask: false,
+            showTeacher: false,
+            noNetWork: false,
+            seasonEnd: false,
+            seasonCalc: false,
+            preSeason: false,
+            showRules: false,
+            showShare: false,
+            knapsackMask: false,
+            teacherLimit: false,
+            showLimit: false,
+            openBox: false,
+            examStartFlag:true
+        })
+    },
     //关闭弹窗
     closeMask: function(event) {
         if (event.currentTarget.dataset.model === 'inner') {
             return
         }
-        this.setData({
-            showMask: false,
-            openBox: false,
-            showRules: false,
-            knapsackMask: false,
-            showShare: false,
-            showTeacher: false,
-            noNetWork:false,
-            showLimit:false,
-            seasonEnd:false,
-            seasonCalc:false,
-            preSeason:false,
-            teacherLimit:false
-        })
+        this.clearMask()
         // 如果分享状态不是0、1  则在状态弹窗关闭之后再弹出宝箱
         if (this.data.chestTipList && this.data.chestTipList.length>0) {
             if (this.data.shareInfoVO.shareStatus != 0 && this.data.shareInfoVO.shareStatus != 1) {
@@ -780,14 +784,6 @@ Page({
     },
     getData: function() {
         let _this = this
-        // this.setData({
-        //     showMask: false,
-        //     openBox: false,
-        //     showRules: false,
-        //     knapsackMask: false,
-        //     showShare: false,
-        //     showTeacher: false
-        // })
         clearInterval(_this.data.loopInterval)
         let param = {
             agentUserId: '',

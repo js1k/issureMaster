@@ -120,16 +120,16 @@ App({
         statusBarHeight:'',
         winWidth: wx.getSystemInfoSync().windowWidth,
         winHeight: wx.getSystemInfoSync().windowHeight,
-        urlDomain: "https://edu.minshenglife.com/sign-api",
+        urlDomain: "https://v.minshenglife.com/sign-api",
         testUrl: "https://v.minshenglife.com/sign-api",
-        prodUrl: "https://edu.minshenglife.com/sign-api",
+        prodUrl: "https://cdb.minshenglife.com/sign-api",
         // index
         s1Theme:'http://dt.minshenglife.com/upload/img/20190628/1561691285392.png',
         s2Theme: 'http://dt.minshenglife.com/upload/img/20190628/1561691322047.png',
         s3Theme: 'http://dt.minshenglife.com/upload/img/20190628/1561691340542.png',
         s4Theme: 'http://dt.minshenglife.com/upload/img/20190628/1561691356684.png',
         hmBg:'http://dt.minshenglife.com/upload/img/20190704/1562222610804.png',
-        seasonRules: 'http://dt.minshenglife.com/upload/img/20190707/1562487058606.png',
+        seasonRules: 'http://dt.minshenglife.com/upload/img/20190708/1562554644002.png',
         xueyiBg: 'http://dt.minshenglife.com/upload/img/20190627/1561638085749.png',
         fenxiangBg: 'http://dt.minshenglife.com/upload/img/20190627/1561638124450.png',
         xinshouBg: 'http://dt.minshenglife.com/upload/img/20190627/1561638049214.png',
@@ -153,7 +153,8 @@ App({
         followAccount:'http://dt.minshenglife.com/upload/img/20190628/1561715002804.png',
         //challenge
         redPackets:'http://dt.minshenglife.com/upload/img/20190707/1562486898642.png',
-        challengeCoverImg:'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190703/1562146275324.png'
+        challengeCoverImg:'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190703/1562146275324.png',
+        bgLight:'http://dt.minshenglife.com/upload/img/20190708/1562554015061.png'
     }
 })
 

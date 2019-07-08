@@ -307,8 +307,8 @@
 }
 
 .bao-bao {
-    width: 128rpx;
-    height: 128rpx;
+    width: 138rpx;
+    height: 160rpx;
     animation: logoMove 2s linear infinite alternate;
 }
 

@@ -78,7 +78,8 @@ Page({
         challengeCoverImg: app.globalData.challengeCoverImg,
         shareQrImg: '',
         redPackets: app.globalData.redPackets,
-        wxShareImg: app.globalData.wxShareImg
+        wxShareImg: app.globalData.wxShareImg,
+        bgLight: app.globalData.bgLight
     },
 
     onShareAppMessage: function (options) {
