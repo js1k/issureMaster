@@ -101,7 +101,7 @@ Page({
                             ctx.draw(true)
                             ctx.setFontSize(14)
                             ctx.setFillStyle('#000')
-                            ctx.fillText((data.nickName && data.nickName.length > 5 ? data.nickName.splice(0, 5) : data.nickName) + '送你"分享宝箱"', 0.0473 * winWidth, 0.0473 * winWidth/0.0533)
+                            ctx.fillText( data.nickName + '送你"分享宝箱"', 0.0473 * winWidth, 0.0473 * winWidth/0.0533)
                             ctx.draw(true)
                             ctx.setFontSize(12)
                             ctx.setFillStyle('#000')
