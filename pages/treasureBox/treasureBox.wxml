@@ -31,7 +31,7 @@
                         <text class='card-box-txt'>剩余{{5-treasureData.shareChest}}次</text>
                     </view>
                 </view>
-                <view class='card-strategy flx-ce-ce' wx:if="{{treasureData.shareChest<5}}" bindtap="handleShare">分享友礼</view>
+                <view class='card-strategy flx-ce-ce' bindtap="handleShare">分享友礼</view>
             </view>
             <view class='task-column'>
                 <image src="{{newBg}}" class='card-bg'></image>

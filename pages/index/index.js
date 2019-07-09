@@ -234,8 +234,7 @@ Page({
     dealLoad: function (options){
         let _this=this
         if (options) {
-            //扫描二维码进入
-            if (options.scene) {
+            if (options.scene) {    //扫描二维码进入
                 let scene = decodeURIComponent(options.scene);
                 let paramArr = scene.split("&");
                 this.setData({
@@ -251,8 +250,8 @@ Page({
                 wx.setStorageSync('uid', paramArr[0])
                 wx.setStorageSync('type', paramArr[1])
                 wx.setStorageSync('shareDay', paramArr[2])
-                //直接分享小程序进入
-            } else if (options.type) {
+                
+            } else if (options.type) {  //直接分享小程序进入
                 this.setData({
                     uid: options.uid,
                     type: options.type,
@@ -364,9 +363,10 @@ Page({
             openImg: type == 1 ? _this.data.xueyiBg : type == 2 ? _this.data.fenxiangBg : _this.data.zhutiBg
         })
     },
+    // 确认拜师
     handleTeacher: function () {
         let _this = this
-        //判断用户是否手机授权
+        //判断用户是否有手机号
         if (!_this.data.insureUserVO.telephone) {
             wx.navigateTo({
                 url: '../login/login'
@@ -804,6 +804,13 @@ Page({
         if (event.currentTarget.dataset.model === 'inner') {
             return
         }
+        if (event.currentTarget.dataset.judge === 'treasure') {
+            this.setData({
+                showMask: false,
+                showShare: false
+            })
+            return
+        }
         if (!this.data.authFlag){
             return
         }
@@ -816,6 +823,11 @@ Page({
                     showShare: true
                 })
                 return
+            } else {
+                this.setData({
+                    showMask: false,
+                    showShare: false
+                })
             }
         }
         let status = this.data.seasonCheckVO.status
@@ -892,7 +904,7 @@ Page({
             shareUserId: wx.getStorageSync('uid'),
             shareDay: wx.getStorageSync('shareDay')
         }
-        let curNum = 'saveCardParam.curNum'
+        // let curNum = 'saveCardParam.curNum'
         app.httpPost('/xcx/insureMaster/index', param, function(data) {
             _this.setData({
                 indexData: data,
@@ -908,7 +920,7 @@ Page({
                 hiddenLoading: true,
                 shareInfoVO: data.shareInfoVO,
                 chestTipList: data.chestTipList,
-                [curNum]: data.chestTipList?data.chestTipList.length:0
+                // [curNum]: data.chestTipList?data.chestTipList.length:0
             })
             // 请求完成之后清除本地存储的分享人信息
             wx.removeStorage({
@@ -990,7 +1002,7 @@ Page({
                     if (shareStatus == 0 || shareStatus == 1) {
                         _this.setData({
                             showMask: true,
-                            showShare: true,
+                            showShare: true
                         })
                     }
                     clearTimeout(timeout2)
@@ -1011,7 +1023,6 @@ Page({
                     })
                 }, 3000)
             })
-
         }, function(error) {
             wx.showToast({
                 title: error.message,
@@ -1039,17 +1050,24 @@ Page({
         })
         this.getData()
     },
+    initStatus: function () {
+        this.clearMask()
+        app.globalData.options = ''
+        this.setData({
+            hiddenLoading: true
+        })
+    },
     /**
     * 生命周期函数--监听页面隐藏
     */
     onHide: function () {
-        this.clearMask()
+        this.initStatus()
     },
 
     /**
      * 生命周期函数--监听页面卸载
      */
     onUnload: function () {
-        this.clearMask()
+        this.initStatus()
     },
 })

@@ -102,11 +102,11 @@
             <text class='loop-text loop-after' wx:if="{{loopAfter}}">{{loopAfter}}</text>
         </view>
     </view>
-    <view class='com-mask index-mask' bindtap='closeMask' wx:if="{{showMask}}">
+    <view class='com-mask index-mask' bindtap='closeMask' wx:if="{{showMask}}" data-judge="treasure">
         <!-- 宝箱 -->
         <view class='flx-ce-clm' catchtap='closeMask' wx:if="{{showShare}}" data-model='inner'>
             <view class='knapsack-close-box'>
-                <image src='../../asset/mask_close.png' class='knapsack-close' catchtap='closeMask'></image>
+                <image src='../../asset/mask_close.png' class='knapsack-close' catchtap='closeMask' data-judge="treasure"></image>
             </view>
             <view class='open-pic-box'>
                 <image src="{{chestGainTipVO.chestType==1?openXueyi:chestGainTipVO.chestType==2?openFenxiang:openZhuti}}" class='open-box-img'></image>
@@ -290,8 +290,9 @@
                     <text class='teacher-tips'>- 民生保险 -</text>
                 </view>
             </view>
-            <view class='tearher-tips'>温馨提示：绑定后，代理人将获取您的联系方式</view>
-            <view class='tearher-tips'>绑定后将不能换绑</view>
+            <!-- 贾博让我删的 2019/07/09 15:41-->
+            <!-- <view class='tearher-tips'>温馨提示：绑定后，代理人将获取您的联系方式</view>
+            <view class='tearher-tips'>绑定后将不能换绑</view> -->
         </view>
         <!-- 学艺宝箱达到上限 -->
         <view class='container flx-ce-clm' catchtap='closeMask' data-model='inner' wx:if="{{teacherLimit}}">

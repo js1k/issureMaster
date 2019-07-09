@@ -126,7 +126,7 @@ App({
         statusBarHeight:'',
         winWidth: wx.getSystemInfoSync().windowWidth,
         winHeight: wx.getSystemInfoSync().windowHeight,
-        urlDomain: "https://v.minshenglife.com/sign-api",
+        urlDomain: "https://cdb.minshenglife.com/sign-api",
         testUrl: "https://v.minshenglife.com/sign-api",
         prodUrl: "https://cdb.minshenglife.com/sign-api",
         // index
