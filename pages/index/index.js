@@ -175,6 +175,7 @@ Page({
 
     //页面加载
     onLoad: function(options) {
+        this.clearMask()
         if(app.globalData.options){
             this.followTeacher()
             return
@@ -975,6 +976,7 @@ Page({
                     duration: 1000
                 })
             } else if (shareStatus === 4) {
+                // this.clearMask()
                 if (_this.data.type == 1) { //学艺宝箱达到上限
                     _this.setData({
                         showMask: true,
@@ -1000,9 +1002,12 @@ Page({
                     })
                     //  判断分享状态  如果分享状态是0、1  则弹出宝箱  否则先弹出状态弹窗
                     if (shareStatus == 0 || shareStatus == 1) {
+                        // this.clearMask()
                         _this.setData({
                             showMask: true,
-                            showShare: true
+                            showShare: true,
+                            showLimit:false,
+                            teacherLimit:false
                         })
                     }
                     clearTimeout(timeout2)
