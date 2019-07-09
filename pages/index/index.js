@@ -175,6 +175,9 @@ Page({
 
     //页面加载
     onLoad: function(options) {
+        if(app.globalData.options){
+            this.followTeacher()
+        }
         let _this = this
 
         // let global = app.globalData
@@ -228,6 +231,9 @@ Page({
 
     },
     dealLoad: function (options){
+        if (options){
+            app.globalData.options = options
+        }
         let _this=this
         if (options) {
             //扫描二维码进入
@@ -347,35 +353,41 @@ Page({
             openImg: type == 1 ? _this.data.xueyiBg : type == 2 ? _this.data.fenxiangBg : _this.data.zhutiBg
         })
     },
-    handleTeacher: function() {
+    handleTeacher: function () {
+        let _this = this
         //判断用户是否手机授权
-        if (!this.data.insureUserVO.telephone) {
+        if (!_this.data.insureUserVO.telephone) {
             wx.navigateTo({
                 url: '../login/login'
             })
             this.clearMask()
             return
+        }else{
+            this.followTeacher
         }
-        let _this = this
+    },
+    followTeacher: function () {
+        let _this=this
         let param = {
             agentUserId: _this.data.uid,
             insureUid: wx.getStorageSync('insureUid')
         }
-        app.httpPost('/xcx/insureMaster/ackTeacher', param, function() {
+        app.httpPost('/xcx/insureMaster/ackTeacher', param, function () {
             wx.showToast({
                 title: '拜师成功',
                 icon: 'success',
                 duration: 1000,
                 mask: true
             })
-            setTimeout(function() {
+            setTimeout(function () {
                 _this.setData({
                     showMask: false,
                     showTeacher: false
                 })
+                app.globalData.options=''
                 _this.getData()
             }, 1000)
-        }, function(error) {
+        }, function (error) {
             wx.showToast({
                 title: error.message,
                 icon: 'none',
@@ -384,6 +396,7 @@ Page({
             })
         })
     },
+    // 自立门户
     handleSelfReliance: function() {
         this.setData({
             showMask: false,
@@ -399,6 +412,7 @@ Page({
     //首页所有表面事件判断
     handleCheck: function(e) {
         let _this=this
+        this.clearMask()
         netWork.getNetWork().then(res => {
             if (res == 'none') {
                 _this.setData({
@@ -702,7 +716,7 @@ Page({
                 })
             };
             //获取宝箱存入卡片之后判断宝箱是否打开完毕
-            if (_this.data.chestTipList.length && (_this.data.giftIndex < _this.data.chestTipList.length - 1)) {
+            if (_this.data.chestTipList.length && (_this.data.giftIndex < _this.data.chestTipList.length-1)) {
                 let timeout = setTimeout(function() {
                     _this.setData({
                         showShare: true,
@@ -840,13 +854,18 @@ Page({
     },
     getData: function() {
         let _this = this
+        let encryptedData = wx.getStorageSync('encryptedData')
+        let iv = wx.getStorageSync('iv')
+        let jsCode = wx.getStorageSync('jsCode')
+        let paramInsureUid = wx.getStorageSync('insureUid')
+        this.clearMask()
         clearInterval(_this.data.loopInterval)
         let param = {
             agentUserId: '',
-            encryptedData: wx.getStorageSync('insureUid') ? '' : wx.getStorageSync('encryptedData'),
-            insureUid: wx.getStorageSync('insureUid'),
-            iv: wx.getStorageSync('insureUid') ? '' : wx.getStorageSync('iv'),
-            jsCode: wx.getStorageSync('insureUid') ? '' : wx.getStorageSync('jsCode'),
+            encryptedData: paramInsureUid ? '' : encryptedData,
+            insureUid: paramInsureUid,
+            iv: paramInsureUid ? '' : iv,
+            jsCode: paramInsureUid ? '' : jsCode,
             chestType: wx.getStorageSync('type'),
             shareUserId: wx.getStorageSync('uid'),
             shareDay: wx.getStorageSync('shareDay')
@@ -997,5 +1016,18 @@ Page({
             authFlag: true
         })
         this.getData()
-    }
+    },
+    /**
+    * 生命周期函数--监听页面隐藏
+    */
+    onHide: function () {
+        this.clearMask()
+    },
+
+    /**
+     * 生命周期函数--监听页面卸载
+     */
+    onUnload: function () {
+        this.clearMask()
+    },
 })

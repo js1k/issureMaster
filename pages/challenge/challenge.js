@@ -152,12 +152,14 @@ Page({
         let _this = this
         let winWidth = app.globalData.winWidth
         let winHeight = app.globalData.winHeight
+        let canvasWidth = 0.7333 * winWidth
+        let canvasHeight = canvasWidth / 0.72368
         this.setData({
             hiddenLoading: false
         })
         const ctx = wx.createCanvasContext('shareCanvas', this)
         ctx.setFillStyle('#fff')
-        ctx.fillRect(0, 0, 275, 380)
+        ctx.fillRect(0, 0, canvasWidth, canvasHeight)
         ctx.draw()
         //获取小程序二维码
         app.httpPost('/xcx/insureMaster/lookXcxQrCode', {
