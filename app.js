@@ -13,12 +13,16 @@ App({
                 // 发送 res.code 到后台换取 openId, sessionKey, unionId
                 this.httpGet('/xcx/insureMaster/getLoginSession?jsCode=' + res.code, function (data) {
                     wx.setStorageSync('sessionKey', data.data.result.sessionKey)
-                    wx.setStorageSync('jsCode', res.code)
                     _this.globalData.jsCode = res.code
                     _this.globalData.openId = data.data.result.openId
                     _this.globalData.sessionKey = data.data.result.sessionKey
                     _this.globalData.unionId = data.data.result.unionId
-                    callback()
+                    wx.login({  //再次调用微信登录 获取jsCode    后台说jsCode只能用一次
+                        success: res => {
+                            wx.setStorageSync('jsCode', res.code)
+                            callback()
+                        }
+                    })
                 })
             }
         })

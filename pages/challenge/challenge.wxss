@@ -276,6 +276,7 @@
 }
 .result-page{
     height:856rpx;
+    width:670rpx;
     z-index: 100;
     animation: resultIn 1s ease-in-out forwards;
 }
@@ -284,7 +285,8 @@
     height:176rpx;
     position: absolute;
     top:-130rpx;
-    left:195rpx;
+    /* left:195rpx; */
+    left:29.15%;
     z-index: 99;
 }
 .header-wrap-box{

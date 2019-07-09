@@ -177,6 +177,7 @@ Page({
     onLoad: function(options) {
         if(app.globalData.options){
             this.followTeacher()
+            return
         }
         let _this = this
 
@@ -231,9 +232,6 @@ Page({
 
     },
     dealLoad: function (options){
-        if (options){
-            app.globalData.options = options
-        }
         let _this=this
         if (options) {
             //扫描二维码进入
@@ -245,6 +243,11 @@ Page({
                     type: paramArr[1],
                     shareDay: paramArr[2]
                 })
+                
+                //判断是否是学艺宝箱 存储options 到global
+                if (paramArr[1] == 1) {
+                    app.globalData.options = options
+                }
                 wx.setStorageSync('uid', paramArr[0])
                 wx.setStorageSync('type', paramArr[1])
                 wx.setStorageSync('shareDay', paramArr[2])
@@ -255,6 +258,11 @@ Page({
                     type: options.type,
                     shareDay: options.shareDay || ''
                 })
+
+                //判断是否是学艺宝箱 存储options 到global
+                if (options.type == 1) {
+                    app.globalData.options = options
+                }
                 wx.setStorageSync('uid', _this.data.uid)
                 wx.setStorageSync('type', _this.data.type)
                 wx.setStorageSync('shareDay', _this.data.shareDay || '')
@@ -292,6 +300,9 @@ Page({
         }
     },
     onShow: function(options) {
+        if (wx.getStorageSync('getPhone')) {
+            this.onLoad()
+        }
         if (this.data.checkShow) {
             this.onLoad()
         }
@@ -363,7 +374,7 @@ Page({
             this.clearMask()
             return
         }else{
-            this.followTeacher
+            this.followTeacher()
         }
     },
     followTeacher: function () {
@@ -413,6 +424,14 @@ Page({
     handleCheck: function(e) {
         let _this=this
         this.clearMask()
+        if (!wx.getStorageSync('userInfo')) {
+            _this.setData({
+                authFlag: false,
+                showMask: true,
+                hiddenLoading: true
+            })
+            return
+        }
         netWork.getNetWork().then(res => {
             if (res == 'none') {
                 _this.setData({
@@ -783,6 +802,9 @@ Page({
     //关闭弹窗
     closeMask: function(event) {
         if (event.currentTarget.dataset.model === 'inner') {
+            return
+        }
+        if (!this.data.authFlag){
             return
         }
         this.clearMask()

@@ -123,6 +123,13 @@ Page({
                 showMask: true,
                 showShareActive: true
             })
+        },function(error){
+            _this.setData({
+                hiddenLoading: true
+            })
+            wx.showToast({
+                title: error.message,
+            })
         })
     },
     saveCard: function() {
