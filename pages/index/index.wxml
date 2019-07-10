@@ -125,7 +125,7 @@
             <view class='flx-ce-ce btn-open' catchtap='handleOpen'>立即开启</view>
         </view>
         <!-- 微信授权 -->
-        <view class='authorization-box flx-ce-clm' wx:if="{{!authFlag}}">
+        <view class='authorization-box flx-ce-clm' wx:if="{{!authFlag}}" catchtap='closeMask' data-model='inner'>
             <view class='auth-title'>申请获取以下权限</view>
             <view class='auth-desc'>使用你的昵称、头像等公开信息用于分享、排行使用</view>
             <button open-type="getUserInfo" class='auth-btn' bindgetuserinfo="getUserInfo">授权</button>
