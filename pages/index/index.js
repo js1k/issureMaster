@@ -174,7 +174,7 @@ Page({
     },
 
     //页面加载
-    onLoad: function(options) {
+    onLoad: function (options) {
         this.clearMask()
         if(app.globalData.options){
             this.followTeacher()
@@ -747,6 +747,9 @@ Page({
                 }, 200)
             }
         }, function(error) {
+            _this.setData({
+                canSave: true
+            })
             wx.showToast({
                 title: error.message,
                 icon: 'none',
@@ -930,6 +933,7 @@ Page({
             wx.removeStorage({
                 key: 'uid'
             })
+            wx.removeStorageSync('insureUid')   //先清除本地insureUid
             wx.setStorageSync('insureUid', data.insureUserVO.insureUid)
             app.globalData.insureUid = data.insureUserVO.insureUid
             // 判断赛季信息 status 0 未开始； 1 进行中； 2 结算中； 3 已结束

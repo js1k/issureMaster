@@ -90,6 +90,25 @@ Page({
             _this.setData({
                 shareQrImg: data.xcxQrCode
             })
+            //处理昵称 20个字符
+            let str = data.nickName
+            let bytesCount=0
+            let nickName='';
+            if (str){
+                for (let i = 0; i < str.length;i++){
+                    let c = str.charCodeAt(i)
+                    if ((c >= 0x0001 && c <= 0x007e) || (0xff60 <= c && c <= 0xff9f)){
+                        bytesCount+=1
+                    }else{
+                        bytesCount+=2
+                    }
+                    nickName+=str.charAt(i)
+                    if (bytesCount>=20){
+                        nickName+='...'
+                        break
+                    }
+                }
+            }
             wx.getImageInfo({
                 src: _this.data.shareCoverImg,
                 success: (res1) => {
@@ -102,13 +121,13 @@ Page({
                             ctx.drawImage(res2.path, 0.552 * winWidth, 0.552 * winWidth/0.6635, 56, 56)
                             ctx.stroke()
                             ctx.draw(true)
-                            ctx.setFontSize(14)
+                            ctx.font ="bold 14px Arial"
                             ctx.setFillStyle('#000')
-                            ctx.fillText( data.nickName + '送你"分享宝箱"', 0.0473 * winWidth, 0.0473 * winWidth/0.0533)
+                            ctx.fillText(nickName, 0.0473 * winWidth, 0.0473 * winWidth / 0.0533)
                             ctx.draw(true)
-                            ctx.setFontSize(12)
+                            ctx.font = "normal 12px Arial"
                             ctx.setFillStyle('#000')
-                            ctx.fillText('快来和TA一起赢取大奖吧~', 0.0473 * winWidth, 0.0473 * winWidth/0.0493)
+                            ctx.fillText('送你“分享宝箱”一起来挑战', 0.0473 * winWidth, 0.0473 * winWidth/0.0493)
                             ctx.draw(true)
                             _this.setData({
                                 creatImg: false,

@@ -48,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 5,
 			"list": [
 				{
 					"id": 0,
@@ -89,7 +89,7 @@
 					"id": 5,
 					"name": "share",
 					"pathName": "pages/index/index",
-					"query": "uid=54283064291842&type=2&shareDay=20190708",
+					"query": "uid=54283064291842&type=2&shareDay=20190710",
 					"scene": null
 				},
 				{

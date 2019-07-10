@@ -12,7 +12,7 @@
             <view class='menu-icon' bindtap='handleCheck' data-mark="treasureBox">
                 <view class="icon-content">
                     <image src="../../asset/index/task_icon.png" class='menu-img'></image>
-                    <view class='task-num' wx:if="{{chestNum!==7}}">{{chestNum+''}}/7</view>
+                    <view class='task-num' wx:if="{{chestNum!==7}}">{{chestNum+''}}/22</view>
                 </view>
                 <text class='icon-font'>任务宝箱</text>
             </view>
@@ -116,7 +116,7 @@
                 <image wx:if="{{chestGainTipVO.chestType!=4}}" src="{{chestGainTipVO.shareAvatar}}" class='tiyanshi-img'></image>
                 <image wx:if="{{chestGainTipVO.chestType==4}}" src='../../asset/baoxiang/tiyanshi_icon.png' class='tiyanshi-img'></image>
                 <view class='lx-ce-no-clm'>
-                    <view wx:if="{{chestGainTipVO.chestType==1}}">你的导师{{chestGainTipVO.shareUserName.length>8?(chestGainTipVO.shareUserName.splice(0,8)+'...'):chestGainTipVO.shareUserName}}</view>
+                    <view wx:if="{{chestGainTipVO.chestType==1}}">你的导师{{chestGainTipVO.shareUserName}}</view>
                     <view wx:if="{{chestGainTipVO.chestType==2}}">你的好友{{chestGainTipVO.shareUserName}}</view>
                     <view wx:if="{{chestGainTipVO.chestType==4}}">保险体验师</view>
                     <view>送你"{{chestGainTipVO.chestType==4?(chestGainTipVO.chestSubject):chestGainTipVO.chestType==1?'学艺宝箱':'分享宝箱'}}"</view>

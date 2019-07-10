@@ -78,7 +78,8 @@ Page({
         challengeCoverImg: app.globalData.challengeCoverImg,
         shareQrImg: '',
         redPackets: app.globalData.redPackets,
-        bgLight: app.globalData.bgLight
+        bgLight: app.globalData.bgLight,
+        resultShareImg: app.globalData.resultShareImg
     },
 
     onShareAppMessage: function (options) {
@@ -86,7 +87,7 @@ Page({
         let param = {
             title: '2019民生保险用户体验节~保保大师答题挑战赛，精彩来战',
             path: '/pages/index/index',
-            imageUrl: app.globalData.wxShareImg,
+            imageUrl: app.globalData.resultShareImg,
             success: function () {
 
             }
@@ -180,11 +181,11 @@ Page({
                             ctx.drawImage(res2.path, 0.552 * winWidth, 0.552 * winWidth / 0.6635, 56, 56)
                             ctx.stroke()
                             ctx.draw(true)
-                            ctx.setFontSize(14)
+                            ctx.font = "bold 14px Arial"
                             ctx.setFillStyle('#000')
                             ctx.fillText('我在答题赢大奖 不服来战', 0.0473 * winWidth, 0.0473 * winWidth / 0.0533)
                             ctx.draw(true)
-                            ctx.setFontSize(12)
+                            ctx.font = "normal 12px Arial"
                             ctx.setFillStyle('#000')
                             ctx.fillText('保保大师答题挑战赛~', 0.0473 * winWidth, 0.0473 * winWidth / 0.0493)
                             ctx.draw(true)
