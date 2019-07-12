@@ -100,11 +100,12 @@ view{
 }
 .go-back{
   position: fixed;
-  top:64rpx;
-  left:34rpx;
+  top:54rpx;
+  left:24rpx;
   z-index: 999;
   width:48rpx;
   height:48rpx;
+  padding:10rpx 16rpx 16rpx 10rpx;
 }
 .scaleBig{
     animation: scaleBig 1s forwards;

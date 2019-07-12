@@ -1,6 +1,6 @@
 <view class='red-packets'>
     <loading hidden="{{hiddenLoading}}">{{loadingText}}</loading>
-    <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack' style='top:{{statusBarHeight+22}}rpx'></image>
+    <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack' style='top:{{statusBarHeight+12}}rpx'></image>
     <view class='compound-box'>
         <image src='{{circleBg}}' mode="widthFix" class='compound-bg'></image>
         <view class='red-packets-container'>

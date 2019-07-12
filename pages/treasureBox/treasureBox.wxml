@@ -174,4 +174,4 @@
         </view>
     </view>
 </scroll-view>
-<image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack' style='top:{{statusBarHeight+22}}rpx;}}'></image>
+<image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack' style='top:{{statusBarHeight+12}}rpx;}}'></image>

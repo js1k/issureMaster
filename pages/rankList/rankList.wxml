@@ -1,7 +1,7 @@
 <scroll-view scroll-y="true" class='rank-list flx-ce-no-clm' bindscrolltolower="bindscrolltolower" style='padding-top:{{statusBarHeight}}rpx;}}'>
     <loading hidden="{{hiddenLoading}}">{{loadingText}}</loading>
     <view class='scroll-container'>
-        <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack' style='top:{{statusBarHeight+22}}rpx;}}'></image>
+        <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack' style='top:{{statusBarHeight+12}}rpx;}}'></image>
         <view class='navigation flx-ce-ce'>
             <view class='tab-content'>
                 <view class="nav-tab flx-ce-ce {{showSeasonList===true?'tab-actived':''}}" bindtap='getList' data-type='season'>当前赛季排行</view>

@@ -128,6 +128,8 @@
     font-family:PingFangSC-Regular;
     font-weight:400;
     color:rgba(243,230,230,1);
+    position: relative;
+    line-height: 1
 }
 .challenge-rule{
     text-decoration:underline;
@@ -135,6 +137,9 @@
     border-left:2rpx solid #fff;
     height:22rpx;
     line-height: 22rpx;
+    position: absolute;
+    top:0;
+    right:-50rpx;
 }
 .side-box{
     position: fixed;

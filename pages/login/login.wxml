@@ -1,5 +1,5 @@
 <view class='login-pages flx-ce-clm' style='padding-top:{{statusBarHeight}}rpx'>
-    <image src='../../asset/hongbao/red_packets_back.png' style='top:{{statusBarHeight+22}}rpx;}}' class='go-back' bindtap='goBack'></image>
+    <image src='../../asset/hongbao/red_packets_back.png' style='top:{{statusBarHeight+12}}rpx;}}' class='go-back' bindtap='goBack'></image>
     <view class='login-header flx-ce-ce'>保保大师</view>
     <view class='section flx-ce-clm'>
         <image src="{{loginImg}}" class='login-pic' mode='widthFix'></image>

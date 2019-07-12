@@ -5,13 +5,12 @@ Page({
     data: {
         userInfo: {},
         showRules: false,
-        showMask: false,
         knapsackMask: false,
         authFlag: true,
         showCardBtn: false,
         openBox: false,
         canSave: true,
-        showLoadingImg:false,
+        showLoadingImg: false,
         hiddenLoading: false,
         showShare: false,
         seasonCalc: false,
@@ -21,13 +20,12 @@ Page({
         preSeason: false,
         teacherLimit: false,
         noNetWork: false,
-        examStartFlag:true,
+        examStartFlag: true,
         statusBarHeight: app.globalData.statusBarHeight,
         loadingText: '加载中...',
         uid: '',
         type: '',
         shareDay: 0,
-        checkShow: false,
         showInfo: {
             showImg: '',
             showName: '',
@@ -174,13 +172,9 @@ Page({
     },
 
     //页面加载
-    onLoad: function (options) {
-        this.clearMask()
-        if(app.globalData.options){
-            this.followTeacher()
-            return
-        }
+    onLoad: function(options) {
         let _this = this
+        app.globalData.canShow=false
 
         // let global = app.globalData
         // let arrList = {
@@ -215,7 +209,6 @@ Page({
         //     this.dealLoad(options)
         // }else{
         //     this.setData({
-        //         showMask:true,
         //         showLoadingImg:true,
         //         hiddenLoading:true
         //     })
@@ -223,19 +216,17 @@ Page({
         //         utils.catchImg(key,arrList[key])
         //         if (key == 'bgLight') {
         //             this.setData({
-        //                 showMask: false,
         //                 showLoadingImg: false,
         //             })
         //         }
         //     }
         // }
         this.dealLoad(options)
-
     },
-    dealLoad: function (options){
-        let _this=this
+    dealLoad: function(options) {
+        let _this = this
         if (options) {
-            if (options.scene) {    //扫描二维码进入
+            if (options.scene) { //扫描二维码进入
                 let scene = decodeURIComponent(options.scene);
                 let paramArr = scene.split("&");
                 this.setData({
@@ -243,26 +234,16 @@ Page({
                     type: paramArr[1],
                     shareDay: paramArr[2]
                 })
-                
-                //判断是否是学艺宝箱 存储options 到global
-                if (paramArr[1] == 1) {
-                    app.globalData.options = options
-                }
                 wx.setStorageSync('uid', paramArr[0])
                 wx.setStorageSync('type', paramArr[1])
                 wx.setStorageSync('shareDay', paramArr[2])
-                
-            } else if (options.type) {  //直接分享小程序进入
+
+            } else if (options.type) { //直接分享小程序进入
                 this.setData({
                     uid: options.uid,
                     type: options.type,
                     shareDay: options.shareDay || ''
                 })
-
-                //判断是否是学艺宝箱 存储options 到global
-                if (options.type == 1) {
-                    app.globalData.options = options
-                }
                 wx.setStorageSync('uid', _this.data.uid)
                 wx.setStorageSync('type', _this.data.type)
                 wx.setStorageSync('shareDay', _this.data.shareDay || '')
@@ -270,48 +251,39 @@ Page({
         }
         if (wx.getStorageSync('userInfo')) {
             wx.checkSession({
-                success: function () {
+                success: function() {
                     _this.setData({
-                        // showMask: false,
                         authFlag: true,
                         hiddenLoading: false
                     })
                     _this.getData()
                 },
-                fail: function () {
-                    app.doLogin(function () {
+                fail: function() {
+                    app.doLogin(function() {
                         _this.getData()
                     })
                     _this.setData({
                         authFlag: false,
-                        showMask: true,
                         hiddenLoading: true
                     })
                 }
             })
         } else {
-            app.doLogin(function () {
+            app.doLogin(function() {
                 _this.setData({
                     authFlag: false,
-                    showMask: true,
                     hiddenLoading: true
                 })
             })
         }
     },
     onShow: function(options) {
-        if (wx.getStorageSync('getPhone')) {
-            this.onLoad()
-        }
-        if (this.data.checkShow) {
+        if (app.globalData.canShow) {
             this.onLoad()
         }
     },
     onHide: function() {
         let _this = this
-        this.setData({
-            checkShow: true
-        })
         wx.removeStorage({
             key: 'seasonCalc',
         })
@@ -345,16 +317,16 @@ Page({
                 [energyCard]: 0,
                 [helpCard]: 0,
                 [removeCard]: 0,
-                openTitle:'请选择2张特权卡'
+                openTitle: '请选择2张特权卡'
             })
-        }else if (type == 2) {    //如果是分享宝箱  则调用random 随机生成一张卡片
+        } else if (type == 2) { //如果是分享宝箱  则调用random 随机生成一张卡片
             this.randomShare()
         } else if (type == 4) { //如果是主题宝箱  则固定是能量卡
             this.setData({
                 [energyCard]: 1,
                 [helpCard]: 0,
                 [removeCard]: 0,
-                openTitle:'获得能量卡1张'
+                openTitle: '获得能量卡1张'
             })
         }
         this.setData({
@@ -364,42 +336,27 @@ Page({
             openImg: type == 1 ? _this.data.xueyiBg : type == 2 ? _this.data.fenxiangBg : _this.data.zhutiBg
         })
     },
-    // 确认拜师
-    handleTeacher: function () {
+    // 拜师
+    followTeacher: function() {
         let _this = this
-        //判断用户是否有手机号
-        if (!_this.data.insureUserVO.telephone) {
-            wx.navigateTo({
-                url: '../login/login'
-            })
-            this.clearMask()
-            return
-        }else{
-            this.followTeacher()
-        }
-    },
-    followTeacher: function () {
-        let _this=this
         let param = {
             agentUserId: _this.data.uid,
             insureUid: wx.getStorageSync('insureUid')
         }
-        app.httpPost('/xcx/insureMaster/ackTeacher', param, function () {
+        app.httpPost('/xcx/insureMaster/ackTeacher', param, function() {
             wx.showToast({
                 title: '拜师成功',
                 icon: 'success',
                 duration: 1000,
                 mask: true
             })
-            setTimeout(function () {
+            setTimeout(function() {
                 _this.setData({
-                    showMask: false,
                     showTeacher: false
                 })
-                app.globalData.options=''
                 _this.getData()
             }, 1000)
-        }, function (error) {
+        }, function(error) {
             wx.showToast({
                 title: error.message,
                 icon: 'none',
@@ -411,7 +368,6 @@ Page({
     // 自立门户
     handleSelfReliance: function() {
         this.setData({
-            showMask: false,
             showTeacher: false
         })
         wx.removeStorage({
@@ -423,21 +379,19 @@ Page({
     },
     //首页所有表面事件判断
     handleCheck: function(e) {
-        let _this=this
-        this.clearMask()
+        let _this = this
         if (!wx.getStorageSync('userInfo')) {
             _this.setData({
                 authFlag: false,
-                showMask: true,
                 hiddenLoading: true
             })
             return
         }
+        app.globalData.canShow=true
         netWork.getNetWork().then(res => {
             if (res == 'none') {
                 _this.setData({
                     hiddenLoading: true,
-                    showMask: true,
                     noNetWork: true
                 })
             } else {
@@ -473,14 +427,6 @@ Page({
         })
     },
 
-    onShareAppMessage: function() {
-        return {
-            title: '2019民生保险用户体验节~保保大师答题挑战赛，精彩来战',
-            path: '/pages/index/index',
-            imageUrl: app.globalData.wxShareImg,
-            success: function() {}
-        }
-    },
     //打开学艺宝箱选择卡片
     handleChoseCard: function(e) {
         let dataset = e.currentTarget.dataset.card
@@ -491,7 +437,7 @@ Page({
         if (dataset == 'helpCard') {
             if (saveParam.energyCard === 1 && saveParam.removeCard === 1) {
                 this.setData({
-                    [energyCard]: 0,
+                    [energyCard]: 0
                 })
             }
             this.setData({
@@ -500,7 +446,7 @@ Page({
         } else if (dataset == 'removeCard') {
             if (saveParam.helpCard === 1 && saveParam.energyCard === 1) {
                 this.setData({
-                    [helpCard]: 0,
+                    [helpCard]: 0
                 })
             }
             this.setData({
@@ -509,26 +455,24 @@ Page({
         } else {
             if (saveParam.helpCard === 1 && saveParam.removeCard === 1) {
                 this.setData({
-                    [removeCard]: 0,
+                    [removeCard]: 0
                 })
             }
             this.setData({
-                [energyCard]: 1,
+                [energyCard]: 1
             })
         }
     },
     //事件处理函数
     openRules: function() {
         this.setData({
-            showRules: true,
-            showMask: true
+            showRules: true
         })
     },
     //  任务宝箱
     goTreasure: function() {
         if (this.data.seasonCheckVO.status == 2) { // 活动结算中
             this.setData({
-                showMask: true,
                 seasonCalc: true
             })
             return
@@ -537,8 +481,7 @@ Page({
             url: '../treasureBox/treasureBox'
         })
         this.setData({
-            showMask: false,
-            teacherLimit:false
+            teacherLimit: false
         })
     },
     goRank: function() {
@@ -554,23 +497,20 @@ Page({
     // 开始挑战
     goChallenge: function() {
         //答题尚未开始
-        if (this.data.indexData.examStartFlag==0){
+        if (this.data.indexData.examStartFlag == 0) {
             this.setData({
-                showMask:true,
-                examStartFlag:false
+                examStartFlag: false
             })
             return
         }
         let status = this.data.seasonCheckVO.status
         if (status == 0) { // 活动未开始
             this.setData({
-                showMask: true,
                 preSeason: true
             })
             return
         } else if (status == 2) { // 活动结算中
             this.setData({
-                showMask: true,
                 seasonCalc: true
             })
             return
@@ -633,9 +573,9 @@ Page({
         let removeCard = 'saveCardParam.removeCard'
         //分享宝箱
         this.setData({
-            [energyCard]:0,
-            [helpCard]:0,
-            [removeCard]:0
+            [energyCard]: 0,
+            [helpCard]: 0,
+            [removeCard]: 0
         })
         //随机数确定分享宝箱中的卡片
         let Num = Math.ceil(Math.random() * 3)
@@ -655,11 +595,11 @@ Page({
             this.setData({
                 randomImg: _this.data.nengliangImg,
                 randomName: '能量卡',
-                [energyCard]: 1,
+                [energyCard]: 1
             })
         }
         this.setData({
-            openTitle: '获得' + this.data.randomName+'1张',
+            openTitle: '获得' + this.data.randomName + '1张',
             openImg: _this.data.fenxiangBg
         })
     },
@@ -731,21 +671,10 @@ Page({
                 }, 200)
             } else {
                 _this.setData({
-                    showMask: false,
                     openBox: false
                 })
             };
-            //获取宝箱存入卡片之后判断宝箱是否打开完毕
-            if (_this.data.chestTipList.length && (_this.data.giftIndex < _this.data.chestTipList.length-1)) {
-                let timeout = setTimeout(function() {
-                    _this.setData({
-                        showShare: true,
-                        giftIndex: _this.data.giftIndex + 1,
-                        chestGainTipVO: _this.data.chestTipList[_this.data.giftIndex]
-                    })
-                    clearTimeout(timeout)
-                }, 200)
-            }
+            _this.checkChest()
         }, function(error) {
             _this.setData({
                 canSave: true
@@ -757,7 +686,16 @@ Page({
             })
         })
     },
-
+    checkChest: function() {
+        let _this = this
+        if (_this.data.chestTipList.length && (_this.data.giftIndex < _this.data.chestTipList.length - 1)) {
+            _this.setData({
+                giftIndex: _this.data.giftIndex + 1,
+                chestGainTipVO: _this.data.chestTipList[_this.data.giftIndex + 1],
+                showShare: true
+            })
+        }
+    },
     //选中背包卡片
     showCard: function(event) {
         let tabIndex = event.currentTarget.dataset.index
@@ -785,62 +723,89 @@ Page({
             })
         }
     },
-    clearMask:function(){
+    //关闭赛季未开始
+    closePreSeason: function() {
         this.setData({
-            showMask: false,
-            showTeacher: false,
-            noNetWork: false,
-            seasonEnd: false,
-            seasonCalc: false,
-            preSeason: false,
-            showRules: false,
+            preSeason: false
+        })
+        this.checkShareStatus()
+    },
+    //关闭赛季结算弹窗
+    closeSeasonCalc: function() {
+        this.setData({
+            seasonCalc: false
+        })
+        this.checkShareStatus()
+    },
+    //关闭赛季结束
+    closeSeasonEnd: function() {
+        this.setData({
+            seasonEnd: false
+        })
+        this.checkShareStatus()
+    },
+
+    //关闭宝箱弹窗
+    closeBaoxiang: function() {
+        let _this = this
+        this.data.chestTipList.splice(0, _this.data.chestTipList.length)
+        this.setData({
             showShare: false,
-            knapsackMask: false,
-            teacherLimit: false,
-            showLimit: false,
-            openBox: false,
-            examStartFlag:true,
-            showLoadingImg:false
+            chestTipList: _this.data.chestTipList
         })
     },
-    //关闭弹窗
-    closeMask: function(event) {
-        if (event.currentTarget.dataset.model === 'inner') {
-            return
-        }
-        if (event.currentTarget.dataset.judge === 'treasure') {
-            this.setData({
-                showMask: false,
-                showShare: false
-            })
-            return
-        }
-        if (!this.data.authFlag){
-            return
-        }
-        this.clearMask()
-        // 如果分享状态不是0、1  则在状态弹窗关闭之后再弹出宝箱
-        if (this.data.chestTipList && this.data.chestTipList.length>0) {
-            if (this.data.shareInfoVO.shareStatus != 0 && this.data.shareInfoVO.shareStatus != 1) {
-                this.setData({
-                    showMask: true,
-                    showShare: true
-                })
-                return
-            } else {
-                this.setData({
-                    showMask: false,
-                    showShare: false
-                })
-            }
-        }
-        let status = this.data.seasonCheckVO.status
-        if (status == 0 || status == 2 || status == 3) {
-            return
-        }
-        if (wx.getStorageSync('encryptedData')) {
-            this.getData()
-        }
+    //关闭赛季攻略
+    closeRules: function() {
+        this.setData({
+            showRules: false
+        })
+    },
+    //关闭 学艺/分享达到领取上限、代理人无法领取宝箱、重复领取、自己不能领自己分享的
+    closeUpLimit: function() {
+        this.setData({
+            showLimit: false
+        })
+        this.checkChest()
+    },
+    //关闭网络异常
+    closeNetWork: function() {
+        this.setData({
+            noNetWork: false
+        })
+    },
+    //关闭答题尚未开始
+    closeUnExam: function() {
+        this.setData({
+            examStartFlag: true
+        })
+    },
+    //关闭背包
+    closePackages: function() {
+        this.setData({
+            knapsackMask: false
+        })
+    },
+    // 关闭拜师
+    closeTeacher: function() {
+        this.setData({
+            showTeacher: false
+        })
+        this.checkChest()
+    },
+    // 关闭学艺宝箱达到上限
+    closeXueyi: function() {
+        this.setData({
+            teacherLimit: false
+        })
+        this.checkChest()
+    },
+    // 关闭卡片弹窗
+    closeCards: function() {
+        let _this = this
+        this.data.chestTipList.splice(0, _this.data.chestTipList.length)
+        this.setData({
+            openBox: false
+        })
     },
     goHomepage: function() {
         wx.navigateTo({
@@ -856,8 +821,8 @@ Page({
         let showNum = 'showInfo.curNum'
         _this.setData({
             hiddenLoading: false,
-            cardIndex:0,
-            showCardBtn:false
+            cardIndex: 0,
+            showCardBtn: false
         })
 
         app.httpPost('/xcx/insureMaster/myPackage', {
@@ -879,7 +844,6 @@ Page({
                 [showDesc]: cardData[0].desc,
                 [showNum]: cardData[0].num,
                 knapsackMask: true,
-                showMask: true,
                 hiddenLoading: true
             })
         }, function(error) {
@@ -896,7 +860,6 @@ Page({
         let iv = wx.getStorageSync('iv')
         let jsCode = wx.getStorageSync('jsCode')
         let paramInsureUid = wx.getStorageSync('insureUid')
-        this.clearMask()
         clearInterval(_this.data.loopInterval)
         let param = {
             agentUserId: '',
@@ -908,7 +871,6 @@ Page({
             shareUserId: wx.getStorageSync('uid'),
             shareDay: wx.getStorageSync('shareDay')
         }
-        // let curNum = 'saveCardParam.curNum'
         app.httpPost('/xcx/insureMaster/index', param, function(data) {
             _this.setData({
                 indexData: data,
@@ -923,9 +885,12 @@ Page({
                 loopAfter: data.tipList[data.tipList.length - 1] || '',
                 hiddenLoading: true,
                 shareInfoVO: data.shareInfoVO,
-                chestTipList: data.chestTipList,
-                // [curNum]: data.chestTipList?data.chestTipList.length:0
+                chestTipList: data.chestTipList
             })
+            //先清除本地insureUid
+            wx.removeStorageSync('insureUid')
+            wx.setStorageSync('insureUid', data.insureUserVO.insureUid)
+            app.globalData.insureUid = data.insureUserVO.insureUid
             // 请求完成之后清除本地存储的分享人信息
             wx.removeStorage({
                 key: 'type'
@@ -933,90 +898,43 @@ Page({
             wx.removeStorage({
                 key: 'uid'
             })
-            wx.removeStorageSync('insureUid')   //先清除本地insureUid
-            wx.setStorageSync('insureUid', data.insureUserVO.insureUid)
-            app.globalData.insureUid = data.insureUserVO.insureUid
-            // 判断赛季信息 status 0 未开始； 1 进行中； 2 结算中； 3 已结束
-            if (_this.data.seasonCheckVO.status == 2) {
-                if (wx.getStorageSync('seasonCalc')) {
-                    return
-                }
-                wx.setStorageSync('seasonCalc', true)
-                _this.setData({
-                    showMask: true,
-                    seasonCalc: true
-                })
-            } else if (_this.data.seasonCheckVO.status == 3) {
-                if (wx.getStorageSync('seasonEnd')) {
-                    return
-                }
-                wx.setStorageSync('seasonEnd', true)
-                _this.setData({
-                    showMask: true,
-                    seasonEnd: true
-                })
-            }
-            // 根据接口返回分享状态码弹出对应错误弹窗 
-            // shareStatus 
-            // 0 什么也不弹
-            // 1 领取成功 
-            // 2 拜ta为师吧 
-            // 3 导师不对，无法领取 
-            // 4 领取到达上限 
-            // 5重复领取 
-            // 6分享宝箱过期 
-            // 7身份是代理人，无法成为别人的徒弟 
-            // 8自己不能领自己分享的
+            // 开始弹窗判断     先判断赛季信息--->>分享信息---->>宝箱信息
+            let seasonStatus = _this.data.seasonCheckVO.status //赛季状态 status 0 未开始； 1 进行中； 2 结算中； 3 已结束
             let shareStatus = _this.data.shareInfoVO.shareStatus
-            if (shareStatus === 2 || shareStatus === 3) { //  拜他为师
-                _this.setData({
-                    showMask: true,
-                    showTeacher: true
-                })
-            } else if (shareStatus === 6) {
-                wx.showToast({
-                    title: '宝箱已过期',
-                    icon: 'none',
-                    duration: 1000
-                })
-            } else if (shareStatus === 4) {
-                // this.clearMask()
-                if (_this.data.type == 1) { //学艺宝箱达到上限
+            let chestTipList = data.chestTipList
+            // 0 什么也不弹  1 领取成功  2 拜ta为师吧  3 导师不对，无法领取  4 领取到达上限  5 重复领取  6 分享宝箱过期  7 身份是代理人，无法成为别人的徒弟  8 自己不能领自己分享的
+            if (seasonStatus != 1) { // 赛季不在进行中
+                if (seasonStatus == 0) {
                     _this.setData({
-                        showMask: true,
-                        teacherLimit: true
+                        preSeason: true
                     })
-                } else { //分享宝箱达到上限
+                } else if (seasonStatus == 2) {
+                    if (wx.getStorageSync('seasonCalc')) { //只弹一次
+                        return
+                    }
+                    wx.setStorageSync('seasonCalc', true)
                     _this.setData({
-                        showMask: true,
-                        showLimit: true
+                        seasonCalc: true
+                    })
+                } else if (seasonStatus == 3) {
+                    if (wx.getStorageSync('seasonEnd')) {
+                        return
+                    }
+                    wx.setStorageSync('seasonEnd', true)
+                    _this.setData({
+                        seasonEnd: true
                     })
                 }
-            } else if (shareStatus === 5 || shareStatus === 7 || shareStatus === 8) {
-                _this.setData({
-                    showMask: true,
-                    showLimit: true
+            } else { // 赛季进行中  判断分享状态
+                wx.removeStorage({
+                    key: 'seasonEnd',
                 })
+                wx.removeStorage({
+                    key: 'seasonCalc',
+                })
+                _this.checkShareStatus()
             }
-            if (data.chestTipList && data.chestTipList.length > 0) {
-                let timeout2 = setTimeout(function() {
-                    _this.setData({
-                        chestGainTipVO: data.chestTipList[0],
-                        giftIndex: 0
-                    })
-                    //  判断分享状态  如果分享状态是0、1  则弹出宝箱  否则先弹出状态弹窗
-                    if (shareStatus == 0 || shareStatus == 1) {
-                        // this.clearMask()
-                        _this.setData({
-                            showMask: true,
-                            showShare: true,
-                            showLimit:false,
-                            teacherLimit:false
-                        })
-                    }
-                    clearTimeout(timeout2)
-                }, 600)
-            }
+
             //页面轮播文字赋值
             _this.setData({
                 loopInterval: setInterval(function() {
@@ -1039,19 +957,58 @@ Page({
                 duration: 1500
             })
         })
+    },
 
-
+    //检测分享状态
+    checkShareStatus: function() {
+        let _this = this
+        let shareStatus = this.data.shareInfoVO.shareStatus
+        let chestTipList = this.data.chestTipList
+        if (shareStatus != 0 && shareStatus != 1) { //有分享状态弹窗
+            if (shareStatus == 2 || shareStatus == 3) {
+                this.setData({
+                    showTeacher: true
+                })
+            } else if (shareStatus == 4) { //达到上限  再判断是分享还是学艺达到上限
+                if (this.data.type == 1) { //学艺宝箱达到上限
+                    this.setData({
+                        teacherLimit: true
+                    })
+                } else { //分享宝箱达到上限
+                    this.setData({
+                        showLimit: true
+                    })
+                }
+            } else if (shareStatus == 5 || shareStatus == 7 || shareStatus == 8) {
+                this.setData({
+                    showLimit: true
+                })
+            } else {
+                wx.showToast({
+                    title: '分享宝箱已过期',
+                    icon: 'none',
+                    duration: 1500
+                })
+            }
+        } else { //分享状态无弹窗
+            if (chestTipList && chestTipList.length > 0) {
+                this.setData({
+                    chestGainTipVO: chestTipList[0],
+                    giftIndex: 0,
+                    showShare: true
+                })
+            }
+        }
     },
     getUserInfo: function(e) {
         if (!e.detail.userInfo) {
             return
         }
-        app.globalData.userInfo = e.detail.userInfo
-        app.globalData.encryptedData = e.detail.encryptedData
-        app.globalData.iv = e.detail.iv
+        // app.globalData.userInfo = e.detail.userInfo
+        // app.globalData.encryptedData = e.detail.encryptedData
+        // app.globalData.iv = e.detail.iv
         wx.setStorageSync('userInfo', e.detail.userInfo)
         wx.setStorageSync('encryptedData', e.detail.encryptedData)
-
         wx.setStorageSync('iv', e.detail.iv)
         this.setData({
             userInfo: e.detail.userInfo,
@@ -1059,24 +1016,30 @@ Page({
         })
         this.getData()
     },
-    initStatus: function () {
-        this.clearMask()
-        app.globalData.options = ''
+    initStatus: function() {
         this.setData({
             hiddenLoading: true
         })
     },
     /**
-    * 生命周期函数--监听页面隐藏
-    */
-    onHide: function () {
+     * 生命周期函数--监听页面隐藏
+     */
+    onHide: function() {
         this.initStatus()
     },
 
     /**
      * 生命周期函数--监听页面卸载
      */
-    onUnload: function () {
+    onUnload: function() {
         this.initStatus()
+    },
+    onShareAppMessage: function() {
+        return {
+            title: '2019民生保险用户体验节~保保大师答题挑战赛，精彩来战',
+            path: '/pages/index/index',
+            imageUrl: app.globalData.wxShareImg,
+            success: function() {}
+        }
     },
 })

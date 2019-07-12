@@ -48,55 +48,27 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
 					"name": "xueyi",
 					"pathName": "pages/index/index",
-					"query": "uid=54508337302018&type=2&shareDay=20190709",
+					"query": "uid=23143421055490&type=1",
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "treasureBox",
-					"pathName": "pages/treasureBox/treasureBox",
-					"query": "uid=53621760612866&type=2&shareDay=20190704",
-					"scene": null
-				},
-				{
-					"id": 2,
-					"name": "xueyi",
-					"pathName": "pages/index/index",
-					"query": "uid=493297558155266&type=1&shareDay=20190705",
-					"scene": null
-				},
-				{
-					"id": 3,
-					"name": "rankList",
-					"pathName": "pages/rankList/rankList",
-					"query": "uid=493297558155266&type=1&shareDay=20190705",
-					"scene": null
-				},
-				{
-					"id": 4,
-					"name": "challenge",
-					"pathName": "pages/challenge/challenge",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 5,
+					"id": 1,
 					"name": "share",
 					"pathName": "pages/index/index",
-					"query": "uid=54283064291842&type=2&shareDay=20190710",
+					"query": "uid=493297420568578&type=2&shareDay=20190711",
 					"scene": null
 				},
 				{
 					"id": -1,
 					"name": "challengeHome",
 					"pathName": "pages/challengeHome/challengeHome",
-					"query": "uid=493297420568578&type=1&shareDay=20190706",
+					"query": "uid=23143421055490&type=1",
 					"scene": null
 				}
 			]

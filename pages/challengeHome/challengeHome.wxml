@@ -1,6 +1,6 @@
 <view class='challenge-pages flx-ce-no-clm' style='padding-top:{{statusBarHeight+112}}rpx;padding-bottom:{{isIpx?"60rpx":""}}'>
     <loading hidden="{{hiddenLoading}}">{{loadingText}}</loading>
-    <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack' style='top:{{statusBarHeight+22}}rpx;}}'></image>
+    <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack' style='top:{{statusBarHeight+12}}rpx;}}'></image>
     <view class='challenge-header'>
         <image src='../../asset/challengeHome/challenge_title_bg.png' class='header-bg'></image>
         <view class='challenge-title flx-ce-ce'>{{seasonCheckVO.seasonTitle}}</view>

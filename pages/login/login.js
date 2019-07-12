@@ -25,7 +25,6 @@ Page({
             iv: e.detail.iv
         }
         app.httpPost('/xcx/insureMaster/bindTelephone', param, function () {
-            wx.setStorageSync('getPhone', true)
             app.goBack()
         },function(error){
             wx.showToast({

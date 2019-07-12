@@ -40,51 +40,6 @@ App({
                 }
             },
         })
-
-        // 登录
-        // wx.login({
-        //     success: res => {
-        //         let _this=this
-        //         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        //         this.httpGet('/xcx/insureMaster/getLoginSession?jsCode=' + res.code, function (data) {
-        //             wx.setStorageSync('sessionKey', data.data.result.sessionKey)
-        //             wx.setStorageSync('jsCode', res.code)
-        //             wx.setStorageSync('openId', data.data.result.openId)
-        //             wx.setStorageSync('unionId', data.data.result.unionId)
-        //             _this.globalData.jsCode = res.code
-        //             _this.globalData.openId = data.data.result.openId
-        //             _this.globalData.sessionKey = data.data.result.sessionKey
-        //             _this.globalData.unionId = data.data.result.unionId
-        //         })
-        //     }
-        // })
-        // 获取用户信息
-        // wx.getSetting({
-        //     success: res => {
-        //         if (res.authSetting['scope.userInfo']) {
-        //             // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-        //             wx.getUserInfo({
-        //                 success: data => {
-        //                     // 可以将 res 发送给后台解码出 unionId
-        //                     this.globalData.userInfo = data.userInfo
-        //                     this.globalData.encryptedData = data.encryptedData
-        //                     this.globalData.iv = data.iv
-        //                     // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-        //                     // 所以此处加入 callback 以防止这种情况
-        //                     if (this.userInfoReadyCallback) {
-        //                         this.userInfoReadyCallback(data)
-        //                     }
-        //                 },
-        //                 fail: res => {
-        //                     console.log('fail')
-        //                 },
-        //                 lang: 'zh_CN'
-        //             })
-        //         }else{
-                    
-        //         }
-        //     }
-        // })
     },
     httpGet:function (url, callback) {
         let _this = this;
@@ -119,6 +74,7 @@ App({
     },
     globalData: {
         userInfo: null,
+        canShow:true,
         encryptedData:'',
         iv:'',
         isIpx:false,
@@ -130,38 +86,38 @@ App({
         testUrl: "https://v.minshenglife.com/sign-api",
         prodUrl: "https://cdb.minshenglife.com/sign-api",
         // index
-        s1Theme:'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190628/1561691285392.png',
+        s1Theme: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190628/1561691285392.png',
         s2Theme: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190628/1561691322047.png',
         s3Theme: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190628/1561691340542.png',
         s4Theme: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190628/1561691356684.png',
-        hmBg:'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190704/1562222610804.png',
+        hmBg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190704/1562222610804.png',
         seasonRules: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190710/1562744784143.png',
         xueyiBg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561638085749.png',
         fenxiangBg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561638124450.png',
         xinshouBg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561638049214.png',
         zhutiBg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561637981625.png',
         //  rankList
-        activesRuels:'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190710/1562744476966.png',
+        activesRuels: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190710/1562744476966.png',
         //  redPackets
-        circleBg:'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561639258907.png',
-        compoundBt:'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561639215494.png',
+        circleBg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561639258907.png',
+        compoundBt: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561639215494.png',
         //  login
-        loginImg:'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190707/1562488090268.png',
+        loginImg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190707/1562488090268.png',
         //  treasure
-        studyBg:'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561639589395.png',
-        shareBg:'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561639628656.png',
-        newBg:'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561639804333.png',
-        followBg:'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561639537989.png',
-        shareCoverImg:'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190710/1562739081186.png',
-        wxShareImg:'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190710/1562738980398.png',
-        studyBox:'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561639837974.png',
-        noTeacher:'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561639683456.png',
-        followAccount:'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190710/1562737931348.png',
+        studyBg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561639589395.png',
+        shareBg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561639628656.png',
+        newBg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561639804333.png',
+        followBg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561639537989.png',
+        shareCoverImg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190710/1562739081186.png',
+        wxShareImg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190710/1562738980398.png',
+        studyBox: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561639837974.png',
+        noTeacher: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561639683456.png',
+        followAccount: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190710/1562737931348.png',
         //challenge
-        redPackets:'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190707/1562486898642.png',
-        challengeCoverImg:'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190703/1562146275324.png',
-        bgLight:'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190708/1562554015061.png',
-        resultShareImg:'http://dt.minshenglife.com/upload/img/20190710/1562743209445.png'
+        redPackets: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190707/1562486898642.png',
+        challengeCoverImg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190703/1562146275324.png',
+        bgLight: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190708/1562554015061.png',
+        resultShareImg: 'http://dt.minshenglife.com/upload/img/20190710/1562743209445.png'
     }
 })
 
