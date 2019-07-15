@@ -194,7 +194,7 @@
 .question-info{
     margin-bottom:48rpx;
 }
-.queistion-name{
+.question-name{
     width:506rpx;
     height:132rpx;
     text-align: center;

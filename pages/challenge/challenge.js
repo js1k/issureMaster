@@ -20,7 +20,7 @@ Page({
         showPaichu:false,
         upgrade:false,
         creatImg:true,
-        canSubUse:true, // 是否可以使用卡片
+        canUseCard:true, // 是否可以使用卡片
         reviewQuestion:false,
         receivedChip:false,
         unfinshedBack:false,
@@ -52,7 +52,7 @@ Page({
         helpCard: '',
         removeCard: '',
         curQuestion: '',
-        choseItem:-1,
+        choseItem:-1, //答案选项下标
         canSubmit:true,
         shareUserName:'',
         subParam:{
@@ -88,9 +88,7 @@ Page({
             title: '2019民生保险用户体验节~保保大师答题挑战赛，精彩来战',
             path: '/pages/index/index',
             imageUrl: app.globalData.resultShareImg,
-            success: function () {
-
-            }
+            success: function () {}
         }
         let title = this.data.shareUserName + '达到Lv.' + this.data.shareLevel +''+ (this.data.shareLevel == 1 ? '达人' : this.data.shareLevel == 2 ? '高手' : this.data.shareLevel == 3 ? '大师' : '宗师') + '，参加保保大师挑战赛～一大波红包、积分等着你'
         if (options.from === 'button') {
@@ -110,6 +108,7 @@ Page({
         let useParamExamUserId = 'useParam.examUserId'
         let useParamInsureUid = 'useParam.insureUid'
         let questionsList = wx.getStorageSync('question').subjectList
+
         let subjectIdList ='subParam.subjectIdList'
         let idList=[]
         if (questionsList && questionsList.length > 0) {
@@ -127,6 +126,7 @@ Page({
             [useParamInsureUid]: wx.getStorageSync('insureUid'),
             [subjectIdList]: idList
         })
+        console.log(this.data.question)
         let timeout=setTimeout(function () {
             _this.calcTime()
             clearTimeout(timeout)
@@ -234,7 +234,7 @@ Page({
             [queListB]: _this.data.question[num].optionB,
             [queListC]: _this.data.question[num].optionC,
             removeIndex:-1,
-            canSubUse: true // 使用卡片后 切换到下一题之后恢复卡片可使用状态
+            canUseCard: true // 使用卡片后 切换到下一题之后恢复卡片可使用状态
         })
         if (num===0){
             return 
@@ -423,7 +423,7 @@ Page({
         let canUse = e.currentTarget.dataset.canuse
         let type = e.currentTarget.dataset.type
         let cardType ='useParam.cardType'
-        if (!canUse || !this.data.canSubUse) {
+        if (!canUse || !this.data.canUseCard) {
             return
         }
         if (type === 'bangbang') {
@@ -442,7 +442,7 @@ Page({
     },
     // 使用卡片
     handleCard: function() {
-        if (!this.data.canSubUse){
+        if (!this.data.canUseCard){
             return
         }
         let _this=this
@@ -450,7 +450,7 @@ Page({
         let subjectId ='useParam.subjectId'
         this.setData({
             [subjectId]: _this.data.question[_this.data.curIndex].id,
-            canSubUse:false
+            canUseCard:false
         })
 
         let answerList = 'subParam.answerList[' + _this.data.subParam.answerList.length + ']'

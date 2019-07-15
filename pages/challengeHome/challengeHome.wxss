@@ -57,8 +57,8 @@
     margin:0 8rpx;
 }
 .red-packets-icon{
-    width:36rpx;
-    height:46rpx;
+    width:40rpx;
+    height:48rpx;
 }
 .swiper-contain{
     width:100%;
@@ -129,13 +129,14 @@
     font-weight:400;
     color:rgba(243,230,230,1);
     position: relative;
-    line-height: 1
+    line-height: 1;
+    padding:14rpx 0;
 }
 .challenge-rule{
     text-decoration:underline;
-    padding-left:12rpx;
-    border-left:2rpx solid #fff;
-    height:22rpx;
+    padding:14rpx 0 14rpx 12rpx;
+    /* border-left:2rpx solid #fff; */
+    /* height:22rpx; */
     line-height: 22rpx;
     position: absolute;
     top:0;
@@ -235,6 +236,8 @@
 }
 .season-data{
     margin:0 12rpx;
+    padding-right:15rpx;
+    border-right:2rpx solid #fff;
 }
 .season-lock{
     width: 72rpx;

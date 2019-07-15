@@ -82,10 +82,11 @@ App({
         statusBarHeight:'',
         winWidth: wx.getSystemInfoSync().windowWidth,
         winHeight: wx.getSystemInfoSync().windowHeight,
-        urlDomain: "https://cdb.minshenglife.com/sign-api",
+        urlDomain: "https://v.minshenglife.com/sign-api",
         testUrl: "https://v.minshenglife.com/sign-api",
         prodUrl: "https://cdb.minshenglife.com/sign-api",
-        // index
+        // index  
+        // 需做网络图片预加载
         s1Theme: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190628/1561691285392.png',
         s2Theme: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190628/1561691322047.png',
         s3Theme: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190628/1561691340542.png',

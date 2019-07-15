@@ -9,11 +9,17 @@
                 <view class='ready-txt before-txt flx-ce-ce'>预备</view>
                 <view class='start-txt before-txt flx-ce-ce'>开始</view>
                 <view class='question-list flx-ce-bet-clm'>
+                    <!-- <swiper class=''>
+                        <swiper-item wx:for="{{question}}" wx:key="{{key}}" wx:for-index="i" class='swiper-item flx-ce-ce'>
+                            <view class='question-name flx-ce-ce'>{{item.subjectTitle}}</view>
+                            <view wx:for="{{queList}}" wx:key="index" class="que-answer flx-ce-ce {{choseItem==index?'item-chosed':''}} {{removeIndex==index?'remove-index':''}}" bindtap='choseAnswer' data-serial="{{item.serial}}">{{item.question}}</view>
+                        </swiper-item>
+                    </swiper> -->
                     <view class='question-info flx-ce-clm'>
-                        <view class='queistion-name flx-ce-ce'>{{curQuestion.subjectTitle}}</view>
+                        <view class='question-name flx-ce-ce'>{{curQuestion.subjectTitle}}</view>
                         <view wx:for="{{queList}}" wx:key="index" class="que-answer flx-ce-ce {{choseItem==index?'item-chosed':''}} {{removeIndex==index?'remove-index':''}}" bindtap='choseAnswer' data-serial="{{item.serial}}">{{item.question}}</view>
                     </view>
-                    <view class='question-tips'>-- {{curQuestion.subjectType}} --</view>
+                    <!-- <view class='question-tips'>-- {{curQuestion.subjectType}} --</view> -->
                     <view class='question-index-bar flx-ce-ce'>
                         <view class='index flx-ce-ce {{curIndex==0?"cur-index":""}} {{curIndex>0?"done-index":""}}'>1</view>
                         <view class='index flx-ce-ce {{curIndex==1?"cur-index":""}} {{curIndex>1?"done-index":""}}'>2</view>
@@ -55,7 +61,7 @@
             <view class='question-container flx-ce-ce'>
                 <view class='review-question flx-ce-bet-clm'>
                     <view class='question-info flx-ce-clm'>
-                        <view class='queistion-name flx-ce-ce'>{{curReview.subjectTitle}}</view>
+                        <view class='question-name flx-ce-ce'>{{curReview.subjectTitle}}</view>
                         <view wx:for="{{curReview.reviewList}}" wx:key="index" class="que-answer flx-ce-ce {{(curReview.submitAnswer!=item.serial)&&(curReview.answer!=item.serial)?'unchosed':''}} {{item.serial==curReview.answer?'item-chosed':''}} {{(curReview.submitAnswer==item.serial)&&(curReview.submitAnswer!=curReview.answer)?'chose-wrong':''}}">
                             <text>{{item.option}}</text>
                             <image class='right-icon' src='../../asset/question_true.png' wx:if="{{curReview.answer==item.serial}}"></image>

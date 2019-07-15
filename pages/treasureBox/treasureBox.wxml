@@ -16,7 +16,7 @@
                     <view class='card-des'>学艺宝箱，三种特权任你挑选两张</view>
                     <view class='card-box-content'>
                         <image src='../../asset/treasureBox/teacher_box.png' class='card-box'></image>
-                        <text class='card-box-txt'>剩余{{1-treasureData.studyChest}}次</text>
+                        <text class='card-box-txt' wx:if="{{treasureData.studyChest}}">剩余{{1-treasureData.studyChest}}次</text>
                     </view>
                 </view>
                 <view class='card-strategy flx-ce-ce' bindtap='takeTeacher'>查看攻略</view>
@@ -28,7 +28,7 @@
                     <view class='card-des'>来一次给力分享，双方得分享宝箱</view>
                     <view class='card-box-content'>
                         <image src='../../asset/treasureBox/share_box.png' class='card-box'></image>
-                        <text class='card-box-txt'>剩余{{20-treasureData.shareChest}}次</text>
+                        <text class='card-box-txt' wx:if="{{treasureData.shareChest}}">剩余{{20-treasureData.shareChest}}次</text>
                     </view>
                 </view>
                 <view class='card-strategy flx-ce-ce' bindtap="handleShare">分享友礼</view>

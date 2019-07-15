@@ -48,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 4,
 			"list": [
 				{
 					"id": 0,
@@ -69,6 +69,19 @@
 					"name": "challengeHome",
 					"pathName": "pages/challengeHome/challengeHome",
 					"query": "uid=23143421055490&type=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "rankList",
+					"pathName": "pages/rankList/rankList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "challenge",
+					"pathName": "pages/challenge/challenge",
 					"scene": null
 				}
 			]
