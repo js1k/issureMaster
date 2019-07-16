@@ -51,8 +51,6 @@ Page({
         zongshiUp: '../../asset/challengeHome/zongshi_pic.png',
         helpCard: '',
         removeCard: '',
-        curQuestion: '',
-        choseItem:-1, //答案选项下标
         canSubmit:true,
         shareUserName:'',
         subParam:{
@@ -61,19 +59,6 @@ Page({
             insureUid: '',
             subjectIdList:[]
         },
-        queList: [{
-                serial: 'A',
-                question: ''
-            },
-            {
-                serial: 'B',
-                question: ''
-            },
-            {
-                serial: 'C',
-                question: ''
-            }
-        ],
 
         challengeCoverImg: app.globalData.challengeCoverImg,
         shareQrImg: '',
@@ -108,14 +93,27 @@ Page({
         let useParamExamUserId = 'useParam.examUserId'
         let useParamInsureUid = 'useParam.insureUid'
         let questionsList = wx.getStorageSync('question').subjectList
-
         let subjectIdList ='subParam.subjectIdList'
         let idList=[]
         if (questionsList && questionsList.length > 0) {
             for (let i = 0; i < questionsList.length; i++) {
+                questionsList[i].removeIndex = ''
+                questionsList[i].answerIndex = ''
+                questionsList[i].queList = [
+                    {
+                        serial: 'A',
+                        question: questionsList[i].optionA },
+                    {
+                        serial: 'B',
+                        question: questionsList[i].optionB },
+                    {
+                        serial: 'C',
+                        question: questionsList[i].optionC }
+                ]
                 idList.push(questionsList[i].id)
             }
         }
+
         this.setData({
             question: questionsList,
             helpCard: wx.getStorageSync('helpCard') > 2 ? 2 : wx.getStorageSync('helpCard'),
@@ -126,7 +124,6 @@ Page({
             [useParamInsureUid]: wx.getStorageSync('insureUid'),
             [subjectIdList]: idList
         })
-        console.log(this.data.question)
         let timeout=setTimeout(function () {
             _this.calcTime()
             clearTimeout(timeout)
@@ -221,27 +218,14 @@ Page({
     },
     //处理考题
     setQuestion: function (num) {
-        if (num>4){
+        if (num > 4 || num === 0){
             return
         }
         let _this = this
-        let queListA = 'queList['+0+'].question'
-        let queListB = 'queList['+1+'].question'
-        let queListC = 'queList['+2+'].question'
         this.setData({
-            curQuestion: _this.data.question[num],
-            [queListA]: _this.data.question[num].optionA,
-            [queListB]: _this.data.question[num].optionB,
-            [queListC]: _this.data.question[num].optionC,
-            removeIndex:-1,
-            canUseCard: true // 使用卡片后 切换到下一题之后恢复卡片可使用状态
-        })
-        if (num===0){
-            return 
-        }
-        this.setData({
+            removeIndex: -1,
             curIndex: _this.data.curIndex + 1,
-            choseItem: -1
+            canUseCard: true // 使用卡片后 切换到下一题之后恢复卡片可使用状态
         })
     },
     //选择答案
@@ -249,13 +233,16 @@ Page({
         let serial = e.currentTarget.dataset.serial
         let _this = this
         //  如果五题答完 或者 时间结束 不可选
-        if (this.data.subParam.answerList.length == 5 || this.data.countDownTime==0){
+        if (this.data.countDownTime==0){
             return
         }
-        let answerList = 'subParam.answerList[' + this.data.subParam.answerList.length + ']'
+        let answer = 'question[' + this.data.curIndex +'].answer'
+        let answerIndex = 'question[' + this.data.curIndex + '].answerIndex'
+        let subAnswerList = 'subParam.answerList['+this.data.curIndex+']'
         _this.setData({
-            choseItem: serial == 'A' ? 0 : serial == 'B'?1:2,
-            [answerList]: serial
+            [answerIndex]: serial == 'A' ? 0 : serial == 'B' ? 1 : 2,
+            [answer]: serial,
+            [subAnswerList]: serial
         })
         let timeout=setTimeout(function () {
             _this.setQuestion(_this.data.curIndex+1)
@@ -266,6 +253,19 @@ Page({
         this.setData({
             reviewQuestion:true,
             answerEnd:false
+        })
+    },
+    // 选择下标
+    choseIndex:function(e){
+        let index = parseInt(e.target.dataset.index)
+        if (!index && index!==0){
+            return
+        }
+        if (index>0&&!this.data.question[index-1].answer){
+            return
+        }
+        this.setData({
+            curIndex: index
         })
     },
     //  处理review question
@@ -367,7 +367,6 @@ Page({
             return
         }
         app.goBack()
-        // this.confirmBack()
     },
     //答题过程中后退  确认后退  自动提交答案
     confirmBack: function() {
@@ -454,10 +453,14 @@ Page({
         })
 
         let answerList = 'subParam.answerList[' + _this.data.subParam.answerList.length + ']'
+        let answer='question['+this.data.curIndex+'].answer'
+        let answerIndex = 'question[' + this.data.curIndex + '].answerIndex'
+        let removedIndex = 'question[' + this.data.curIndex + '].removedIndex'
         app.httpPost('/xcx/insureMaster/examUseCard', _this.data.useParam, function(data) {
             if (cardType == 1) {// 如果是使用了帮帮卡
                 _this.setData({
-                    choseItem: data.rightAnswer == 'A' ? 0 : data.rightAnswer == 'B' ? 1 : 2,
+                    [answerIndex]: data.rightAnswer == 'A' ? 0 : data.rightAnswer == 'B' ? 1 : 2,
+                    [answer]: data.rightAnswer,
                     [answerList]: data.rightAnswer,
                     helpCard: _this.data.helpCard-1
                 })
@@ -467,7 +470,8 @@ Page({
                 }, 800)
             } else {    //使用了排除卡
                 _this.setData({
-                    removeIndex: data.removeAnswer == 'A' ? 0 : data.removeAnswer == 'B' ? 1 : 2,
+                    // removeIndex: data.removeAnswer == 'A' ? 0 : data.removeAnswer == 'B' ? 1 : 2,
+                    [removedIndex]: data.removeAnswer == 'A' ? 0 : data.removeAnswer == 'B' ? 1 : 2,
                     removeCard: _this.data.removeCard - 1
                 })
             }

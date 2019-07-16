@@ -9,23 +9,19 @@
                 <view class='ready-txt before-txt flx-ce-ce'>预备</view>
                 <view class='start-txt before-txt flx-ce-ce'>开始</view>
                 <view class='question-list flx-ce-bet-clm'>
-                    <!-- <swiper class=''>
-                        <swiper-item wx:for="{{question}}" wx:key="{{key}}" wx:for-index="i" class='swiper-item flx-ce-ce'>
+                    <swiper class="question-swiper" current="{{curIndex}}">
+                        <swiper-item wx:for="{{question}}" wx:key="key" wx:for-item="item" class="swiper-item">
                             <view class='question-name flx-ce-ce'>{{item.subjectTitle}}</view>
-                            <view wx:for="{{queList}}" wx:key="index" class="que-answer flx-ce-ce {{choseItem==index?'item-chosed':''}} {{removeIndex==index?'remove-index':''}}" bindtap='choseAnswer' data-serial="{{item.serial}}">{{item.question}}</view>
+                            <view wx:for="{{item.queList}}" wx:key="index" wx:for-item="listItem" class="que-answer flx-ce-ce {{item.answerIndex===index?'item-chosed':''}} {{item.removedIndex===index?'remove-index':''}}" bindtap='choseAnswer' data-serial="{{listItem.serial}}">{{listItem.question}}</view>
+                    <view class='question-tips'>-- {{item.subjectType}} --</view>
                         </swiper-item>
-                    </swiper> -->
-                    <view class='question-info flx-ce-clm'>
-                        <view class='question-name flx-ce-ce'>{{curQuestion.subjectTitle}}</view>
-                        <view wx:for="{{queList}}" wx:key="index" class="que-answer flx-ce-ce {{choseItem==index?'item-chosed':''}} {{removeIndex==index?'remove-index':''}}" bindtap='choseAnswer' data-serial="{{item.serial}}">{{item.question}}</view>
-                    </view>
-                    <!-- <view class='question-tips'>-- {{curQuestion.subjectType}} --</view> -->
-                    <view class='question-index-bar flx-ce-ce'>
-                        <view class='index flx-ce-ce {{curIndex==0?"cur-index":""}} {{curIndex>0?"done-index":""}}'>1</view>
-                        <view class='index flx-ce-ce {{curIndex==1?"cur-index":""}} {{curIndex>1?"done-index":""}}'>2</view>
-                        <view class='index flx-ce-ce {{curIndex==2?"cur-index":""}} {{curIndex>2?"done-index":""}}'>3</view>
-                        <view class='index flx-ce-ce {{curIndex==3?"cur-index":""}} {{curIndex>3?"done-index":""}}'>4</view>
-                        <view class='index flx-ce-ce {{curIndex==4?"cur-index":""}} {{curIndex>4?"done-index":""}}'>5</view>
+                    </swiper>
+                    <view class='question-index-bar flx-ce-ce' bindtap='choseIndex'>
+                        <view class='index flx-ce-ce {{curIndex==0?"cur-index":""}} {{question[0].answer?"done-index":""}}' data-index='0'>1</view>
+                        <view class='index flx-ce-ce {{curIndex==1?"cur-index":""}} {{question[1].answer?"done-index":""}}' data-index='1'>2</view>
+                        <view class='index flx-ce-ce {{curIndex==2?"cur-index":""}} {{question[2].answer?"done-index":""}}' data-index='2'>3</view>
+                        <view class='index flx-ce-ce {{curIndex==3?"cur-index":""}} {{question[3].answer?"done-index":""}}' data-index='3'>4</view>
+                        <view class='index flx-ce-ce {{curIndex==4?"cur-index":""}} {{question[4].answer?"done-index":""}}' data-index='4'>5</view>
                     </view>
                 </view>
             </view>
