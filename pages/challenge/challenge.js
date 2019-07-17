@@ -5,7 +5,6 @@ Page({
         isIpx: app.globalData.isIpx,
         statusBarHeight: app.globalData.statusBarHeight,
         curIndex: 0,    //当前答题序号
-        removeIndex:-1,
         showMask:false,
         countDownTime: 60,
         unfinshed: false,
@@ -24,6 +23,7 @@ Page({
         reviewQuestion:false,
         receivedChip:false,
         unfinshedBack:false,
+        showSubmit:false,
         reviewIndex:0,
         reviewData:'',
         curReview:'',
@@ -98,6 +98,7 @@ Page({
         if (questionsList && questionsList.length > 0) {
             for (let i = 0; i < questionsList.length; i++) {
                 questionsList[i].removeIndex = ''
+                questionsList[i].helpIndex = -1
                 questionsList[i].answerIndex = ''
                 questionsList[i].queList = [
                     {
@@ -208,6 +209,9 @@ Page({
                 })
         })
     },
+    catchTouchMove:function(){
+        return
+    },
     goChallengeHome: function () {
         app.goBack()
     },
@@ -218,20 +222,41 @@ Page({
     },
     //处理考题
     setQuestion: function (num) {
+        for (let i = 0; i < 5; i++) {
+            if (!this.data.question[i].answer) {
+                break
+            }
+            if (i == 4) {
+                this.setData({
+                    showSubmit: true
+                })
+            }
+        }
         if (num > 4 || num === 0){
             return
         }
         let _this = this
         this.setData({
-            removeIndex: -1,
             curIndex: _this.data.curIndex + 1,
             canUseCard: true // 使用卡片后 切换到下一题之后恢复卡片可使用状态
         })
+
     },
     //选择答案
     choseAnswer:function(e){
         let serial = e.currentTarget.dataset.serial
         let _this = this
+        let removeIndex = this.data.question[this.data.curIndex].removeIndex
+        let helpIndex = this.data.question[this.data.curIndex].helpIndex
+        if (removeIndex) {
+            let removeIndexNum = removeIndex === 0 ? 'A' : removeIndex == 1 ? 'B' : 'C'
+            if (removeIndexNum === serial) {
+                return
+            }
+        }
+        if (helpIndex>-1){
+            return
+        }
         //  如果五题答完 或者 时间结束 不可选
         if (this.data.countDownTime==0){
             return
@@ -261,12 +286,15 @@ Page({
         if (!index && index!==0){
             return
         }
-        if (index>0&&!this.data.question[index-1].answer){
-            return
-        }
         this.setData({
-            curIndex: index
+            curIndex: index,
+            canUseCard: true
         })
+        if(this.data.question[this.data.curIndex].answer){
+            this.setData({
+                canUseCard:false
+            })
+        }
     },
     //  处理review question
     dealReview:function(){
@@ -455,10 +483,12 @@ Page({
         let answerList = 'subParam.answerList[' + _this.data.subParam.answerList.length + ']'
         let answer='question['+this.data.curIndex+'].answer'
         let answerIndex = 'question[' + this.data.curIndex + '].answerIndex'
-        let removedIndex = 'question[' + this.data.curIndex + '].removedIndex'
+        let removeIndex = 'question[' + this.data.curIndex + '].removeIndex'
+        let helpIndex = 'question[' + this.data.curIndex +'].helpIndex'
         app.httpPost('/xcx/insureMaster/examUseCard', _this.data.useParam, function(data) {
             if (cardType == 1) {// 如果是使用了帮帮卡
                 _this.setData({
+                    [helpIndex]: data.rightAnswer == 'A' ? 0 : data.rightAnswer == 'B' ? 1 : 2,
                     [answerIndex]: data.rightAnswer == 'A' ? 0 : data.rightAnswer == 'B' ? 1 : 2,
                     [answer]: data.rightAnswer,
                     [answerList]: data.rightAnswer,
@@ -470,8 +500,7 @@ Page({
                 }, 800)
             } else {    //使用了排除卡
                 _this.setData({
-                    // removeIndex: data.removeAnswer == 'A' ? 0 : data.removeAnswer == 'B' ? 1 : 2,
-                    [removedIndex]: data.removeAnswer == 'A' ? 0 : data.removeAnswer == 'B' ? 1 : 2,
+                    [removeIndex]: data.removeAnswer == 'A' ? 0 : data.removeAnswer == 'B' ? 1 : 2,
                     removeCard: _this.data.removeCard - 1
                 })
             }

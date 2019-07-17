@@ -82,7 +82,7 @@ App({
         statusBarHeight:'',
         winWidth: wx.getSystemInfoSync().windowWidth,
         winHeight: wx.getSystemInfoSync().windowHeight,
-        urlDomain: "https://cdb.minshenglife.com/sign-api",
+        urlDomain: "https://v.minshenglife.com/sign-api",
         testUrl: "https://v.minshenglife.com/sign-api",
         prodUrl: "https://cdb.minshenglife.com/sign-api",
         // index  
@@ -112,7 +112,7 @@ App({
         shareCoverImg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190710/1562739081186.png',
         wxShareImg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190710/1562738980398.png',
         studyBox: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561639837974.png',
-        noTeacher: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561639683456.png',
+        noTeacher: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190717/1563359982825.png',
         followAccount: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190710/1562737931348.png',
         //challenge
         redPackets: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190707/1562486898642.png',

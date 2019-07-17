@@ -15,9 +15,9 @@
 .privilegev-card {
     width: 100%;
     border-radius: 0px 12rpx 12rpx 0px;
-    overflow: hidden;
+    /* overflow: hidden; */
     padding: 4rpx;
-    margin:40rpx 0;
+    margin-bottom:40rpx;
     opacity: 0;
     animation: showCardBar 2.8s linear forwards;
 }
@@ -532,6 +532,29 @@
 }
 .question-index-bar{
     flex-grow: 1
+}
+.cards-tips{
+    width:100%;
+    height:50rpx;
+    margin:20rpx 0;
+}
+.tips-txt{
+    width:100%;
+    color:white;
+    font-size:24rpx;
+    height:40rpx;
+    opacity: 0;
+    animation: tipsMove 6s linear infinite;
+}
+@keyframes tipsMove{
+    0%{
+        transform: translateX(700rpx);
+        opacity: 1
+    }
+    100%{
+        transform: translateX(-400rpx);
+        opacity: 1
+    }
 }
 @keyframes questionIn{
     0%{

@@ -48,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 6,
 			"list": [
 				{
 					"id": 0,
@@ -82,6 +82,20 @@
 					"id": -1,
 					"name": "challenge",
 					"pathName": "pages/challenge/challenge",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "treasureBox",
+					"pathName": "pages/treasureBox/treasureBox",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "redPackets",
+					"pathName": "pages/redPackets/redPackets",
 					"scene": null
 				}
 			]

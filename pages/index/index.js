@@ -654,6 +654,9 @@ Page({
                             [energyCard]: 1,
                         })
                     }
+                    this.setData({
+                        openTitle: '获得' + this.data.randomName + '1张'
+                    })
                 } else if (_this.data.saveCardParam.chestType == 1) {
                     //  学艺宝箱 清空卡片
                     _this.setData({

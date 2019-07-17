@@ -1,7 +1,7 @@
 <view class='red-packets'>
     <loading hidden="{{hiddenLoading}}">{{loadingText}}</loading>
     <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack' style='top:{{statusBarHeight+12}}rpx'></image>
-    <view class='compound-box'>
+    <view class='compound-box' wx:if="{{redPacketsData.isCompose!==1}}">
         <image src='{{circleBg}}' mode="widthFix" class='compound-bg'></image>
         <view class='red-packets-container'>
             <view class='packets-group'>
@@ -40,15 +40,36 @@
         <view class='red-point move-right'></view>
         <view class='red-point move-bottom'></view>
         <image src="{{compoundBt}}" class='compound-btn'></image>
-        <image wx:if="{{redPacketsData.isCompose===1}}" src='../../asset/hongbao/red_packets_pic.png' class='packets-pic'></image>
-        <image wx:if="{{redPacketsData.isCompose===1}}" src='../../asset/hongbao/red_packets_light.png' class='packets-light'></image>
+    </view>
+    <view class="count-down-box flx-ce-clm" wx:if="{{redPacketsData.isCompose===1}}">
+        <view class="con-header">恭喜你</view>
+        <view class="con-txt">已集齐红包碎片合成"赛季红包"</view>
+        <view class="bongbao-contain flx-ce-ce">
+            <image src="../../asset/hongbao/hongbao_light.png" class="hongbao-light"></image>
+            <view class="hongbao-box flx-ce-ce">
+                <image src="../../asset/hongbao/dahongbao.png" class="hongbao-img"></image>
+                <view class="count-down-contain flx-ce-clm">
+                    <view class="count-down">距离红包发放倒计时还有</view>
+                    <view class="count-time">
+                        {{day}}
+                        <text class="count-text">天</text>
+                        {{hour}}
+                        <text class="count-text">时</text>
+                        {{minute}}
+                        <text class="count-text">分</text>
+                        {{second}}
+                        <text class="count-text">秒</text>
+                    </view>
+                </view>
+            </view>
+        </view>
     </view>
     <view class='red-packets-rules'>
-        <view class='rules-title'>赛季现金红包奖励</view>
-        <view class='rules-txt'>1.解锁“宗师段位”后每答对一关将随机掉落“红包碎片”。</view>
-        <view class='rules-txt'>2.在当前赛季集满四种不同碎片立即合成“赛季红包”，获得现金红包派发资格。</view>
-        <view class='rules-txt'>3.赛季结束后48小时内，系统将通过微信派发1-188元随机现金红包（宗师星级越高红包越大哦～)。</view>
-        <view class='rules-txt'>4.当前赛季结束后，未合成“赛季红包”的碎片将清零，新赛季需重新获取。</view>
-        <view class='rules-txt'>5.如遇问题可关注“保险体验师”公众号咨询人工客服。</view>
+        <view class='rules-title'>赛季红包发放说明:</view>
+        <view class='rules-txt'>1.在晋升“宗师”的道路上，红包碎片一路陪伴。</view>
+        <view class='rules-txt'>2.集齐四张不同的碎片，即可召唤“赛季红包”，参与赛季红包瓜分。</view>
+        <view class='rules-txt'>3.每个赛季末的结算日（48小时内），系统将为您派发微信红包。</view>
+        <view class='rules-txt'>4.宗师排位赛排名越高，红包越大～</view>
+        <view class='rules-txt'>5.关注“保险体验师”公众号，回复“人工”可以召唤活动客服为您服务</view>
     </view>
 </view>

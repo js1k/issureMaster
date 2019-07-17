@@ -12,7 +12,7 @@
             <view class='menu-icon' bindtap='handleCheck' data-mark="treasureBox">
                 <view class="icon-content">
                     <image src="../../asset/index/task_icon.png" class='menu-img'></image>
-                    <view class='task-num' wx:if="{{chestNum!==7}}">{{chestNum+''}}/22</view>
+                    <view class='task-num' wx:if="{{chestNum!==7}}">{{chestNum+''}}/23</view>
                 </view>
                 <text class='icon-font'>任务宝箱</text>
             </view>

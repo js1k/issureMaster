@@ -10,9 +10,9 @@
                 <view class='start-txt before-txt flx-ce-ce'>开始</view>
                 <view class='question-list flx-ce-bet-clm'>
                     <swiper class="question-swiper" current="{{curIndex}}">
-                        <swiper-item wx:for="{{question}}" wx:key="key" wx:for-item="item" class="swiper-item">
+                        <swiper-item wx:for="{{question}}" wx:key="key" wx:for-item="item" class="swiper-item" catchtouchmove="catchTouchMove">
                             <view class='question-name flx-ce-ce'>{{item.subjectTitle}}</view>
-                            <view wx:for="{{item.queList}}" wx:key="index" wx:for-item="listItem" class="que-answer flx-ce-ce {{item.answerIndex===index?'item-chosed':''}} {{item.removedIndex===index?'remove-index':''}}" bindtap='choseAnswer' data-serial="{{listItem.serial}}">{{listItem.question}}</view>
+                            <view wx:for="{{item.queList}}" wx:key="index" wx:for-item="listItem" class="que-answer flx-ce-ce {{item.answerIndex===index?'item-chosed':''}} {{item.removeIndex===index?'remove-index':''}} {{item.helpIndex>-1&&item.helpIndex!==index?'remove-index':''}}" bindtap='choseAnswer' data-serial="{{listItem.serial}}">{{listItem.question}}</view>
                     <view class='question-tips'>-- {{item.subjectType}} --</view>
                         </swiper-item>
                     </swiper>
@@ -33,7 +33,11 @@
                 </view>
             </view>
         </view>
-        <view class='privilegev-card flx-ce-bet' style='margin-top:{{isIpx?80:40}}rpx;margin-bottom:{{isIpx?80:40}}rpx;'>
+        <view class="cards-tips">
+            <text class="tips-txt flx-ce-ce" wx:if="{{countDownTime==60}}"></text>
+            <text class="tips-txt flx-ce-ce" wx:if="{{countDownTime<60}}">点击"特权卡"助理答题</text>
+        </view>
+        <view class='privilegev-card flx-ce-bet' style='margin-bottom:{{isIpx?80:40}}rpx;'>
             <view class='privilege-title flx-ce-ce'>特权卡</view>
             <view class='privilege-contain flx-ce-ce'>
                 <image src="{{helpCard>0?bangbang:bangbangDisable}}" data-canUse="{{helpCard>0?true:false}}" data-type='bangbang' class='privilege-pic' bindtap='useCard'></image>
@@ -44,8 +48,8 @@
             </view>
         </view>
         <view class='test-submit'>
-            <image class='submit' src='../../asset/challengeHome/submit.png' wx:if="{{subParam.answerList.length==5}}" bindtap='submitTest'></image>
-            <image class='submit' src='../../asset/challengeHome/submit_disable.png' wx:if="{{subParam.answerList.length<5}}"></image>
+            <image class='submit' src='../../asset/challengeHome/submit.png' wx:if="{{showSubmit}}" bindtap='submitTest'></image>
+            <image class='submit' src='../../asset/challengeHome/submit_disable.png' wx:if="{{!showSubmit}}"></image>
         </view>
     </view>
     <!-- 查看考题 -->

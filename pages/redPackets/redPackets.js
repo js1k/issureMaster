@@ -1,4 +1,5 @@
 const app = getApp()
+let timer;
 Page({
     data: {
         isIpx: app.globalData.isIpx,
@@ -6,6 +7,10 @@ Page({
         redPacketsData:{},
         hiddenLoading:true,
         loadingText:'加载中...',
+        day:0,
+        hour:0,
+        minute:0,
+        second:0,
         circleBg: app.globalData.circleBg,
         compoundBt: app.globalData.compoundBt
     },
@@ -34,6 +39,24 @@ Page({
             hiddenLoading:false
         })
         app.httpPost('/xcx/insureMaster/chip', { insureUid: wx.getStorageSync('insureUid')}, function (data) {
+            let expireTime = data.expireTime/1000
+            let nowTime=new Date().getTime()
+            timer = setInterval(function () {
+                let tillTime = new Date().getTime()
+                let tempVal = expireTime-(tillTime - nowTime)/1000
+                let days = Math.floor(tempVal / 86400)
+                tempVal = tempVal%86400
+                let hours = Math.floor(tempVal/3600)
+                tempVal = tempVal%3600
+                let minutes = Math.floor(tempVal/60)
+                let seconds = Math.floor(tempVal%60)
+                _this.setData({
+                    day: days,
+                    hour: hours,
+                    minute: minutes,
+                    second: seconds
+                })
+            },1000)
             _this.setData({
                 redPacketsData: data,
                 hiddenLoading: true
@@ -65,27 +88,13 @@ Page({
      * 生命周期函数--监听页面隐藏
      */
     onHide: function() {
-
+        clearInterval(timer)
     },
 
     /**
      * 生命周期函数--监听页面卸载
      */
     onUnload: function() {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function() {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function() {
-
+        clearInterval(timer)
     },
 })

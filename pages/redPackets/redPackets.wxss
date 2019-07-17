@@ -120,25 +120,6 @@
   top:237rpx;
   z-index: 100;
 }
-.packets-pic{
-  width:162rpx;
-  height:162rpx;
-  position: absolute;
-  left:250rpx;
-  top:250rpx;
-  z-index: 101;
-  animation: packetsRotate 5s ease forwards;
-}
-.packets-light{
-    width:220rpx;
-    height:220rpx;
-    position: absolute;
-    left:220rpx;
-    top:220rpx;
-    z-index: 102;
-    opacity: 0;
-    animation: packetsLight 6s ease infinite;
-}
 .chip-light{
     width:176rpx;
     height:176rpx;
@@ -149,6 +130,83 @@
     transform: scale(0.5);
     opacity: 0;
     animation: circleLightIn 6s linear infinite;
+}
+.con-header{
+    font-size:56rpx;
+    font-weight:500;
+    color:rgba(255,255,255,1);
+}
+.con-txt{
+    font-size:36rpx;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    margin-top:32rpx;
+}
+.bongbao-contain{
+    position: relative;
+    width:100%;
+    height:670rpx;
+}
+.hongbao-light{
+    width:100%;
+    height:670rpx;
+    position: absolute;
+    left:0;
+    top:0;
+    z-index: 0;
+    opacity: 0.3;
+    animation: lightOpacity 2.5s linear alternate infinite;
+}
+.hongbao-box{
+    width:100%;
+    height:400rpx;
+    position: relative;
+}
+.hongbao-img{
+    width:400rpx;
+    height:400rpx;
+    animation: hongbaoSlide 2.5s ease-in-out alternate infinite;
+}
+.count-down-contain{
+    width:100%;
+    position: absolute;
+    left:0;
+    bottom:-190rpx;
+}
+.count-down-box{
+    margin-bottom:124rpx;
+}
+.count-down{
+    font-size:36rpx;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+}
+.count-time{
+    font-size:52rpx;
+    font-weight:500;
+    color:rgba(253,108,95,1);
+    margin-top:20rpx;
+}
+.count-text{
+    font-size:26rpx;
+    font-weight:500;
+    color:rgba(255,255,255,1);
+}
+@keyframes hongbaoSlide{
+    0%{
+        transform: translateY(0);
+    }
+    100%{
+        transform: translateY(-40rpx);
+    }
+}
+@keyframes lightOpacity{
+    0%{
+        opacity: 0.3
+    }
+    100%{
+        opacity: 1
+    }
 }
 @keyframes pointLeft{
   from {
@@ -182,41 +240,7 @@
     transform: translateY(-185rpx)
   }
 }
-/* @keyframes packetsRotate{
-  0%{
-    transform: rotate(0deg);
-  }
-  50%{
-    transform: rotate(720deg);
-  }
-  51%{
-    transform: rotate(720deg);
-  }
-  100%{
-    transform: rotate(720deg);
-  }
-} */
 
-@keyframes packetsLight{
-    50%{
-        opacity: 0
-    }
-    51%{
-        opacity: 1
-    }
-    65%{
-        opacity: 1
-    }
-    80%{
-        opacity: 0.4
-    }
-    90%{
-        opacity: 0.6
-    }
-    100%{
-        opacity: 1
-    }
-}
 @keyframes circleLightIn{
     0%{
         /* transform: scale(0.5); */
