@@ -39,24 +39,27 @@ Page({
             hiddenLoading:false
         })
         app.httpPost('/xcx/insureMaster/chip', { insureUid: wx.getStorageSync('insureUid')}, function (data) {
-            let expireTime = data.expireTime/1000
-            let nowTime=new Date().getTime()
-            timer = setInterval(function () {
-                let tillTime = new Date().getTime()
-                let tempVal = expireTime-(tillTime - nowTime)/1000
-                let days = Math.floor(tempVal / 86400)
-                tempVal = tempVal%86400
-                let hours = Math.floor(tempVal/3600)
-                tempVal = tempVal%3600
-                let minutes = Math.floor(tempVal/60)
-                let seconds = Math.floor(tempVal%60)
-                _this.setData({
-                    day: days,
-                    hour: hours,
-                    minute: minutes,
-                    second: seconds
-                })
-            },1000)
+            
+            if (data.expireTime) {
+                let expireTime = data.expireTime / 1000
+                let nowTime = new Date().getTime()
+                timer = setInterval(function () {
+                    let tillTime = new Date().getTime()
+                    let tempVal = expireTime - (tillTime - nowTime) / 1000
+                    let days = Math.floor(tempVal / 86400)
+                    tempVal = tempVal % 86400
+                    let hours = Math.floor(tempVal / 3600)
+                    tempVal = tempVal % 3600
+                    let minutes = Math.floor(tempVal / 60)
+                    let seconds = Math.floor(tempVal % 60)
+                    _this.setData({
+                        day: days,
+                        hour: hours,
+                        minute: minutes,
+                        second: seconds
+                    })
+                }, 1000)
+            }
             _this.setData({
                 redPacketsData: data,
                 hiddenLoading: true

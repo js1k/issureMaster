@@ -82,7 +82,7 @@ App({
         statusBarHeight:'',
         winWidth: wx.getSystemInfoSync().windowWidth,
         winHeight: wx.getSystemInfoSync().windowHeight,
-        urlDomain: "https://v.minshenglife.com/sign-api",
+        urlDomain: "https://cdb.minshenglife.com/sign-api",
         testUrl: "https://v.minshenglife.com/sign-api",
         prodUrl: "https://cdb.minshenglife.com/sign-api",
         // index  
@@ -92,13 +92,13 @@ App({
         s3Theme: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190628/1561691340542.png',
         s4Theme: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190628/1561691356684.png',
         hmBg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190704/1562222610804.png',
-        seasonRules: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190710/1562744784143.png',
+        seasonRules: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190718/1563442215721.png',
         xueyiBg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561638085749.png',
         fenxiangBg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561638124450.png',
         xinshouBg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561638049214.png',
         zhutiBg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561637981625.png',
         //  rankList
-        activesRuels: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190710/1562744476966.png',
+        activesRuels: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190718/1563442251409.png',
         //  redPackets
         circleBg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561639258907.png',
         compoundBt: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561639215494.png',
