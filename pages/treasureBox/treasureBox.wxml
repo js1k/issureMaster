@@ -16,10 +16,10 @@
                     <view class='card-des'>学艺宝箱，三种特权任你挑选两张</view>
                     <view class='card-box-content'>
                         <image src='../../asset/treasureBox/teacher_box.png' class='card-box'></image>
-                        <text class='card-box-txt' wx:if="{{treasureData.studyChest}}">剩余{{2-treasureData.studyChest}}次</text>
+                        <text class='card-box-txt'>剩余{{2-treasureData.studyChest}}次</text>
                     </view>
                 </view>
-                <view class='card-strategy flx-ce-ce'>查看攻略</view>
+                <view class='card-strategy flx-ce-ce' catchtap='takeTeacher'>查看攻略</view>
             </view>
             <view class='task-column' bindtap="handleShare">
                 <image src="{{shareBg}}" class='card-bg'></image>
@@ -28,12 +28,12 @@
                     <view class='card-des'>来一次给力分享，双方得分享宝箱</view>
                     <view class='card-box-content'>
                         <image src='../../asset/treasureBox/share_box.png' class='card-box'></image>
-                        <text class='card-box-txt' wx:if="{{treasureData.shareChest}}">剩余{{20-treasureData.shareChest}}次</text>
+                        <text class='card-box-txt'>剩余{{20-treasureData.shareChest}}次</text>
                     </view>
                 </view>
-                <view class='card-strategy flx-ce-ce'>分享友礼</view>
+                <view class='card-strategy flx-ce-ce' catchtap='handleShare'>分享友礼</view>
             </view>
-            <view class='task-column'>
+            <view class='task-column' bindtap="takeNew">
                 <image src="{{newBg}}" class='card-bg'></image>
                 <view class='flx-start-clm card-content'>
                     <view class='card-title'>新手福利</view>
@@ -42,10 +42,10 @@
                         <image src='../../asset/treasureBox/new_play_box.png' class='card-box'></image>
                     </view>
                 </view>
-                <view class='card-strategy flx-ce-ce' bindtap="takeNew" wx:if="{{treasureData.newerChest==0}}">立即领取</view>
+                <view class='card-strategy flx-ce-ce' catchtap="takeNew" wx:if="{{treasureData.newerChest==0}}">立即领取</view>
                 <view class='card-strategy flx-ce-ce' wx:if="{{treasureData.newerChest==1}}">已领取</view>
             </view>
-            <view class='task-column'>
+            <view class='task-column' bindtap='shareWx'>
                 <image src="{{followBg}}" class='card-bg'></image>
                 <view class='flx-start-clm card-content'>
                     <view class='card-title'>公众号赠礼</view>
@@ -54,7 +54,7 @@
                         <image src='../../asset/treasureBox/wx_box.png' class='card-box'></image>
                     </view>
                 </view>
-                <view class='card-strategy flx-ce-ce' bindtap='shareWx' wx:if="{{treasureData.subjectChest==0}}">立即关注</view>
+                <view class='card-strategy flx-ce-ce' catchtap='shareWx' wx:if="{{treasureData.subjectChest==0}}">立即关注</view>
                 <view class='card-strategy flx-ce-ce' wx:if="{{treasureData.subjectChest==1}}">已关注</view>
             </view>
             <view class='task-more'>—— 更多任务正在筹备中 ——</view>
@@ -93,9 +93,13 @@
             <view class='none-teacher-content flx-ce-clm'>
                 <image class='none-teacher' src="{{noTeacher}}"></image>
                 <image src='../../asset/mask_close.png' class='close-mask' bindtap='closeMask'></image>
-                <view class='none-teacher-txt flx-ce-clm'>
-                    <text>尚未绑定导师</text>
+                <view class='none-teacher-top flx-ce-clm'>
+                    <text>您尚未绑定导师</text>
                     <text>暂时无法获得学艺宝箱</text>
+                </view>
+                <view class='none-teacher-txt flx-ce-clm'>
+                    <text>想要获得学艺宝箱嘛?</text>
+                    <text>快联系您身边的民生代理人吧!</text>
                 </view>
             </view>
         </view>

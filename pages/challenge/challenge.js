@@ -97,7 +97,7 @@ Page({
         let idList=[]
         if (questionsList && questionsList.length > 0) {
             for (let i = 0; i < questionsList.length; i++) {
-                questionsList[i].removeIndex = ''
+                questionsList[i].removeIndex = -1
                 questionsList[i].helpIndex = -1
                 questionsList[i].answerIndex = ''
                 questionsList[i].queList = [
@@ -248,7 +248,7 @@ Page({
         let _this = this
         let removeIndex = this.data.question[this.data.curIndex].removeIndex
         let helpIndex = this.data.question[this.data.curIndex].helpIndex
-        if (removeIndex) {
+        if (removeIndex>-1) {
             let removeIndexNum = removeIndex === 0 ? 'A' : removeIndex == 1 ? 'B' : 'C'
             if (removeIndexNum === serial) {
                 return
@@ -263,11 +263,9 @@ Page({
         }
         let answer = 'question[' + this.data.curIndex +'].answer'
         let answerIndex = 'question[' + this.data.curIndex + '].answerIndex'
-        let subAnswerList = 'subParam.answerList['+this.data.curIndex+']'
         _this.setData({
             [answerIndex]: serial == 'A' ? 0 : serial == 'B' ? 1 : 2,
-            [answer]: serial,
-            [subAnswerList]: serial
+            [answer]: serial
         })
         let timeout=setTimeout(function () {
             _this.setQuestion(_this.data.curIndex+1)
@@ -290,7 +288,8 @@ Page({
             curIndex: index,
             canUseCard: true
         })
-        if(this.data.question[this.data.curIndex].answer){
+        //  如果此题已经使用特权卡  则不能继续使用
+        if (this.data.question[index].helpIndex > -1 || this.data.question[index].removeIndex>-1){
             this.setData({
                 canUseCard:false
             })
@@ -331,19 +330,20 @@ Page({
         if (!_this.data.canSubmit) {
             return
         }
-        let answerList =this.data.subParam.answerList
+
+        let answerArr=[]
         for(let i=0;i<5;i++){
-            if (!answerList[i]){
-                answerList[i]=''
-            }
+            answerArr[i] = _this.data.question[i].answer
         }
-        let subAnswerList ='subParam.answerList'
-        clearInterval(_this.data.interval)
+        let answerList = 'subParam.answerList'
+
         _this.setData({
+            [answerList]: answerArr,
             canSubmit: false,
-            countDownTime:0,
-            [subAnswerList]: answerList
+            countDownTime:0
         })
+        clearInterval(_this.data.interval)
+
         app.httpPost('/xcx/insureMaster/examHandIn', _this.data.subParam,function(data){
             if (_this.data.unfinshedBack){  // 如果在答题过程中强行退出  则提交答案后 再后退
                 app.goBack()
@@ -480,7 +480,6 @@ Page({
             canUseCard:false
         })
 
-        let answerList = 'subParam.answerList[' + _this.data.subParam.answerList.length + ']'
         let answer='question['+this.data.curIndex+'].answer'
         let answerIndex = 'question[' + this.data.curIndex + '].answerIndex'
         let removeIndex = 'question[' + this.data.curIndex + '].removeIndex'
@@ -491,7 +490,6 @@ Page({
                     [helpIndex]: data.rightAnswer == 'A' ? 0 : data.rightAnswer == 'B' ? 1 : 2,
                     [answerIndex]: data.rightAnswer == 'A' ? 0 : data.rightAnswer == 'B' ? 1 : 2,
                     [answer]: data.rightAnswer,
-                    [answerList]: data.rightAnswer,
                     helpCard: _this.data.helpCard-1
                 })
                 let timeout = setTimeout(function () {
@@ -504,12 +502,18 @@ Page({
                     removeCard: _this.data.removeCard - 1
                 })
             }
+            _this.setData({
+                canUseCard:true
+            })
         }, function (error) {
             wx.showToast({
                 title: error.message,
                 icon: 'none',
                 duration: 1000,
                 mask: true
+            })
+            _this.setData({
+                canUseCard:true
             })
         })
     },
@@ -550,20 +554,6 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function() {
 
     },
 })

@@ -619,10 +619,11 @@ Page({
             [insureUid]: wx.getStorageSync('insureUid')
         })
         app.httpPost('/xcx/insureMaster/openStudyChest', _this.data.saveCardParam, function(data) {
+            let tempNum = _this.data.saveCardParam.curNum - 1
             _this.setData({
                 canSave: true,
                 openBox: false,
-                [num]: _this.data.saveCardParam.curNum - 1,
+                [num]: tempNum,
             })
             if (_this.data.saveCardParam.curNum > 0) {
                 //判断宝箱是否开启完
@@ -654,8 +655,8 @@ Page({
                             [energyCard]: 1,
                         })
                     }
-                    this.setData({
-                        openTitle: '获得' + this.data.randomName + '1张'
+                    _this.setData({
+                        openTitle: '获得' + _this.data.randomName + '1张'
                     })
                 } else if (_this.data.saveCardParam.chestType == 1) {
                     //  学艺宝箱 清空卡片
@@ -691,10 +692,11 @@ Page({
     },
     checkChest: function() {
         let _this = this
-        if (_this.data.chestTipList.length && (_this.data.giftIndex < _this.data.chestTipList.length - 1)) {
+        let chestLength = this.data.chestTipList.length
+        if (chestLength > 0 && (_this.data.giftIndex <= (chestLength - 1))) {
             _this.setData({
+                chestGainTipVO: _this.data.chestTipList[_this.data.giftIndex],
                 giftIndex: _this.data.giftIndex + 1,
-                chestGainTipVO: _this.data.chestTipList[_this.data.giftIndex + 1],
                 showShare: true
             })
         }
@@ -997,7 +999,7 @@ Page({
             if (chestTipList && chestTipList.length > 0) {
                 this.setData({
                     chestGainTipVO: chestTipList[0],
-                    giftIndex: 0,
+                    giftIndex: 1,
                     showShare: true
                 })
             }

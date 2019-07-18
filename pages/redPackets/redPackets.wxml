@@ -49,7 +49,7 @@
             <view class="hongbao-box flx-ce-ce">
                 <image src="../../asset/hongbao/dahongbao.png" class="hongbao-img"></image>
                 <view class="count-down-contain flx-ce-clm">
-                    <view class="count-down">距离红包发放倒计时还有</view>
+                    <view class="count-down">距离本赛季红包结算日还有</view>
                     <view class="count-time">
                         {{day}}
                         <text class="count-text">天</text>

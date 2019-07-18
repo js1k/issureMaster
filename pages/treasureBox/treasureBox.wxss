@@ -185,6 +185,14 @@
   font-weight:500;
   color:rgba(255,255,255,1);
 }
+.none-teacher-top{
+  position: absolute;
+  width:100%;
+  top:126rpx;
+  font-size:32rpx;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+}
 .none-txt{
   display: block;
 }

@@ -35,7 +35,7 @@
         </view>
         <view class="cards-tips">
             <text class="tips-txt flx-ce-ce" wx:if="{{countDownTime==60}}"></text>
-            <text class="tips-txt flx-ce-ce" wx:if="{{countDownTime<60}}">点击"特权卡"助理答题</text>
+            <text class="tips-txt flx-ce-ce" wx:if="{{countDownTime<60}}">点击"特权卡"助力答题</text>
         </view>
         <view class='privilegev-card flx-ce-bet' style='margin-bottom:{{isIpx?80:40}}rpx;'>
             <view class='privilege-title flx-ce-ce'>特权卡</view>

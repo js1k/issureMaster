@@ -48,20 +48,20 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "xueyi",
 					"pathName": "pages/index/index",
-					"query": "uid=23143421055490&type=1",
+					"query": "uid=54675736457730&type=2&shareDay=20190718",
 					"scene": null
 				},
 				{
 					"id": 1,
 					"name": "share",
 					"pathName": "pages/index/index",
-					"query": "uid=493297420568578&type=2&shareDay=20190711",
+					"query": "uid=23143421055490&type=1",
 					"scene": null
 				},
 				{
@@ -96,6 +96,7 @@
 					"id": -1,
 					"name": "redPackets",
 					"pathName": "pages/redPackets/redPackets",
+					"query": "",
 					"scene": null
 				}
 			]

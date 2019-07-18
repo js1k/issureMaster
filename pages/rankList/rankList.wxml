@@ -84,8 +84,8 @@
                                             <image class='user-star' src='../../asset/challengeHome/star_light.png' wx:if="{{insureUser.userLevel==3&&insureUser.starNum==3}}"></image>
                                             <image class='user-star' src='../../asset/challengeHome/star_black.png' wx:if="{{(insureUser.userLevel==3&&insureUser.starNum<3)||(insureUser.userLevel==2&&insureUser.starNum<2)}}"></image>
                                             <image class='user-star' src='../../asset/challengeHome/star_black.png' wx:if="{{insureUser.userLevel==3&&insureUser.starNum==1}}"></image>
-                                            <view class='common-star'>
-                                                <image src='../../asset/challengeHome/star_zongshi.png' mode="widthFix" class='common-star' wx:if="{{insureUser.userLevel==4}}"></image>
+                                            <view class='common-star' wx:if="{{insureUser.userLevel==4}}">
+                                                <image src='../../asset/challengeHome/star_zongshi.png' mode="widthFix" class='common-star'></image>
                                             </view>
                                         </view>
                                         <text class='rank-star-txt' wx:if="{{insureUser.userLevel==4}}">x{{insureUser.starNum}}</text>

@@ -3,9 +3,9 @@
     <image src='../../asset/hongbao/red_packets_back.png' class='go-back' bindtap='goBack' style='top:{{statusBarHeight+12}}rpx;}}'></image>
     <view class='challenge-header'>
         <image src='../../asset/challengeHome/challenge_title_bg.png' class='header-bg'></image>
-        <view class='challenge-title flx-ce-ce'>{{seasonCheckVO.seasonTitle}}</view>
+        <view class='challenge-title flx-ce-ce'>距离本赛季结束还有{{seasonCheckVO.existDays}}天</view>
     </view>
-    <view class='season-time-info'>距离本赛季结束还有{{seasonCheckVO.existDays}}天</view>
+    <view class='season-time-info'>集齐四个碎片 召唤赛季红包</view>
     <view class='user-level-info flx-ce-ce'>
         <view class='level-icon-box'>
             <image class='level-icon' src='../../asset/challengeHome/lev_1_icon.png'></image>
@@ -13,17 +13,20 @@
         </view>
         <image class='level-line' src='../../asset/challengeHome/level_line.png'></image>
         <view class='level-icon-box'>
-            <image class='level-icon' src='../../asset/challengeHome/lev_2_icon_disabled.png'></image>
+            <image class='level-icon' src='../../asset/challengeHome/lev_2_icon.png' wx:if="{{insureUserVO.userLevel>1}}"></image>
+            <image class='level-icon' src='../../asset/challengeHome/lev_2_icon_disabled.png' wx:if="{{insureUserVO.userLevel<2}}"></image>
             <image wx:if="{{itemIndex===1}}" class='arrow' src='../../asset/challengeHome/cur_arrow.png'></image>
         </view>
         <image class='level-line' src='../../asset/challengeHome/level_line.png'></image>
         <view class='level-icon-box'>
-            <image class='level-icon' src='../../asset/challengeHome/lev_3_icon_disabled.png'></image>
+            <image class='level-icon' src='../../asset/challengeHome/lev_3_icon.png' wx:if="{{insureUserVO.userLevel>2}}"></image>
+            <image class='level-icon' src='../../asset/challengeHome/lev_3_icon_disabled.png' wx:if="{{insureUserVO.userLevel<3}}"></image>
             <image wx:if="{{itemIndex===2}}" class='arrow' src='../../asset/challengeHome/cur_arrow.png'></image>
         </view>
         <image class='level-line' src='../../asset/challengeHome/level_line.png'></image>
         <view class='level-icon-box'>
-            <image class='level-icon' src='../../asset/challengeHome/lev_4_icon_disabled.png'></image>
+            <image class='level-icon' src='../../asset/challengeHome/lev_4_icon.png' wx:if="{{insureUserVO.userLevel>3}}"></image>
+            <image class='level-icon' src='../../asset/challengeHome/lev_4_icon_disabled.png' wx:if="{{insureUserVO.userLevel<4}}"></image>
             <image wx:if="{{itemIndex===3}}" class='arrow' src='../../asset/challengeHome/cur_arrow.png'></image>
         </view>
         <image class='level-line' src='../../asset/challengeHome/level_line.png'></image>
