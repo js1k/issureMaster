@@ -356,9 +356,9 @@
     <!-- 领取卡片 -->
     <view class='com-mask index-mask' wx:if="{{openBox}}" data-judge="treasure">
         <view class='open-box-layer flx-ce-no-clm' wx:if="{{openBox}}">
-            <view class='knapsack-close-box'>
+            <!-- <view class='knapsack-close-box'>
                 <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeCards'></image>
-            </view>
+            </view> -->
             <view class='open-box-container flx-ce-no-clm'>
                 <image src="{{openImg}}" class='open-bg'></image>
                 <view class='open-title'>{{openTitle}}</view>

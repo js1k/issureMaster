@@ -139,7 +139,7 @@ Page({
                 btn: true,
                 img: '../../asset/index/fenxiang.png',
                 disImg: '../../asset/index/fenxiang_disabled.png',
-                desc: '分享好友参加答题,双方可获得分享宝箱,每天领取上限5次',
+                desc: '分享好友参加答题,双方可获得分享宝箱,每天领取上限20次',
                 num: 0
             },
             {
