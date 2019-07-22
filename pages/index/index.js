@@ -312,6 +312,9 @@ Page({
         let helpCard = 'saveCardParam.helpCard'
         let removeCard = 'saveCardParam.removeCard'
         let type = this.data.chestGainTipVO.chestType
+        this.setData({
+            [chestType]: type
+        })
         if (type == 1) {
             this.setData({
                 [energyCard]: 0,
@@ -328,11 +331,11 @@ Page({
                 [removeCard]: 0,
                 openTitle: '获得能量卡1张'
             })
+            this.saveCard()
         }
         this.setData({
             openBox: true,
             showShare: false,
-            [chestType]: type,
             openImg: type == 1 ? _this.data.xueyiBg : type == 2 ? _this.data.fenxiangBg : _this.data.zhutiBg
         })
     },
@@ -462,6 +465,9 @@ Page({
                 [energyCard]: 1
             })
         }
+        if (saveParam.energyCard > 0 && saveParam.helpCard > 0 || saveParam.energyCard > 0 && saveParam.removeCard > 0 || saveParam.removeCard > 0 && saveParam.helpCard>0) {
+            this.saveCard()
+        }
     },
     //事件处理函数
     openRules: function() {
@@ -497,7 +503,7 @@ Page({
     // 开始挑战
     goChallenge: function() {
         //答题尚未开始
-        if (this.data.indexData.examStartFlag == 0) {
+        if (this.data.indexData.examStartFlag === 0) {
             this.setData({
                 examStartFlag: false
             })
@@ -526,6 +532,7 @@ Page({
         let energyCard = 'saveCardParam.energyCard'
         let helpCard = 'saveCardParam.helpCard'
         let removeCard = 'saveCardParam.removeCard'
+        let bags='saveCardParam.bags'
         let _this = this
         let showInfo = _this.data.showInfo
         this.setData({
@@ -535,7 +542,8 @@ Page({
             [curNum]: showInfo.curNum,
             [helpCard]: 0,
             [energyCard]: 0,
-            [removeCard]: 0
+            [removeCard]: 0,
+            [bags]:'bags'
         })
         if (showInfo.chestType == 1) {
             //学艺宝箱
@@ -555,6 +563,7 @@ Page({
                 [helpCard]: 1,
                 [removeCard]: 1
             })
+            this.saveCard()
         } else {
             //主题宝箱
             this.setData({
@@ -564,6 +573,7 @@ Page({
                 [helpCard]: 0,
                 [removeCard]: 0
             })
+            this.saveCard()
         }
     },
     randomShare: function() {
@@ -602,8 +612,78 @@ Page({
             openTitle: '获得' + this.data.randomName + '1张',
             openImg: _this.data.fenxiangBg
         })
+        this.saveCard()
     },
-    //放入背包
+
+    //  存入背包关闭卡片
+    handleCards: function () {
+        this.setData({
+            openBox: false
+        })
+        let _this = this
+        let num = 'saveCardParam.curNum'
+        let energyCard = 'saveCardParam.energyCard'
+        let helpCard = 'saveCardParam.helpCard'
+        let removeCard = 'saveCardParam.removeCard'
+        if (this.data.saveCardParam.curNum > 0) {
+            //判断宝箱是否开启完
+            if (this.data.saveCardParam.chestType == 2) {
+                //判断是否为分享宝箱
+                //分享宝箱随机生成卡片
+                this.setData({
+                    [energyCard]: 0,
+                    [helpCard]: 0,
+                    [removeCard]: 0
+                })
+                let Num = Math.ceil(Math.random() * 3)
+                if (Num == 1) {
+                    this.setData({
+                        randomImg: _this.data.bangbangImg,
+                        randomName: '帮帮卡',
+                        [helpCard]: 1,
+                    })
+                } else if (Num == 2) {
+                    this.setData({
+                        randomImg: _this.data.paichuImg,
+                        randomName: '排除卡',
+                        [removeCard]: 1
+                    })
+                } else {
+                    this.setData({
+                        randomImg: _this.data.nengliangImg,
+                        randomName: '能量卡',
+                        [energyCard]: 1,
+                    })
+                }
+                this.setData({
+                    openTitle: '获得' + _this.data.randomName + '1张'
+                })
+            } else if (_this.data.saveCardParam.chestType == 1) {
+                //  学艺宝箱 清空卡片
+                this.setData({
+                    [energyCard]: 0,
+                    [helpCard]: 0,
+                    [removeCard]: 0
+                })
+            }
+            if(this.data.saveCardParam.bags){
+                this.saveCard()
+            }
+            let timeout1 = setTimeout(function () {
+                //背包连续弹出宝箱卡片
+                _this.setData({
+                    openBox: true
+                })
+                clearTimeout(timeout1)
+            }, 200)
+        } else {
+            this.setData({
+                openBox: false
+            })
+        };
+        this.checkChest()
+    },
+    //打开宝箱即调用接口保存卡片
     saveCard: function() {
         if (!this.data.canSave) {
             return
@@ -622,63 +702,9 @@ Page({
             let tempNum = _this.data.saveCardParam.curNum - 1
             _this.setData({
                 canSave: true,
-                openBox: false,
+                // openBox: false,
                 [num]: tempNum,
             })
-            if (_this.data.saveCardParam.curNum > 0) {
-                //判断宝箱是否开启完
-                if (_this.data.saveCardParam.chestType == 2) {
-                    //判断是否为分享宝箱
-                    //分享宝箱随机生成卡片
-                    _this.setData({
-                        [energyCard]: 0,
-                        [helpCard]: 0,
-                        [removeCard]: 0
-                    })
-                    let Num = Math.ceil(Math.random() * 3)
-                    if (Num == 1) {
-                        _this.setData({
-                            randomImg: _this.data.bangbangImg,
-                            randomName: '帮帮卡',
-                            [helpCard]: 1,
-                        })
-                    } else if (Num == 2) {
-                        _this.setData({
-                            randomImg: _this.data.paichuImg,
-                            randomName: '排除卡',
-                            [removeCard]: 1
-                        })
-                    } else {
-                        _this.setData({
-                            randomImg: _this.data.nengliangImg,
-                            randomName: '能量卡',
-                            [energyCard]: 1,
-                        })
-                    }
-                    _this.setData({
-                        openTitle: '获得' + _this.data.randomName + '1张'
-                    })
-                } else if (_this.data.saveCardParam.chestType == 1) {
-                    //  学艺宝箱 清空卡片
-                    _this.setData({
-                        [energyCard]: 0,
-                        [helpCard]: 0,
-                        [removeCard]: 0
-                    })
-                }
-                let timeout1 = setTimeout(function() {
-                    //背包连续弹出宝箱卡片
-                    _this.setData({
-                        openBox: true
-                    })
-                    clearTimeout(timeout1)
-                }, 200)
-            } else {
-                _this.setData({
-                    openBox: false
-                })
-            };
-            _this.checkChest()
         }, function(error) {
             _this.setData({
                 canSave: true
@@ -956,11 +982,19 @@ Page({
                 }, 3000)
             })
         }, function(error) {
-            wx.showToast({
-                title: error.message,
-                icon: 'none',
-                duration: 1500
+            wx.clearStorage()
+
+            app.doLogin(function () {
+                _this.setData({
+                    authFlag: false,
+                    hiddenLoading: true
+                })
             })
+            // wx.showToast({
+            //     title: error.message,
+            //     icon: 'none',
+            //     duration: 1500
+            // })
         })
     },
 

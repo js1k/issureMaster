@@ -39,6 +39,9 @@ view{
   display: flex;
   align-items: center;
   justify-content: center;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: center;
 }
 .flx-ce-str{
   display: flex;
@@ -67,9 +70,13 @@ view{
 }
 .flx-ce-bet-clm{
   display: flex;
+  display: -webkit-flex;
   align-items: center;
+  -webkit-align-items: center;
   justify-content: space-between;
+  -webkit-justify-content: space-between;
   flex-direction: column;
+  -webkit-flex-direction: column;
 }
 .flx-ce-end{
   display: flex;

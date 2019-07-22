@@ -164,7 +164,7 @@
     font-size:22rpx;
     font-weight:500;
     color:rgba(143,143,143,1);
-    margin-bottom: 32rpx;
+    /* margin-bottom: 32rpx; */
 }
 .index{
     width:44rpx;
@@ -521,17 +521,26 @@
 }
 .question-swiper{
     width:100%;
-    flex-grow: 4;
+    /* height:100%; */
+    height:calc(100% - 96rpx);
+    /* flex-grow: 4;
+    -webkit-flex-grow: 4; */
 }
 .swiper-item{
     width:100%;
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
+    -webkit-flex-direction: column;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: flex-start;
+    -webkit-justify-content: flex-start;
 }
 .question-index-bar{
-    flex-grow: 1
+    /* flex-grow: 1;
+    -webkit-flex-grow: 1 */
+    height:96rpx;
 }
 .cards-tips{
     width:100%;

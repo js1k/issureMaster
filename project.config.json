@@ -49,7 +49,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": 0,
@@ -62,7 +62,7 @@
 					"id": 1,
 					"name": "share",
 					"pathName": "pages/index/index",
-					"query": "uid=23143421055490&type=1",
+					"query": "uid=54546009063938&type=2&shareDay=20190722",
 					"scene": null
 				},
 				{
