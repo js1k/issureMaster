@@ -55,6 +55,7 @@ Page({
         return {...param}
     },
     saveImg: function () {
+        util.vibrateShort()
         wx.canvasToTempFilePath({
             canvasId: 'shareCanvas',
             success: function (res) {
@@ -69,7 +70,8 @@ Page({
             }
         }, this)
     },
-    handleShare: function() {
+    handleShare: function () {
+        util.vibrateShort()
         let _this = this
         let winWidth = app.globalData.winWidth
         let winHeight = app.globalData.winHeight
@@ -151,7 +153,8 @@ Page({
             })
         })
     },
-    saveCard: function() {
+    saveCard: function () {
+        util.vibrateShort()
         let _this = this
         let param = {
             chestType: 3,
@@ -179,7 +182,8 @@ Page({
         app.goBack()
     },
     // 切换按钮
-    handleToggle: function(e) {
+    handleToggle: function (e) {
+        util.vibrateShort()
         let dataset = e.currentTarget.dataset.mark
         this.setData({
             curMark: dataset
@@ -229,7 +233,8 @@ Page({
         })
         this.getRecords()
     },
-    takeTeacher: function() {
+    takeTeacher: function () {
+        util.vibrateShort()
         this.getTeacher()
     },
     getTeacher: function() {
@@ -272,7 +277,8 @@ Page({
         })
     },
     //预览图片
-    previewImage: function(e) {
+    previewImage: function (e) {
+        util.vibrateShort()
         var current = e.target.dataset.src;
         wx.previewImage({
             current: current,
@@ -368,20 +374,6 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload: function() {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function() {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function() {
 
     },
 })

@@ -132,6 +132,7 @@ Page({
         this.setQuestion(_this.data.curIndex)
     },
     saveImg: function () {
+        util.vibrateShort()
         wx.canvasToTempFilePath({
             canvasId: 'shareCanvas',
             success: function (res) {
@@ -148,6 +149,7 @@ Page({
     },
     // 分享图片
     handleShare: function () {
+        util.vibrateShort()
         let _this = this
         let winWidth = app.globalData.winWidth
         let winHeight = app.globalData.winHeight
@@ -244,6 +246,7 @@ Page({
     },
     //选择答案
     choseAnswer:function(e){
+        util.vibrateShort()
         let serial = e.currentTarget.dataset.serial
         let _this = this
         let removeIndex = this.data.question[this.data.curIndex].removeIndex
@@ -272,14 +275,16 @@ Page({
             clearTimeout(timeout)
         },800)
     },
-    reviewResult:function(){
+    reviewResult: function () {
+        util.vibrateShort()
         this.setData({
             reviewQuestion:true,
             answerEnd:false
         })
     },
     // 选择下标
-    choseIndex:function(e){
+    choseIndex: function (e) {
+        util.vibrateShort()
         let index = parseInt(e.target.dataset.index)
         if (!index && index!==0){
             return
@@ -317,7 +322,8 @@ Page({
         })
     },
     // 查看某题
-    handleReview:function(e){
+    handleReview: function (e) {
+        util.vibrateShort()
         let curReviewIndex=e.currentTarget.dataset.index
         this.setData({
             reviewIndex: curReviewIndex
@@ -325,7 +331,8 @@ Page({
         this.dealReview()
     },
     //提交答案
-    submitTest:function(){
+    submitTest: function () {
+        util.vibrateLong()
         let _this = this
         if (!_this.data.canSubmit) {
             return
@@ -387,6 +394,7 @@ Page({
         })
     },
     goBack: function () {
+        util.vibrateLong()
         if (this.data.onTest) {
             this.setData({
                 showMask: true,
@@ -447,6 +455,7 @@ Page({
     },
     //点击卡片
     useCard: function (e) {
+        util.vibrateShort()
         let canUse = e.currentTarget.dataset.canuse
         let type = e.currentTarget.dataset.type
         let cardType ='useParam.cardType'
@@ -468,7 +477,8 @@ Page({
         }
     },
     // 使用卡片
-    handleCard: function() {
+    handleCard: function () {
+        util.vibrateShort()
         if (!this.data.canUseCard){
             return
         }

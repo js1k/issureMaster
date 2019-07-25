@@ -175,52 +175,6 @@ Page({
     onLoad: function(options) {
         let _this = this
         app.globalData.canShow=false
-
-        // let global = app.globalData
-        // let arrList = {
-        //     's1Theme': global.s1Theme,
-        //     's2Theme': global.s2Theme,
-        //     's3Theme': global.s3Theme,
-        //     's4Theme': global.s4Theme,
-        //     'hmBg': global.hmBg,
-        //     'seasonRules': global.seasonRules,
-        //     'xueyiBg': global.xueyiBg,
-        //     'fenxiangBg': global.fenxiangBg,
-        //     'xinshouBg': global.xinshouBg,
-        //     'zhutiBg': global.zhutiBg,
-        //     'activesRuels': global.activesRuels,
-        //     'circleBg': global.circleBg,
-        //     'compoundBt': global.compoundBt,
-        //     'loginImg': global.loginImg,
-        //     'studyBg': global.studyBg,
-        //     'shareBg': global.shareBg,
-        //     'newBg': global.newBg,
-        //     'followBg': global.followBg,
-        //     'shareCoverImg': global.shareCoverImg,
-        //     'wxShareImg': global.wxShareImg,
-        //     'studyBox': global.studyBox,
-        //     'noTeacher': global.noTeacher,
-        //     'followAccount': global.followAccount,
-        //     'redPackets': global.redPackets,
-        //     'challengeCoverImg': global.challengeCoverImg,
-        //     'bgLight': global.bgLight
-        // }
-        // if (wx.getStorageSync('s1Theme')){
-        //     this.dealLoad(options)
-        // }else{
-        //     this.setData({
-        //         showLoadingImg:true,
-        //         hiddenLoading:true
-        //     })
-        //     for (let key in arrList) {
-        //         utils.catchImg(key,arrList[key])
-        //         if (key == 'bgLight') {
-        //             this.setData({
-        //                 showLoadingImg: false,
-        //             })
-        //         }
-        //     }
-        // }
         this.dealLoad(options)
     },
     dealLoad: function(options) {
@@ -306,6 +260,7 @@ Page({
     },
     // 打开分享获得的宝箱
     handleOpen: function() {
+        utils.vibrateShort()
         let _this = this
         let chestType = 'saveCardParam.chestType'
         let energyCard = 'saveCardParam.energyCard'
@@ -340,7 +295,8 @@ Page({
         })
     },
     // 拜师
-    followTeacher: function() {
+    followTeacher: function () {
+        utils.vibrateShort()
         let _this = this
         let param = {
             agentUserId: _this.data.uid,
@@ -369,7 +325,8 @@ Page({
         })
     },
     // 自立门户
-    handleSelfReliance: function() {
+    handleSelfReliance: function () {
+        utils.vibrateShort()
         this.setData({
             showTeacher: false
         })
@@ -382,6 +339,7 @@ Page({
     },
     //首页所有表面事件判断
     handleCheck: function(e) {
+        utils.vibrateShort()
         let _this = this
         if (!wx.getStorageSync('userInfo')) {
             _this.setData({
@@ -431,7 +389,8 @@ Page({
     },
 
     //打开学艺宝箱选择卡片
-    handleChoseCard: function(e) {
+    handleChoseCard: function (e) {
+        utils.vibrateShort()
         let dataset = e.currentTarget.dataset.card
         let energyCard = 'saveCardParam.energyCard'
         let helpCard = 'saveCardParam.helpCard'
@@ -526,7 +485,8 @@ Page({
         })
     },
     // 开启宝箱
-    handleOpenBox: function() {
+    handleOpenBox: function () {
+        utils.vibrateShort()
         let chestType = 'saveCardParam.chestType'
         let curNum = 'saveCardParam.curNum'
         let energyCard = 'saveCardParam.energyCard'
@@ -728,7 +688,8 @@ Page({
         }
     },
     //选中背包卡片
-    showCard: function(event) {
+    showCard: function (event) {
+        utils.vibrateShort()
         let tabIndex = event.currentTarget.dataset.index
         let cardData = this.data.cardData
         let showImg = 'showInfo.showImg'
