@@ -113,7 +113,7 @@ App({
         wxShareImg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190710/1562738980398.png',
         studyBox: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190627/1561639837974.png',
         noTeacher: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190717/1563359982825.png',
-        followAccount: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190710/1562737931348.png',
+        followAccount: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190813/1565683674978.png',
         //challenge
         redPackets: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190707/1562486898642.png',
         challengeCoverImg: 'https://msbxgw.oss-cn-hzfinance.aliyuncs.com/upload/img/20190703/1562146275324.png',

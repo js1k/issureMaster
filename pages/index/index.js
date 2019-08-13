@@ -21,7 +21,10 @@ Page({
         teacherLimit: false,
         noNetWork: false,
         examStartFlag: true,
+        gameOver:false,
+        showFollow:false,
         statusBarHeight: app.globalData.statusBarHeight,
+        followAccount: app.globalData.followAccount,
         loadingText: '加载中...',
         uid: '',
         type: '',
@@ -294,6 +297,23 @@ Page({
             openImg: type == 1 ? _this.data.xueyiBg : type == 2 ? _this.data.fenxiangBg : _this.data.zhutiBg
         })
     },
+    // 关注公众哈
+    follow:function(){
+        this.setData({
+            gameOver:false,
+            showFollow:true
+        })
+    },
+    closeFlow: function () {
+        this.setData({
+            showFollow: false
+        })
+    },
+    closeOver:function(){
+        this.setData({
+            gameOver:false
+        })
+    },
     // 拜师
     followTeacher: function () {
         utils.vibrateShort()
@@ -363,6 +383,14 @@ Page({
                         url: '../login/login'
                     })
                     return
+                }
+                if (_this.data.seasonCheckVO.status===4){
+                    if (dataset == 'challenge' || dataset == 'treasureBox' || dataset == 'redPackets') {
+                        _this.setData({
+                            gameOver: true
+                        })
+                        return
+                    }
                 }
                 switch (dataset) {
                     case 'goHome':
@@ -891,7 +919,7 @@ Page({
                 key: 'uid'
             })
             // 开始弹窗判断     先判断赛季信息--->>分享信息---->>宝箱信息
-            let seasonStatus = _this.data.seasonCheckVO.status //赛季状态 status 0 未开始； 1 进行中； 2 结算中； 3 已结束
+            let seasonStatus = _this.data.seasonCheckVO.status //赛季状态 status 0 未开始； 1 进行中； 2 结算中； 3 已结束  4 所有赛季结束
             let shareStatus = _this.data.shareInfoVO.shareStatus
             let chestTipList = data.chestTipList
             // 0 什么也不弹  1 领取成功  2 拜ta为师吧  3 导师不对，无法领取  4 领取到达上限  5 重复领取  6 分享宝箱过期  7 身份是代理人，无法成为别人的徒弟  8 自己不能领自己分享的
@@ -915,6 +943,14 @@ Page({
                     wx.setStorageSync('seasonEnd', true)
                     _this.setData({
                         seasonEnd: true
+                    })
+                } else if (seasonStatus == 4) {
+                    if (wx.getStorageSync('gameOver')) {
+                        return
+                    }
+                    wx.setStorageSync('gameOver', true)
+                    _this.setData({
+                        gameOver: true
                     })
                 }
             } else { // 赛季进行中  判断分享状态

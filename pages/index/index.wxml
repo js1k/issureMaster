@@ -188,6 +188,32 @@
             </view>
         </view>
     </view>
+    <!-- 关注公众号弹窗 -->
+    <view class='com-mask index-mask follow-mask' catchtap='closeMask' wx:if="{{showFollow}}">
+        <view class='season-end container flx-ce-clm'>
+            <view class='knapsack-close-box'>
+                <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeFlow'></image>
+            </view>
+            <view class='none-teacher-content flx-ce-clm'>
+                <image class='none-teacher' src="{{followAccount}}"></image>
+            </view>
+        </view>
+    </view>
+    <!-- 活动结束 -->
+    <view class='com-mask index-mask' wx:if="{{gameOver}}">
+        <view class='season-end container flx-ce-clm' wx:if="{{gameOver}}">
+            <view class='knapsack-close-box'>
+                <image src='../../asset/mask_close.png' class='knapsack-close' bindtap='closeOver'></image>
+            </view>
+            <view class='end-wrap flx-ce-no-clm'>
+                <view class='end-title'>活动已结束，感谢参与！</view>
+                <view class='end-info over-txt'>别忘了你的积分哦！</view>
+                <view class='end-info over-txt'>关注“保险体验师”公众号，</view>
+                <view class='end-info over-txt'>未来更多积分玩法，敬请期待！</view>
+                <view class='end-btn flx-ce-ce follow' catchtap='follow'>立即关注</view>
+            </view>
+        </view>
+    </view>
     <!-- 分享达到领取上限、代理人无法领取宝箱、重复领取、自己不能领自己分享的 -->
     <view class='com-mask index-mask' wx:if="{{showLimit}}">
         <view class='container flx-ce-clm' wx:if="{{showLimit}}">
