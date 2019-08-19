@@ -1,6 +1,5 @@
 const app = getApp()
 const netWork = require('../../utils/util.js')
-const utils = require('../../utils/util.js')
 Page({
     data: {
         userInfo: {},
@@ -263,7 +262,6 @@ Page({
     },
     // 打开分享获得的宝箱
     handleOpen: function() {
-        utils.vibrateShort()
         let _this = this
         let chestType = 'saveCardParam.chestType'
         let energyCard = 'saveCardParam.energyCard'
@@ -316,7 +314,6 @@ Page({
     },
     // 拜师
     followTeacher: function () {
-        utils.vibrateShort()
         let _this = this
         let param = {
             agentUserId: _this.data.uid,
@@ -346,7 +343,6 @@ Page({
     },
     // 自立门户
     handleSelfReliance: function () {
-        utils.vibrateShort()
         this.setData({
             showTeacher: false
         })
@@ -359,7 +355,6 @@ Page({
     },
     //首页所有表面事件判断
     handleCheck: function(e) {
-        utils.vibrateShort()
         let _this = this
         if (!wx.getStorageSync('userInfo')) {
             _this.setData({
@@ -418,7 +413,6 @@ Page({
 
     //打开学艺宝箱选择卡片
     handleChoseCard: function (e) {
-        utils.vibrateShort()
         let dataset = e.currentTarget.dataset.card
         let energyCard = 'saveCardParam.energyCard'
         let helpCard = 'saveCardParam.helpCard'
@@ -514,7 +508,6 @@ Page({
     },
     // 开启宝箱
     handleOpenBox: function () {
-        utils.vibrateShort()
         let chestType = 'saveCardParam.chestType'
         let curNum = 'saveCardParam.curNum'
         let energyCard = 'saveCardParam.energyCard'
@@ -717,7 +710,6 @@ Page({
     },
     //选中背包卡片
     showCard: function (event) {
-        utils.vibrateShort()
         let tabIndex = event.currentTarget.dataset.index
         let cardData = this.data.cardData
         let showImg = 'showInfo.showImg'

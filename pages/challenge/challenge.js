@@ -1,5 +1,4 @@
 const app = getApp()
-let util = require('../../utils/util.js')
 Page({
     data: {
         isIpx: app.globalData.isIpx,
@@ -132,7 +131,6 @@ Page({
         this.setQuestion(_this.data.curIndex)
     },
     saveImg: function () {
-        util.vibrateShort()
         wx.canvasToTempFilePath({
             canvasId: 'shareCanvas',
             success: function (res) {
@@ -149,7 +147,6 @@ Page({
     },
     // 分享图片
     handleShare: function () {
-        util.vibrateShort()
         let _this = this
         let winWidth = app.globalData.winWidth
         let winHeight = app.globalData.winHeight
@@ -246,7 +243,6 @@ Page({
     },
     //选择答案
     choseAnswer:function(e){
-        util.vibrateShort()
         let serial = e.currentTarget.dataset.serial
         let _this = this
         let removeIndex = this.data.question[this.data.curIndex].removeIndex
@@ -276,7 +272,6 @@ Page({
         },800)
     },
     reviewResult: function () {
-        util.vibrateShort()
         this.setData({
             reviewQuestion:true,
             answerEnd:false
@@ -284,7 +279,6 @@ Page({
     },
     // 选择下标
     choseIndex: function (e) {
-        util.vibrateShort()
         let index = parseInt(e.target.dataset.index)
         if (!index && index!==0){
             return
@@ -323,7 +317,6 @@ Page({
     },
     // 查看某题
     handleReview: function (e) {
-        util.vibrateShort()
         let curReviewIndex=e.currentTarget.dataset.index
         this.setData({
             reviewIndex: curReviewIndex
@@ -455,7 +448,6 @@ Page({
     },
     //点击卡片
     useCard: function (e) {
-        util.vibrateShort()
         let canUse = e.currentTarget.dataset.canuse
         let type = e.currentTarget.dataset.type
         let cardType ='useParam.cardType'
@@ -478,7 +470,6 @@ Page({
     },
     // 使用卡片
     handleCard: function () {
-        util.vibrateShort()
         if (!this.data.canUseCard){
             return
         }

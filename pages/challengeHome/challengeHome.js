@@ -1,5 +1,4 @@
 const app = getApp()
-const utils = require('../../utils/util.js')
 Page({
     data: {
         isIpx: app.globalData.isIpx,
@@ -34,7 +33,6 @@ Page({
         app.goBack()
     },
     startTest: function () {
-        utils.vibrateLong()
         let _this=this
         //开始答题判断能量值是否足够
         if (this.data.insureUserVO.todayEnergy<5){

@@ -48,18 +48,10 @@ const catchImg=(key,val)=>{
         }
     })
 }
-const vibrateLong=()=>{
-    wx.vibrateLong()
-}
-const vibrateShort = () => {
-    wx.vibrateShort()
-}
 
 module.exports = {
   formatTime: formatTime,
     getNow: getNow,
     getNetWork: getNetWork,
-    catchImg: catchImg,
-    vibrateLong: vibrateLong,
-    vibrateShort: vibrateShort
+    catchImg: catchImg
 }
